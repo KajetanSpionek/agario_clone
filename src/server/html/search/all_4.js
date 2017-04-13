@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['player',['Player',['../classPlayer.html',1,'']]],
-  ['player_2ehpp',['Player.hpp',['../Player_8hpp.html',1,'']]]
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]]
 ];

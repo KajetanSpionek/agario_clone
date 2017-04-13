@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gameboard',['GameBoard',['../classGameBoard.html',1,'']]]
+  ['fooditem',['FoodItem',['../classFoodItem.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updateelementdata',['UpdateElementData',['../structUpdateElementData.html',1,'']]]
+  ['player',['Player',['../classPlayer.html',1,'']]]
 ];
