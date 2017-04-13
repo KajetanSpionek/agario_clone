@@ -1,0 +1,9 @@
+import platform
+
+env = Environment()
+if(platform.system() == "Linux"):
+    env.Append( CPPFLAGS = '--std=c++11' )
+
+env.Program( source = 'main.cpp', target = 'main' )
+#env.Program( source = 'Element.cpp', target = 'Element' )
+#env.Program( source = 'GameBoard.cpp', target = 'GameBoard' )
