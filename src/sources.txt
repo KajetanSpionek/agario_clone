@@ -11,3 +11,5 @@ https://github.com/zaphoyd/websocketpp
 http://websocketserver.de/
 
 https://github.com/eidheim/Simple-WebSocket-Server
+
+You need to git add my_project to stage your new folder. Then git add my_project/* to stage its contents. Then commit what you've staged using git commit and finally push your changes back to the source using git push origin master (I'm assuming you wish to push to the master branch).
