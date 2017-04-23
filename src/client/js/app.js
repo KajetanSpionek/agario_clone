@@ -13,7 +13,10 @@ window.onload = function () {
 
 var foods = [];
 var players = [];
-var user;
+
+var user = {
+  // Players ID, cordinates, size
+}
 
 window.canvas = new Canvas();
 var c = window.canvas.cv;
