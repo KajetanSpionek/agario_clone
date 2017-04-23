@@ -8,6 +8,7 @@
 
 #include "element.hpp"
 #include "player.hpp"
+#include "webserver.hpp"
 
 #include <iostream>
 #include <memory>
@@ -49,12 +50,12 @@ private:
     players playersCollection_;
 
     //
-    typedef std::unique_ptr<Server> serverPtr;
+    typedef std::unique_ptr<WebServer> serverPtr;
     serverPtr server_;
 
     //mapSize
-    const unsigned int xMapSize;
-    const unsigned int yMapSize;
+    const unsigned int xMapSize{2000}; //just to shut the compiler
+    const unsigned int yMapSize{2000};
 
 };
 

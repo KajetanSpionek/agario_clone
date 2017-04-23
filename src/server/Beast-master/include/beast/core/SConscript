@@ -1,0 +1,5 @@
+import platform
+
+env = Environment()
+if(platform.system() == "Linux"):
+    env.Append( CPPFLAGS = '--std=c++11 -lboost_system' )
