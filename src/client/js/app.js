@@ -1,47 +1,80 @@
 var io = require('../node_modules/socket.io-client');
-var global = require('./global');
-var Canvas = require('./canvas.js');
-var global = require('./global');
 
-var usernameInput = document.getElementById('usernameInput');
 var socket;
-var reason;
 
-
-function validNick() {
-    var regex = /^\w*$/;
-    return regex.exec(usernameInput.nodeValue) !== null;
-}
-
-function startGame(type) {
-    global.playerName = usernameInput.value.replace(/(<([^>]+)>)/ig, '').substring(0, 25);
-    global.playerType = type;
-    
-    global.screenWidth = window.innerWidth;
-    global.screenHeight = window.innerHeight;
-    
-    document.getElementById('loginArea').style.maxHeight = '0px';
-    document.getElementById('gameArea').style.opacity = 1;
-    if (!socket) {
-        socket = io({query: "type=" + type});
-        setupSocket(socket);
-    }
-    socket.emit('respawn');
-    window.chat.socket = socket;
-    window.chat.registerFunctions();
-    window.canvas.socket = socket;  
+function startGame() {
+// connects players to server
+// takes player's nickname
 }
 
 window.onload = function () {
-    var btn = document.getElementById('startButton');
-    
-    btn.onclick = function () {
-        if (validNick()) {
-            nickErrorText.style.opacity = 0;
-            startGame('player');
-        } else {
-            nickErrorText.style.opacity = 1;
-        }
-    }
+  // display's nick form and play button - when screen load's on clinets side
 }
 
+var foods = [];
+var players = [];
+var user;
+
+window.canvas = new Canvas();
+var c = window.canvas.cv;
+
+  // Recived socket handle
+function setupSocket(socket) {
+
+    // Disconnect handle
+    socket.on('disconnect', function() {
+      // Close socket
+    });
+
+    // Error handle
+    socket.on('connection_error', function() {
+      // Close socket
+    });
+
+    // Connection handle
+    socket.on('connection_init', function() {
+      // First connection initialization
+      // Transfering basic parameters (?)
+      // Setting basic parameters (?)
+    });
+
+    // Recieve data about food & players from server
+    socket.on('update', function(playersData, foodData) {
+      // Update foods[], players[], user
+    });
+
+    // Death msg - recieve information when eaten by another player
+    socket.on('death', function() {
+      // Recieve information when eaten by another player
+    });
+}
+
+// Drawing functions
+
+function drawCircle(x, y, r) {
+  // Draw circle in specific directions
+}
+
+function drawFood(foods){
+  // Draws all food on user's map
+}
+
+function drawPlayers(players){
+  // Draws all players on user's map
+}
+
+function drawMap() {
+  // Draws map when game started
+}
+
+// Game loop - handles whole game process
+function gameLoop(){
+
+  // if new game - draw board, food and players
+
+  // Player's send cordinates (Heartbeat)
+
+  // if player died - end game
+  // if player disconnected - end game
+
+}
