@@ -1,23 +1,17 @@
 # README #
 
 Name: agario_clone
+Authors: Kajetan Śpionek, Wojciech Przybysz
 
-### How do I get set up? ###
+### Set up environment ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+*Install Boost Library
 
-### Contribution guidelines ###
+1) download and unzip www.boost.org, then 'bootstrap.sh', then './b2'
+2) copy the subdirectory 'boost' to '/usr/local/include', copy all the files from the 'stage/lib' to '/usr/local/lib' and put the line 'export LD_LIBRARY_PATH=/usr/local/lib' into /etc/bash.profile or ~/.bashrc
 
-* Writing tests
-* Code review
-* Other guidelines
+### Dependencies ###
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Beast Websocket C++ library
+https://github.com/vinniefalco/Beast
+Added staticly to sources
