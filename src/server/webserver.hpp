@@ -63,7 +63,7 @@ private:
             T t_;
         public:
             template<typename U>
-            CallableImpl(&&U u): t_(std::forward<U>(u)){
+            CallableImpl(U&& u) : t_(std::forward<U>(u)){
             }
             void operator()(beast::websocket::stream<NextLayer> &ws){
                 t_(ws);
@@ -88,10 +88,10 @@ private:
 
      public:
         template<class Opt>
-        void setOptions(Opt const& opt){
+        void setOption(Opt const& opt){
             std::unique_ptr<Callable> p;
             p.reset(new CallableImpl<Lambda<Opt>>{opt});
-            list_[std::type_index{typeid(Opt)}] = std
+            list_[std::type_index{typeid(Opt)}] = std::move(p);
         }
 
         void setOptions(beast::websocket::stream<NextLayer>&ws){
@@ -112,7 +112,53 @@ private:
     OptionsSet<socket_type> opts_;
 
 public:
-    WebServer(Webserver const &) = delete;
+    WebServer(WebServer const &) = delete;
+    WebServer & operator=(WebServer const &) = delete;
+
+    WebServer(std::ostream* log, std::size_t threads) : log_(log), sock_(ios_), acceptor_(ios_), work_(ios_) {
+        opts_.setOption( beast::websocket::decorate(identity{}));
+        thread_.reserve(threads);
+        for(std::size_t i = 0; i < threads; ++i){
+            thread_.emplace_back([&]{ios_.run();});
+        }
+    } 
+
+    ~WebServer(){
+        work_ = boost::none;
+        error_code ec;
+        ios_.dispatch( [&]{ acceptor_.close(ec);} );
+        for( auto& t : thread_){
+            t.join();
+        }
+    }
+
+    endpoint_type localEndpoint() const{
+        return acceptor_.local_endpoint();
+    }
+
+    template<typename Opt>
+    void setOption(Opt const & opt){
+        opts_.setOption(opt);
+    }
+    /*
+
+    void open(endpoint_type const & ep, error_code & ec){
+        acceptor_.open(ep.protocol(),ec);
+        if(ec)
+            return fail("open",ec);
+        acceptor_.set_option(boost::asio::socket_base::reuse_address{true});
+        acceptor_.bind(ep,ec);
+        if(ec)
+            return fail("bind",ec);
+        acceptor_.listen(boost::asio::socket_base::max_connections, ec);
+        if(ec)
+            return fail("listen",ec);
+        acceptor_.asyns_accept(sock_,ep_, std::bind(&WebServer::on_accept,this,beast::asio::placeholders::error));
+
+    }
+    */
+private:
+
 };
 
    

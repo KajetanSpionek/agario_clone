@@ -6,7 +6,7 @@
 void WebServer::init(){
     std::cout << "in init" << std::endl;
 
-    //adress_type 
+//adress_type 
     auto host = "127.0.0.1";
     boost::asio::io_service ios;
     boost::asio::ip::tcp::resolver r{ios};
