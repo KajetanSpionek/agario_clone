@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agario clone</title>
+    <!--CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+  <div id="gameArea" >
+      </div>
+      <canvas tabindex="1" id="cvs"></canvas>
+  </div>
+  
+  <div id="loginArea">
+      <div id="loginMenu">
+          <p>Log in</p>
+          <input type="text" tabindex="0" autofocus placeholder="Enter username" id="usernameInput" maxlength="25" />
+          <a onclick="document.getElementById('spawn_cell').play();"><button id="startButton">Play</button></a>
+          <b class="inputError">Nick must be alphanumeric only</b>
+      </div>
+  </div>
+    <script src="js/app.js"></script>
+</body>
+</html>

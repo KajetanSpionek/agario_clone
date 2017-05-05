@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -Wall -Wextra -Wpedantic -Wno-unused-parameter -DBOOST_COROUTINES_NO_DEPRECATION_WARNING=1   CMakeFiles/websocket-echo.dir/websocket_echo.cpp.o  -o websocket-echo -rdynamic -Wl,-Bstatic -lboost_coroutine -lboost_context -lboost_thread -lboost_filesystem -lboost_program_options -lboost_system -Wl,-Bdynamic -lpthread -pthread 

@@ -1,10 +1,14 @@
 var io = require('../node_modules/socket.io-client');
+var Canvas = require('./canvas');
+var global = require('./global');
 
+var playerNameInput = document.getElementById('usernameInput')
 var socket;
 
 function startGame() {
 // connects players to server
 // takes player's nickname
+    
 }
 
 window.onload = function () {

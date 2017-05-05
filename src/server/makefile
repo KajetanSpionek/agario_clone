@@ -1,6 +1,6 @@
 CXX = g++
 INC_DIR = /home/wprzybys/Documents/ZPR/agario_clone/agario_clone/src/server/Beast-master/include
-CXXFLAGS = -Wall -std=c++17 -I$(INC_DIR)
+CXXFLAGS = -Wall -std=c++11 -I$(INC_DIR)
 PROJECT_LDFLAGS = $(shell pkg-config python-2.7 --libs)
 PROJECT_CFLAGS = $(shell pkg-config python-2.7 --cflags)
 LINK_FLAGS = -lboost_system -lboost_asio -lpthread -lrt -lm

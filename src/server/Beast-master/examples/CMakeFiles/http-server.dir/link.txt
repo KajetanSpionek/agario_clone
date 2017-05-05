@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -Wall -Wextra -Wpedantic -Wno-unused-parameter -DBOOST_COROUTINES_NO_DEPRECATION_WARNING=1   CMakeFiles/http-server.dir/http_server.cpp.o  -o http-server -rdynamic -Wl,-Bstatic -lboost_coroutine -lboost_context -lboost_thread -lboost_filesystem -lboost_program_options -lboost_system -Wl,-Bdynamic -lpthread -pthread 

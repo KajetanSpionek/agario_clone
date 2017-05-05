@@ -1,28 +1,22 @@
-/*!
-*\file      Player.hpp
-*\author    
-*\date      
-*/
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
+#ifndef WEBSOCKET_PLAYER_HPP
+#define WEBSOCKET_PLAYER_HPP
 
-#include <memory>
+#include <string>
+#include <boost/shared_ptr.hpp>
+#include "dataframe.hpp"
 
-#include "stat.hpp"
-#include "ball.hpp"
+namespace websocket {
+    
+    class Player
+    {
+    public:
+        virtual ~Player() {}
+        virtual void deliver(Dataframe msg) = 0;
+        virtual std::string getId() = 0;
+    };
 
-class Player{
-public:
-    Player();
-    ~Player();
-    Player(const Player &) = delete;
-    unsigned int getId();
-private:
-    unsigned int id_;
-    typedef std::shared_ptr<Ball> ballPtr;
-    ballPtr ball_;
-    Stat stats_;
-};
+    typedef boost::shared_ptr<Player> player_ptr;
+            
+} // namespace websocket
 
-#endif 
-//_PLAYER_H_
+#endif // WEBSOCKET_APPLICATIONS_CHAT_PARTICIPANT_HPP
