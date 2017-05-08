@@ -100,7 +100,10 @@ article > * {
   <p>Users connected: <span id="connected">0</span></p>
   <p>To test, open two windows with Web Socket support, type a message above and press return.</p>
   <ul id="log"></ul>
+    <canvas id="myCanvas" width="400" height="200"></canvas>
 </article>
+
+
 <script>
 
     connected = document.getElementById("connected");
@@ -172,10 +175,41 @@ article > * {
         else if (message.startsWith("newFood:"))
         {
             message = message.slice("newFood:".length);
+		    message = message.split(" ");
             log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;	
+            
+            for( i = 1; i < message.length; i = i + 2){
+                drawCircle(message[i],message[i+1],5);
+            }
+		   
+           
         }    
     }
-
+    
+    function getRandomColor() 
+    {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    
+    function drawCircle(x_center,y_center,radius)
+    {
+        var start_angle = 0;
+        var end_angle = 2*Math.PI;
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();	
+        ctx.arc(x_center,y_center,radius,start_angle,end_angle);
+        ctx.fillStyle = getRandomColor();
+        ctx.fill();
+        ctx.lineWidth = radius/2;
+        ctx.stroke();
+    }
+    
     function onError(evt)
     { 
         state.className = "fail";
