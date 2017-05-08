@@ -12,7 +12,7 @@ namespace websocket {
         std::for_each(recent_msgs_.begin(), recent_msgs_.end(),
             boost::bind(&Player::deliver, participant, _1));
 
-        addNewFoodItem();
+        addInitialFoodItem();
 
 
     }
@@ -61,16 +61,18 @@ namespace websocket {
             boost::bind(&Player::deliver, _1, boost::ref(frm)));
     }
 
-    void GameBoard::addNewFoodItem()
+    void GameBoard::addInitialFoodItem()
     {
         const unsigned int newItemEl = 10;
         std::cout << "addNewFoodItem" << std::endl;
         std::vector<unsigned int> tab(newItemEl,0);
 
-        boost::random::mt19937 gen;
+        boost::random::mt19937 gen(static_cast<unsigned int>(std::time(0)));
+
         for( std::vector<unsigned int>::iterator it = tab.begin(); it < tab.end(); it++)
         {
-            boost::random::uniform_int_distribution<> dist(1, 2000);
+            //check if elements overlay
+            boost::random::uniform_int_distribution<> dist(1, 200);
             *it = dist(gen);
         }
 

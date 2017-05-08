@@ -8,7 +8,8 @@
 
 #include "element.hpp"
 
-class Ball : public Element {
+class Ball : public Element
+{
 public:
     virtual void notify();
     void increaseMass(int add_mass); //increase mass = decrease velocity

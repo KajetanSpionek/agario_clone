@@ -25,7 +25,7 @@ class Canvas {
         this.cv.parent = self;
         global.canvas = this;
     }
-
+z
     // Function called when a key is pressed, will change direction if arrow key.
     directionDown(event) {
     	var key = event.which || event.keyCode;

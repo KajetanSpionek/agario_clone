@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <deque>
 #include <set>
+#include <vector>
 #include <iostream>
 #include <boost/lexical_cast.hpp>
 #include <boost/bind.hpp>
@@ -38,11 +39,20 @@ namespace websocket {
         /// Update a number of connected participants. 
         void updateParticipants();
 
-        void addNewFoodItem();
+        ///Methods of game logic
+        void addInitialFoodItem();
+
+        //void detectCollision();
+        //
 
         std::set<player_ptr> participants_;
         enum { max_recent_msgs = 100 };
         message_queue recent_msgs_;
+
+        //Map of the balls
+        const int mapX_{200};
+        const int mapY_{400};
+        //std::std::vector<std::std::vector<int>> ballMap_();
     };
 
 } // namespace websocket
