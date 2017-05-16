@@ -6,23 +6,38 @@
 #ifndef BALL_HPP
 #define BALL_HPP
 
-#include "element.hpp"
+namespace websocket{
+    class Ball 
+    {
+    public:
+        
+        //void increaseMass(int add_mass); //increase mass = decrease velocity
+        Ball(int & x,int & y,int & radius): x_(x), y_(y),radius_(radius)
+        {
+            
+        }
+        Ball() = default;
 
-class Ball : public Element
-{
-public:
-    virtual void notify();
-    void increaseMass(int add_mass); //increase mass = decrease velocity
 
-private:
-    double vX_;
-    double vY_;
+        int getX() { return x_;}
+        int getY() { return y_;}
+        int getRadius() {return radius_;}
+    private:
+        //position
+        int x_;
+        int y_;
+        //velocity
+        int vX_;
+        int vY_;
+        //radius
+        int radius_;
 
-    //ball is always in the centre of the screen
-    //visible distance defines how many pixels can
-    //be seen from the edge of monitor
-    double xVisibleDistance;
-    double yVisibleDistance;
-};
+        int mass_;
 
+        
+        //double xVisibleDistance;
+        //double yVisibleDistance;
+    };
+    typedef std::shared_ptr<Ball>  ball_ptr;
+}
 #endif //BALL_HPP

@@ -174,12 +174,26 @@ article > * {
         }    
         else if (message.startsWith("newFood:"))
         {
+            /*Frame x,y*/
             message = message.slice("newFood:".length);
 		    message = message.split(" ");
             log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;	
             
             for( i = 1; i < message.length; i = i + 2){
                 drawCircle(message[i],message[i+1],5);
+            }
+		   
+           
+        } 
+        else if (message.startsWith("newBall:"))
+        {
+            /*Frame x,y,radius*/
+            message = message.slice("Ball:".length);
+		    message = message.split(" ");
+            log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;	
+            
+            for( i = 1; i < message.length; i = i + 3){
+                drawCircle(message[i],message[i+1],message[i+2]);
             }
 		   
            
