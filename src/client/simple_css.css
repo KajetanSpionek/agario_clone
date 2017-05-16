@@ -1,0 +1,22 @@
+<style type="text/css">
+
+div {
+    display: block;
+}
+#left { 
+   width:810px; 
+   height: 800px; 
+   float:left; 
+}
+
+#right { 
+   width:800px; 
+   height:100%; 
+   background:lightblue; 
+   float:left
+}
+
+
+
+
+</style>
