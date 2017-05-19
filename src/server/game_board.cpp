@@ -262,7 +262,6 @@ namespace websocket {
     void GameBoard::sendGameState(player_ptr participant)
     {
         //send balls
-        
         std::string header_balls = "gameStateBall:";
 
         balls_container::iterator j;
