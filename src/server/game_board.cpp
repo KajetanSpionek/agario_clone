@@ -141,7 +141,7 @@ namespace websocket {
 
         for( it = foods_.begin(); it != foods_.end(); it++)
         {
-       
+            header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getId());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getX());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getY());
         }
@@ -210,7 +210,7 @@ namespace websocket {
 
         std::string header_balls = "newBall:";
 
-
+        header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getId());
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getX());
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getY());
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getRadius());
@@ -268,6 +268,7 @@ namespace websocket {
 
         for(j = balls_.begin(); j != balls_.end(); j++ )
         {
+            header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getId());
             header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getX());
             header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getY());
             header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getRadius());
@@ -286,7 +287,7 @@ namespace websocket {
 
         for( i = foods_.begin(); i != foods_.end(); i++)
         {
-       
+            header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getId());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getX());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getY());
         }
