@@ -58,7 +58,7 @@ namespace websocket {
         ///Sends balls and foods position to players
         void sendGameState();
        
-        bool checkIfFreeSpace();
+        void eraseBall(player_ptr participant);
 
         std::set<player_ptr> participants_;
         //limit of message_queue
@@ -74,13 +74,18 @@ namespace websocket {
         static const int initialFood_ {10};
         static const int initialFoodParams_{2};
 
-        //static std::vector<std::vector<int> > ballMap_();
-        //static std::vector<std::vector<int> > ballMap_(400,std::vector<int>(200,0));
+        int IdCount_;
+        typedef std::vector<std::vector<int> > game_map;
+        static game_map IdMap_;
+
         
         typedef std::map<player_ptr,ball_ptr > balls_container;
         static balls_container balls_;
         typedef std::list<food_ptr > foods_container;
         static foods_container foods_;
+
+        //main movement processing
+        void processMovement(player_ptr source);
     };
 
     

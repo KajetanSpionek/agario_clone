@@ -232,12 +232,20 @@ article > * {
     
     function addMessage()
     {
-        var message = chat.value;
+        var message = "message:"
+        message = message + chat.value;
       
         chat.value = "";
 	  
         websocket.send(message);
     }	
+    
+    //Function starts detectCollision() method in  server
+    function onClick()
+    {
+		var message = "click"
+		websocket.send(message);
+	}
     
 
 

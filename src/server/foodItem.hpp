@@ -7,23 +7,23 @@
 #define FOODITEM_HPP
 
 #include <memory>
+#include <iostream>
 
 namespace websocket {
 
 	class FoodItem{
-        int x_;
-		int y_;
 	public:
 		
-		FoodItem(int & x, int & y): x_(x), y_(y)
-		{
-
-		}
-		//~FoodItem() = default;
+		FoodItem(int & x, int & y,int& id);
+		~FoodItem(){std::cout << "delete food\n";} //= default;
         //FoodItem & FoodItem(const &FoodItem) = default;
-
+		int getId() { return Id_;}
         int getX() { return x_;}
         int getY() { return y_;}
+	private:
+		const int Id_;
+        int x_;
+		int y_;
 
 	};
 
