@@ -15,3 +15,8 @@ newFood: id x y
 newBall: id x y radius
 deleteFood: id
 deleteBall: id
+
+### Send by client ###
+tutaj ustal co ma być 
+message: (tu wiadomość tekstowa chatu)
+move: (co wysyłasz z ruchem, przesunięciem myszki)
