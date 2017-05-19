@@ -48,20 +48,31 @@ namespace websocket {
         ///Methods of game logic
         void addNFoodItem(int n);
 
+        ///create new foodItem 
         food_ptr getFood(int& x,int& y);
 
+        ///erase foodItem from collection and informs other players
         void eraseFood(int id);
 
-        //Player ball
+        //add new ball for new player and update other players
         void addNewBall(player_ptr participant);
         
+        ///create new ball for player
         ball_ptr getBall(int& x ,int& y ,int& radius);
         
         ///Sends balls and foods position to players
         void sendGameState(player_ptr participant);
        
+        //delete ball and update players
         void eraseBall(player_ptr participant);
 
+        //main movement processing
+        void processMovement(player_ptr source);
+
+        ///when player is eaten send statistics of the game
+        void sendStats(player_ptr participant);
+
+        //data structers for players
         std::set<player_ptr> participants_;
         //limit of message_queue
         enum { max_recent_msgs = 100 };
@@ -73,9 +84,12 @@ namespace websocket {
         static const int foodItemMarigin_{5};
         static const int ballMarigin_{10};
 
-        static const int initialFood_ {10};
+        //foodItems const params
+        static const int initialFood_ {50};
+        static const int newPlayerFood_ {10};
         static const int initialFoodParams_{2};
 
+        ///map containing state of gameplay with objects IDs
         int IdCount_;
         typedef std::vector<std::vector<int> > game_map;
         static game_map IdMap_;
@@ -83,11 +97,13 @@ namespace websocket {
         
         typedef std::map<player_ptr,ball_ptr > balls_container;
         static balls_container balls_;
+
+    
+
         typedef std::map<int,food_ptr > foods_container;
         static foods_container foods_;
 
-        //main movement processing
-        void processMovement(player_ptr source);
+
     };
 
     

@@ -10,6 +10,8 @@ namespace websocket {
     GameBoard::GameBoard()
     {
         IdMap_.resize( mapY_ ,std::vector<int>(mapX_,0));
+        //set initial food to game board
+        addNFoodItem(initialFood_);
     }
 
     void GameBoard::join(player_ptr participant)
@@ -28,7 +30,7 @@ namespace websocket {
         addNewBall(participant);    
 
         //add N new food and send to everyone
-        addNFoodItem(initialFood_);
+        addNFoodItem(newPlayerFood_);
         
         
  
@@ -129,6 +131,8 @@ namespace websocket {
 
             IdMap_.at(y_temp).at(x_temp) = (((new_food.first)->second)->getId()); 
 
+            std::cout << ((new_food.first)->second)->getId() << std::endl;
+
         }
 
         //food update message loop
@@ -210,6 +214,8 @@ namespace websocket {
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getX());
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getY());
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getRadius());
+
+        std::cout << ((new_ball.first)->second)->getId() << std::endl;
         
 
         Dataframe frm_balls;
@@ -271,10 +277,6 @@ namespace websocket {
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 
         deliver(frm_balls,participant);
-        /*
-        std::for_each(participants_.begin(), participants_.end(),
-            boost::bind(&Player::deliver, _1, boost::ref(frm_balls)));
-        */
 
         //send foods
 
@@ -292,17 +294,54 @@ namespace websocket {
         Dataframe frm_foods;
         std::copy(header_foods.begin(), header_foods.end(), std::back_inserter(frm_foods.payload));
 
-        /*
-        std::for_each(participants_.begin(), participants_.end(),
-            boost::bind(&Player::deliver, _1, boost::ref(frm_foods)));
-        */
         deliver(frm_foods,participant);
 
     }
 
     void GameBoard::processMovement(player_ptr source)
      {
+            ///movement loop
+        //check if wihin radius if sth
+
+        //if not
+        //send position
+        //update enemies
+
+        //if is
+        //delete food - spawn new foods
+        // or ball
+        //send stats to looser
+        //increase mass
+        //send new position
+        //update enemies
+        
+
+
 
      }
+
+     void GameBoard::sendStats(player_ptr participant)
+     {
+
+
+        std::string header = "stats:";
+        
+
+        //header = header + " " + boost::lexical_cast<std::string>();
+        Dataframe frm;
+        std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
+
+        deliver(frm,participant);
+     }
+
+     /*
+     double calculateDistance(player_ptr player,int id_food)
+     {
+
+     }
+     */
+
+
+
 
 } // namespace websocket
