@@ -158,6 +158,30 @@ namespace websocket {
         return std::make_shared<FoodItem>(x,y,++IdCount_);
     }
 
+    void GameBoard::eraseFood(int id)
+    {
+        food_ptr food;
+        food = foods_[id];
+        IdMap_.at(food->getY()).at(food->getX()) = 0;
+
+
+        std::string header_foods = "deleteFood:";
+
+        header_foods = header_foods + " " + boost::lexical_cast<std::string>(id);
+        //header_foods = header_foods + " " + boost::lexical_cast<std::string>(food->getX());
+        //header_foods = header_foods + " " + boost::lexical_cast<std::string>(food->getY());
+
+        //erase from collection
+        foods_.erase(id);
+
+        Dataframe frm_foods;
+        std::copy(header_foods.begin(), header_foods.end(), std::back_inserter(frm_foods.payload));
+
+        std::for_each(participants_.begin(), participants_.end(),
+            boost::bind(&Player::deliver, _1, boost::ref(frm_foods)));
+
+    }
+
     void GameBoard::addNewBall(player_ptr participant)
     {
         int initBallRadius_ = 20;
@@ -213,9 +237,12 @@ namespace websocket {
 
         std::string header_balls = "deleteBall:";
 
-        header_balls = header_balls + " " + boost::lexical_cast<std::string>(ball->getX());
-        header_balls = header_balls + " " + boost::lexical_cast<std::string>(ball->getY());
+        header_balls = header_balls + " " + boost::lexical_cast<std::string>(ball->getId());
+        //header_balls = header_balls + " " + boost::lexical_cast<std::string>(ball->getX());
+        //header_balls = header_balls + " " + boost::lexical_cast<std::string>(ball->getY());
 
+        //erase from balls collection
+        balls_.erase(participant);
 
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
@@ -223,7 +250,7 @@ namespace websocket {
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm_balls)));
 
-        balls_.erase(participant);
+        
     }
 
     void GameBoard::sendGameState(player_ptr participant)

@@ -50,6 +50,8 @@ namespace websocket {
 
         food_ptr getFood(int& x,int& y);
 
+        void eraseFood(int id);
+
         //Player ball
         void addNewBall(player_ptr participant);
         
