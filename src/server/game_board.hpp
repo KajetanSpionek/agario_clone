@@ -46,7 +46,7 @@ namespace websocket {
         void updateParticipants();
 
         ///Methods of game logic
-        void addInitialFoodItem();
+        void addNFoodItem(int n);
 
         food_ptr getFood(int& x,int& y);
 
@@ -56,7 +56,7 @@ namespace websocket {
         ball_ptr getBall(int& x ,int& y ,int& radius);
         
         ///Sends balls and foods position to players
-        void sendGameState();
+        void sendGameState(player_ptr participant);
        
         void eraseBall(player_ptr participant);
 
@@ -81,7 +81,7 @@ namespace websocket {
         
         typedef std::map<player_ptr,ball_ptr > balls_container;
         static balls_container balls_;
-        typedef std::list<food_ptr > foods_container;
+        typedef std::map<int,food_ptr > foods_container;
         static foods_container foods_;
 
         //main movement processing

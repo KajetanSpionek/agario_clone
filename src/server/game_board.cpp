@@ -21,11 +21,16 @@ namespace websocket {
         std::for_each(recent_msgs_.begin(), recent_msgs_.end(),
             boost::bind(&Player::deliver, participant, _1));
 
+        //send current game state to new player
+        sendGameState(participant);
+
+        //add new ball and send to everyone
         addNewBall(participant);    
 
-        addInitialFoodItem();
+        //add N new food and send to everyone
+        addNFoodItem(initialFood_);
         
-        sendGameState();
+        
  
     }
 
@@ -95,14 +100,18 @@ namespace websocket {
             boost::bind(&Player::deliver, _1, boost::ref(frm)));
     }
 
-    void GameBoard::addInitialFoodItem()
+    void GameBoard::addNFoodItem(int n)
     {
         int x_temp;
         int y_temp;void deleteBall(player_ptr participant);
-
+        foods_container tmp_foods;
+        foods_container::iterator it;
+        
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
 
-        for( int i = 0; i < initialFoodParams_*initialFood_ ; i++)
+        //food creation loop
+
+        for( int i = 0; i < initialFoodParams_*n ; i++)
         {
             do
             {
@@ -114,16 +123,37 @@ namespace websocket {
             } 
             while( IdMap_.at(y_temp).at(x_temp) != 0 ) ; // while position is not empty
             
-            foods_.push_back(getFood(x_temp,y_temp));
+            auto new_food = foods_.insert(std::make_pair(IdCount_,getFood(x_temp,y_temp)));
 
-            foods_container::iterator it = --(foods_.end());
-            IdMap_.at(y_temp).at(x_temp) = ((*it)->getId());
+            tmp_foods.insert((*new_food.first));
+
+            IdMap_.at(y_temp).at(x_temp) = (((new_food.first)->second)->getId()); 
 
         }
+
+        //food update message loop
+
+        std::string header_foods = "newFood:";
+
+        for( it = foods_.begin(); it != foods_.end(); it++)
+        {
+       
+            header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getX());
+            header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getY());
+        }
+
+        Dataframe frm_foods;
+        std::copy(header_foods.begin(), header_foods.end(), std::back_inserter(frm_foods.payload));
+
+        //send to all participants
+
+        std::for_each(participants_.begin(), participants_.end(),
+            boost::bind(&Player::deliver, _1, boost::ref(frm_foods)));
+        
         
     }
 
-    std::shared_ptr<FoodItem> GameBoard::getFood(int& x,int& y)
+    food_ptr GameBoard::getFood(int& x,int& y)
     {
         return std::make_shared<FoodItem>(x,y,++IdCount_);
     }
@@ -149,11 +179,28 @@ namespace websocket {
         auto new_ball = balls_.insert(std::make_pair(participant, getBall(x_temp,y_temp,initBallRadius_)));
 
         IdMap_.at(y_temp).at(x_temp) = (((new_ball.first)->second)->getId()); 
+
+        std::string header_balls = "newBall:";
+
+
+        header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getX());
+        header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getY());
+        header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getRadius());
+        
+
+        Dataframe frm_balls;
+        std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
+
+        //send to all players
+        
+        std::for_each(participants_.begin(), participants_.end(),
+            boost::bind(&Player::deliver, _1, boost::ref(frm_balls)));
+        
             
         
     }
 
-    std::shared_ptr<Ball> GameBoard::getBall(int& x,int& y,int& radius)
+    ball_ptr GameBoard::getBall(int& x,int& y,int& radius)
     {
         return std::make_shared<Ball>(x,y,radius,++IdCount_);
     }
@@ -179,10 +226,10 @@ namespace websocket {
         balls_.erase(participant);
     }
 
-    void GameBoard::sendGameState()
+    void GameBoard::sendGameState(player_ptr participant)
     {
         //send balls
-        std::string header_balls = "newBall:";
+        std::string header_balls = "gameStateBall:";
 
         balls_container::iterator j;
 
@@ -196,27 +243,33 @@ namespace websocket {
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 
+        deliver(frm_balls,participant);
+        /*
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm_balls)));
+        */
 
         //send foods
 
         foods_container::iterator i;
         
-        std::string header_foods = "newFood:";
+        std::string header_foods = "gameStateFood:";
 
         for( i = foods_.begin(); i != foods_.end(); i++)
         {
        
-            header_foods = header_foods + " " + boost::lexical_cast<std::string>((*i)->getX());
-            header_foods = header_foods + " " + boost::lexical_cast<std::string>((*i)->getY());
+            header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getX());
+            header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getY());
         }
 
         Dataframe frm_foods;
         std::copy(header_foods.begin(), header_foods.end(), std::back_inserter(frm_foods.payload));
 
+        /*
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm_foods)));
+        */
+        deliver(frm_foods,participant);
 
     }
 
