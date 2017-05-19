@@ -302,9 +302,7 @@ namespace websocket {
 
     void GameBoard::processMovement(player_ptr source)
      {
-
-        
-            ///movement loop
+        ///movement loop
         //check if wihin radius if sth
 
         //if not
