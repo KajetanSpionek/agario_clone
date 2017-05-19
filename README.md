@@ -15,7 +15,8 @@ newFood: id x y
 newBall: id x y radius
 deleteFood: id
 deleteBall: id
-
+gameStateFood: id x y 
+gameStateBall: id x y radius
 ### Send by client ###
 tutaj ustal co ma być 
 message: (tu wiadomość tekstowa chatu)
