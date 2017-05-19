@@ -141,6 +141,7 @@ namespace websocket {
 
         for( it = foods_.begin(); it != foods_.end(); it++)
         {
+            
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getId());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getX());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getY());
@@ -301,6 +302,8 @@ namespace websocket {
 
     void GameBoard::processMovement(player_ptr source)
      {
+
+        
             ///movement loop
         //check if wihin radius if sth
 
