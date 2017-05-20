@@ -157,6 +157,7 @@
 
             player = new Player(message[i],message[i+1], message[i+2],message[i+3]);
             player.show();
+            gameLoop();
 
         }
            
@@ -199,6 +200,10 @@
         websocket.send(message);
     }   
 
+    function gameLoop() {
+
+        log.innerHTML = '<li class="message">' + "GameLoopInit" + "</li>" + log.innerHTML;
+    }
 
 
 
