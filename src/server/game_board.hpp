@@ -79,8 +79,8 @@ namespace websocket {
         message_queue recent_msgs_;
 
         //Map of the balls
-        static const int mapX_{200};
-        static const int mapY_{400};
+        static const int mapX_{800};
+        static const int mapY_{800};
         static const int foodItemMarigin_{5};
         static const int ballMarigin_{10};
 

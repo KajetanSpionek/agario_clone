@@ -27,12 +27,21 @@
 
 
 
+<article>
+  <form onsubmit="addMessage(); return false;">
+    <input type="text" id="chat" placeholder="type and press enter to chat" />
+  </form>
+  <ul id="log"></ul>
+
+</article>
 
 
 <script>
 
     connected = document.getElementById("connected");
     log = document.getElementById("log");
+    chat = document.getElementById("chat");
+    form = chat.form;
     state = document.getElementById("status");
 
     if (window.WebSocket === undefined)
@@ -56,7 +65,7 @@
     function onLoad()
     {
         var wsUri = "ws://127.0.0.1:7777";  
-    
+	
         websocket = new WebSocket(wsUri);
         websocket.onopen = function(evt) { onOpen(evt) };
         websocket.onclose = function(evt) { onClose(evt) };
@@ -67,7 +76,7 @@
     function onOpen(evt)
     {
         state.className = "success";
-        state.innerHTML = "Connected to server";    
+        state.innerHTML = "Connected to server";	
     }
   
     function onClose(evt)
@@ -84,35 +93,43 @@
         //     2. a message with a number of connected chat participants
   
         var message = evt.data;
-    
-        if (message.startsWith("log:")) {
+	
+        if (message.startsWith("log:"))
+        {
             message = message.slice("log:".length);
-            log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML; 
+            log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;	
         }
-        else if (message.startsWith("connected:")) {
+        else if (message.startsWith("connected:"))
+        {
             message = message.slice("connected:".length);
-            connected.innerHTML = message;  
+            connected.innerHTML = message;	
         }    
-        else if (message.startsWith("newFood:")) {
+        else if (message.startsWith("newFood:"))
+        {
+            /*Frame x,y*/
             message = message.slice("newFood:".length);
-            message = message.split(" ");
-            log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML; 
+		    message = message.split(" ");
+            log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;	
             
             for( i = 1; i < message.length; i = i + 2){
-                drawCircle(message[i],message[i+1],7);
-            }  
-        }
-        
-        else if (message.startsWith("newBall:")) {
-            message = message.slice("newBall:".length);
-            message = message.split(" ");
-            log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;
-
-            //for( i = 1; i < message.length; i = i + 3){
-            //    drawCircle(message[i],message[i+1],,message[i+2]);
-           // }  
-        } 
+                drawCircle(message[i],message[i+1],5);
+            }
+		   
            
+        } 
+        else if (message.startsWith("newBall:"))
+        {
+            /*Frame x,y,radius*/
+            message = message.slice("Ball:".length);
+		    message = message.split(" ");
+            log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;	
+            
+            for( i = 1; i < message.length; i = i + 3){
+                drawCircle(message[i],message[i+1],message[i+2]);
+            }
+		   
+           
+        }
     }
     
     function getRandomColor() 
@@ -131,11 +148,11 @@
         var end_angle = 2*Math.PI;
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
-        ctx.beginPath();    
+        ctx.beginPath();	
         ctx.arc(x_center,y_center,radius,start_angle,end_angle);
         ctx.fillStyle = getRandomColor();
         ctx.fill();
-        ctx.lineWidth = radius/5;
+        ctx.lineWidth = radius/2;
         ctx.stroke();
     }
     
@@ -147,13 +164,23 @@
     
     function addMessage()
     {
-        var message = chat.value;
+        var message = "message:"
+        message = message + chat.value;
       
         chat.value = "";
-      
+	  
         websocket.send(message);
-    }   
+    }	
     
+    //Function starts detectCollision() method in  server
+    function onClick()
+    {
+		var message = "click"
+		websocket.send(message);
+	}
+    
+
+
 </script>
 </section>
 </body>
