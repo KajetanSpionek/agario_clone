@@ -137,14 +137,15 @@
             message = message.slice("gameStateBall:,".length);
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "gameStateBall:" + message + "</li>" + log.innerHTML;
-
-            for( i = 0; i < message.length; i+=5){
-                if (players.indexOf(message[i]) == -1) { 
-                    var len = players.length;
-                    players[len] = new Player(message[i],message[i+1], message[i+2],message[i+3],message[i+4]);
-                    players[len].show(); 
-                }    
-            }
+            if (message.length > 4 ) {
+            	for( i = 0; i < message.length; i+=5){
+                	if (players.indexOf(message[i]) == -1) { 
+                    	var len = players.length;
+                    	players[len] = new Player(message[i],message[i+1], message[i+2],message[i+3],message[i+4]);
+                    	players[len].show(); 
+                	}    
+            	}	
+        	}
 
         }
         
@@ -181,9 +182,18 @@
             message = message.slice("deleteBall:,".length);
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "deleteBall:" + message + "</li>" + log.innerHTML;
-        	
-        	var id = players.indexOf(message[0]);
-  			if (id != -1) players.splice(id,1);
+            var index = -1;
+
+           for (i in players) {
+           	if (players[i].id_ == message[0]) index = i;
+           }
+		
+
+        	log.innerHTML = '<li class="message">' + "index:" + index + "</li>" + log.innerHTML;
+  			
+  			if (id != -1) players.splice(index,1);
+
+  			reDrawCanvas();
 
         }
 
@@ -194,6 +204,7 @@
         
             var id = foods.indexOf(message[0]);
   			if (id != -1) foods.splice(id,1);
+  			reDrawCanvas();
 
         }          
    
@@ -259,6 +270,17 @@ canvas.addEventListener('mousemove', function(evt) {
 
 },false);
 
+function reDrawCanvas() {
+
+	context.clearRect(0,0,800,800);
+
+	for (var i in foods) 
+		foods[i].show();
+	player.show();
+	for (var i in players)
+		players[i].show();
+
+}
     
 </script>
 </section>
