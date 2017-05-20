@@ -175,7 +175,28 @@
             gameLoop();
 
         }
-           
+
+
+        else if (message.startsWith("deleteBall:")) {
+            message = message.slice("deleteBall:,".length);
+            message = message.split(" ");
+            log.innerHTML = '<li class="message">' + "deleteBall:" + message + "</li>" + log.innerHTML;
+        	
+        	var id = players.indexOf(message[0]);
+  			if (id != -1) players.splice(id,1);
+
+        }
+
+        else if (message.startsWith("deleteFood:")) {
+            message = message.slice("deleteFood:,".length);
+            message = message.split(" ");
+            log.innerHTML = '<li class="message">' + "deleteFood:" + message + "</li>" + log.innerHTML;
+        
+            var id = foods.indexOf(message[0]);
+  			if (id != -1) foods.splice(id,1);
+
+        }          
+   
     }
     
     function getRandomColor() 
