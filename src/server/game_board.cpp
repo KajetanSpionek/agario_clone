@@ -16,17 +16,10 @@ namespace websocket {
 
     void GameBoard::join(player_ptr participant)
     {
-        participants_.insert(participant);
-
-        updateParticipants();
-
-        std::for_each(recent_msgs_.begin(), recent_msgs_.end(),
-            boost::bind(&Player::deliver, participant, _1));
-
         //send current game state to new player
         sendGameState(participant);
 
-        //add new ball and send to everyone
+        //add new ball and participant and send to everyone
         addNewBall(participant);    
 
         //add N new food and send to everyone
@@ -140,7 +133,7 @@ namespace websocket {
 
         std::string header_foods = "newFood:";
 
-        for( it = foods_.begin(); it != foods_.end(); it++)
+        for( it = tmp_foods.begin(); it != tmp_foods.end(); it++)
         {
             
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getId());
@@ -210,6 +203,21 @@ namespace websocket {
 
         IdMap_.at(y_temp).at(x_temp) = (((new_ball.first)->second)->getId()); 
 
+        //send new ball to new player
+
+        std::string header = "newPlayerBall:";
+
+        header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getId());
+        header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getX());
+        header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getY());
+        header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getRadius());
+
+        Dataframe frm;
+
+        participant->deliver(frm);
+
+        //send new ball to enemies
+
         std::string header_balls = "newBall:";
 
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getId());
@@ -217,17 +225,19 @@ namespace websocket {
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getY());
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getRadius());
 
-        std::cout << ((new_ball.first)->second)->getId() << std::endl;
-        
-
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 
-        //send to all players
+        //send enemies
         
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm_balls)));
-        
+
+
+        //insert new participant 
+        participants_.insert(participant);
+
+        updateParticipants();
             
         
     }
