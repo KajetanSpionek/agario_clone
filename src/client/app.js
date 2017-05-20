@@ -26,4 +26,10 @@ class Player {
       drawCircle(this.x_, this.y_,this.r_);
   }
 
+  update() {
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    
+  }
+
 }
