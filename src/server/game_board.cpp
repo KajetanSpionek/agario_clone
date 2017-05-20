@@ -312,6 +312,16 @@ namespace websocket {
 
     }
 
+    bool GameBoard::isSpaceFree(int &x,int &y, int & radius)
+    {
+        //check structure of neighbourhood of radius 
+        std::vector<int> neighbour(4*radius*radius,0);
+
+
+
+
+    }
+
     void GameBoard::processMovement(player_ptr source)
      {
         ///movement loop
