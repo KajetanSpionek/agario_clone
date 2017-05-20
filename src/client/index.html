@@ -140,6 +140,13 @@
             log.innerHTML = '<li class="message">' + "gameStateBall:" + message + "</li>" + log.innerHTML;
 
         }
+        
+        else if (message.startsWith("gameStateFood:")) {
+            message = message.slice("gameStateBall:,".length);
+            message = message.split(" ");
+            log.innerHTML = '<li class="message">' + "gameStateFood:" + message + "</li>" + log.innerHTML;
+
+        }
            
     }
     

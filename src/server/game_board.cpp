@@ -91,6 +91,7 @@ namespace websocket {
             boost::bind(&Player::deliver, _1, boost::ref(msg)));
     }
 
+
     void GameBoard::updateParticipants()
     {
         std::string header = "connected:" + boost::lexical_cast<std::string>(participants_.size());
@@ -278,7 +279,7 @@ namespace websocket {
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 
-        deliver(frm_balls,participant);
+        participant->deliver(frm_balls);
 
         //send foods
 
@@ -296,7 +297,7 @@ namespace websocket {
         Dataframe frm_foods;
         std::copy(header_foods.begin(), header_foods.end(), std::back_inserter(frm_foods.payload));
 
-        deliver(frm_foods,participant);
+        participant->deliver(frm_foods);
 
     }
 
