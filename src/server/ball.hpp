@@ -8,6 +8,9 @@
 
 #include <memory>
 #include <iostream>
+#include <string>
+#include <boost/lexical_cast.hpp>
+#include <cmath>
 
 namespace websocket{
     class Ball 
@@ -22,7 +25,12 @@ namespace websocket{
         int getY() { return y_;}
         int getRadius() {return radius_;}
         int getId() {return Id_;}
+        std::string getColor() { return color_; }
+
     private:
+        ///random color generator
+        void getRandColor();
+
         //id
         const int Id_;
         //position
@@ -35,6 +43,10 @@ namespace websocket{
         int radius_;
 
         int mass_;
+
+        static const std::string letters_;
+
+        std::string color_;
 
     };
     typedef std::shared_ptr<Ball>  ball_ptr;

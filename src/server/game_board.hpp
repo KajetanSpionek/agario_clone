@@ -72,9 +72,6 @@ namespace websocket {
         ///when player is eaten send statistics of the game
         void sendStats(player_ptr participant);
 
-        ///check if adding new ball is possible in place
-        bool isSpaceFree(int &x,int &y, int &radius);
-
         //data structers for players
         std::set<player_ptr> participants_;
         //limit of message_queue

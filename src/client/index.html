@@ -97,7 +97,8 @@
         else if (message.startsWith("connected:")) {
             message = message.slice("connected:".length);
             connected.innerHTML = message;  
-        }    
+        }   
+
         else if (message.startsWith("newFood:")) {
             message = message.slice("newFood:,".length);
             message = message.split(" ");
@@ -118,19 +119,27 @@
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "newBall:" + message + "</li>" + log.innerHTML;
 
-            for( i = 0; i < message.length; i+=3){
-                    
-                        var len = players.length;
-                        plyers[len] = new Player(message[i],message[i+1], message[i+2],message[i+3]);
-                        players[len].show();
-                    
-            }  
+            if (players.indexOf(message[0]) == -1) {
+
+                    var len = players.length;
+                    players[len] = new Player(message[0],message[1], message[2], message[3]);
+                    players[len].show(); //Display player
+                }
+  
         } 
 
         else if (message.startsWith("gameStateBall")) {
             message = message.slice("gameStateBall:,".length);
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "gameStateBall:" + message + "</li>" + log.innerHTML;
+
+            for( i = 0; i < message.length; i+=4){
+                if (players.indexOf(message[i]) == -1) { 
+                    var len = players.length;
+                    players[len] = new Player(message[i],message[i+1], message[i+2],message[i+3]);
+                    players[len].show(); 
+                }    
+            }
 
         }
         
@@ -155,7 +164,7 @@
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "newPlayerBall:" + message + "</li>" + log.innerHTML;
 
-            player = new Player(message[i],message[i+1], message[i+2],message[i+3]);
+            player = new Player(message[0],message[1], message[2],message[3]);
             player.show();
             gameLoop();
 

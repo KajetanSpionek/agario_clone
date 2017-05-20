@@ -102,8 +102,17 @@ namespace websocket {
         int y_temp;void deleteBall(player_ptr participant);
         foods_container tmp_foods;
         foods_container::iterator it;
+
+        int dummy_iter = 1;
         
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
+        //generator loop to loose its entropy
+        for(int k = 0; k < dummy_iter; ++k)
+        {
+            boost::random::uniform_int_distribution<> dummy(foodItemMarigin_, mapX_ - foodItemMarigin_);
+            dummy(gen);
+        }
+
 
         //food creation loop
 
@@ -211,6 +220,7 @@ namespace websocket {
         header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getX());
         header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getY());
         header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getRadius());
+        header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getColor());
 
         Dataframe frm;
         std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
@@ -225,6 +235,8 @@ namespace websocket {
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getX());
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getY());
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getRadius());
+        header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getColor());
+        
 
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
@@ -285,6 +297,7 @@ namespace websocket {
             header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getX());
             header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getY());
             header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getRadius());
+            header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getColor());   
         }
 
         Dataframe frm_balls;
@@ -312,15 +325,6 @@ namespace websocket {
 
     }
 
-    bool GameBoard::isSpaceFree(int &x,int &y, int & radius)
-    {
-        //check structure of neighbourhood of radius 
-        std::vector<int> neighbour(4*radius*radius,0);
-
-
-
-
-    }
 
     void GameBoard::processMovement(player_ptr source)
      {
