@@ -140,7 +140,7 @@ namespace websocket {
 
         std::string header_foods = "newFood:";
 
-        for( it = foods_.begin(); it != foods_.end(); it++)
+        for( it = tmp_foods.begin(); it != tmp_foods.end(); it++)
         {
             
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getId());
