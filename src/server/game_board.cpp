@@ -213,6 +213,7 @@ namespace websocket {
         header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getRadius());
 
         Dataframe frm;
+        std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
 
         participant->deliver(frm);
 
