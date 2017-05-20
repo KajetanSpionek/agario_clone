@@ -120,17 +120,10 @@
 
             for( i = 0; i < message.length; i+=3){
                     
-                // Temp: assign first "newBall:" frame as player's ball
-
-                    if (player == -1) {
-                    player = new Player(message[i],message[i+1], message[i+2],message[i+3]);
-                    player.show();
-                    }
-                    else {
                         var len = players.length;
                         plyers[len] = new Player(message[i],message[i+1], message[i+2],message[i+3]);
                         players[len].show();
-                    }
+                    
             }  
         } 
 
@@ -154,6 +147,17 @@
                     foods[i].show(); //Display ball
                 }
             }  
+
+        }
+
+        else if (message.startsWith("newPlayerBall")) {
+            message = message.slice("newPlayerBall:,".length);
+            message = message.split(" ");
+            log.innerHTML = '<li class="message">' + "newPlayerBall:" + message + "</li>" + log.innerHTML;
+
+            player = new Player(message[i],message[i+1], message[i+2],message[i+3]);
+            player.show();
+            gameLoop();
 
         }
            
@@ -196,6 +200,10 @@
         websocket.send(message);
     }   
 
+    function gameLoop() {
+
+        log.innerHTML = '<li class="message">' + "GameLoopInit" + "</li>" + log.innerHTML;
+    }
 
 
 
