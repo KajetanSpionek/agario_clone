@@ -85,9 +85,9 @@ namespace websocket {
         static const int ballMarigin_{10};
 
         //foodItems const params
-        static const int initialFood_ {50};
-        static const int newPlayerFood_ {10};
-        static const int initialFoodParams_{2};
+        static const int initialFood_ {3};
+        static const int newPlayerFood_ {1};
+        static const int initialFoodParams_{1};
 
         ///map containing state of gameplay with objects IDs
         int IdCount_;
