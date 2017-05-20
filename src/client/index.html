@@ -127,7 +127,7 @@
             if (players.indexOf(message[0]) == -1 && player.id != message[0]) {
 
                     var len = players.length;
-                    players[len] = new Player(message[0],message[1], message[2], message[3]);
+                    players[len] = new Player(message[0],message[1], message[2], message[3],message[4]);
                     players[len].show(); //Display player
                 }
   
@@ -138,10 +138,10 @@
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "gameStateBall:" + message + "</li>" + log.innerHTML;
 
-            for( i = 0; i < message.length; i+=4){
+            for( i = 0; i < message.length; i+=5){
                 if (players.indexOf(message[i]) == -1) { 
                     var len = players.length;
-                    players[len] = new Player(message[i],message[i+1], message[i+2],message[i+3]);
+                    players[len] = new Player(message[i],message[i+1], message[i+2],message[i+3],message[i+4]);
                     players[len].show(); 
                 }    
             }
@@ -170,7 +170,7 @@
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "newPlayerBall:" + message + "</li>" + log.innerHTML;
 
-            player = new Player(message[0], message[1], message[2], message[3]);
+            player = new Player(message[0], message[1], message[2], message[3], message[4]);
             player.show();
             gameLoop();
 
@@ -188,7 +188,7 @@
         return color;
     }
     
-    function drawCircle(x_center,y_center,radius)
+    function drawCircle(x_center,y_center,radius,color)
     {
         var start_angle = 0;
         var end_angle = 2*Math.PI;
@@ -196,7 +196,8 @@
         var ctx = c.getContext("2d");
         ctx.beginPath();    
         ctx.arc(x_center,y_center,radius,start_angle,end_angle);
-        ctx.fillStyle = getRandomColor();
+        if (color == 0) ctx.fillStyle = getRandomColor();
+        else ctx.fillStyle = color;
         ctx.fill();
         ctx.lineWidth = radius/5;
         ctx.stroke();
