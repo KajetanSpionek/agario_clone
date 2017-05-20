@@ -188,7 +188,8 @@
            	for (i in players) {
            		if (players[i].id_ == message[0]) index = i;
            	}	
-  			if (id != -1) players.splice(index,1);
+           	
+  			if (index != -1) players.splice(index,1);
   			reDrawCanvas();
 
         }
@@ -203,7 +204,7 @@
            	for (i in foods) {
            		if (foods[i].id_ == message[0]) index = i;
            	}	
-  			if (id != -1) foods.splice(index,1);
+  			if (index != -1) foods.splice(index,1);
   			reDrawCanvas();
 
         }          
