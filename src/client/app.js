@@ -1,14 +1,15 @@
 class Food {
-  constructor(id,x,y) {
+  constructor(id,x,y,color) {
 
     this.x_ = x;
     this.y_ = y;
     this.id_ = id;
     this.r_ = 6; 
+    this.color_ = color;
   }
 
   show() {
-      drawCircle(this.x_, this.y_,7, 0);
+      drawCircle(this.x_, this.y_,this.r_,this.color_);
   }
 
 }

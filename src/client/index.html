@@ -112,7 +112,8 @@
             if (foods.indexOf(message[0]) == -1) {
 
                     var len = foods.length;
-                    foods[len] = new Food(message[0],message[1], message[2]);
+                    var color = getRandomColor();
+                    foods[len] = new Food(message[0],message[1], message[2], color);
                     foods[len].show(); //Display ball
                 }
             
@@ -160,7 +161,9 @@
                 // \/ line belove doent work!
                 if (foods.indexOf(message[i]) == -1) {
                     var len = foods.length;
-                    foods[len] = new Food(message[i],message[i+1], message[i+2]);
+                    var color = getRandomColor();
+                    log.innerHTML = '<li class="message">' + color + "</li>" + log.innerHTML;
+                    foods[len] = new Food(message[i],message[i+1], message[i+2], color);
                     foods[len].show(); //Display ball
                 }
             }  
@@ -229,8 +232,7 @@
         var ctx = c.getContext("2d");
         ctx.beginPath();    
         ctx.arc(x_center,y_center,radius,start_angle,end_angle);
-        if (color == 0) ctx.fillStyle = getRandomColor();
-        else ctx.fillStyle = color;
+		ctx.fillStyle = color;
         ctx.fill();
         ctx.lineWidth = radius/5;
         ctx.stroke();
