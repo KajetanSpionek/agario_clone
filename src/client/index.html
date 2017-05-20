@@ -37,6 +37,12 @@
     state = document.getElementById("status");
     var canvas = document.getElementById('myCanvas');
     var context = canvas.getContext('2d');
+    
+    var raf;
+
+    var maximalUpdateDelay = 25; // ms
+	var updateTimeout, now;
+
 
     var foods = [];
     var player = -1;
@@ -70,8 +76,6 @@
         websocket.onclose = function(evt) { onClose(evt) };
         websocket.onmessage = function(evt) { onMessage(evt) };
         websocket.onerror = function(evt) { onError(evt) };
-
-        //this.addEventListener('mousemove', mouse_monitor);
     }
   
     function onOpen(evt)
@@ -162,7 +166,6 @@
                 if (foods.indexOf(message[i]) == -1) {
                     var len = foods.length;
                     var color = getRandomColor();
-                    log.innerHTML = '<li class="message">' + color + "</li>" + log.innerHTML;
                     foods[len] = new Food(message[i],message[i+1], message[i+2], color);
                     foods[len].show(); //Display ball
                 }
@@ -175,7 +178,9 @@
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "newPlayerBall:" + message + "</li>" + log.innerHTML;
 
-            player = new Player(message[0], message[1], message[2], message[3], message[4]);
+
+
+            player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  parseInt(message[4]));
             player.show();
             gameLoop();
 
@@ -255,6 +260,7 @@
 
        
         log.innerHTML = '<li class="message">' + "GameLoopInit" + "</li>" + log.innerHTML;
+         update();
 
     }
 
@@ -268,10 +274,16 @@ function getMousePos(canvas, evt) {
 
 canvas.addEventListener('mousemove', function(evt) {
         mousePos = getMousePos(canvas, evt);
-        //var message = 'Mouse position: ' + Math.floor(mousePos.x) + '  ,  ' + Math.floor(mousePos.y);
-        //log.innerHTML = '<li class="message">' +  message + "</li>" + log.innerHTML;
+});
 
-},false);
+canvas.addEventListener('mouseover', function(e) {
+  	raf = window.requestAnimationFrame(update);
+});
+
+
+canvas.addEventListener('mouseout', function(e) {
+  window.cancelAnimationFrame(raf);
+});
 
 function reDrawCanvas() {
 
@@ -284,6 +296,45 @@ function reDrawCanvas() {
 		players[i].show();
 
 }
+
+
+function update() {
+  
+  
+	// Directions
+
+	if (mousePos.x - player.x_ > 0) player.x_ += player.vx_;
+	else player.x_ -= player.vx_;
+
+	if (mousePos.y - player.y_ > 0) player.y_ += player.vy_;
+	else player.y_ -= player.vy_;
+
+	reDrawCanvas();
+	raf = window.requestAnimationFrame(update);
+
+	
+  	
+
+  
+        
+    
+}
+
+
+window.requestAnimFrame = (function() {
+    return  window.requestAnimationFrame       ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            window.msRequestAnimationFrame     ||
+            function( callback ) {
+                window.setTimeout(callback, 1000 / 60);
+            };
+})();
+
+window.cancelAnimFrame = (function(handle) {
+    return  window.cancelAnimationFrame     ||
+            window.mozCancelAnimationFrame;
+})();
     
 </script>
 </section>

@@ -22,16 +22,12 @@ class Player {
     this.id_ = id;
     this.r_ = r;
     this.color_ = color;
+    this.vx_ = 3;
+    this.vy_ = 3;
   }
 
   show() {
       drawCircle(this.x_, this.y_,this.r_,this.color_);
-  }
-
-  update() {
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    
   }
 
 }
