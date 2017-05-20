@@ -102,15 +102,15 @@
             message = message.slice("newFood:,".length);
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "newFood:" + message + "</li>" + log.innerHTML; 
-            
-            for( i = 0; i < message.length; i+=3) {
-                
-                //Check if object already exists
-                if (foods.indexOf(message[i]) == -1) {
-                    foods[i] = new Food(message[i],message[i+1], message[i+2]);
-                    foods[i].show(); //Display ball
+
+            if (foods.indexOf(message[0]) == -1) {
+
+                    var len = foods.length;
+                    foods[len] = new Food(message[0],message[1], message[2]);
+                    foods[len].show(); //Display ball
                 }
-            }  
+            
+
         }
         
         else if (message.startsWith("newBall:")) {
@@ -145,6 +145,15 @@
             message = message.slice("gameStateBall:,".length);
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "gameStateFood:" + message + "</li>" + log.innerHTML;
+
+            // Display food
+            for( i = 0; i < message.length; i+=3) {    
+                //Check if object already exists
+                if (foods.indexOf(message[i]) == -1) {
+                    foods[i] = new Food(message[i],message[i+1], message[i+2]);
+                    foods[i].show(); //Display ball
+                }
+            }  
 
         }
            
