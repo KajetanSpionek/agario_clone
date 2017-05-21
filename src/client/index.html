@@ -49,6 +49,9 @@
     var players = [];
     var mousePos;
 
+    var gameBoardX;
+    var gameBoardY;
+
     var deltaX;
     var deltaY;
     
@@ -185,6 +188,10 @@
             deltaX = player.x_ - 400;
             deltaY = player.y_ - 400;
 
+            gameBoardY = 3000;
+            gameBoardX = 3000;
+
+
             player.show();
             gameLoop();
 
@@ -219,8 +226,25 @@
   			if (index != -1) foods.splice(index,1);
   			reDrawCanvas();
 
-        }          
+        }   
+
+        else if (message.startsWith("ballUpdate:")) {
+        	message = message.slice("ballUpdate:,".length);
+            message = message.split(" ");
+            log.innerHTML = '<li class="message">' + "ballUpdate:" + message + "</li>" + log.innerHTML;
+
+        }       
    
+    }
+
+    function sendPos() {
+
+    	var message = "move:";
+    	message += player.x_;
+    	message += ",";
+    	message += player.y_;
+    	websocket.send(message);
+
     }
     
     function getRandomColor() 
@@ -251,14 +275,7 @@
     { 
         state.className = "fail";
         state.innerHTML = "Communication error";
-    }
-    
-    function addMessage()
-    {
-        var message = chat.value;
-        chat.value = "";
-        websocket.send(message);
-    }   
+    }  
 
     function gameLoop() {
 
@@ -308,27 +325,37 @@ function reDrawCanvas() {
 function update() {
  
 
-  	if (mousePos.x > 400) {
+  	if (mousePos.x > 400 && player.x_ < gameBoardX) {
   		deltaX += player.vx_;
   		player.x_ += player.vx_;
   	}
-  	else if (mousePos.x < 400) {
+  	else if (mousePos.x < 400 && player.x_ > 0) {
   		deltaX -= player.vx_;
   		player.x_ -= player.vx_;
   	}
+  	else {
+		deltaX = deltaX;
+  		player.x_ = player.x_;
 
-  	if (mousePos.y > 400) {
+  	}
+
+  	if (mousePos.y > 400 && player.y_ < gameBoardY) {
   		deltaY += player.vy_;
   		player.y_ += player.vy_;
 
   	}
-  	else if (mousePos.y < 400) {
+  	else if (mousePos.y < 400 && player.y_ > 0) {
   		deltaY -= player.vy_;
   		player.y_ -= player.vy_;
+  	}
+  	else {
+		deltaY = deltaY;
+  		player.y_ = player.y_;
 
   	}
 
 	reDrawCanvas();
+	sendPos();
 	raf = window.requestAnimationFrame(update);
      
     
@@ -352,19 +379,7 @@ window.cancelAnimFrame = (function(handle) {
 
 
 
-function translate(xShift, yShift) {
 
-	for (var i in foods) {
-		foods[i].x_ += xShift;
-		foods[i].y_ += yShift;
-		log.innerHTML = '<li class="message">' + foods[1].y_ + "</li>" + log.innerHTML;
-	}
-
-	for (var i in players) {
-		players[i].x_ += xShift;
-		players[i].y_ += yShift;
-	}
-}
 
 
 
