@@ -5,6 +5,7 @@ namespace websocket {
     GameBoard::foods_container GameBoard::foods_;
     GameBoard::balls_container GameBoard::balls_;
     GameBoard::game_map GameBoard::IdMap_;
+    GameBoard::player_to_id GameBoard::playerToId_;
     
     
     GameBoard::GameBoard()
@@ -69,7 +70,7 @@ namespace websocket {
         }
         else if( temp_string == movementOp_)
         {
-            processMovement(source);
+            processMovement(msg, source);
         }
     }
 
@@ -212,6 +213,8 @@ namespace websocket {
 
         IdMap_.at(y_temp).at(x_temp) = (((new_ball.first)->second)->getId()); 
 
+        playerToId_.insert(std::make_pair(participant, ((new_ball.first)->second)->getId()) );
+
         //send new ball to new player
 
         std::string header = "newPlayerBall:";
@@ -275,6 +278,9 @@ namespace websocket {
         //erase from balls collection
         balls_.erase(participant);
 
+        //erase from player to ball conversion
+        playerToId_.erase(participant);
+
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 
@@ -326,10 +332,28 @@ namespace websocket {
     }
 
 
-    void GameBoard::processMovement(player_ptr source)
+    void GameBoard::processMovement(const Dataframe& msg, player_ptr source)
      {
-        ///movement loop
-        //check if wihin radius if sth
+
+        std::vector<boost::uint8_t> temp;
+        const char delimit_ = ':';
+        const uint8_t delim = static_cast<uint8_t>(delimit_);
+        int x;
+        int y;
+        int radius;
+
+        //int id = playerToId_[source];
+        ball_ptr ball_source = balls_[source];
+
+        auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
+        std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
+
+        x = ball_source->getX();
+        y = ball_source->getY();
+        radius = ball_source->getRadius();
+
+        //find nonzero id' in the neighbourhood of radius
+
 
         //if not
         //send position
@@ -363,7 +387,7 @@ namespace websocket {
      }
 
      /*
-     double calculateDistance(player_ptr player,int id_food)
+     double GameBoard::calculateDistance(int id_source,int id_dest)
      {
 
      }

@@ -10,6 +10,7 @@
 #include <list>
 #include <vector>
 #include <iostream>
+#include <cmath>
 #include <boost/lexical_cast.hpp>
 #include <boost/bind.hpp>
 #include <boost/random/mersenne_twister.hpp>
@@ -67,7 +68,10 @@ namespace websocket {
         void eraseBall(player_ptr participant);
 
         //main movement processing
-        void processMovement(player_ptr source);
+        void processMovement(const Dataframe& msg, player_ptr source);
+
+        //calculate distance between players
+        //double calculateDistance(int id_source,int id_dest);
 
         ///when player is eaten send statistics of the game
         void sendStats(player_ptr participant);
@@ -103,6 +107,8 @@ namespace websocket {
         typedef std::map<int,food_ptr > foods_container;
         static foods_container foods_;
 
+        typedef std::map<player_ptr,int > player_to_id;
+        static player_to_id playerToId_;
 
     };
 
