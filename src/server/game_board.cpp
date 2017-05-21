@@ -371,6 +371,9 @@ namespace websocket {
         rx = std::stoi(rxss);
         ry = std::stoi(ryss);
 
+        std::cout << "rx: " << rx << " ry: " << ry << std::endl;
+        
+
         ball_source->setX(rx);
         ball_source->setY(ry);
 
@@ -392,7 +395,29 @@ namespace websocket {
                     neighbourId.push_back(id);
             }
         }
+
         */
+        //int dist;
+        
+        /*
+
+        //check neighbourhood and eat anything within radius, respawn new food
+        std::vector<int> neighbourId;
+        //boundaries check
+        int id;
+
+        
+
+        for( int i = rx - radius ; i < rx + radius; i++)
+        {
+            for(int j = ry - radius; j < ry +radius; j++)
+            {
+                id = IdMap_.at(i).at(j);
+                if( id != 0 )
+                    neighbourId.push_back(id);
+            }
+        }
+        
 
         int dist;
         int nx;
@@ -400,8 +425,27 @@ namespace websocket {
 
         for(auto i : neighbourId )
         {
-            //if()
+            if(idToPlayer_.count(i))
+            {
+                auto it = balls_.at(idToPlayer_.at(i));
+                nx = it->getX();
+                ny = it->getY();
+                dist = std::sqrt( (rx-nx)*(rx-nx) + (ry-ny)*(ry-ny));
+                if(dist < radius)
+                    eraseBall(idToPlayer_.at(i));
+            }
+            else
+            {
+                auto it = foods_.at(i);
+                nx = it->getX();
+                ny = it->getY();
+                dist = std::sqrt( (rx-nx)*(rx-nx) + (ry-ny)*(ry-ny));
+                if(dist < radius)
+                    eraseFood(i);
+            }
         }
+
+        */
 
 
         std::string header = "ballUpdate:";
