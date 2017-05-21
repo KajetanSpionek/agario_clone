@@ -336,21 +336,72 @@ namespace websocket {
      {
 
         std::vector<boost::uint8_t> temp;
+        std::vector<boost::uint8_t> rxs;
+        std::vector<boost::uint8_t> rys;
+        std::string rxss;
+        std::string ryss;
         const char delimit_ = ':';
         const uint8_t delim = static_cast<uint8_t>(delimit_);
+        const char delimitArg_ = ':';
+        const uint8_t delim_arg = static_cast<uint8_t>(delimitArg_);
+
         int x;
         int y;
         int radius;
 
+        int rx;
+        int ry;
+
         //int id = playerToId_[source];
         ball_ptr ball_source = balls_[source];
-
-        auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
-        std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
 
         x = ball_source->getX();
         y = ball_source->getY();
         radius = ball_source->getRadius();
+
+        auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
+        //std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
+        auto it_sep = std::find(msg.payload.begin(), msg.payload.end(),delim_arg);
+
+        std::copy(++it_beg, it_sep, std::back_inserter(rxs));
+        std::copy(++it_sep, msg.payload.end(), std::back_inserter(rys));
+
+        for (auto i : rxs)
+        {
+            rxss = rxss + boost::lexical_cast<std::string>(i);
+        }
+        for (auto j : rys)
+        {
+
+            ryss = boost::lexical_cast<std::string>(j);
+        }
+        
+
+        rx = std::stoi(rxss);
+        std::cout << rx << std::endl;
+        ry = std::stoi(ryss);
+        std::cout << ry << std::endl;
+
+        ball_source->setX(rx);
+        ball_source->setY(ry);
+
+        IdMap_.at(ry).at(rx) = playerToId_[source];
+
+        std::string header = "ballUpdate:";
+
+        
+        header = header + " " + boost::lexical_cast<std::string>(ball_source->getId());
+        header = header + " " + boost::lexical_cast<std::string>(ball_source->getX());
+        header = header + " " + boost::lexical_cast<std::string>(ball_source->getY());
+        header = header + " " + boost::lexical_cast<std::string>(ball_source->getRadius());
+        
+
+        Dataframe frm;
+        std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
+
+        std::for_each(participants_.begin(), participants_.end(),
+            boost::bind(&Player::deliver, _1, boost::ref(frm)));
+
 
         //find nonzero id' in the neighbourhood of radius
 

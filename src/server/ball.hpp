@@ -23,6 +23,8 @@ namespace websocket{
 
         int getX() { return x_;}
         int getY() { return y_;}
+        void setX(const int&x) { x_ = x; }
+        void setY(const int&y) { y_ = y; }
         int getRadius() {return radius_;}
         int getId() {return Id_;}
         std::string getColor() { return color_; }
