@@ -190,8 +190,8 @@
             deltaX = player.x_ - 399;
             deltaY = player.y_ - 399;
 
-            gameBoardY = 2999;
-            gameBoardX = 2999;
+            gameBoardY = 2990;
+            gameBoardX = 2990;
 
 
             player.show();
@@ -253,14 +253,16 @@
     }
 
     function sendPos() {
-
-    	var message = "move:";
-    	message += player.x_;
-    	message += ",";
-		message += player.y_
-    	websocket.send(message);
-    	//log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;
-
+        var x = Math.floor(player.x_);
+        var y = Math.floor(player.y_);
+        if ( (x < 3000) && (y < 3000)){
+            var message = "move:";
+            message += Math.floor(player.x_);
+            message += ",";
+            message += Math.floor(player.y_);
+            websocket.send(message);
+    	   //log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;
+        }
     }
     
     function getRandomColor() 
@@ -364,10 +366,6 @@ for (i=0; i < 800; i += 150) {
 
 }
 
-
-
-
-
 function update() {
  
 	// Old movement 
@@ -416,10 +414,6 @@ function update() {
   	//log.innerHTML = '<li class="message">' + mousePos.x + "</li>" + log.innerHTML;
   	//var temp = player.x_ - deltaX
   	//log.innerHTML = '<li class="message">' + temp + "</li>" + log.innerHTML;
-
-
-	
-
 
   	
 	context.clearRect(0,0,800,800);
