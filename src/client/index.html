@@ -339,13 +339,22 @@ function update() {
  
 	// Old movement 
 
+	var dx = mousePos.x - 399;
+  	var dy = mousePos.y - 399;
+  	var v_len = Math.abs(Math.sqrt( (dy*dy) + (dx*dx) ));
+
+  	var scaleX = Math.abs(dx / v_len);
+  	var scaleY = Math.abs(dy / v_len);
+
+  	//log.innerHTML = '<li class="message">' + scaleX + "</li>" + log.innerHTML;
+
   	if (mousePos.x > 400 && player.x_ < gameBoardX - boardMargin ) {
-  		deltaX += player.vx_;
-  		player.x_ += player.vx_;
+  		deltaX += scaleX *player.vx_;
+  		player.x_ += scaleX * player.vx_;
   	}
   	else if (mousePos.x < 400 && player.x_ > 0 + boardMargin) {
-  		deltaX -= player.vx_;
-  		player.x_ -= player.vx_;
+  		deltaX -= scaleX * player.vx_;
+  		player.x_ -= scaleX * player.vx_;
   	}
   	else {
 		deltaX = deltaX;
@@ -354,13 +363,13 @@ function update() {
   	}
 
   	if (mousePos.y > 400 && player.y_ < gameBoardY - boardMargin) {
-  		deltaY += player.vy_;
-  		player.y_ += player.vy_;
+  		deltaY += scaleY * player.vy_;
+  		player.y_ += scaleY * player.vy_;
 
   	}
   	else if (mousePos.y < 400 && player.y_ > 0 + boardMargin) {
-  		deltaY -= player.vy_;
-  		player.y_ -= player.vy_;
+  		deltaY -= scaleY * player.vy_;
+  		player.y_ -= scaleY * player.vy_;
   	}
   	else {
 		deltaY = deltaY;
@@ -374,14 +383,9 @@ function update() {
   	//log.innerHTML = '<li class="message">' + mousePos.x + "</li>" + log.innerHTML;
   	//var temp = player.x_ - deltaX
   	//log.innerHTML = '<li class="message">' + temp + "</li>" + log.innerHTML;
-  	var dx = mousePos.x - deltaX;
-  	var dy = mousePos.y - deltaY;
-  	var v_len = Math.sqrt( (dy*dy) + (dx*dx) );
 
-  	var scaleX = dx / v_len;
-  	var scaleY = dy / v_len;
 
-	//log.innerHTML = '<li class="message">' + v_len + "</li>" + log.innerHTML;
+	
 
 
 
