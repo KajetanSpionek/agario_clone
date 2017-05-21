@@ -244,6 +244,7 @@
     	message += ",";
     	message += player.y_;
     	websocket.send(message);
+    	log.innerHTML = '<li class="message">' + "move:" + message + "</li>" + log.innerHTML;
 
     }
     
