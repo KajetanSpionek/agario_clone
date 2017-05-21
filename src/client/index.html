@@ -245,6 +245,9 @@
             		}
             	}
             }
+            else if (id == player.id_) {
+            	player.r_ = parseInt(message[3]);
+            }
         }       
    
     }
@@ -292,9 +295,7 @@
 
     function gameLoop() {
 
-       
-        log.innerHTML = '<li class="message">' + "GameLoopInit" + "</li>" + log.innerHTML;
-        update();
+        raf = window.requestAnimationFrame(update);
 
     }
 
