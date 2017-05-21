@@ -360,11 +360,12 @@ namespace websocket {
         y = ball_source->getY();
         radius = ball_source->getRadius();
 
+        /*
         for (auto i : msg.payload)
         {
             std::cout << i << std::endl;
         }
-        
+        */
 
         auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
         //std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
@@ -404,13 +405,13 @@ namespace websocket {
         rxss = temps.substr(0,n);
         ryss = temps.substr(n+1,temps.size());
 
-        std::cout << rxss << std::endl;
-        std::cout << ryss << std::endl;
+        //std::cout << rxss << std::endl;
+        //std::cout << ryss << std::endl;
 
         rx = std::stoi(rxss);
-        std::cout << rx << std::endl;
+        //std::cout << rx << std::endl;
         ry = std::stoi(ryss);
-        std::cout << ry << std::endl;
+        //std::cout << ry << std::endl;
 
         ball_source->setX(rx);
         ball_source->setY(ry);
