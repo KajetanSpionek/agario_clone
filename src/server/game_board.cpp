@@ -368,7 +368,7 @@ namespace websocket {
         rx = std::stoi(rxss);
         ry = std::stoi(ryss);
 
-        std::cout << "rx: " << rx << " ry: " << ry << std::endl;
+        //std::cout << "rx: " << rx << " ry: " << ry << std::endl;
 
         IdMap_.at(ball_source->getX()).at(ball_source->getY()) = 0;
         ball_source->setX(rx);
@@ -382,7 +382,6 @@ namespace websocket {
         //boundaries check
         int id;
 
-        std::cout << "here" << std::endl;
 
         for( int i = rx - radius ; i < rx + radius; i++)
         {
@@ -399,13 +398,11 @@ namespace websocket {
         int ny;
         int nradius;
 
-        std::cout << "here" << std::endl;
         
         for(const auto& i : neighbourId )
         {
             if( i != id_source)
-            {
-                std::cout << i << std::endl;   
+            {  
                 auto it = elements_.at(i);
                 nx = it->getX();
                 ny = it->getY();
