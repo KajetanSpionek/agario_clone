@@ -180,7 +180,7 @@
 
 
 
-            player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  parseInt(message[4]));
+            player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  message[4]);
             player.show();
             gameLoop();
 
@@ -311,12 +311,7 @@ function update() {
 
 	reDrawCanvas();
 	raf = window.requestAnimationFrame(update);
-
-	
-  	
-
-  
-        
+     
     
 }
 
