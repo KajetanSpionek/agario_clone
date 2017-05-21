@@ -49,6 +49,8 @@
     var players = [];
     var mousePos;
 
+    var boardMargin = 3;
+
     var gameBoardX;
     var gameBoardY;
 
@@ -183,13 +185,13 @@
             message = message.slice("newPlayerBall:,".length);
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "newPlayerBall:" + message + "</li>" + log.innerHTML;
-            player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  message[4]);
+            player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  message[4]); 
 
             deltaX = player.x_ - 400;
             deltaY = player.y_ - 400;
 
-            gameBoardY = 3000;
-            gameBoardX = 3000;
+            gameBoardY = 2999;
+            gameBoardX = 2999;
 
 
             player.show();
@@ -252,9 +254,9 @@
     	var message = "move:";
     	message += player.x_;
     	message += ",";
-    	message += player.y_;
+		message += player.y_
     	websocket.send(message);
-    	//log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;
+    	log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;
 
     }
     
@@ -337,11 +339,11 @@ function update() {
  
 	// Old movement 
 
-  	if (mousePos.x > 400 && player.x_ < gameBoardX) {
+  	if (mousePos.x > 400 && player.x_ < gameBoardX - boardMargin) {
   		deltaX += player.vx_;
   		player.x_ += player.vx_;
   	}
-  	else if (mousePos.x < 400 && player.x_ > 0) {
+  	else if (mousePos.x < 400 && player.x_ > 0 + boardMargin) {
   		deltaX -= player.vx_;
   		player.x_ -= player.vx_;
   	}
@@ -351,12 +353,12 @@ function update() {
 
   	}
 
-  	if (mousePos.y > 400 && player.y_ < gameBoardY) {
+  	if (mousePos.y > 400 && player.y_ < gameBoardY - boardMargin) {
   		deltaY += player.vy_;
   		player.y_ += player.vy_;
 
   	}
-  	else if (mousePos.y < 400 && player.y_ > 0) {
+  	else if (mousePos.y < 400 && player.y_ > 0 + boardMargin) {
   		deltaY -= player.vy_;
   		player.y_ -= player.vy_;
   	}
@@ -372,6 +374,9 @@ function update() {
   	//log.innerHTML = '<li class="message">' + mousePos.x + "</li>" + log.innerHTML;
   	//var temp = player.x_ - deltaX
   	//log.innerHTML = '<li class="message">' + temp + "</li>" + log.innerHTML;
+  	var dx = mousePos.x - player.x_ - deltaX;
+  	var dy = mousePos.y - player.y_ - deltaY;
+  	var v_len = Math.sqrt( (dy*dy) + (dx*dx) );
 
 
 
