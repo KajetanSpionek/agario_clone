@@ -28,8 +28,7 @@ namespace websocket{
         //Ball Ball(const & Ball) = default;
 
         std::string getColor() { return color_; }
-        player_ptr getOwner() { return owner_;}
-        void setOwner(player_ptr owner) { owner_ = owner; }
+
     private:
         ///random color generator
         void getRandColor();
@@ -42,8 +41,6 @@ namespace websocket{
         static const std::string letters_;
 
         std::string color_;
-
-        player_ptr owner_;
 
     };
 

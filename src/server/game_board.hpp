@@ -112,10 +112,10 @@ namespace websocket {
         /*
         typedef std::map<player_ptr,int > player_to_id;
         static player_to_id playerToId_;
-
+        */
         typedef std::map<int,player_ptr > id_to_player;
         static id_to_player idToPlayer_;
-    */
+    
     };
 
     

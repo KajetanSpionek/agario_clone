@@ -5,6 +5,7 @@ namespace websocket {
     GameBoard::elements_container GameBoard::elements_;
     GameBoard::balls_container GameBoard::balls_;
     GameBoard::game_map GameBoard::IdMap_;
+    GameBoard::id_to_player GameBoard::idToPlayer_;
     
     GameBoard::GameBoard()
     {
@@ -53,7 +54,7 @@ namespace websocket {
         auto it_end = std::find(msg.payload.begin(), msg.payload.end(),delim);
         std::copy(msg.payload.begin(), it_end, std::back_inserter(temp));
         
-        for( auto i : temp )
+        for( const auto& i : temp )
         {
             temp_string = temp_string + boost::lexical_cast<std::string>(i);
         }
@@ -102,7 +103,7 @@ namespace websocket {
         elements_container tmp_foods;
         elements_container::iterator it;
 
-        int dummy_iter = 2;
+        int dummy_iter = 10;
         
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
         //generator loop to loose its entropy
@@ -195,8 +196,16 @@ namespace websocket {
         int initBallRadius_ = 20;
         int x_temp;
         int y_temp;
-
+        
+        int dummy_iter = 10;
+        
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
+        //generator loop to loose its entropy
+        for(int k = 0; k < dummy_iter; ++k)
+        {
+            boost::random::uniform_int_distribution<> dummy(foodItemMarigin_, mapX_ - foodItemMarigin_);
+            dummy(gen);
+        }
 
         do
         {
@@ -212,9 +221,9 @@ namespace websocket {
 
         IdMap_.at(x_temp).at(y_temp) = (((new_ball.first)->second)->getId()); 
         //((new_ball.first)->second)->setOwner(participant);
+        idToPlayer_.insert( std::make_pair( ((new_ball.first)->second)->getId() , participant ) );
 
         
-
         //send new ball to new player
 
         std::string header = "newPlayerBall:";
@@ -339,8 +348,8 @@ namespace websocket {
         std::string temps;
         const char delimit_ = ':';
         const uint8_t delim = static_cast<uint8_t>(delimit_);
-        const char delimitArg_ = ':';
-        const uint8_t delim_arg = static_cast<uint8_t>(delimitArg_);
+        const char delimitArg_ = ',';
+        //const uint8_t delim_arg = static_cast<uint8_t>(delimitArg_);
 
         int radius;
         int id_source;
@@ -356,12 +365,12 @@ namespace websocket {
         std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
 
 
-        for(auto i : temp)
+        for(const auto& i : temp)
         {
             temps = temps +  boost::lexical_cast<std::string>(i);
         }
 
-        int n = temps.find(',');
+        int n = temps.find(delimitArg_);
         rxss = temps.substr(0,n);
         ryss = temps.substr(n+1,temps.size());
 
@@ -389,7 +398,10 @@ namespace websocket {
             {
                 id = IdMap_.at(i).at(j);
                 if( id != 0 )
-                    neighbourId.push_back(id);
+                {
+                    if( id != id_source)
+                        neighbourId.push_back(id);
+                }
             }
         }
 
@@ -398,15 +410,17 @@ namespace websocket {
         int ny;
         int nradius;
 
-        
-        for(const auto& i : neighbourId )
+        if(!neighbourId.empty())
         {
-            if( i != id_source)
-            {  
+            for(const auto& i : neighbourId )
+            {
+                
                 //std::cout << i << std::endl;
                 auto it = elements_[i];
                 //auto it = elements_.at(i);
+                //std::cout << "before" << std::endl;
                 nx = it->getX();
+                //std::cout << "after" << std::endl;
                 ny = it->getY();
                 nradius = it->getRadius();
 
@@ -420,15 +434,18 @@ namespace websocket {
                         std::cout << i << std::endl;
 
                     }
+                    /*
                     else
                     {
-                       // player_ptr owner = (dynamic_cast<ball_ptr>(it))->getOwner();
-                       // eraseBall(owner);
+                       player_ptr owner = idToPlayer_[i];
+                       eraseBall(owner);
                     }
+                    */
                     ball_source->setRadius(radius + nradius);
                 }
+                
+               
             }
-           
         }
 
         std::string header = "ballUpdate:";
@@ -469,8 +486,5 @@ namespace websocket {
 
      }
      */
-
-
-
 
 } // namespace websocket
