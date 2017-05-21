@@ -83,14 +83,14 @@ namespace websocket {
         message_queue recent_msgs_;
 
         //Map of the balls
-        static const int mapX_{800};
-        static const int mapY_{800};
+        static const int mapX_{3000};
+        static const int mapY_{3000};
         static const int foodItemMarigin_{5};
         static const int ballMarigin_{10};
 
         //foodItems const params
-        static const int initialFood_ {3};
-        static const int newPlayerFood_ {1};
+        static const int initialFood_ {50};
+        static const int newPlayerFood_ {5};
         static const int initialFoodParams_{1};
 
         ///map containing state of gameplay with objects IDs

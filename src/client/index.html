@@ -47,7 +47,10 @@
     var foods = [];
     var player = -1;
     var players = [];
-    var MousePos;
+    var mousePos;
+
+    var deltaX;
+    var deltaY;
     
     if (window.WebSocket === undefined)
     {
@@ -117,7 +120,7 @@
 
                     var len = foods.length;
                     var color = getRandomColor();
-                    foods[len] = new Food(message[0],message[1], message[2], color);
+                    foods[len] = new Food(parseInt(message[0]),parseInt(message[1]), parseInt(message[2]), color);
                     foods[len].show(); //Display ball
                 }
             
@@ -132,7 +135,7 @@
             if (players.indexOf(message[0]) == -1 && player.id != message[0]) {
 
                     var len = players.length;
-                    players[len] = new Player(message[0],message[1], message[2], message[3],message[4]);
+                    players[len] = new Player(parseInt(message[0]),parseInt(message[1]), parseInt(message[2]), parseInt(message[3]),message[4]);
                     players[len].show(); //Display player
                 }
   
@@ -146,7 +149,7 @@
             	for( i = 0; i < message.length; i+=5){
                 	if (players.indexOf(message[i]) == -1) { 
                     	var len = players.length;
-                    	players[len] = new Player(message[i],message[i+1], message[i+2],message[i+3],message[i+4]);
+                    	players[len] = new Player(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]),parseInt(message[i+3]),message[i+4]);
                     	players[len].show(); 
                 	}    
             	}	
@@ -166,7 +169,7 @@
                 if (foods.indexOf(message[i]) == -1) {
                     var len = foods.length;
                     var color = getRandomColor();
-                    foods[len] = new Food(message[i],message[i+1], message[i+2], color);
+                    foods[len] = new Food(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]), color);
                     foods[len].show(); //Display ball
                 }
             }  
@@ -177,10 +180,11 @@
             message = message.slice("newPlayerBall:,".length);
             message = message.split(" ");
             log.innerHTML = '<li class="message">' + "newPlayerBall:" + message + "</li>" + log.innerHTML;
-
-
-
             player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  message[4]);
+
+            deltaX = player.x_ - 400;
+            deltaY = player.y_ - 400;
+
             player.show();
             gameLoop();
 
@@ -236,7 +240,7 @@
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         ctx.beginPath();    
-        ctx.arc(x_center,y_center,radius,start_angle,end_angle);
+        ctx.arc(x_center-deltaX,y_center-deltaY,radius,start_angle,end_angle);
 		ctx.fillStyle = color;
         ctx.fill();
         ctx.lineWidth = radius/5;
@@ -260,7 +264,7 @@
 
        
         log.innerHTML = '<li class="message">' + "GameLoopInit" + "</li>" + log.innerHTML;
-         update();
+        update();
 
     }
 
@@ -289,9 +293,12 @@ function reDrawCanvas() {
 
 	context.clearRect(0,0,800,800);
 
-	for (var i in foods) 
+	for (var i in foods) {
 		foods[i].show();
+	}
+
 	player.show();
+
 	for (var i in players)
 		players[i].show();
 
@@ -299,15 +306,27 @@ function reDrawCanvas() {
 
 
 function update() {
-  
-  
-	// Directions
+ 
 
-	if (mousePos.x - player.x_ > 0) player.x_ += player.vx_;
-	else player.x_ -= player.vx_;
+  	if (mousePos.x > 400) {
+  		deltaX += player.vx_;
+  		player.x_ += player.vx_;
+  	}
+  	else if (mousePos.x < 400) {
+  		deltaX -= player.vx_;
+  		player.x_ -= player.vx_;
+  	}
 
-	if (mousePos.y - player.y_ > 0) player.y_ += player.vy_;
-	else player.y_ -= player.vy_;
+  	if (mousePos.y > 400) {
+  		deltaY += player.vy_;
+  		player.y_ += player.vy_;
+
+  	}
+  	else if (mousePos.y < 400) {
+  		deltaY -= player.vy_;
+  		player.y_ -= player.vy_;
+
+  	}
 
 	reDrawCanvas();
 	raf = window.requestAnimationFrame(update);
@@ -330,6 +349,39 @@ window.cancelAnimFrame = (function(handle) {
     return  window.cancelAnimationFrame     ||
             window.mozCancelAnimationFrame;
 })();
+
+
+
+function translate(xShift, yShift) {
+
+	for (var i in foods) {
+		foods[i].x_ += xShift;
+		foods[i].y_ += yShift;
+		log.innerHTML = '<li class="message">' + foods[1].y_ + "</li>" + log.innerHTML;
+	}
+
+	for (var i in players) {
+		players[i].x_ += xShift;
+		players[i].y_ += yShift;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 </script>
 </section>
