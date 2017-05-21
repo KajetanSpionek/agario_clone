@@ -93,6 +93,8 @@ namespace websocket {
         static const int newPlayerFood_ {5};
         static const int initialFoodParams_{1};
 
+        //static const int foodRadius_{3};
+
         ///map containing state of gameplay with objects IDs
         int IdCount_;
         typedef std::vector<std::vector<int> > game_map;
@@ -104,15 +106,16 @@ namespace websocket {
 
     
 
-        typedef std::map<int,food_ptr > foods_container;
-        static foods_container foods_;
+        typedef std::map<int,element_ptr > elements_container;
+        static elements_container elements_;
 
+        /*
         typedef std::map<player_ptr,int > player_to_id;
         static player_to_id playerToId_;
 
         typedef std::map<int,player_ptr > id_to_player;
         static id_to_player idToPlayer_;
-
+    */
     };
 
     

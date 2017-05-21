@@ -8,25 +8,21 @@
 
 #include <memory>
 #include <iostream>
+#include "element.hpp"
 
 namespace websocket {
 
-	class FoodItem{
+	class FoodItem : public Element
+	{
 	public:
 		
-		FoodItem(int & x, int & y,int& id);
+		FoodItem(int & x, int & y, int radius, int& id);
 		~FoodItem()
 		{
 		//std::cout << "delete food\n";
 		} //= default;
         //FoodItem & FoodItem(const &FoodItem) = default;
-		int getId() { return Id_;}
-        int getX() { return x_;}
-        int getY() { return y_;}
 	private:
-		const int Id_;
-        int x_;
-		int y_;
 
 	};
 

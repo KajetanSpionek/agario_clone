@@ -3,7 +3,7 @@
 namespace websocket{
 	const std::string Ball::letters_("0123456789ABCDEF");
 
-    Ball::Ball(int & x,int & y,int & radius,int& id): Id_(id),x_(x), y_(y),radius_(radius)
+    Ball::Ball(int & x,int & y,int & radius,int& id): Element(x,y,radius,id)
     {
     		getRandColor();
             //std::cout << "construct ball" << std::endl;

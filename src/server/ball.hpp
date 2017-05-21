@@ -11,10 +11,14 @@
 #include <string>
 #include <boost/lexical_cast.hpp>
 #include <cmath>
+#include "element.hpp"
+#include "player.hpp"
 
 namespace websocket{
+
     class Ball 
-    {
+    : public Element
+    { 
     public:
         //void increaseMass(int add_mass); //increase mass = decrease velocity
         Ball(int & x,int & y,int & radius,int& id);
@@ -23,28 +27,15 @@ namespace websocket{
         } // = default;
         //Ball Ball(const & Ball) = default;
 
-        int getX() { return x_;}
-        int getY() { return y_;}
-        void setX(const int&x) { x_ = x; }
-        void setY(const int&y) { y_ = y; }
-        int getRadius() {return radius_;}
-        int getId() {return Id_;}
         std::string getColor() { return color_; }
-
+        player_ptr getOwner() { return owner_;}
+        void setOwner(player_ptr owner) { owner_ = owner; }
     private:
         ///random color generator
         void getRandColor();
-
-        //id
-        const int Id_;
-        //position
-        int x_;
-        int y_;
         //velocity
         int vX_;
         int vY_;
-        //radius
-        int radius_;
 
         int mass_;
 
@@ -52,7 +43,10 @@ namespace websocket{
 
         std::string color_;
 
+        player_ptr owner_;
+
     };
+
     typedef std::shared_ptr<Ball>  ball_ptr;
 }
 #endif //BALL_HPP

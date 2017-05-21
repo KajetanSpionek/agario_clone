@@ -2,12 +2,9 @@
 
 namespace websocket {
 
-    GameBoard::foods_container GameBoard::foods_;
+    GameBoard::elements_container GameBoard::elements_;
     GameBoard::balls_container GameBoard::balls_;
     GameBoard::game_map GameBoard::IdMap_;
-    GameBoard::player_to_id GameBoard::playerToId_;
-    GameBoard::id_to_player GameBoard::idToPlayer_;
-    
     
     GameBoard::GameBoard()
     {
@@ -102,8 +99,8 @@ namespace websocket {
     {
         int x_temp;
         int y_temp;void deleteBall(player_ptr participant);
-        foods_container tmp_foods;
-        foods_container::iterator it;
+        elements_container tmp_foods;
+        elements_container::iterator it;
 
         int dummy_iter = 1;
         
@@ -130,7 +127,7 @@ namespace websocket {
             } 
             while( IdMap_.at(x_temp).at(y_temp) != 0 ) ; // while position is not empty
             
-            auto new_food = foods_.insert(std::make_pair(IdCount_,getFood(x_temp,y_temp)));
+            auto new_food = elements_.insert(std::make_pair(IdCount_,getFood(x_temp,y_temp)));
 
             tmp_foods.insert((*new_food.first));
 
@@ -165,13 +162,14 @@ namespace websocket {
 
     food_ptr GameBoard::getFood(int& x,int& y)
     {
-        return std::make_shared<FoodItem>(x,y,++IdCount_);
+        int foodRadius_ = 3;
+        return std::make_shared<FoodItem>(x,y, foodRadius_ ,++IdCount_);
     }
 
     void GameBoard::eraseFood(int id)
     {
-        food_ptr food;
-        food = foods_.at(id);
+        element_ptr food;
+        food = elements_.at(id);
         IdMap_.at(food->getX()).at(food->getY()) = 0;
 
 
@@ -182,7 +180,7 @@ namespace websocket {
         //header_foods = header_foods + " " + boost::lexical_cast<std::string>(food->getY());
 
         //erase from collection
-        foods_.erase(id);
+        elements_.erase(id);
 
         Dataframe frm_foods;
         std::copy(header_foods.begin(), header_foods.end(), std::back_inserter(frm_foods.payload));
@@ -213,8 +211,9 @@ namespace websocket {
         auto new_ball = balls_.insert(std::make_pair(participant, getBall(x_temp,y_temp,initBallRadius_)));
 
         IdMap_.at(x_temp).at(y_temp) = (((new_ball.first)->second)->getId()); 
+        //((new_ball.first)->second)->setOwner(participant);
 
-        playerToId_.insert(std::make_pair(participant, ((new_ball.first)->second)->getId()) );
+        
 
         //send new ball to new player
 
@@ -276,11 +275,9 @@ namespace websocket {
         //header_balls = header_balls + " " + boost::lexical_cast<std::string>(ball->getX());
         //header_balls = header_balls + " " + boost::lexical_cast<std::string>(ball->getY());
 
+        elements_.erase(balls_.at(participant)->getId());
         //erase from balls collection
         balls_.erase(participant);
-
-        //erase from player to ball conversion
-        playerToId_.erase(participant);
 
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
@@ -314,11 +311,11 @@ namespace websocket {
 
         //send foods
 
-        foods_container::iterator i;
+        elements_container::iterator i;
         
         std::string header_foods = "gameStateFood:";
 
-        for( i = foods_.begin(); i != foods_.end(); i++)
+        for( i = elements_.begin(); i != elements_.end(); i++)
         {
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getId());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getX());
@@ -346,14 +343,14 @@ namespace websocket {
         const uint8_t delim_arg = static_cast<uint8_t>(delimitArg_);
 
         int radius;
-
+        int id_source;
         int rx;
         int ry;
 
-        //int id = playerToId_[source];
         ball_ptr ball_source = balls_.at(source);
 
         radius = ball_source->getRadius();
+        id_source = ball_source->getId();
 
         auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
         std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
@@ -372,19 +369,20 @@ namespace websocket {
         ry = std::stoi(ryss);
 
         std::cout << "rx: " << rx << " ry: " << ry << std::endl;
-        
 
+        IdMap_.at(ball_source->getX()).at(ball_source->getY()) = 0;
         ball_source->setX(rx);
         ball_source->setY(ry);
+        //!!!!!!!!MUST CHANGE IDMAP //
 
-        IdMap_.at(rx).at(ry) = playerToId_[source];
+        IdMap_.at(rx).at(ry) = ball_source->getId();
 
         //check neighbourhood and eat anything within radius, respawn new food
         std::vector<int> neighbourId;
         //boundaries check
         int id;
 
-        /*
+        std::cout << "here" << std::endl;
 
         for( int i = rx - radius ; i < rx + radius; i++)
         {
@@ -395,59 +393,46 @@ namespace websocket {
                     neighbourId.push_back(id);
             }
         }
-
-        */
-        //int dist;
-        
-        /*
-
-        //check neighbourhood and eat anything within radius, respawn new food
-        std::vector<int> neighbourId;
-        //boundaries check
-        int id;
-
-        
-
-        for( int i = rx - radius ; i < rx + radius; i++)
-        {
-            for(int j = ry - radius; j < ry +radius; j++)
-            {
-                id = IdMap_.at(i).at(j);
-                if( id != 0 )
-                    neighbourId.push_back(id);
-            }
-        }
-        
 
         int dist;
         int nx;
         int ny;
+        int nradius;
 
-        for(auto i : neighbourId )
+        std::cout << "here" << std::endl;
+        
+        for(const auto& i : neighbourId )
         {
-            if(idToPlayer_.count(i))
+            if( i != id_source)
             {
-                auto it = balls_.at(idToPlayer_.at(i));
+                std::cout << i << std::endl;   
+                auto it = elements_.at(i);
                 nx = it->getX();
                 ny = it->getY();
+                nradius = it->getRadius();
+
                 dist = std::sqrt( (rx-nx)*(rx-nx) + (ry-ny)*(ry-ny));
                 if(dist < radius)
-                    eraseBall(idToPlayer_.at(i));
+                {
+                    if(nradius == 3) //change to const
+                    {
+                        eraseFood(i);
+                        addNFoodItem(1);    //change to const
+
+                    }
+                    else
+                    {
+                       // player_ptr owner = (dynamic_cast<ball_ptr>(it))->getOwner();
+                       // eraseBall(owner);
+                    }
+                    ball_source->setRadius(radius + nradius);
+                }
             }
-            else
-            {
-                auto it = foods_.at(i);
-                nx = it->getX();
-                ny = it->getY();
-                dist = std::sqrt( (rx-nx)*(rx-nx) + (ry-ny)*(ry-ny));
-                if(dist < radius)
-                    eraseFood(i);
-            }
+           
         }
 
-        */
-
-
+        std::cout << "here" << std::endl;
+        
         std::string header = "ballUpdate:";
 
         
