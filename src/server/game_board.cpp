@@ -6,6 +6,7 @@ namespace websocket {
     GameBoard::balls_container GameBoard::balls_;
     GameBoard::game_map GameBoard::IdMap_;
     GameBoard::player_to_id GameBoard::playerToId_;
+    GameBoard::id_to_player GameBoard::idToPlayer_;
     
     
     GameBoard::GameBoard()
@@ -170,7 +171,7 @@ namespace websocket {
     void GameBoard::eraseFood(int id)
     {
         food_ptr food;
-        food = foods_[id];
+        food = foods_.at(id);
         IdMap_.at(food->getX()).at(food->getY()) = 0;
 
 
@@ -266,7 +267,7 @@ namespace websocket {
     void GameBoard::eraseBall(player_ptr participant)
     {
         ball_ptr ball;
-        ball = balls_[participant];
+        ball = balls_.at(participant);
         IdMap_.at(ball->getX()).at(ball->getY()) = 0;
 
         std::string header_balls = "deleteBall:";
@@ -350,7 +351,7 @@ namespace websocket {
         int ry;
 
         //int id = playerToId_[source];
-        ball_ptr ball_source = balls_[source];
+        ball_ptr ball_source = balls_.at(source);
 
         radius = ball_source->getRadius();
 
@@ -380,6 +381,8 @@ namespace websocket {
         //boundaries check
         int id;
 
+        /*
+
         for( int i = rx - radius ; i < rx + radius; i++)
         {
             for(int j = ry - radius; j < ry +radius; j++)
@@ -389,18 +392,14 @@ namespace websocket {
                     neighbourId.push_back(id);
             }
         }
+        */
 
         int dist;
         int nx;
         int ny;
 
-        for(auto i: neighbourId)
+        for(auto i : neighbourId )
         {
-            //type check
-            //auto it = 
-            //compute distance 
-            //dist = std::sqrt()
-            //if within radius
             //if()
         }
 
