@@ -4,7 +4,7 @@ class Food {
     this.x_ = x;
     this.y_ = y;
     this.id_ = id;
-    this.r_ = 6; 
+    this.r_ = 10; 
     this.color_ = color;
   }
 
@@ -22,8 +22,8 @@ class Player {
     this.id_ = id;
     this.r_ = r;
     this.color_ = color;
-    this.vx_ = 6;
-    this.vy_ = 6;
+    this.vx_ = 4;
+    this.vy_ = 4;
   }
 
   show() {
