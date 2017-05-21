@@ -127,13 +127,13 @@ namespace websocket {
                     boost::random::uniform_int_distribution<> distY(foodItemMarigin_, mapY_ - foodItemMarigin_);
                     y_temp = distY(gen);
             } 
-            while( IdMap_.at(y_temp).at(x_temp) != 0 ) ; // while position is not empty
+            while( IdMap_.at(x_temp).at(y_temp) != 0 ) ; // while position is not empty
             
             auto new_food = foods_.insert(std::make_pair(IdCount_,getFood(x_temp,y_temp)));
 
             tmp_foods.insert((*new_food.first));
 
-            IdMap_.at(y_temp).at(x_temp) = (((new_food.first)->second)->getId()); 
+            IdMap_.at(x_temp).at(y_temp) = (((new_food.first)->second)->getId()); 
 
             std::cout << ((new_food.first)->second)->getId() << std::endl;
 
@@ -171,7 +171,7 @@ namespace websocket {
     {
         food_ptr food;
         food = foods_[id];
-        IdMap_.at(food->getY()).at(food->getX()) = 0;
+        IdMap_.at(food->getX()).at(food->getY()) = 0;
 
 
         std::string header_foods = "deleteFood:";
@@ -207,11 +207,11 @@ namespace websocket {
                 boost::random::uniform_int_distribution<> distY(ballMarigin_, mapY_ - ballMarigin_);
                 y_temp = distY(gen);
         } 
-        while( IdMap_.at(y_temp).at(x_temp) != 0 ) ; // while position is not empty
+        while( IdMap_.at(x_temp).at(y_temp) != 0 ) ; // while position is not empty
             
         auto new_ball = balls_.insert(std::make_pair(participant, getBall(x_temp,y_temp,initBallRadius_)));
 
-        IdMap_.at(y_temp).at(x_temp) = (((new_ball.first)->second)->getId()); 
+        IdMap_.at(x_temp).at(y_temp) = (((new_ball.first)->second)->getId()); 
 
         playerToId_.insert(std::make_pair(participant, ((new_ball.first)->second)->getId()) );
 
@@ -267,7 +267,7 @@ namespace websocket {
     {
         ball_ptr ball;
         ball = balls_[participant];
-        IdMap_.at(ball->getY()).at(ball->getX()) = 0;
+        IdMap_.at(ball->getX()).at(ball->getY()) = 0;
 
         std::string header_balls = "deleteBall:";
 
@@ -416,7 +416,7 @@ namespace websocket {
         ball_source->setX(rx);
         ball_source->setY(ry);
 
-        IdMap_.at(ry).at(rx) = playerToId_[source];
+        IdMap_.at(rx).at(ry) = playerToId_[source];
 
         std::string header = "ballUpdate:";
 
