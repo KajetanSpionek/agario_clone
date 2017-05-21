@@ -344,9 +344,7 @@ namespace websocket {
         const char delimitArg_ = ':';
         const uint8_t delim_arg = static_cast<uint8_t>(delimitArg_);
 
-        //int x;
-        //int y;
-        //int radius;
+        int radius;
 
         int rx;
         int ry;
@@ -354,8 +352,6 @@ namespace websocket {
         //int id = playerToId_[source];
         ball_ptr ball_source = balls_[source];
 
-        x = ball_source->getX();
-        y = ball_source->getY();
         radius = ball_source->getRadius();
 
         auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
@@ -371,18 +367,43 @@ namespace websocket {
         rxss = temps.substr(0,n);
         ryss = temps.substr(n+1,temps.size());
 
-        //std::cout << rxss << std::endl;
-        //std::cout << ryss << std::endl;
-
         rx = std::stoi(rxss);
-        //std::cout << rx << std::endl;
         ry = std::stoi(ryss);
-        //std::cout << ry << std::endl;
 
         ball_source->setX(rx);
         ball_source->setY(ry);
 
         IdMap_.at(rx).at(ry) = playerToId_[source];
+
+        //check neighbourhood and eat anything within radius, respawn new food
+        std::vector<int> neighbourId;
+        //boundaries check
+        int id;
+
+        for( int i = rx - radius ; i < rx + radius; i++)
+        {
+            for(int j = ry - radius; j < ry +radius; j++)
+            {
+                id = IdMap_.at(i).at(j);
+                if( id != 0 )
+                    neighbourId.push_back(id);
+            }
+        }
+
+        int dist;
+        int nx;
+        int ny;
+
+        for(auto i: neighbourId)
+        {
+            //type check
+            //auto it = 
+            //compute distance 
+            //dist = std::sqrt()
+            //if within radius
+            //if()
+        }
+
 
         std::string header = "ballUpdate:";
 
@@ -398,24 +419,6 @@ namespace websocket {
 
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm)));
-
-
-        //find nonzero id' in the neighbourhood of radius
-
-
-        //if not
-        //send position
-        //update enemies
-
-        //if is
-        //delete food - spawn new foods
-        // or ball
-        //send stats to looser
-        //increase mass
-        //send new position
-        //update enemies
-        
-
 
 
      }
