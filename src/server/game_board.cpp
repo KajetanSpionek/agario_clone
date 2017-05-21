@@ -135,7 +135,7 @@ namespace websocket {
 
             IdMap_.at(x_temp).at(y_temp) = (((new_food.first)->second)->getId()); 
 
-            std::cout << ((new_food.first)->second)->getId() << std::endl;
+            //std::cout << ((new_food.first)->second)->getId() << std::endl;
 
         }
 
@@ -336,8 +336,6 @@ namespace websocket {
      {
 
         std::vector<boost::uint8_t> temp;
-        std::vector<boost::uint8_t> rxs;
-        std::vector<boost::uint8_t> rys;
         std::string rxss;
         std::string ryss;
         std::string temps;
@@ -346,9 +344,9 @@ namespace websocket {
         const char delimitArg_ = ':';
         const uint8_t delim_arg = static_cast<uint8_t>(delimitArg_);
 
-        int x;
-        int y;
-        int radius;
+        //int x;
+        //int y;
+        //int radius;
 
         int rx;
         int ry;
@@ -360,41 +358,9 @@ namespace websocket {
         y = ball_source->getY();
         radius = ball_source->getRadius();
 
-        /*
-        for (auto i : msg.payload)
-        {
-            std::cout << i << std::endl;
-        }
-        */
-
         auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
-        //std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
-        //auto it_sep = std::find(msg.payload.begin(), msg.payload.end(),delim_arg);
-
-        //std::copy(++it_beg, it_sep, std::back_inserter(rxs));
-        //std::copy(++it_sep, msg.payload.end(), std::back_inserter(rys));
-
         std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
-/*
-        for (auto i : rxs)
-        {
-            rxss = rxss + boost::lexical_cast<std::string>(i);
-        }
-        std::cout << "rx: " << rxss << std::endl;
 
-        for (auto j : rys)
-        {
-
-            ryss = boost::lexical_cast<std::string>(j);
-        }
-        std::cout << "rx: " << ryss << std::endl;
-        
-
-        rx = std::stoi(rxss);
-        std::cout << rx << std::endl;
-        ry = std::stoi(ryss);
-        std::cout << ry << std::endl;
-*/
 
         for(auto i : temp)
         {
