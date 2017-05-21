@@ -222,6 +222,16 @@
         }          
    
     }
+
+    function sendPos() {
+
+    	var message = "move:";
+    	message += player.x_;
+    	message += ",";
+    	message += player.y_;
+    	websocket.send(message);
+
+    }
     
     function getRandomColor() 
     {
@@ -251,14 +261,7 @@
     { 
         state.className = "fail";
         state.innerHTML = "Communication error";
-    }
-    
-    function addMessage()
-    {
-        var message = chat.value;
-        chat.value = "";
-        websocket.send(message);
-    }   
+    }  
 
     function gameLoop() {
 
@@ -329,6 +332,7 @@ function update() {
   	}
 
 	reDrawCanvas();
+	sendPos();
 	raf = window.requestAnimationFrame(update);
      
     
