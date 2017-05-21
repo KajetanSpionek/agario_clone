@@ -339,11 +339,11 @@ function update() {
  
 	// Old movement 
 
-  	if (mousePos.x > 400 && player.x_ < gameBoardX - boardMargin) {
+  	if (mousePos.x > 400 && player.x_ < gameBoardX - boardMargin - player.r_) {
   		deltaX += player.vx_;
   		player.x_ += player.vx_;
   	}
-  	else if (mousePos.x < 400 && player.x_ > 0 + boardMargin) {
+  	else if (mousePos.x < 400 && player.x_ > 0 + boardMargin + player.r_) {
   		deltaX -= player.vx_;
   		player.x_ -= player.vx_;
   	}
@@ -353,12 +353,12 @@ function update() {
 
   	}
 
-  	if (mousePos.y > 400 && player.y_ < gameBoardY - boardMargin) {
+  	if (mousePos.y > 400 && player.y_ < gameBoardY - boardMargin - player.r_) {
   		deltaY += player.vy_;
   		player.y_ += player.vy_;
 
   	}
-  	else if (mousePos.y < 400 && player.y_ > 0 + boardMargin) {
+  	else if (mousePos.y < 400 && player.y_ > 0 + boardMargin + player.r_) {
   		deltaY -= player.vy_;
   		player.y_ -= player.vy_;
   	}
@@ -378,7 +378,10 @@ function update() {
   	var dy = mousePos.y - player.y_ - deltaY;
   	var v_len = Math.sqrt( (dy*dy) + (dx*dx) );
 
+  	var scaleX = dx / v_len;
+  	var scaleY = dy / v_len;
 
+	//log.innerHTML = '<li class="message">' + scaleX + " , " + scaleY + "</li>" + log.innerHTML;
 
 
 
