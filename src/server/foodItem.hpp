@@ -15,7 +15,10 @@ namespace websocket {
 	public:
 		
 		FoodItem(int & x, int & y,int& id);
-		~FoodItem(){std::cout << "delete food\n";} //= default;
+		~FoodItem()
+		{
+		//std::cout << "delete food\n";
+		} //= default;
         //FoodItem & FoodItem(const &FoodItem) = default;
 		int getId() { return Id_;}
         int getX() { return x_;}

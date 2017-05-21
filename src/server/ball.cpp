@@ -6,7 +6,7 @@ namespace websocket{
     Ball::Ball(int & x,int & y,int & radius,int& id): Id_(id),x_(x), y_(y),radius_(radius)
     {
     		getRandColor();
-            std::cout << "construct ball" << std::endl;
+            //std::cout << "construct ball" << std::endl;
     }
 
     void Ball::getRandColor()
