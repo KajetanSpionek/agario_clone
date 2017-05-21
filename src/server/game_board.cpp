@@ -340,6 +340,7 @@ namespace websocket {
         std::vector<boost::uint8_t> rys;
         std::string rxss;
         std::string ryss;
+        std::string temps;
         const char delimit_ = ':';
         const uint8_t delim = static_cast<uint8_t>(delimit_);
         const char delimitArg_ = ':';
@@ -359,23 +360,52 @@ namespace websocket {
         y = ball_source->getY();
         radius = ball_source->getRadius();
 
+        for (auto i : msg.payload)
+        {
+            std::cout << i << std::endl;
+        }
+        
+
         auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
         //std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
-        auto it_sep = std::find(msg.payload.begin(), msg.payload.end(),delim_arg);
+        //auto it_sep = std::find(msg.payload.begin(), msg.payload.end(),delim_arg);
 
-        std::copy(++it_beg, it_sep, std::back_inserter(rxs));
-        std::copy(++it_sep, msg.payload.end(), std::back_inserter(rys));
+        //std::copy(++it_beg, it_sep, std::back_inserter(rxs));
+        //std::copy(++it_sep, msg.payload.end(), std::back_inserter(rys));
 
+        std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
+/*
         for (auto i : rxs)
         {
             rxss = rxss + boost::lexical_cast<std::string>(i);
         }
+        std::cout << "rx: " << rxss << std::endl;
+
         for (auto j : rys)
         {
 
             ryss = boost::lexical_cast<std::string>(j);
         }
+        std::cout << "rx: " << ryss << std::endl;
         
+
+        rx = std::stoi(rxss);
+        std::cout << rx << std::endl;
+        ry = std::stoi(ryss);
+        std::cout << ry << std::endl;
+*/
+
+        for(auto i : temp)
+        {
+            temps = temps +  boost::lexical_cast<std::string>(i);
+        }
+
+        int n = temps.find(',');
+        rxss = temps.substr(0,n);
+        ryss = temps.substr(n+1,temps.size());
+
+        std::cout << rxss << std::endl;
+        std::cout << ryss << std::endl;
 
         rx = std::stoi(rxss);
         std::cout << rx << std::endl;
