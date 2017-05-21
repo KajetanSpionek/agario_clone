@@ -102,7 +102,7 @@ namespace websocket {
         elements_container tmp_foods;
         elements_container::iterator it;
 
-        int dummy_iter = 1;
+        int dummy_iter = 2;
         
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
         //generator loop to loose its entropy
@@ -403,7 +403,9 @@ namespace websocket {
         {
             if( i != id_source)
             {  
-                auto it = elements_.at(i);
+                //std::cout << i << std::endl;
+                auto it = elements_[i];
+                //auto it = elements_.at(i);
                 nx = it->getX();
                 ny = it->getY();
                 nradius = it->getRadius();
@@ -415,6 +417,7 @@ namespace websocket {
                     {
                         eraseFood(i);
                         addNFoodItem(1);    //change to const
+                        std::cout << i << std::endl;
 
                     }
                     else
