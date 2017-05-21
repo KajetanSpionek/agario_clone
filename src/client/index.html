@@ -231,8 +231,18 @@
         else if (message.startsWith("ballUpdate:")) {
         	message = message.slice("ballUpdate:,".length);
             message = message.split(" ");
-            log.innerHTML = '<li class="message">' + "ballUpdate:" + message + "</li>" + log.innerHTML;
+            
+            var id = parseInt(message[0]);
 
+            if (id != player.id_) {
+            	for(i in players) {
+            		if (players[i].id_ == id) {
+            			players[i].x_ = parseInt(message[1]);
+            			players[i].y_ = parseInt(message[2]);
+            			players[i].r_ = parseInt(message[3]);
+            		}
+            	}
+            }
         }       
    
     }
@@ -244,7 +254,7 @@
     	message += ",";
     	message += player.y_;
     	websocket.send(message);
-    	log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;
+    	//log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;
 
     }
     
@@ -325,6 +335,7 @@ function reDrawCanvas() {
 
 function update() {
  
+	// Old movement 
 
   	if (mousePos.x > 400 && player.x_ < gameBoardX) {
   		deltaX += player.vx_;
@@ -354,6 +365,17 @@ function update() {
   		player.y_ = player.y_;
 
   	}
+
+  	// New movement
+
+  	//var sin = Math.sin((mousePos.x - player.x_ - deltaX)/(mousePos.y - player.y_ - deltaY));
+  	//log.innerHTML = '<li class="message">' + mousePos.x + "</li>" + log.innerHTML;
+  	//var temp = player.x_ - deltaX
+  	//log.innerHTML = '<li class="message">' + temp + "</li>" + log.innerHTML;
+
+
+
+
 
 	reDrawCanvas();
 	sendPos();
