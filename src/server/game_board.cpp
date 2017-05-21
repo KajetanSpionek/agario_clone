@@ -84,6 +84,8 @@ namespace websocket {
             boost::bind(&Player::deliver, _1, boost::ref(msg)));
     }
 
+    
+    
 
     void GameBoard::updateParticipants()
     {
@@ -442,6 +444,7 @@ namespace websocket {
                     }
                     */
                     ball_source->setRadius(radius + nradius);
+                    std::cout << ball_source->getRadius() << std::endl;
                 }
                 
                
@@ -458,11 +461,16 @@ namespace websocket {
         
 
         Dataframe frm;
+
+        //deliver(frm);
+
+        
         std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
 
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm)));
-
+        
+        
 
      }
 

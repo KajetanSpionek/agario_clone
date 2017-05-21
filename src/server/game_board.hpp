@@ -75,8 +75,7 @@ namespace websocket {
 
         ///when player is eaten send statistics of the game
         void sendStats(player_ptr participant);
-
-        //data structers for players
+ 
         std::set<player_ptr> participants_;
         //limit of message_queue
         enum { max_recent_msgs = 100 };
