@@ -428,8 +428,6 @@ namespace websocket {
            
         }
 
-        std::cout << "here" << std::endl;
-        
         std::string header = "ballUpdate:";
 
         
