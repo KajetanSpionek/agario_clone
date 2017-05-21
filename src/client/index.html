@@ -340,8 +340,8 @@ function reDrawGrid() {
 context.fillStyle = "#F0FBFF";
 context.strokeStyle = "BFBFBF";
 context.lineWidth = 1;
-constY = 150 - deltaY % 150;
-constX = 150 - deltaX % 150;
+constY = 150 - ((deltaY + 399) % 150);
+constX = 150 - ((deltaX + 399) % 150);
 
 //log.innerHTML = '<li class="message">' + deltaX + "</li>" + log.innerHTML;
 
