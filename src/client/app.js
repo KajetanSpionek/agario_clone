@@ -22,8 +22,8 @@ class Player {
     this.id_ = id;
     this.r_ = r;
     this.color_ = color;
-    this.vx_ = 3;
-    this.vy_ = 3;
+    this.vx_ = 6;
+    this.vy_ = 6;
   }
 
   show() {
