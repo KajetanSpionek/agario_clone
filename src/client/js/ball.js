@@ -6,10 +6,12 @@ class Ball {
     this.id_ = id;
     this.r_ = r;
     this.color_ = color;
+    this.fx;
+    this.fy;
   }
 
   show() {
-      drawCircle(this.x_, this.y_,this.r_,this.color_);
+      drawCircleFx(this.fx_, this.fy_,this.r_,this.color_);
   }
 
 }

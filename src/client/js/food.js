@@ -6,10 +6,12 @@ class Food {
     this.id_ = id;
     this.r_ = 10; 
     this.color_ = color;
+    this.fx_;
+    this.fy_;
   }
 
   show() {
-      drawCircle(this.x_, this.y_,this.r_,this.color_);
+      drawCircleFx(this.fx_, this.fy_,this.r_,this.color_);
   }
 
 }
