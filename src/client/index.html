@@ -20,6 +20,10 @@
 
 <div id="right">
   <article>
+  	<h1> Some data </h1>
+  	<p> Xpos: <span id="x_pos">Not connected</span></p>
+  	<p> Ypos: <span id="y_pos">Not connected</span></p>
+  	<p> Mass (radius): <span id="mass_pos">Not connected</span></p>
     <h1> Recived data </h1>
     <ul id="log"></ul>
   </article>
@@ -35,6 +39,10 @@
     connected = document.getElementById("connected");
     log = document.getElementById("log");
     state = document.getElementById("status");
+    x_pos_state = document.getElementById("x_pos");
+    y_pos_state = document.getElementById("y_pos");
+    mass_state = document.getElementById("mass_pos");
+
     var canvas = document.getElementById('myCanvas');
     var context = canvas.getContext('2d');
     
@@ -253,6 +261,9 @@
     }
 
     function sendPos() {
+    	x_pos_state.innerHTML = player.x_;
+    	y_pos_state.innerHTML = player.y_;
+    	mass_state.innerHTML = player.r_;
         var x = Math.floor(player.x_);
         var y = Math.floor(player.y_);
         if ( (x < 3000) && (y < 3000)){
