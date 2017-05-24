@@ -1,4 +1,5 @@
 class Player {
+  
   constructor(id,x,y,r,color) {
 
     this.x_ = x;
