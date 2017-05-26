@@ -105,7 +105,7 @@ namespace websocket {
         elements_container tmp_foods;
         elements_container::iterator it;
 
-        int dummy_iter = 10;
+        int dummy_iter = 1;
         
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
         //generator loop to loose its entropy
@@ -157,9 +157,11 @@ namespace websocket {
 
         //send to all participants
 
+        deliver(frm_foods);
+        /*
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm_foods)));
-        
+        */
         
     }
 
@@ -169,6 +171,7 @@ namespace websocket {
         return std::make_shared<FoodItem>(x,y, foodRadius_ ,++IdCount_);
     }
 
+    
     void GameBoard::eraseFood(int id)
     {
         element_ptr food;
@@ -188,10 +191,13 @@ namespace websocket {
         Dataframe frm_foods;
         std::copy(header_foods.begin(), header_foods.end(), std::back_inserter(frm_foods.payload));
 
+        deliver(frm_foods);
+        /*
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm_foods)));
-
+        */
     }
+
 
     void GameBoard::addNewBall(player_ptr participant)
     {
@@ -199,13 +205,13 @@ namespace websocket {
         int x_temp;
         int y_temp;
         
-        int dummy_iter = 10;
+        int dummy_iter = 1;
         
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
         //generator loop to loose its entropy
         for(int k = 0; k < dummy_iter; ++k)
         {
-            boost::random::uniform_int_distribution<> dummy(foodItemMarigin_, mapX_ - foodItemMarigin_);
+            boost::random::uniform_int_distribution<> dummy(ballMarigin_, mapX_ - ballMarigin_);
             dummy(gen);
         }
 
@@ -255,18 +261,18 @@ namespace websocket {
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 
+        deliver(frm_balls);
         //send enemies
-        
+        /*
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm_balls)));
-
-
+        
+        */
         //insert new participant 
         participants_.insert(participant);
 
         updateParticipants();
-            
-        
+             
     }
 
     ball_ptr GameBoard::getBall(int& x,int& y,int& radius)
@@ -293,8 +299,11 @@ namespace websocket {
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 
+        deliver(frm_balls);
+        /*
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm_balls)));
+            */
 
         
     }
@@ -366,7 +375,6 @@ namespace websocket {
         auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
         std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
 
-
         for(const auto& i : temp)
         {
             temps = temps +  boost::lexical_cast<std::string>(i);
@@ -376,8 +384,10 @@ namespace websocket {
         rxss = temps.substr(0,n);
         ryss = temps.substr(n+1,temps.size());
 
-        rx = std::stoi(rxss);
-        ry = std::stoi(ryss);
+        //rx = std::stoi(rxss);
+        //ry = std::stoi(ryss);
+        rx = boost::lexical_cast<int>(rxss);
+        ry = boost::lexical_cast<int>(ryss);
 
         //std::cout << "rx: " << rx << " ry: " << ry << std::endl;
 
@@ -425,7 +435,8 @@ namespace websocket {
                 //std::cout << "after" << std::endl;
                 ny = it->getY();
                 nradius = it->getRadius();
-
+                //calculate distance
+                
                 dist = std::sqrt( (rx-nx)*(rx-nx) + (ry-ny)*(ry-ny));
                 if(dist < radius)
                 {
@@ -436,13 +447,13 @@ namespace websocket {
                         std::cout << i << std::endl;
 
                     }
-                    /*
+                    
                     else
                     {
                        player_ptr owner = idToPlayer_[i];
                        eraseBall(owner);
                     }
-                    */
+                    
                     ball_source->setRadius(radius + nradius);
                     std::cout << ball_source->getRadius() << std::endl;
                 }
@@ -461,15 +472,16 @@ namespace websocket {
         
 
         Dataframe frm;
-
-        //deliver(frm);
-
         
         std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
 
+        deliver(frm);
+
+        /*
+
         std::for_each(participants_.begin(), participants_.end(),
             boost::bind(&Player::deliver, _1, boost::ref(frm)));
-        
+        */
         
 
      }

@@ -66,6 +66,8 @@ namespace websocket {
        
         //delete ball and update players
         void eraseBall(player_ptr participant);
+        //void eraseElement(player_ptr participant); //erasing  food_item
+        //void eraseElement(int id); //erasing food
 
         //main movement processing
         void processMovement(const Dataframe& msg, player_ptr source);
@@ -78,7 +80,7 @@ namespace websocket {
  
         std::set<player_ptr> participants_;
         //limit of message_queue
-        enum { max_recent_msgs = 100 };
+        enum { max_recent_msgs = 1000 };
         message_queue recent_msgs_;
 
         //Map of the balls

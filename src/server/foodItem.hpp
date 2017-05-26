@@ -21,7 +21,8 @@ namespace websocket {
 		{
 		//std::cout << "delete food\n";
 		} //= default;
-        //FoodItem & FoodItem(const &FoodItem) = default;
+        FoodItem(const FoodItem & other) = default;
+        FoodItem & operator=(const FoodItem& other) = default;
 	private:
 
 	};
