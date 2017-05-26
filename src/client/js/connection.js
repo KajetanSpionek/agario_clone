@@ -1,7 +1,12 @@
+/*
+File: connection.js
+Author: Kajetan Śpionek, Wojciech Przybysz
+Discription: Handles connection with server; Contains in/out frames implementations.
+*/
 
 connected = document.getElementById("connected");
 log = document.getElementById("log");
- state = document.getElementById("status");
+state = document.getElementById("status");
 
 
 
@@ -50,9 +55,6 @@ if (window.WebSocket === undefined)
   
     function onMessage(evt)
     {
-        // There are two types of messages: 
-        //     1. a chat participant message itself
-        //     2. a message with a number of connected chat participants
   
         var message = evt.data;
     
@@ -212,7 +214,13 @@ if (window.WebSocket === undefined)
             message += Math.floor(player.x_);
             message += ",";
             message += Math.floor(player.y_);
-            websocket.send(message);
-         //log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML;
+            if (send_interval == send_interval_period) {
+                websocket.send(message);
+                send_interval == 0;
+            }
+            else {
+                send_interval+=1;
+            }
+         
         }
     }
