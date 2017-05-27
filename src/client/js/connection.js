@@ -43,14 +43,14 @@ if (window.WebSocket === undefined)
     function onOpen(evt)
     {
         state.className = "success";
-        state.innerHTML = "Connected to server";    
+       // state.innerHTML = "Connected to server";    
     }
   
     function onClose(evt)
     {
         state.className = "fail";
         state.innerHTML = "Not connected";
-        connected.innerHTML = "0";        
+        //connected.innerHTML = "0";        
     }
   
     function onMessage(evt)
@@ -60,11 +60,11 @@ if (window.WebSocket === undefined)
     
         if (message.startsWith("log:")) {
             message = message.slice("log:".length);
-            log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML; 
+            //log.innerHTML = '<li class="message">' + message + "</li>" + log.innerHTML; 
         }
         else if (message.startsWith("connected:")) {
             message = message.slice("connected:".length);
-            connected.innerHTML = message;  
+            //connected.innerHTML = message;  
         }   
 
         else if (message.startsWith("newFood:")) {
@@ -138,8 +138,8 @@ if (window.WebSocket === undefined)
             //log.innerHTML = '<li class="message">' + "newPlayerBall:" + message + "</li>" + log.innerHTML;
             player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  message[4]); 
 
-            deltaX = player.x_ - screenWidth/2;
-            deltaY = player.y_ - screenHight/2;
+            deltaX = player.x_ - canvas.width/2;
+            deltaY = player.y_ - canvas.height/2;
 
             gameBoardY = 2990;
             gameBoardX = 2990;
@@ -205,7 +205,7 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("endOfGame:")) {
             message = message.slice("endOfGame:,".length);
             message = message.split(" ");
-            log.innerHTML = '<li class="message">' + "endOfGame " + message + "</li>" + log.innerHTML;
+            //log.innerHTML = '<li class="message">' + "endOfGame " + message + "</li>" + log.innerHTML;
             
             gameOver();
         }      
@@ -213,9 +213,9 @@ if (window.WebSocket === undefined)
     }
 
     function sendPos() {
-      x_pos_state.innerHTML = player.x_;
-      y_pos_state.innerHTML = player.y_;
-      mass_state.innerHTML = player.r_;
+      //x_pos_state.innerHTML = player.x_;
+      //y_pos_state.innerHTML = player.y_;
+      //mass_state.innerHTML = player.r_;
         var x = Math.floor(player.x_);
         var y = Math.floor(player.y_);
         if ( (x < 3000) && (y < 3000)){
