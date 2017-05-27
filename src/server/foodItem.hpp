@@ -16,7 +16,7 @@ namespace websocket {
 	{
 	public:
 		
-		FoodItem(int & x, int & y, int radius, int& id);
+		FoodItem(int & x, int & y, int radius);
 		~FoodItem()
 		{
 		//std::cout << "delete food\n";

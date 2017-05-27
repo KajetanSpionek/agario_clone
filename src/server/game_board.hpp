@@ -11,6 +11,7 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <atomic>
 #include <boost/lexical_cast.hpp>
 #include <boost/bind.hpp>
 #include <boost/random/mersenne_twister.hpp>
@@ -100,7 +101,8 @@ namespace websocket {
         //static const int foodRadius_{3};
 
         ///map containing state of gameplay with objects IDs
-        int IdCount_;
+        //int IdCount_;
+        //std::atomic<int> IdCount_;
         typedef std::vector<std::vector<int> > game_map;
         static game_map IdMap_;
 
@@ -109,6 +111,7 @@ namespace websocket {
         static balls_container balls_;
 
         typedef std::map<int,element_ptr > elements_container;
+        //typedef std::map<std::atomic<int> ,element_ptr > elements_container;
         static elements_container elements_;
 
         typedef std::map<int,player_ptr > id_to_player;

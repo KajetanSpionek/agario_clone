@@ -26,8 +26,6 @@ namespace websocket {
         //add N new food and send to everyone
         addNFoodItem(newPlayerFood_);
         
-        
- 
     }
 
     void GameBoard::leave(player_ptr participant)
@@ -131,13 +129,12 @@ namespace websocket {
             } 
             while( IdMap_.at(x_temp).at(y_temp) != 0 ) ; // while position is not empty
             
-            auto new_food = elements_.insert(std::make_pair(IdCount_,getFood(x_temp,y_temp)));
-
+            auto temp_food = getFood(x_temp,y_temp);
+            auto new_food = elements_.insert(std::make_pair(temp_food->getId(),temp_food));
+            
             tmp_foods.insert((*new_food.first));
 
             IdMap_.at(x_temp).at(y_temp) = (((new_food.first)->second)->getId()); 
-
-            //std::cout << ((new_food.first)->second)->getId() << std::endl;
 
         }
 
@@ -168,7 +165,7 @@ namespace websocket {
 
     food_ptr GameBoard::getFood(int& x,int& y)
     {
-        return std::make_shared<FoodItem>(x,y, foodRadius_ ,++IdCount_);
+        return std::make_shared<FoodItem>(x,y, foodRadius_ );
     }
 
     
@@ -277,7 +274,7 @@ namespace websocket {
 
     ball_ptr GameBoard::getBall(int& x,int& y,int& radius)
     {
-        return std::make_shared<Ball>(x,y,radius,++IdCount_);
+        return std::make_shared<Ball>(x,y,radius);
     }
 
     void GameBoard::eraseBall(player_ptr participant)
@@ -320,6 +317,7 @@ namespace websocket {
 
     void GameBoard::sendGameState(player_ptr participant)
     {
+
         //send balls
         std::string header_balls = "gameStateBall:";
 
@@ -338,9 +336,9 @@ namespace websocket {
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 
         participant->deliver(frm_balls);
-
+        
         //send foods
-
+        
         elements_container::iterator i;
         
         std::string header_foods = "gameStateFood:";
@@ -356,7 +354,7 @@ namespace websocket {
         std::copy(header_foods.begin(), header_foods.end(), std::back_inserter(frm_foods.payload));
 
         participant->deliver(frm_foods);
-
+        
     }
 
     
@@ -421,6 +419,7 @@ namespace websocket {
             neighbourId.push_back(id);
         }
 
+
         IdMap_.at(rx).at(ry) = ball_source->getId();
         //boundaries check
         
@@ -446,7 +445,7 @@ namespace websocket {
                 id = IdMap_.at(i).at(j);
                 if( id != 0 )
                 {
-                    if( id != id_source)
+                    if( id != id_source )
                     {
                         neighbourId.push_back(id);
                         break; //delete one element at a time
@@ -464,9 +463,6 @@ namespace websocket {
         {
             for(const auto& i : neighbourId )
             {
-                
-                //std::cout << i << std::endl;
-                //auto it = elements_[i];
                 auto it = elements_.at(i);
                 nx = it->getX();
                 ny = it->getY();
