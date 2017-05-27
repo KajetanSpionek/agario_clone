@@ -4,17 +4,17 @@ Author: Kajetan Śpionek, Wojciech Przybysz
 Discription: Handles connection with server; Contains in/out frames implementations.
 */
 
-connected = document.getElementById("connected");
-log = document.getElementById("log");
-state = document.getElementById("status");
+//connected = document.getElementById("connected");
+//log = document.getElementById("log");
+//state = document.getElementById("status");
 
 
 
 
 if (window.WebSocket === undefined)
     {
-        state.innerHTML = "sockets not supported";
-        state.className = "fail";
+        //state.innerHTML = "sockets not supported";
+        //state.className = "fail";
     }
     else
     {
@@ -42,14 +42,14 @@ if (window.WebSocket === undefined)
   
     function onOpen(evt)
     {
-        state.className = "success";
+        //state.className = "success";
        // state.innerHTML = "Connected to server";    
     }
   
     function onClose(evt)
     {
-        state.className = "fail";
-        state.innerHTML = "Not connected";
+        //state.className = "fail";
+        //state.innerHTML = "Not connected";
         //connected.innerHTML = "0";        
     }
   
