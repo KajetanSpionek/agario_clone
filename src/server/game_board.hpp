@@ -94,6 +94,8 @@ namespace websocket {
         static const int newPlayerFood_ {5};
         static const int initialFoodParams_{1};
         const int foodRadius_ = 3;
+        //const int onEatenNewItems_ = 1;
+        //const int initBallRadius_ = 20;
 
         //static const int foodRadius_{3};
 
@@ -106,15 +108,9 @@ namespace websocket {
         typedef std::map<player_ptr,ball_ptr > balls_container;
         static balls_container balls_;
 
-    
-
         typedef std::map<int,element_ptr > elements_container;
         static elements_container elements_;
 
-        /*
-        typedef std::map<player_ptr,int > player_to_id;
-        static player_to_id playerToId_;
-        */
         typedef std::map<int,player_ptr > id_to_player;
         static id_to_player idToPlayer_;
     

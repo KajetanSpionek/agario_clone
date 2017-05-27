@@ -14,6 +14,7 @@
 #include "element.hpp"
 #include "player.hpp"
 
+
 namespace websocket{
 
     class Ball 
@@ -28,22 +29,25 @@ namespace websocket{
         //int getX(){ /*std::cout << "in ball return " << Element::getX() <<std::endl;*/ return Element::getX();  }
         Ball(const Ball &other) = default;
         Ball & operator=(const Ball& other) = default;
-
+        void incBall() { ++ballEaten_; }
+        void incFood() { ++foodEaten_; }
+        int getBallNum() { return ballEaten_; }
+        int getFoodNum() { return foodEaten_; }
 
         std::string getColor() { return color_; }
-
     private:
+
         ///random color generator
         void getRandColor();
-        //velocity
-        int vX_;
-        int vY_;
 
         int mass_;
 
         static const std::string letters_;
 
         std::string color_;
+
+        int ballEaten_;
+        int foodEaten_;
 
     };
 

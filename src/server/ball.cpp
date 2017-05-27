@@ -8,6 +8,9 @@ namespace websocket{
     		getRandColor();
             std::cout << "construct ball " << this->getX() << " " << this->getY() << std::endl;
 
+            ballEaten_ = 0;
+            foodEaten_ = 0;
+
     }
 
     void Ball::getRandColor()
