@@ -284,18 +284,23 @@ namespace websocket {
 
     void GameBoard::eraseBall(player_ptr participant)
     {
+        
         ball_ptr ball;
         ball = balls_.at(participant);
+
+        int id = ball->getId();
         IdMap_.at(ball->getX()).at(ball->getY()) = 0;
 
         std::string header_balls = "deleteBall:";
 
-        header_balls = header_balls + " " + boost::lexical_cast<std::string>(ball->getId());
+        header_balls = header_balls + " " + boost::lexical_cast<std::string>(id);
         
-        elements_.erase(balls_.at(participant)->getId());
+        elements_.erase(id);
         
         //erase from balls collection
         balls_.erase(participant);
+
+        std::cout << "header" << std::endl;
 
         //send looser end of game frame, delete him from collection
         std::string header = "endOfGame:";
