@@ -100,7 +100,8 @@ namespace websocket {
     void GameBoard::addNFoodItem(int n)
     {
         int x_temp;
-        int y_temp;void deleteBall(player_ptr participant);
+        int y_temp;
+        int id;
         elements_container tmp_foods;
         elements_container::iterator it;
 
@@ -130,11 +131,14 @@ namespace websocket {
             while( IdMap_.at(x_temp).at(y_temp) != 0 ) ; // while position is not empty
             
             auto temp_food = getFood(x_temp,y_temp);
-            auto new_food = elements_.insert(std::make_pair(temp_food->getId(),temp_food));
+
+            id = temp_food->getId();
+
+            auto new_food = elements_.insert(std::make_pair(id,temp_food));
             
             tmp_foods.insert((*new_food.first));
 
-            IdMap_.at(x_temp).at(y_temp) = (((new_food.first)->second)->getId()); 
+            IdMap_.at(x_temp).at(y_temp) = id; 
 
         }
 
@@ -148,6 +152,8 @@ namespace websocket {
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getId());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getX());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getY());
+
+            std::cout << ((it->second)->getId()) << std::endl;
         }
 
         Dataframe frm_foods;
@@ -156,11 +162,7 @@ namespace websocket {
         //send to all participants
 
         deliver(frm_foods);
-        /*
-        std::for_each(participants_.begin(), participants_.end(),
-            boost::bind(&Player::deliver, _1, boost::ref(frm_foods)));
-        */
-        
+
     }
 
     food_ptr GameBoard::getFood(int& x,int& y)
@@ -202,6 +204,7 @@ namespace websocket {
         int initBallRadius_ = 20;
         int x_temp;
         int y_temp;
+        int id;
         
         int dummy_iter = 1;
         
@@ -225,13 +228,15 @@ namespace websocket {
             
         auto new_ball = balls_.insert(std::make_pair(participant, getBall(x_temp,y_temp,initBallRadius_)));
 
-        elements_.insert(std::make_pair(((new_ball.first)->second)->getId(),(new_ball.first)->second )) ;       
+        id = ((new_ball.first)->second)->getId();
+        elements_.insert(std::make_pair(id,(new_ball.first)->second )) ;       
 
-        IdMap_.at(x_temp).at(y_temp) = (((new_ball.first)->second)->getId()); 
+        IdMap_.at(x_temp).at(y_temp) = (id); 
         
-        idToPlayer_.insert( std::make_pair( ((new_ball.first)->second)->getId() , participant ) );
+        idToPlayer_.insert( std::make_pair( id, participant ) );
 
         std::cout << "In addNewBall(): " << std::endl;
+        std::cout << id << std::endl;
 
         //send new ball to new player
 
@@ -317,7 +322,7 @@ namespace websocket {
 
     void GameBoard::sendGameState(player_ptr participant)
     {
-
+        int id;
         //send balls
         std::string header_balls = "gameStateBall:";
 
@@ -345,9 +350,13 @@ namespace websocket {
 
         for( i = elements_.begin(); i != elements_.end(); i++)
         {
-            header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getId());
-            header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getX());
-            header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getY());
+            id = (i->second)->getId();
+            if ( !(idToPlayer_.count(id) > 0) )
+            {
+                header_foods = header_foods + " " + boost::lexical_cast<std::string>(id);
+                header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getX());
+                header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getY());
+            }
         }
 
         Dataframe frm_foods;
@@ -477,9 +486,9 @@ namespace websocket {
                         std::cout << "eraseFood invoke" << std::endl;
                         eraseFood(i);
                         addNFoodItem(onEatenNewItems_);    //change to const
-                        std::cout << i << std::endl;
+                        //std::cout << i << std::endl;
                         ball_source->setRadius(radius + nradius);
-                        std::cout << ball_source->getRadius() << std::endl;
+                        //std::cout << ball_source->getRadius() << std::endl;
                         ball_source->incFood();
 
                     }
@@ -490,7 +499,7 @@ namespace websocket {
                            player_ptr owner = idToPlayer_[i];
                            eraseBall(owner);
                            ball_source->setRadius(radius + nradius);
-                           std::cout << ball_source->getRadius() << std::endl;
+                           //std::cout << ball_source->getRadius() << std::endl;
                            ball_source->incBall();
                        }
                        else 
