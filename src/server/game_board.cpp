@@ -229,11 +229,17 @@ namespace websocket {
             
         auto new_ball = balls_.insert(std::make_pair(participant, getBall(x_temp,y_temp,initBallRadius_)));
 
+        elements_.insert(std::make_pair(((new_ball.first)->second)->getId(),(new_ball.first)->second )) ;       
+
         IdMap_.at(x_temp).at(y_temp) = (((new_ball.first)->second)->getId()); 
         //((new_ball.first)->second)->setOwner(participant);
         idToPlayer_.insert( std::make_pair( ((new_ball.first)->second)->getId() , participant ) );
 
-        
+        std::cout << "In addNewBall(): " << std::endl;
+
+        //int id = IdMap_.at(x_temp).at(y_temp);
+        //auto it = elements_
+
         //send new ball to new player
 
         std::string header = "newPlayerBall:";
@@ -413,7 +419,7 @@ namespace websocket {
         IdMap_.at(rx).at(ry) = ball_source->getId();
         //boundaries check
         
-        /*
+        
         if( ( rx - radius) <= 0)
             radius = 0;
         else if ( rx + radius >= 2999)
@@ -422,7 +428,7 @@ namespace websocket {
             radius = 0;
         else if ( ry + radius >= 2999)
             radius = 0; 
-        */
+        
         
 
         for( int i = rx - radius ; i < rx + radius; i++)
