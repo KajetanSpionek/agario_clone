@@ -56,7 +56,7 @@
     var balls = [];
     var mousePos;
 
-    var boardMargin = 10;
+    var boardMargin = 3;
 
     var gameBoardX;
     var gameBoardY;
@@ -196,11 +196,11 @@ function update() {
 
   	
 
-  	if (mousePos.x > 400 && player.x_ < gameBoardX - boardMargin ) {
+  	if (mousePos.x > 400 && player.x_ < gameBoardX - boardMargin - player.r_ ) {
   		deltaX += scaleX *player.vx_;
   		player.x_ += scaleX * player.vx_;
   	}
-  	else if (mousePos.x < 400 && player.x_ > 0 + boardMargin) {
+  	else if (mousePos.x < 400 && player.x_ > 0 + boardMargin + player.r_) {
   		deltaX -= scaleX * player.vx_;
   		player.x_ -= scaleX * player.vx_;
   	}
@@ -210,12 +210,12 @@ function update() {
 
   	}
 
-  	if (mousePos.y > 400 && player.y_ < gameBoardY - boardMargin) {
+  	if (mousePos.y > 400 && player.y_ < gameBoardY - boardMargin - player.r_) {
   		deltaY += scaleY * player.vy_;
   		player.y_ += scaleY * player.vy_;
 
   	}
-  	else if (mousePos.y < 400 && player.y_ > 0 + boardMargin) {
+  	else if (mousePos.y < 400 && player.y_ > 0 + boardMargin + player.r_) {
   		deltaY -= scaleY * player.vy_;
   		player.y_ -= scaleY * player.vy_;
   	}
@@ -225,8 +225,8 @@ function update() {
 
   	}
 
-  	scl = 1 - (player.r_ / 400);
-  	if (scl < 0.5) scl = 0.5;
+  	scl = 1 - (player.r_ / 450);
+  	if (scl < 0.4) scl = 0.4;
 
 	context.clearRect(0,0,800,800);
 	reDrawGrid();
