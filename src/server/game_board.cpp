@@ -168,7 +168,6 @@ namespace websocket {
 
     food_ptr GameBoard::getFood(int& x,int& y)
     {
-        int foodRadius_ = 3;
         return std::make_shared<FoodItem>(x,y, foodRadius_ ,++IdCount_);
     }
 
@@ -304,6 +303,14 @@ namespace websocket {
         //erase from balls collection
         balls_.erase(participant);
 
+        //send looser end of game frame, delete him from collection
+        std::string header = "endOfGame:";
+        Dataframe frm;
+        std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
+
+        participants_.erase(participant);
+        participant->deliver(frm);
+
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 
@@ -380,7 +387,9 @@ namespace websocket {
         ball_ptr ball_source = balls_.at(source);
 
         radius = ball_source->getRadius();
+        
         id_source = ball_source->getId();
+        
 
         auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
         std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
@@ -481,16 +490,27 @@ namespace websocket {
                         eraseFood(i);
                         addNFoodItem(1);    //change to const
                         std::cout << i << std::endl;
+                        ball_source->setRadius(radius + nradius);
+                        std::cout << ball_source->getRadius() << std::endl;
 
                     }
                     else
                     {
-                       player_ptr owner = idToPlayer_[i];
-                       eraseBall(owner);
+                       if( radius > nradius)
+                       {
+                           player_ptr owner = idToPlayer_[i];
+                           eraseBall(owner);
+                           ball_source->setRadius(radius + nradius);
+                           std::cout << ball_source->getRadius() << std::endl;
+                       }
+                       else 
+                       {
+
+                       } 
+
                     }
                     
-                    ball_source->setRadius(radius + nradius);
-                    std::cout << ball_source->getRadius() << std::endl;
+                    
 
                 }
                 

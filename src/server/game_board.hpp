@@ -93,6 +93,7 @@ namespace websocket {
         static const int initialFood_ {50};
         static const int newPlayerFood_ {5};
         static const int initialFoodParams_{1};
+        const int foodRadius_ = 3;
 
         //static const int foodRadius_{3};
 
