@@ -25,7 +25,7 @@ namespace websocket{
         ~Ball() {//
             std::cout << "delete ball\n";
         } // = default;
-        int getX(){ std::cout << "in ball return " << Element::getX() <<std::endl; return Element::getX();  }
+        //int getX(){ /*std::cout << "in ball return " << Element::getX() <<std::endl;*/ return Element::getX();  }
         Ball(const Ball &other) = default;
         Ball & operator=(const Ball& other) = default;
 

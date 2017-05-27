@@ -1,4 +1,5 @@
 #include "game_board.hpp"
+#include <mutex>
 
 namespace websocket {
 
@@ -176,6 +177,7 @@ namespace websocket {
     {
         element_ptr food;
         food = elements_.at(id);
+        std::cout << "deleting food" << std::endl;
         IdMap_.at(food->getX()).at(food->getY()) = 0;
 
 
@@ -349,6 +351,8 @@ namespace websocket {
 
     }
 
+    
+   
 
     void GameBoard::processMovement(const Dataframe& msg, player_ptr source)
      {
@@ -384,25 +388,41 @@ namespace websocket {
         rxss = temps.substr(0,n);
         ryss = temps.substr(n+1,temps.size());
 
-        //rx = std::stoi(rxss);
-        //ry = std::stoi(ryss);
         rx = boost::lexical_cast<int>(rxss);
         ry = boost::lexical_cast<int>(ryss);
 
         //std::cout << "rx: " << rx << " ry: " << ry << std::endl;
 
         IdMap_.at(ball_source->getX()).at(ball_source->getY()) = 0;
+        //std::cout << "here" << std::endl;
         ball_source->setX(rx);
         ball_source->setY(ry);
         //!!!!!!!!MUST CHANGE IDMAP //
 
-        IdMap_.at(rx).at(ry) = ball_source->getId();
+        
 
         //check neighbourhood and eat anything within radius, respawn new food
         std::vector<int> neighbourId;
-        //boundaries check
         int id;
 
+        if( (id = IdMap_.at(rx).at(ry) ) != 0 )
+        {
+            neighbourId.push_back(id);
+        }
+
+        IdMap_.at(rx).at(ry) = ball_source->getId();
+        //boundaries check
+        
+        if( ( rx - radius) <= 0)
+            radius = 0;
+        else if ( rx + radius >= 2999)
+            radius = 0;
+        else if ( ry - radius <= 0)
+            radius = 0;
+        else if ( ry + radius >= 2999)
+            radius = 0; 
+
+        
 
         for( int i = rx - radius ; i < rx + radius; i++)
         {
@@ -412,7 +432,14 @@ namespace websocket {
                 if( id != 0 )
                 {
                     if( id != id_source)
+                    {
                         neighbourId.push_back(id);
+                        break;
+                    }
+                    else
+                    {
+                        auto it = elements_[i];
+                    }
                 }
             }
         }
@@ -430,24 +457,25 @@ namespace websocket {
                 //std::cout << i << std::endl;
                 auto it = elements_[i];
                 //auto it = elements_.at(i);
-                //std::cout << "before" << std::endl;
+                std::cout << "before" << std::endl;
                 nx = it->getX();
-                //std::cout << "after" << std::endl;
+                std::cout << "after" << std::endl;
                 ny = it->getY();
                 nradius = it->getRadius();
                 //calculate distance
+                
                 
                 dist = std::sqrt( (rx-nx)*(rx-nx) + (ry-ny)*(ry-ny));
                 if(dist < radius)
                 {
                     if(nradius == 3) //change to const
                     {
+                        std::cout << "eraseFood invoke" << std::endl;
                         eraseFood(i);
                         addNFoodItem(1);    //change to const
                         std::cout << i << std::endl;
 
                     }
-                    
                     else
                     {
                        player_ptr owner = idToPlayer_[i];
@@ -456,11 +484,14 @@ namespace websocket {
                     
                     ball_source->setRadius(radius + nradius);
                     std::cout << ball_source->getRadius() << std::endl;
+
                 }
                 
                
             }
         }
+
+        
 
         std::string header = "ballUpdate:";
 
