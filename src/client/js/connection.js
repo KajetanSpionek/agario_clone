@@ -138,8 +138,8 @@ if (window.WebSocket === undefined)
             //log.innerHTML = '<li class="message">' + "newPlayerBall:" + message + "</li>" + log.innerHTML;
             player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  message[4]); 
 
-            deltaX = player.x_ - 399;
-            deltaY = player.y_ - 399;
+            deltaX = player.x_ - screenWidth/2;
+            deltaY = player.y_ - screenHight/2;
 
             gameBoardY = 2990;
             gameBoardX = 2990;

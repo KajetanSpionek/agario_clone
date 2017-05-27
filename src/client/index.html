@@ -56,17 +56,24 @@
     var balls = [];
     var mousePos;
 
-    var boardMargin = 0;
-
-    var gameBoardX;
-    var gameBoardY;
-
-    var deltaX;
-    var deltaY;
-    
     var scl = 1;
     var send_interval = 1;
     var send_interval_period = 2;
+
+    // Board margin
+    var boardMargin = 0;
+
+    // Whole map size
+    var gameBoardX;
+    var gameBoardY;
+
+    // Vector to left top corner from (0,0) pos
+    var deltaX;
+    var deltaY;
+
+    // Player's screen width and hight
+    var screenWidth = 800;
+    var screenHight = 800;
     
     
     function getRandomColor() 
@@ -160,8 +167,8 @@ function reDrawGrid() {
 context.fillStyle = '#F0FBFF';
 context.strokeStyle = '#BFBFBF';
 context.lineWidth = 1;
-constY = 50*scl - ((deltaY + 399) % 50*scl);
-constX = 50*scl - ((deltaX + 399) % 50*scl);
+constY = 50*scl - ((deltaY + (screenHight/2)) % 50*scl);
+constX = 50*scl - ((deltaX + (screenWidth/2)) % 50*scl);
 
 //log.innerHTML = '<li class="message">' + deltaX + "</li>" + log.innerHTML;
 
@@ -169,7 +176,7 @@ constX = 50*scl - ((deltaX + 399) % 50*scl);
 for (i=0; i < 800; i += 50*scl) {
 	context.beginPath();
    	context.moveTo(0,constY + i);
-   	context.lineTo(800,constY + i);
+   	context.lineTo(screenHight,constY + i);
    	context.stroke();
  }
 
@@ -177,7 +184,7 @@ for (i=0; i < 800; i += 50*scl) {
 for (i=0; i < 800; i += 50*scl) {
 	context.beginPath();
   	context.moveTo(constX + i,0);
-   	context.lineTo(constX + i,800);
+   	context.lineTo(constX + i,screenWidth);
    	context.stroke();
 }
 
@@ -210,8 +217,8 @@ function update() {
  
 	// New movement 
 
-	var dx = mousePos.x - 399;
-  	var dy = mousePos.y - 399;
+	var dx = mousePos.x - screenWidth/2;
+  	var dy = mousePos.y - screenHight/2;
   	var v_len = Math.abs(Math.sqrt( (dy*dy) + (dx*dx) ));
 
   	var scaleX = Math.abs(dx / v_len);
@@ -219,11 +226,11 @@ function update() {
 
   	
 
-  	if (mousePos.x > 400 && player.x_ < gameBoardX - boardMargin) {
+  	if (mousePos.x > screenWidth/2 && player.x_ < gameBoardX - boardMargin) {
   		deltaX += scaleX *player.vx_;
   		player.x_ += scaleX * player.vx_;
   	}
-  	else if (mousePos.x < 400 && player.x_ > 0 + boardMargin) {
+  	else if (mousePos.x < screenWidth/2 && player.x_ > 0 + boardMargin) {
   		deltaX -= scaleX * player.vx_;
   		player.x_ -= scaleX * player.vx_;
   	}
@@ -233,12 +240,12 @@ function update() {
 
   	}
 
-  	if (mousePos.y > 400 && player.y_ < gameBoardY - boardMargin) {
+  	if (mousePos.y > screenHight/2 && player.y_ < gameBoardY - boardMargin) {
   		deltaY += scaleY * player.vy_;
   		player.y_ += scaleY * player.vy_;
 
   	}
-  	else if (mousePos.y < 400 && player.y_ > 0 + boardMargin) {
+  	else if (mousePos.y < screenHight/2 && player.y_ > 0 + boardMargin) {
   		deltaY -= scaleY * player.vy_;
   		player.y_ -= scaleY * player.vy_;
   	}
@@ -251,7 +258,7 @@ function update() {
   	scl = 1 - (player.r_ / 500);
   	if (scl < 0.2) scl = 0.2;
 
-	context.clearRect(0,0,800,800);
+	context.clearRect(0,0,screenWidth,screenHight);
 	reDrawGrid();
 	reDrawCanvas();
 	sendPos();
