@@ -8,26 +8,11 @@
 <body>
 <section id="wrapper">
 
-      <h1>Agar.io</h1>
-
-
  <div id="left">
-    <canvas id="myCanvas" style="border:4px solid black;" width="800" height="800"> </canvas>
-    <p> Current status: <span id="status">Not connected</span></p>
-    <p>Users connected: <span id="connected">0</span></p>
+    <canvas id="myCanvas" width="800" height="800"> </canvas>
  </div>
 
 
-<div id="right">
-  <article>
-  	<h1> Info </h1>
-  	<p> Xpos: <span id="x_pos">Not connected</span></p>
-  	<p> Ypos: <span id="y_pos">Not connected</span></p>
-  	<p> Mass (radius): <span id="mass_pos">Not connected</span></p>
-    <h1> Recived data </h1>
-    <ul id="log"></ul>
-  </article>
-</div>
 
 
  <script src="js/connection.js"></script> 
@@ -38,9 +23,9 @@
 
 <script>
     
-    var x_pos_state = document.getElementById("x_pos");
-    var y_pos_state = document.getElementById("y_pos");
-    var mass_state = document.getElementById("mass_pos");
+    //var x_pos_state = document.getElementById("x_pos");
+    //var y_pos_state = document.getElementById("y_pos");
+    //var mass_state = document.getElementById("mass_pos");
 
     var canvas = document.getElementById('myCanvas');
     var context = canvas.getContext('2d');
@@ -56,17 +41,24 @@
     var balls = [];
     var mousePos;
 
-    var boardMargin = 3;
-
-    var gameBoardX;
-    var gameBoardY;
-
-    var deltaX;
-    var deltaY;
-    
     var scl = 1;
     var send_interval = 1;
     var send_interval_period = 2;
+
+    // Board margin
+    var boardMargin = 0;
+
+    // Whole map size
+    var gameBoardX;
+    var gameBoardY;
+
+    // Vector to left top corner from (0,0) pos
+    var deltaX;
+    var deltaY;
+
+
+    window.addEventListener('resize', resizeCanvas, false);       
+           resizeCanvas();	
     
     
     function getRandomColor() 
@@ -160,26 +152,48 @@ function reDrawGrid() {
 context.fillStyle = '#F0FBFF';
 context.strokeStyle = '#BFBFBF';
 context.lineWidth = 1;
-constY = 50*scl - ((deltaY + 399) % 50*scl);
-constX = 50*scl - ((deltaX + 399) % 50*scl);
+constY = 50*scl - ((deltaY + (canvas.height/2)) % 50*scl);
+constX = 50*scl - ((deltaX + (canvas.width/2)) % 50*scl);
 
 //log.innerHTML = '<li class="message">' + deltaX + "</li>" + log.innerHTML;
 
 
-for (i=0; i < 800; i += 50*scl) {
+for (i=0; i < canvas.height; i += 50*scl) {
 	context.beginPath();
    	context.moveTo(0,constY + i);
-   	context.lineTo(800,constY + i);
+   	context.lineTo(canvas.width,constY + i);
    	context.stroke();
  }
 
 
-for (i=0; i < 800; i += 50*scl) {
+for (i=0; i < canvas.width; i += 50*scl) {
 	context.beginPath();
   	context.moveTo(constX + i,0);
-   	context.lineTo(constX + i,800);
+   	context.lineTo(constX + i,canvas.height);
    	context.stroke();
 }
+
+context.lineWidth = 3;
+context.strokeStyle = 'black';
+context.beginPath();
+context.moveTo(- deltaX,- deltaY);
+context.lineTo(- deltaX + gameBoardX,- deltaY);
+context.stroke();
+
+context.beginPath();
+context.moveTo(- deltaX,- deltaY);
+context.lineTo(- deltaX,- deltaY + gameBoardY);
+context.stroke();
+
+context.beginPath();
+context.moveTo(- deltaX + gameBoardX,- deltaY);
+context.lineTo(- deltaX + gameBoardX,- deltaY + gameBoardY);
+context.stroke();
+
+context.beginPath();
+context.moveTo(- deltaX,- deltaY + gameBoardY);
+context.lineTo(- deltaX + gameBoardX,- deltaY + gameBoardY);
+context.stroke();
 
 
 }
@@ -188,8 +202,8 @@ function update() {
  
 	// New movement 
 
-	var dx = mousePos.x - 399;
-  	var dy = mousePos.y - 399;
+	var dx = mousePos.x - canvas.width/2;
+  	var dy = mousePos.y - canvas.height/2;
   	var v_len = Math.abs(Math.sqrt( (dy*dy) + (dx*dx) ));
 
   	var scaleX = Math.abs(dx / v_len);
@@ -197,11 +211,11 @@ function update() {
 
   	
 
-  	if (mousePos.x > 400 && player.x_ < gameBoardX - boardMargin - player.r_ ) {
+  	if (mousePos.x > canvas.width/2 && player.x_ < gameBoardX - boardMargin) {
   		deltaX += scaleX *player.vx_;
   		player.x_ += scaleX * player.vx_;
   	}
-  	else if (mousePos.x < 400 && player.x_ > 0 + boardMargin + player.r_) {
+  	else if (mousePos.x < canvas.width/2 && player.x_ > 0 + boardMargin) {
   		deltaX -= scaleX * player.vx_;
   		player.x_ -= scaleX * player.vx_;
   	}
@@ -211,12 +225,12 @@ function update() {
 
   	}
 
-  	if (mousePos.y > 400 && player.y_ < gameBoardY - boardMargin - player.r_) {
+  	if (mousePos.y > canvas.height/2 && player.y_ < gameBoardY - boardMargin) {
   		deltaY += scaleY * player.vy_;
   		player.y_ += scaleY * player.vy_;
 
   	}
-  	else if (mousePos.y < 400 && player.y_ > 0 + boardMargin + player.r_) {
+  	else if (mousePos.y < canvas.height/2 && player.y_ > 0 + boardMargin) {
   		deltaY -= scaleY * player.vy_;
   		player.y_ -= scaleY * player.vy_;
   	}
@@ -229,7 +243,7 @@ function update() {
   	scl = 1 - (player.r_ / 500);
   	if (scl < 0.2) scl = 0.2;
 
-	context.clearRect(0,0,800,800);
+	context.clearRect(0,0,canvas.width,canvas.height);
 	reDrawGrid();
 	reDrawCanvas();
 	sendPos();
@@ -278,6 +292,12 @@ function gameOver() {
 	reDrawCanvas();
 }
 
+
+function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+        }
 
 
 
