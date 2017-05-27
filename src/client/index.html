@@ -147,11 +147,12 @@ function reDrawCanvas() {
 		foods[i].show();
 	}
 
-	player.show();
+	
 
 	for (var i in balls)
 		balls[i].show();
 
+	player.show();
 }
 
 function reDrawGrid() {
@@ -268,8 +269,14 @@ function calculateFixedPos() {
 	}
 }
 
+function gameOver() {
 
-
+	balls = [];
+	foods = [];
+	player = [];
+	reDrawGrid();
+	reDrawCanvas();
+}
 
 
 
