@@ -70,7 +70,7 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("newFood:")) {
             message = message.slice("newFood:,".length);
             message = message.split(" ");
-            log.innerHTML = '<li class="message">' + "newFood:" + message + "</li>" + log.innerHTML; 
+            //log.innerHTML = '<li class="message">' + "newFood:" + message + "</li>" + log.innerHTML; 
 
             if (foods.indexOf(message[0]) == -1) {
 
@@ -86,7 +86,7 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("newBall:")) {
             message = message.slice("newBall:,".length);
             message = message.split(" ");
-            log.innerHTML = '<li class="message">' + "newBall:" + message + "</li>" + log.innerHTML;
+            //log.innerHTML = '<li class="message">' + "newBall:" + message + "</li>" + log.innerHTML;
 
             if (balls.indexOf(message[0]) == -1 && player.id_ != message[0]) {
 
@@ -100,7 +100,7 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("gameStateBall")) {
             message = message.slice("gameStateBall:,".length);
             message = message.split(" ");
-            log.innerHTML = '<li class="message">' + "gameStateBall:" + message + "</li>" + log.innerHTML;
+            //log.innerHTML = '<li class="message">' + "gameStateBall:" + message + "</li>" + log.innerHTML;
             if (message.length > 4 ) {
               for( i = 0; i < message.length; i+=5){
                   if (balls.indexOf(message[i]) == -1) { 
@@ -116,7 +116,7 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("gameStateFood:")) {
             message = message.slice("gameStateBall:,".length);
             message = message.split(" ");
-            log.innerHTML = '<li class="message">' + "gameStateFood:" + message + "</li>" + log.innerHTML;
+            //log.innerHTML = '<li class="message">' + "gameStateFood:" + message + "</li>" + log.innerHTML;
 
             // Display food
             for( i = 0; i < message.length; i+=3) {    
@@ -135,7 +135,7 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("newPlayerBall:")) {
             message = message.slice("newPlayerBall:,".length);
             message = message.split(" ");
-            log.innerHTML = '<li class="message">' + "newPlayerBall:" + message + "</li>" + log.innerHTML;
+            //log.innerHTML = '<li class="message">' + "newPlayerBall:" + message + "</li>" + log.innerHTML;
             player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  message[4]); 
 
             deltaX = player.x_ - 399;
@@ -184,6 +184,7 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("ballUpdate:")) {
             message = message.slice("ballUpdate:,".length);
             message = message.split(" ");
+            //log.innerHTML = '<li class="message">' + "ballUpdate: " + message + "</li>" + log.innerHTML;
             
             var id = parseInt(message[0]);
 
@@ -204,6 +205,8 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("endOfGame:")) {
             message = message.slice("endOfGame:,".length);
             message = message.split(" ");
+            log.innerHTML = '<li class="message">' + "endOfGame " + message + "</li>" + log.innerHTML;
+            
             gameOver();
         }      
    

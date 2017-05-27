@@ -56,7 +56,7 @@
     var balls = [];
     var mousePos;
 
-    var boardMargin = 3;
+    var boardMargin = 0;
 
     var gameBoardX;
     var gameBoardY;
@@ -181,6 +181,28 @@ for (i=0; i < 800; i += 50*scl) {
    	context.stroke();
 }
 
+context.lineWidth = 3;
+context.strokeStyle = 'black';
+context.beginPath();
+context.moveTo(- deltaX,- deltaY);
+context.lineTo(- deltaX + gameBoardX,- deltaY);
+context.stroke();
+
+context.beginPath();
+context.moveTo(- deltaX,- deltaY);
+context.lineTo(- deltaX,- deltaY + gameBoardY);
+context.stroke();
+
+context.beginPath();
+context.moveTo(- deltaX + gameBoardX,- deltaY);
+context.lineTo(- deltaX + gameBoardX,- deltaY + gameBoardY);
+context.stroke();
+
+context.beginPath();
+context.moveTo(- deltaX,- deltaY + gameBoardY);
+context.lineTo(- deltaX + gameBoardX,- deltaY + gameBoardY);
+context.stroke();
+
 
 }
 
@@ -197,11 +219,11 @@ function update() {
 
   	
 
-  	if (mousePos.x > 400 && player.x_ < gameBoardX - boardMargin - player.r_ ) {
+  	if (mousePos.x > 400 && player.x_ < gameBoardX - boardMargin) {
   		deltaX += scaleX *player.vx_;
   		player.x_ += scaleX * player.vx_;
   	}
-  	else if (mousePos.x < 400 && player.x_ > 0 + boardMargin + player.r_) {
+  	else if (mousePos.x < 400 && player.x_ > 0 + boardMargin) {
   		deltaX -= scaleX * player.vx_;
   		player.x_ -= scaleX * player.vx_;
   	}
@@ -211,12 +233,12 @@ function update() {
 
   	}
 
-  	if (mousePos.y > 400 && player.y_ < gameBoardY - boardMargin - player.r_) {
+  	if (mousePos.y > 400 && player.y_ < gameBoardY - boardMargin) {
   		deltaY += scaleY * player.vy_;
   		player.y_ += scaleY * player.vy_;
 
   	}
-  	else if (mousePos.y < 400 && player.y_ > 0 + boardMargin + player.r_) {
+  	else if (mousePos.y < 400 && player.y_ > 0 + boardMargin) {
   		deltaY -= scaleY * player.vy_;
   		player.y_ -= scaleY * player.vy_;
   	}
