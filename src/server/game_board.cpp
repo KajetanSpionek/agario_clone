@@ -413,6 +413,7 @@ namespace websocket {
         IdMap_.at(rx).at(ry) = ball_source->getId();
         //boundaries check
         
+        /*
         if( ( rx - radius) <= 0)
             radius = 0;
         else if ( rx + radius >= 2999)
@@ -421,7 +422,7 @@ namespace websocket {
             radius = 0;
         else if ( ry + radius >= 2999)
             radius = 0; 
-
+        */
         
 
         for( int i = rx - radius ; i < rx + radius; i++)
