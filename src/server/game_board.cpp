@@ -130,6 +130,7 @@ namespace websocket {
             } 
             while( IdMap_.at(x_temp).at(y_temp) != 0 ) ; // while position is not empty
             
+            //TODO - here possible problem of .getId()
             auto temp_food = getFood(x_temp,y_temp);
 
             id = temp_food->getId();
