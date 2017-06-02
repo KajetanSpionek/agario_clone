@@ -22,7 +22,7 @@ namespace websocket{
     { 
     public:
         //void increaseMass(int add_mass); //increase mass = decrease velocity
-        Ball(int & x,int & y,int & radius);
+        Ball(double & x,double & y,double & radius);
         ~Ball() {//
             std::cout << "delete ball\n";
         } // = default;
@@ -42,7 +42,7 @@ namespace websocket{
         ///random color generator
         void getRandColor();
 
-        int mass_;
+        double mass_;
 
         static const std::string letters_;
 
@@ -53,11 +53,11 @@ namespace websocket{
 
         int v_;
 
-        static int minJmp_;
-        static int maxJmp_;
+        static double minJmp_;
+        static double maxJmp_;
 
 
-        int scaleFact_;
+        double scaleFact_;
 
    
         

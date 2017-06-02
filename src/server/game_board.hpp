@@ -51,7 +51,7 @@ namespace websocket {
         void addNFoodItem(int n);
 
         ///create new foodItem 
-        food_ptr getFood(int& x,int& y);
+        food_ptr getFood(double& x,double& y);
 
         ///erase foodItem from collection and informs other players
         void eraseFood(int id);
@@ -60,7 +60,7 @@ namespace websocket {
         void addNewBall(player_ptr participant);
         
         ///create new ball for player
-        ball_ptr getBall(int& x ,int& y ,int& radius);
+        ball_ptr getBall(double& x ,double& y ,double& radius);
         
         ///Sends balls and foods position to players
         void sendGameState(player_ptr participant);
@@ -85,15 +85,15 @@ namespace websocket {
         message_queue recent_msgs_;
 
         //Map of the balls
-        static const int mapX_{3000};
-        static const int mapY_{3000};
-        static const int foodItemMarigin_{5};
-        static const int ballMarigin_{10};
+        static const double mapX_;
+        static const double mapY_;
+        static const double foodItemMarigin_;
+        static const double ballMarigin_;
 
         //foodItems const params
-        static const int initialFood_ {50}; //50
-        static const int newPlayerFood_ {5}; //5
-        static const int initialFoodParams_{1};
+        static const int initialFood_ ; //50
+        static const int newPlayerFood_ ; //5
+        static const int initialFoodParams_;
         const int foodRadius_ = 3;
         //const int onEatenNewItems_ = 1;
         //const int initBallRadius_ = 20;
@@ -103,8 +103,8 @@ namespace websocket {
         ///map containing state of gameplay with objects IDs
         //int IdCount_;
         //std::atomic<int> IdCount_;
-        typedef std::vector<std::vector<int> > game_map;
-        static game_map IdMap_;
+        //typedef std::vector<std::vector<int> > game_map;
+        //static game_map IdMap_;
 
         
         typedef std::map<player_ptr,ball_ptr > balls_container;
