@@ -222,8 +222,8 @@ function update() {
 
   	}
 
-  	scl = 1 - (player.r_ / 500);
-  	if (scl < 0.2) scl = 0.2;
+  	scl = 1 - (player.r_ / 400);
+  	if (scl < 0.3) scl = 0.3;
 
 	context.clearRect(0,0,canvas.width,canvas.height);
 	reDrawGrid();
