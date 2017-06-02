@@ -3,6 +3,9 @@
 namespace websocket{
 	const std::string Ball::letters_("0123456789ABCDEF");
 
+    int Ball::minJmp_{1};
+    int Ball::maxJmp_{10};
+
     Ball::Ball(int & x,int & y,int & radius): Element(x,y,radius)
     {
     		getRandColor();
@@ -26,4 +29,17 @@ namespace websocket{
     	}
 
     }
+
+    void Ball::xPosUpdate(double x_vec)
+    {
+        x_ = x_ + std::floor(scaleFact_*(1/(mass_))*x_vec);
+
+    }
+
+    void Ball::yPosUpdate(double y_vec)
+    {
+        y_ = y_ + std::floor(scaleFact_*(1/(mass_))*y_vec);
+
+        
+    }   
 }

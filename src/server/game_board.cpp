@@ -394,8 +394,8 @@ namespace websocket {
         
         int radius;
         int id_source;
-        int rx;
-        int ry;
+        double rx;
+        double ry;
 
         int offset_x;
         int offset_y;
@@ -423,14 +423,18 @@ namespace websocket {
         rxss = temps.substr(0,n);
         ryss = temps.substr(n+1,temps.size());
 
-        rx = boost::lexical_cast<int>(rxss);
-        ry = boost::lexical_cast<int>(ryss);
+        rx = boost::lexical_cast<double>(rxss);
+        ry = boost::lexical_cast<double>(ryss);
 
         
         IdMap_.at(ball_source->getX()).at(ball_source->getY()) = 0;
         
-        ball_source->setX(rx);
-        ball_source->setY(ry);
+        //position update due to recent mass
+        ball_source->xPosUpdate(rx);
+        ball_source->yPosUpdate(ry);
+
+        //ball_source->setX(rx);
+        //ball_source->setY(ry);
 
         std::vector<int> neighbourId;
         int id;
@@ -525,7 +529,7 @@ namespace websocket {
                
             }
         }
-
+        //TODO przeliczanie prędkość na pozycje kulki
 
         std::string header = "ballUpdate:";
         
@@ -533,6 +537,7 @@ namespace websocket {
         header = header + " " + boost::lexical_cast<std::string>(ball_source->getX());
         header = header + " " + boost::lexical_cast<std::string>(ball_source->getY());
         header = header + " " + boost::lexical_cast<std::string>(ball_source->getRadius());
+
         
         Dataframe frm;
         

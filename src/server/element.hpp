@@ -26,7 +26,10 @@ namespace websocket {
 	private:
 		const int id_;
 		static int idCount_;
-        int x_;
+
+
+	 protected:
+	 	int x_;
 		int y_;
 		int radius_;
 

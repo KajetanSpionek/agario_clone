@@ -33,6 +33,8 @@ namespace websocket{
         void incFood() { ++foodEaten_; }
         int getBallNum() { return ballEaten_; }
         int getFoodNum() { return foodEaten_; }
+        void xPosUpdate(double x_vec);
+        void yPosUpdate(double y_vec);
 
         std::string getColor() { return color_; }
     private:
@@ -49,6 +51,16 @@ namespace websocket{
         int ballEaten_;
         int foodEaten_;
 
+        int v_;
+
+        static int minJmp_;
+        static int maxJmp_;
+
+
+        int scaleFact_;
+
+   
+        
     };
 
     typedef std::shared_ptr<Ball>  ball_ptr;
