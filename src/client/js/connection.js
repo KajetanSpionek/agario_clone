@@ -215,7 +215,18 @@ if (window.WebSocket === undefined)
             //log.innerHTML = '<li class="message">' + "endOfGame " + message + "</li>" + log.innerHTML;
             
             gameOver();
-        }      
+        }  
+
+        else if (message.startsWith("newPlayerServer:")) {
+            message = message.splice("newPlayerServer:,".length);
+        }  
+
+        else if (message.startsWith("gameBoardSize")) {
+            message = message.splice("gameBoardSize:,".length);
+            gameBoardX = parseInt(message[0]);
+            gameBOardY = parseInt(message[1]);
+
+        }
    
     }
 
