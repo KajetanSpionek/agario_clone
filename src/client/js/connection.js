@@ -38,6 +38,18 @@ if (window.WebSocket === undefined)
         websocket.onclose = function(evt) { onClose(evt) };
         websocket.onmessage = function(evt) { onMessage(evt) };
         websocket.onerror = function(evt) { onError(evt) };
+
+    // Load screen with Ball
+    var btn = document.getElementById('startButton');
+
+    //document.getElementById('left').style.opacity = 1;
+    //document.getElementById('startMenu').style.opacity = 0;
+
+    btn.onclick = function () {
+
+            startGame();
+        };
+
     }
   
     function onOpen(evt)

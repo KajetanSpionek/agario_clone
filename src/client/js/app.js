@@ -38,6 +38,8 @@
     var deltaX;
     var deltaY;
 
+    // Test stuff
+
 
     window.addEventListener('resize', resizeCanvas, false);       
            resizeCanvas();	
@@ -294,6 +296,17 @@ function resizeCanvas() {
             deltaX = player.x_ - canvas.width/2;
             deltaY = player.y_ - canvas.height/2;
         }
+
+
+function startGame() {
+
+  document.getElementById('left').style.opacity = 1;
+  document.getElementById('startMenu').style.opacity = 0;
+  //document.getElementById('startMenu').style.maxHeight = 0px;
+  //document.getElementById('right').style.opacity = 1;
+
+
+}
 
 
 
