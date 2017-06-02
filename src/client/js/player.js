@@ -21,6 +21,10 @@ class Player {
     this.vx_ = 4;
     // Player y velocity (assigned by server)
     this.vy_ = 4;
+    // Normalized mouse horizontal position
+    this.dx_ = 0;
+    // Normalized mouse vertical position
+    this.dy_ = 0;
   }
 
   // Display player on screen

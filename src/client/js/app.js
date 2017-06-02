@@ -184,14 +184,21 @@ function update() {
  
 	// New movement 
 
-	var dx = mousePos.x - canvas.width/2;
-  	var dy = mousePos.y - canvas.height/2;
-  	var v_len = Math.abs(Math.sqrt( (dy*dy) + (dx*dx) ));
+    // Skalowanie to (0,0)
+	  player.dx_ = (mousePos.x - canvas.width/2) / canvas.width * 2;
+  	player.dy_ = (mousePos.y - canvas.height/2) / canvas.height * 2;
 
-  	var scaleX = Math.abs(dx / v_len);
-  	var scaleY = Math.abs(dy / v_len);
+    
+  	//var v_len = Math.abs(Math.sqrt( (dy*dy) + (dx*dx) ));
 
-  	
+  	//var scaleX = Math.abs(dx / v_len);
+  	//var scaleY = Math.abs(dy / v_len);
+
+    //dx = dx / canvas.width * 2; 
+    //dy = dy / canvas.height * 2;
+
+
+  	/*
 
   	if (mousePos.x > canvas.width/2 && player.x_ < gameBoardX - boardMargin) {
   		deltaX += scaleX *player.vx_;
@@ -222,8 +229,13 @@ function update() {
 
   	}
 
+    */
+
   	scl = 1 - (player.r_ / 400);
   	if (scl < 0.3) scl = 0.3;
+
+    //log.innerHTML = '<li class="message">' + "posX " + dx + "</li>" + log.innerHTML;
+    //log.innerHTML = '<li class="message">' + "posY " + dy + "</li>" + log.innerHTML;
 
 	context.clearRect(0,0,canvas.width,canvas.height);
 	reDrawGrid();
