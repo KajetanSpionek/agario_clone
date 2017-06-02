@@ -5,7 +5,7 @@ Discription: Handles connection with server; Contains in/out frames implementati
 */
 
 //connected = document.getElementById("connected");
-//log = document.getElementById("log");
+log = document.getElementById("log");
 //state = document.getElementById("status");
 
 
@@ -114,7 +114,7 @@ if (window.WebSocket === undefined)
         }
         
         else if (message.startsWith("gameStateFood:")) {
-            message = message.slice("gameStateBall:,".length);
+            message = message.slice("gameStateFood:,".length);
             message = message.split(" ");
             //log.innerHTML = '<li class="message">' + "gameStateFood:" + message + "</li>" + log.innerHTML;
 
@@ -199,6 +199,13 @@ if (window.WebSocket === undefined)
             }
             else if (id == player.id_) {
               player.r_ = parseInt(message[3]);
+              player.x_ = parseInt(message[1]);
+              player.y_ = parseInt(message[2]);
+
+              deltaX = player.x_ - canvas.width/2;
+              deltaY = player.y_ - canvas.height/2;
+
+              // Wyswietlanie siebie
             }
         } 
 
@@ -213,23 +220,34 @@ if (window.WebSocket === undefined)
     }
 
     function sendPos() {
-      //x_pos_state.innerHTML = player.x_;
-      //y_pos_state.innerHTML = player.y_;
-      //mass_state.innerHTML = player.r_;
-        var x = Math.floor(player.x_);
-        var y = Math.floor(player.y_);
-        if ( (x < 3000) && (y < 3000)){
+ 
+        var x = player.dx_;
+        var y = player.dy_;
+
+        if ( (x <= 1) && (y <= 1) && (x >= -1) && (y >= -1) ){
             var message = "move:";
-            message += Math.floor(player.x_);
+            message += x;
             message += ",";
-            message += Math.floor(player.y_);
-            if (send_interval == send_interval_period) {
-                websocket.send(message);
-                send_interval == 0;
-            }
-            else {
-                send_interval+=1;
-            }
-         
+            message += y;
+            log.innerHTML = '<li class="message">' + " " + message + "</li>" + log.innerHTML;
+            websocket.send(message);
         }
+    }
+
+    function sendPlayerName() {
+
+        var message = "newPlayerName:";
+        // add player's name
+        websocket.sned(message);
+    }
+
+    function sendPlaterStatus(state) {
+
+        var message = "newPlayerStatus:";
+
+        if (state == 1) message += "rdy";
+        else            message += "nrdy";
+
+        websocket.send(message);
+
     }
