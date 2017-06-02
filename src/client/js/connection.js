@@ -233,3 +233,21 @@ if (window.WebSocket === undefined)
             websocket.send(message);
         }
     }
+
+    function sendPlayerName() {
+
+        var message = "newPlayerName:";
+        // add player's name
+        websocket.sned(message);
+    }
+
+    function sendPlaterStatus(state) {
+
+        var message = "newPlayerStatus:";
+
+        if (state == 1) message += "rdy";
+        else            message += "nrdy";
+
+        websocket.send(message);
+
+    }
