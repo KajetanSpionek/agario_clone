@@ -130,11 +130,14 @@ namespace websocket {
             } 
             while( IdMap_.at(x_temp).at(y_temp) != 0 ) ; // while position is not empty
             
+            //TODO - here possible problem of .getId()
             auto temp_food = getFood(x_temp,y_temp);
 
             id = temp_food->getId();
 
             auto new_food = elements_.insert(std::make_pair(id,temp_food));
+
+            std::cout << "map elements_.size():  " << elements_.size() << std::endl;
             
             tmp_foods.insert((*new_food.first));
 
@@ -333,6 +336,10 @@ namespace websocket {
 
         balls_container::iterator j;
 
+        std::cout << "gameState map elements_.size():  " << elements_.size() << std::endl;
+        //if (!elements_.empty())
+              //  std::cout << "map elements_ size:" << std::cout; 
+
         for(j = balls_.begin(); j != balls_.end(); j++ )
         {
             header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getId());
@@ -466,7 +473,7 @@ namespace websocket {
                     }
                     else
                     {
-                        auto it = elements_[i];
+                       // auto it = elements_.at(i);
                     }
                 }
             }

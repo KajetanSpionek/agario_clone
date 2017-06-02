@@ -91,8 +91,8 @@ namespace websocket {
         static const int ballMarigin_{10};
 
         //foodItems const params
-        static const int initialFood_ {50};
-        static const int newPlayerFood_ {5};
+        static const int initialFood_ {50}; //50
+        static const int newPlayerFood_ {5}; //5
         static const int initialFoodParams_{1};
         const int foodRadius_ = 3;
         //const int onEatenNewItems_ = 1;
