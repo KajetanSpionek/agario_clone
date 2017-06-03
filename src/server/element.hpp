@@ -23,10 +23,10 @@ namespace websocket {
         void setX(const double&x) { x_ = x; }
         void setY(const double&y) { y_ = y; }
         void setRadius(double && radius) { radius_ = radius; }
+ 
 	private:
 		const int id_;
 		static int idCount_;
-
 
 	 protected:
 	 	double x_;

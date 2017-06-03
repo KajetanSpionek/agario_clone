@@ -40,6 +40,9 @@ namespace websocket {
         /// Deliver a chat message to all participant in the game_board.
         void deliver(const Dataframe& msg, player_ptr source);
 
+        static double getMapX() { return mapX_;}
+        static double getMapY() { return mapY_;}
+
     private:
         /// Deliver a message to all participant in the game_board.
         void deliver(const Dataframe& msg);
@@ -95,6 +98,10 @@ namespace websocket {
         static const int newPlayerFood_ ; //5
         static const int initialFoodParams_;
         const int foodRadius_ = 3;
+
+        typedef std::set<std::pair<int,int>> occupied_pos;
+        static occupied_pos occupiedPos_;
+
         //const int onEatenNewItems_ = 1;
         //const int initBallRadius_ = 20;
 

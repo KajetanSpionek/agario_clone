@@ -1,10 +1,10 @@
 #include "ball.hpp"
+#include "game_board.hpp"
 
 namespace websocket{
 	const std::string Ball::letters_("0123456789ABCDEF");
 
-    double Ball::minJmp_{1};
-    double Ball::maxJmp_{40};
+    double Ball::maxJmp_{600};
 
     Ball::Ball(double & x,double & y,double & radius): Element(x,y,radius)
     {
@@ -33,14 +33,22 @@ namespace websocket{
     void Ball::xPosUpdate(double x_vec)
     {
         //x_ = x_ + (scaleFact_*(1/(mass_))*x_vec);
-        x_ = x_ + maxJmp_*x_vec;
+        x_ = x_ + (1/radius_)*maxJmp_*x_vec;
+        if( x_ < 0)
+            x_ = 0;
+        else if( x_ > 2999 )
+            x_ = 2999;
 
     }
 
     void Ball::yPosUpdate(double y_vec)
     {
         //y_ = y_ + (scaleFact_*(1/(mass_))*y_vec);
-        y_ = y_ + maxJmp_*y_vec;
+        y_ = y_ + (1/radius_)*maxJmp_*y_vec;
+        if( y_ < 0)
+            y_ = 0;
+        else if( y_ > 2999 )
+            y_ = 2999;
 
         
     }   
