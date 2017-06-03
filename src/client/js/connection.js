@@ -212,19 +212,16 @@ if (window.WebSocket === undefined)
 
         // New player nick validation gram
         else if (message.startsWith("newPlayerValidNick")) {
-            consoleDisplay  (message);
             message = message.slice("newPlayerValidNick:".length);
-            consoleDisplay  (message);
             if (message == "OK") {
                 sendPlayerStatus(1);
-                consoleDisplay  ("gogo");
                 startGame();
             }
         }  
 
         // Game board size frame - x,y - not implemented yet
         else if (message.startsWith("gameBoardSize")) {
-            message = message.splice("gameBoardSize:,".length);
+            message = message.splice("gameBoardSize:".length);
             gameBoardX = parseInt(message[0]);
             gameBOardY = parseInt(message[1]);
         }  
