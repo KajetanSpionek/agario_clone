@@ -28,6 +28,8 @@ namespace websocket {
 
     void GameBoard::join(player_ptr participant)
     {
+
+        /*
         //send current game state to new player
         sendGameState(participant);
 
@@ -36,6 +38,18 @@ namespace websocket {
 
         //add N new food and send to everyone
         addNFoodItem(newPlayerFood_);
+        */
+    }
+
+    void GameBoard::isNickValid(player_ptr source)
+    {
+
+
+    }
+
+    void GameBoard::addPlayerToGame(player_ptr source)
+    {
+
         
     }
 
@@ -52,6 +66,8 @@ namespace websocket {
     {
         const std::string messageOp_ = "message";
         const std::string movementOp_ = "move";
+        const std::string nickCheckOp_ = "newPlayerName";
+        const std::string newPlayerStatusOp = "newPlayerStatus";
         const char delimit_ = ':';
 
         std::string header = "log:" + source->getId() + ": ";
@@ -76,6 +92,15 @@ namespace websocket {
             std::copy(msg.payload.begin(), msg.payload.end(), std::back_inserter(frm.payload));
 
             deliver(frm);
+        }
+        else if( temp_string == nickCheckOp_)
+        {
+            isNickValid(source);
+        }
+        else if( temp_string == newPlayerStatusOp)
+        {
+            addPlayerToGame(source);
+
         }
         else if( temp_string == movementOp_)
         {

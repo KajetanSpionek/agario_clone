@@ -35,6 +35,8 @@ namespace websocket{
         int getFoodNum() { return foodEaten_; }
         void xPosUpdate(double x_vec);
         void yPosUpdate(double y_vec);
+        std::string & getNick() { return nick_;}
+        void setNick(std::string nick) { nick_ = nick;}
 
         std::string getColor() { return color_; }
     private:
@@ -54,6 +56,8 @@ namespace websocket{
         int v_;
 
         static double maxJmp_;
+
+        std::string nick_;
 
     };
 
