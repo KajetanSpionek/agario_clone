@@ -40,6 +40,8 @@
 
     // Test stuff
 
+    var gameStatus = "init";
+
 
     window.addEventListener('resize', resizeCanvas, false);       
            resizeCanvas();	
@@ -75,7 +77,7 @@
         var end_angle = 2*Math.PI;
         context.beginPath();    
         context.arc(player.x_+fx_center-deltaX,player.y_+fy_center-deltaY,scl*radius,start_angle,end_angle);
-		context.fillStyle = color;
+		    context.fillStyle = color;
         context.fill();
         context.lineWidth = 2;
         context.stroke();
@@ -284,6 +286,7 @@ function gameOver() {
 	balls = [];
 	foods = [];
 	player = [];
+  gameStatus = "rip";
 	context.clearRect(0,0,canvas.width,canvas.height);
 
 }
@@ -303,7 +306,7 @@ function startGame() {
   document.getElementById('left').style.opacity = 1;
   document.getElementById('startMenu').style.opacity = 0;
   //document.getElementById('startMenu').style.maxHeight = 0px;
-  //document.getElementById('right').style.opacity = 1;
+  document.getElementById('right').style.opacity = 1;
 
 
 }

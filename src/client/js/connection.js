@@ -42,13 +42,16 @@ if (window.WebSocket === undefined)
     // Load screen with Ball
     var btn = document.getElementById('startButton');
 
-    //document.getElementById('left').style.opacity = 1;
-    //document.getElementById('startMenu').style.opacity = 0;
+    document.getElementById('left').style.opacity = 0;
+    document.getElementById('startMenu').style.opacity = 1;
+    document.getElementById('right').style.opacity = 1;
 
     btn.onclick = function () {
-
+            gameStatus = "game";
             startGame();
         };
+
+    gameStatus = "init";
 
     }
   
@@ -252,7 +255,7 @@ if (window.WebSocket === undefined)
             message += x;
             message += ",";
             message += y;
-            log.innerHTML = '<li class="message">' + " " + message + "</li>" + log.innerHTML;
+            //log.innerHTML = '<li class="message">' + " " + message + "</li>" + log.innerHTML;
             websocket.send(message);
         }
     }
