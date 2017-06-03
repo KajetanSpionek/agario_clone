@@ -59,7 +59,7 @@ function getRandomColor() {
 function isNickValid() {
     var regex = /^\w*$/;
     if (regex.exec(playerNameInput.value) !== null) {
-      return 1;
+        return 1;
     }
     else return 0;
 }
@@ -81,24 +81,26 @@ function getMousePos(canvas, evt) {
 
 // Display update (Animation)
 function update() {
-    // Scale to (-1,1) mouse positions (from center of player's screen)
-	  player.dx_ = (mousePos.x - canvas.width/2) / canvas.width * 2;
-  	player.dy_ = (mousePos.y - canvas.height/2) / canvas.height * 2;
+    if (gameStart == true) {
+        // Scale to (-1,1) mouse positions (from center of player's screen)
+        player.dx_ = (mousePos.x - canvas.width/2) / canvas.width * 2;
+        player.dy_ = (mousePos.y - canvas.height/2) / canvas.height * 2;
 
-    // Zooming out while getting fatter ball 
-  	scl = 1 - (player.r_ / 400);
-  	if (scl < 0.3) scl = 0.3;
+        // Zooming out while getting fatter ball 
+        scl = 1 - (player.r_ / 400);
+        if (scl < 0.3) scl = 0.3;
 
-    // Clear canvas
-    context.clearRect(0,0,canvas.width,canvas.height);
-    // Draw grid and borders
-    reDrawGrid();
-    // Draws objects on map (player, balls and food)
-    reDrawCanvas();
-    // Send current mouse position to server
-    if (gameStart == true) sendPos();
-    // Animation handle
-    raf = window.requestAnimationFrame(update);  
+        // Clear canvas
+        context.clearRect(0,0,canvas.width,canvas.height);
+        // Draw grid and borders
+        reDrawGrid();
+        // Draws objects on map (player, balls and food)
+        reDrawCanvas();
+        // Send current mouse position to server
+        sendPos();
+        // Animation handle
+        raf = window.requestAnimationFrame(update);  
+    }
 }
 
 // Calculate object's fx,fy distance from player's center of screen
