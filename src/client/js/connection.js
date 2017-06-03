@@ -49,17 +49,13 @@ if (window.WebSocket === undefined)
 
     btn.onclick = function () {
             
-
-
         if (isNickValid()) {
             nickErrorText.style.opacity = 0;  
-            startGame();
+            sendPlayerName();
         } else {
 
             nickErrorText.style.opacity = 1;
         }
-
-
 
         };
 
@@ -242,8 +238,13 @@ if (window.WebSocket === undefined)
             gameOver();
         }  
 
-        else if (message.startsWith("newPlayerServer:")) {
+        else if (message.startsWith("newPlayerValidNick")) {
             message = message.splice("newPlayerServer:,".length);
+
+            if (message == "OK") {
+                sendPlayerStatus(1);
+                startGame();
+            }
         }  
 
         else if (message.startsWith("gameBoardSize")) {
@@ -265,7 +266,6 @@ if (window.WebSocket === undefined)
             message += x;
             message += ",";
             message += y;
-            //log.innerHTML = '<li class="message">' + " " + message + "</li>" + log.innerHTML;
             websocket.send(message);
         }
     }
@@ -273,11 +273,11 @@ if (window.WebSocket === undefined)
     function sendPlayerName() {
 
         var message = "newPlayerName:";
-        // add player's name
-        websocket.sned(message);
+        message += player.name_;
+        websocket.send(message);
     }
 
-    function sendPlaterStatus(state) {
+    function sendPlayerStatus(state) {
 
         var message = "newPlayerStatus:";
 

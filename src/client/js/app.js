@@ -39,6 +39,9 @@ var deltaY;
 var gameStart = false;
 var gameDied = false;
 
+// HandShake flag
+var handShakeFlag = 0;
+
 // Resize handle
 window.addEventListener('resize', resizeCanvas, false); 
 
@@ -81,7 +84,7 @@ function getMousePos(canvas, evt) {
 
 // Display update (Animation)
 function update() {
-    if (gameStart == true) {
+    if (gameStart == true && gameDied == false) {
         // Scale to (-1,1) mouse positions (from center of player's screen)
         player.dx_ = (mousePos.x - canvas.width/2) / canvas.width * 2;
         player.dy_ = (mousePos.y - canvas.height/2) / canvas.height * 2;
@@ -119,10 +122,6 @@ function calculateFixedPos() {
 
 // GameOver handle - doesnt work yet
 function gameOver() {
-    balls = [];
-    foods = [];
-    player = [];
-    context.clearRect(0,0,canvas.width,canvas.height);
     gameStart = false;
     gameDied = true;
 }
@@ -148,11 +147,16 @@ function resizeCanvas() {
 }
 
 // Debug console
-
 var consoleDisplay = function(args) {
     if (console && console.log) {
         console.log(args);
     }
 };
+
+function handShake() {
+
+  sendPlayerName();
+
+}
 
 
