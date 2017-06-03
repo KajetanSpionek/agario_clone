@@ -357,7 +357,7 @@ namespace websocket {
         
         auto new_ball = balls_.insert(std::make_pair(participant, getBall(x_temp,y_temp,initBallRadius_)));
 
-        ((new_ball.first)->second)->setNick(nick);
+       // ((new_ball.first)->second)->setNick(nick);
         id = ((new_ball.first)->second)->getId();
 
         elements_.insert(std::make_pair(id,(new_ball.first)->second )) ;       
