@@ -212,10 +212,11 @@ if (window.WebSocket === undefined)
 
         // New player nick validation gram
         else if (message.startsWith("newPlayerValidNick")) {
-            message = message.splice("newPlayerValidNick:,".length);
-
+            message = message.slice("newPlayerValidNick:,".length);
+            consoleDisplay  (message);
             if (message == "OK") {
                 sendPlayerStatus(1);
+                consoleDisplay  ("gogo");
                 startGame();
             }
         }  
@@ -251,7 +252,7 @@ function sendPlayerName() {
     var message = "newPlayerName:";
     message += document.getElementById('playerNameInput').value;
     websocket.send(message);
-    //consoleDisplay  (message);
+    consoleDisplay  (message);
 }
 
 // Player status frame (handshake)
@@ -266,6 +267,6 @@ function sendPlayerName() {
     message += document.getElementById('playerNameInput').value;
 
     websocket.send(message);
-    //consoleDisplay  (message);
+    consoleDisplay  (message);
 
     }
