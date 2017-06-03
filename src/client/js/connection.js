@@ -164,8 +164,6 @@ if (window.WebSocket === undefined)
 
 
             player.show();
-            gameLoop();
-
         }
 
 
