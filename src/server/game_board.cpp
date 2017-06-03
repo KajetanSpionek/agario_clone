@@ -41,16 +41,47 @@ namespace websocket {
         */
     }
 
-    void GameBoard::isNickValid(player_ptr source)
+    void GameBoard::isNickValid(const Dataframe& msg,player_ptr source)
     {
+        std::string nick;
+        bool nick_occupied = false;
+
+
+        const char delimit_ = ':';
+        const uint8_t delim = static_cast<uint8_t>(delimit_);
+        std::vector<boost::uint8_t> temp;
+        std::string temps;
+
+        //parse incoming frame
+        auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
+        std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
+
+        for(const auto& i : temp)
+        {
+            temps = temps +  boost::lexical_cast<std::string>(i);
+        }
+
+        nick = temps.substr(0,temps.size());
+        
+        std::cout << "New nick " << nick << std::endl;
+
+        for( const auto & i: balls_ )
+        {
+            if( i.second->getNick() == nick )
+            {
+                nick_occupied = true;
+            }
+        }
+
+
 
 
     }
 
-    void GameBoard::addPlayerToGame(player_ptr source)
+    void GameBoard::addPlayerToGame(const Dataframe& msg,player_ptr source)
     {
 
-        
+
     }
 
     void GameBoard::leave(player_ptr participant)
@@ -95,11 +126,11 @@ namespace websocket {
         }
         else if( temp_string == nickCheckOp_)
         {
-            isNickValid(source);
+            isNickValid(msg,source);
         }
         else if( temp_string == newPlayerStatusOp)
         {
-            addPlayerToGame(source);
+            addPlayerToGame(msg,source);
 
         }
         else if( temp_string == movementOp_)

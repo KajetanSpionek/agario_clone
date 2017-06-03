@@ -76,9 +76,9 @@ namespace websocket {
         //main movement processing
         void processMovement(const Dataframe& msg, player_ptr source);
 
-        void isNickValid(player_ptr source);
+        void isNickValid(const Dataframe& msg,player_ptr source);
 
-        void addPlayerToGame(player_ptr source);
+        void addPlayerToGame(const Dataframe& msg,player_ptr source);
 
         ///when player is eaten send statistics of the game
         void sendStats(player_ptr participant);
