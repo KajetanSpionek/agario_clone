@@ -21,6 +21,8 @@ class Ball {
     this.fx;
     // Y distance from player's screen middle position
     this.fy;
+    // Ball's name
+    this.name_ = "TestName123";
   }
 
   // Display ball on screen

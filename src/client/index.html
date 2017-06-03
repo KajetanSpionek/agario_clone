@@ -3,24 +3,20 @@
 <head>
 <meta charset=utf-8>
 <title>Agar.io</title>
-<link rel="stylesheet" type="text/css" href="./css/simple_css.css">
+<link rel="stylesheet" type="text/css" href="./css/css.css">
 </head>
 <body>
 <section id="wrapper">
 
- <div id="left">
- 
-    <canvas id="myCanvas" width="1" height="1"> </canvas>
-
+ <div id="gameArea">
+    <canvas id="myCanvas"> </canvas>
  </div>
 
- <div id="right">
- 
+ <div id="dataWindow"> 
   <article>
-    <h1> Recived data </h1>
+    <h1> Some data </h1>
     <ul id="log"></ul>
   </article>
- 
 </div>
 
  <div id="startMenuWrapper">
@@ -34,10 +30,9 @@
             <div id="instructions">
                 <h3>Gameplay</h3>
                 <ul>
-                    <li>Move your mouse on the screen to move your character.</li>
-                    <li>Eat food and other players in order to grow your character (food respawns every time a player eats it).</li>
-                    <li>A player's mass is the number of food particles eaten.</li>
-                    <li>Objective: Try to get fat and eat other players.</li>
+                    <li>Move your mouse on the screen to move your ball.</li>
+                    <li>Eat food and other players in order to grow your ball.</li>
+                    <li>Objective: Try to get the fattest and eat everyone!</li>
                 </ul>
             </div>
         </div>
@@ -46,10 +41,12 @@
 
  <script src="js/app.js"></script> 
  
+ <script src="js/canvas.js"></script> 
  <script src="js/connection.js"></script> 
  <script src="js/ball.js"></script> 
  <script src="js/player.js"></script> 
  <script src="js/food.js"></script> 
+
 
 </section>
 </body>

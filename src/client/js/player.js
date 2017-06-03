@@ -21,6 +21,8 @@ class Player {
     this.dx_ = 0;
     // Normalized mouse vertical position
     this.dy_ = 0;
+    // Player's name
+    this.name_ = "TestName";
   }
 
   // Display player on screen

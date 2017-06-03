@@ -1,16 +1,23 @@
+/*
+File: player.js
+Author: Kajetan Śpionek, Wojciech Przybysz
+Discription: CSS
+*/
+
+
 <style type="text/css">
 
 div {
     display: block;
 }
-#left { 
+#gameArea { 
     position: absolute !important;
     top: 0;
     left: 0;
 	opacity: 0; 
 }
 
-#right { 
+#dataWindow { 
   
    width:30%; 
    height:100%; 
@@ -31,6 +38,7 @@ div {
     background-color: white;
     box-sizing: border-box;
     opacity: 1;
+    display: block;
 }
 
 #startMenu p {
@@ -82,8 +90,7 @@ div {
     margin-bottom: 10px;
 }
 
-#spectateButton:active, #spectateButton:hover,
-#startButton:active, #startButton:hover {
+#spectateButton:active, #startButton:active, #startButton:hover {
     top: 1px;
     background: #55D88B;
     outline: none;
@@ -91,17 +98,13 @@ div {
     box-shadow: none;
 }
 
-#settings, #startMenuWrapper {
+#startMenuWrapper {
     -webkit-transition: max-height 1s;
     -moz-transition: max-height 1s;
     -ms-transition: max-height 1s;
     -o-transition: max-height 1s;
     transition: max-height 1s;
     overflow: hidden;
-}
-
-#settings {
-    max-height: 0;
 }
 
 #startMenu h3 {
