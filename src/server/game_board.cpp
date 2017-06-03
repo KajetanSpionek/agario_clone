@@ -73,16 +73,16 @@ namespace websocket {
             }
         }
 
-        std::string header = "newPlayerValidNick";
+        std::string header = "newPlayerValidNick:";
 
         if(nick_occupied)
         {
-            header = header + " " + boost::lexical_cast<std::string>( "TAKEN");
+            header = header + boost::lexical_cast<std::string>( "TAKEN");
             
         }
         else
         {
-            header = header + " " + boost::lexical_cast<std::string>( "OK");
+            header = header + boost::lexical_cast<std::string>( "OK");
         }
 
         std::cout << header << std::endl;
