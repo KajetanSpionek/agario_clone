@@ -153,10 +153,4 @@ var consoleDisplay = function(args) {
     }
 };
 
-function handShake() {
-
-  sendPlayerName();
-
-}
-
 
