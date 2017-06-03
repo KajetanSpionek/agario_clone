@@ -124,6 +124,7 @@ function calculateFixedPos() {
 function gameOver(foodEaten, ballsEaten, mass) {
     gameStart = false;
     gameDied = true;
+    alert("GameOver\nFood eaten:" + foodEaten + "\nBalls eaten:" + ballsEaten + "\nMass:" + mass);
 }
 
 // StartGame handle - doesnt work yet
@@ -132,7 +133,6 @@ function startGame() {
     document.getElementById('startMenu').style.opacity = 0;
     document.getElementById('startMenuWrapper').style.maxHeight = '0px';
     document.getElementById('gameArea').style.opacity = 1;
-    //document.getElementById('scoresWindow').style.opacity = 0.3;
     
     gameStart = true;
     gameDied = false;
