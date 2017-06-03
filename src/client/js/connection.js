@@ -41,17 +41,26 @@ if (window.WebSocket === undefined)
 
     // Load screen with Ball
     var btn = document.getElementById('startButton');
+    var nickErrorText = document.querySelector('#startMenu .input-error');
 
     document.getElementById('gameArea').style.opacity = 0;
     document.getElementById('startMenu').style.opacity = 1;
     document.getElementById('dataWindow').style.opacity = 1;
 
     btn.onclick = function () {
-            gameStatus = "game";
-            //document.getElementById('startMenu').style.display = none;
-            document.getElementById('startMenu').style.opacity = 0;
-            document.getElementById('startMenuWrapper').style.maxHeight = '0px';
+            
+
+
+        if (isNickValid()) {
+            nickErrorText.style.opacity = 0;  
             startGame();
+        } else {
+
+            nickErrorText.style.opacity = 1;
+        }
+
+
+
         };
 
     gameStatus = "init";

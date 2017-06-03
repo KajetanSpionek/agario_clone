@@ -36,7 +36,6 @@ var deltaX;
 var deltaY;
 
 // Game status variables
-var gameStatus = "init";
 var gameStart = false;
 var gameDied = false;
 
@@ -54,6 +53,15 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
         return color;
+}
+
+// Valid nick chcek
+function isNickValid() {
+    var regex = /^\w*$/;
+    if (regex.exec(playerNameInput.value) !== null) {
+      return 1;
+    }
+    else return 0;
 }
     
 // Error handle - doesn't work   
@@ -88,7 +96,7 @@ function update() {
     // Draws objects on map (player, balls and food)
     reDrawCanvas();
     // Send current mouse position to server
-    sendPos();
+    if (gameStart == true) sendPos();
     // Animation handle
     raf = window.requestAnimationFrame(update);  
 }
@@ -112,14 +120,21 @@ function gameOver() {
     balls = [];
     foods = [];
     player = [];
-    gameStatus = "rip";
     context.clearRect(0,0,canvas.width,canvas.height);
+    gameStart = false;
+    gameDied = true;
 }
 
 // StartGame handle - doesnt work yet
 function startGame() {
+         
+    document.getElementById('startMenu').style.opacity = 0;
+    document.getElementById('startMenuWrapper').style.maxHeight = '0px';
     document.getElementById('gameArea').style.opacity = 1;
     document.getElementById('dataWindow').style.opacity = 1;
+    
+    gameStart = true;
+    gameDied = false;
 }
 
 // Resize canvas handle
@@ -130,5 +145,12 @@ function resizeCanvas() {
     deltaY = player.y_ - canvas.height/2;
 }
 
+// Debug console
+
+var consoleDisplay = function(args) {
+    if (console && console.log) {
+        console.log(args);
+    }
+};
 
 
