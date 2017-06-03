@@ -1,3 +1,8 @@
+/*!
+*\file      session.hpp
+*\author    Wojciech Przybysz, Kajetan Spionek
+*           Represents a single connection from a client.
+*/
 #ifndef WEBSOCKET_SESSION_HPP
 #define WEBSOCKET_SESSION_HPP
 
@@ -19,7 +24,6 @@
 
 namespace websocket {
 
-        /// Represents a single connection from a client.
         class Session
             : public Player, 
             public boost::enable_shared_from_this<Session>,

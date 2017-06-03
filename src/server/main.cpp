@@ -31,9 +31,14 @@ int main(int argc, char* argv[])
     // Run the server until stopped.
     s.run();
   }
+
   catch (std::exception& e)
   {
     std::cerr << "exception: " << e.what() << "\n";
+  }
+  catch(...)
+  {
+    
   }
 
   return 0;

@@ -1,3 +1,8 @@
+/*!
+*\file      request_parser.hpp
+*\author    Wojciech Przybysz, Kajetan Spionek
+*           Parser for incoming requests.
+*/
 #ifndef WEBSOCKET_SERVER_REQUEST_PARSER_HPP
 #define WEBSOCKET_SERVER_REQUEST_PARSER_HPP
 
@@ -9,7 +14,6 @@ namespace websocket {
 
         struct Request;
 
-        /// Parser for incoming requests.
         class RequestParser
         {
         public:
@@ -19,10 +23,7 @@ namespace websocket {
             /// Reset to initial parser state.
             void reset();
 
-            /// Parse some data. The tribool return value is true when a complete Request
-            /// has been parsed, false if the data is invalid, indeterminate when more
-            /// data is required. The InputIterator return value indicates how much of the
-            /// input has been consumed.
+            /// Parse some data. 
             template <typename InputIterator>
             boost::tuple<boost::tribool, InputIterator> parse(Request& req,
                 InputIterator begin, InputIterator end)

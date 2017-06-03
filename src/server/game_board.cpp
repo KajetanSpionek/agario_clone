@@ -1,27 +1,33 @@
 #include "game_board.hpp"
-#include <mutex>
 
 namespace websocket {
 
+    //static members initialization
     const double GameBoard::mapX_{3000};
     const double GameBoard::mapY_{3000};
     const double GameBoard::foodItemMarigin_{5};
     const double GameBoard::ballMarigin_{10};
 
     //foodItems const params
-    const int GameBoard::initialFood_ {50}; //50
-    const int GameBoard::newPlayerFood_ {5}; //5
+    const int GameBoard::initialFood_ {50}; 
+    const int GameBoard::newPlayerFood_ {5}; 
     const int GameBoard::initialFoodParams_{1};
+    const int GameBoard::foodRadius_{3};
+    const int GameBoard::onEatenNewItems_{1};
+    const int GameBoard::initBallRadius_{20};
 
     GameBoard::elements_container GameBoard::elements_;
     GameBoard::balls_container GameBoard::balls_;
     GameBoard::occupied_pos GameBoard::occupiedPos_;
-    //GameBoard::game_map GameBoard::IdMap_;
     GameBoard::id_to_player GameBoard::idToPlayer_;
-    
+
+    const std::string GameBoard::messageOp_ = "message";
+    const std::string GameBoard::movementOp_ = "move";
+    const std::string GameBoard::nickCheckOp_ = "newPlayerName";
+    const std::string GameBoard::newPlayerStatusOp_ = "newPlayerStatus";
+
     GameBoard::GameBoard()
     {
-       // IdMap_.resize( mapY_ ,std::vector<int>(mapX_,0));
         //set initial food to game board
         addNFoodItem(initialFood_);
     }
@@ -30,14 +36,7 @@ namespace websocket {
     {
 
         /*
-        //send current game state to new player
-        sendGameState(participant);
-
-        //add new ball and participant and send to everyone
-        addNewBall(participant);    
-
-        //add N new food and send to everyone
-        addNFoodItem(newPlayerFood_);
+        New player joins the game
         */
     }
 
@@ -49,6 +48,7 @@ namespace websocket {
 
         const char delimit_ = ':';
         const uint8_t delim = static_cast<uint8_t>(delimit_);
+
         std::vector<boost::uint8_t> temp;
         std::string temps;
 
@@ -101,12 +101,14 @@ namespace websocket {
     {
         std::cout << "add player to the game" << std::endl;
         std::string nick;
+
         std::string rdy_flag;
         const char delimit_ = ':';
         const uint8_t delim = static_cast<uint8_t>(delimit_);
+
         std::vector<boost::uint8_t> temp;
         std::string temps;
-        const char delimitArg_ = ',';
+        const char delimit_arg = ',';
 
         //parse incoming frame
         auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
@@ -117,7 +119,7 @@ namespace websocket {
             temps = temps +  boost::lexical_cast<std::string>(i);
         }
 
-        int n = temps.find(delimitArg_);
+        int n = temps.find(delimit_arg);
         rdy_flag = temps.substr(0,n);
         nick = temps.substr(n+1,temps.size());
 
@@ -149,18 +151,14 @@ namespace websocket {
 
     void GameBoard::deliver(const Dataframe& msg, player_ptr source)
     {
-        const std::string messageOp_ = "message";
-        const std::string movementOp_ = "move";
-        const std::string nickCheckOp_ = "newPlayerName";
-        const std::string newPlayerStatusOp = "newPlayerStatus";
-        const char delimit_ = ':';
+        const char delimit = ':';
 
         std::string header = "log:" + source->getId() + ": ";
 
         std::vector<boost::uint8_t> temp;
         std::string temp_string;
 
-        const uint8_t delim = static_cast<uint8_t>(delimit_);
+        const uint8_t delim = static_cast<uint8_t>(delimit);
 
         auto it_end = std::find(msg.payload.begin(), msg.payload.end(),delim);
         std::copy(msg.payload.begin(), it_end, std::back_inserter(temp));
@@ -182,7 +180,7 @@ namespace websocket {
         {
             isNickValid(msg,source);
         }
-        else if( temp_string == newPlayerStatusOp)
+        else if( temp_string == newPlayerStatusOp_)
         {
             addPlayerToGame(msg,source);
 
@@ -230,6 +228,7 @@ namespace websocket {
         int dummy_iter = 1;
         
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
+
         //generator loop to loose its entropy
         for(int k = 0; k < dummy_iter; ++k)
         {
@@ -326,7 +325,6 @@ namespace websocket {
 
     void GameBoard::addNewBall(player_ptr participant,std::string nick)
     {
-        double initBallRadius_ = 20;
         double x_temp;
         double y_temp;
         int id;
@@ -334,6 +332,7 @@ namespace websocket {
         int dummy_iter = 1;
         
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
+
         //generator loop to loose its entropy
         for(int k = 0; k < dummy_iter; ++k)
         {
@@ -362,7 +361,7 @@ namespace websocket {
          std::cout << "map elements_.size():  " << balls_.size() << std::endl;
 
         ((new_ball.first)->second)->setNick(nick);
-        
+
         id = ((new_ball.first)->second)->getId();
 
         elements_.insert(std::make_pair(id,(new_ball.first)->second )) ;       
@@ -404,7 +403,7 @@ namespace websocket {
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 
         deliver(frm_balls);
-        //send enemies
+        //send to enemies
 
         //insert new participant 
         participants_.insert(participant);
@@ -413,7 +412,7 @@ namespace websocket {
              
     }
 
-    ball_ptr GameBoard::getBall(double& x,double& y,double& radius)
+    ball_ptr GameBoard::getBall(double& x,double& y,double radius)
     {
         return std::make_shared<Ball>(x,y,radius);
     }
@@ -427,7 +426,6 @@ namespace websocket {
         int id = ball->getId();
         std::pair<int,int> temp_pos = std::make_pair(ball->getX(),ball->getY());
         occupiedPos_.erase(temp_pos);
-        //IdMap_.at(ball->getX()).at(ball->getY()) = 0;
 
         std::string header_balls = "deleteBall:";
 
@@ -435,12 +433,7 @@ namespace websocket {
         
         elements_.erase(id);
        
-
-        std::cout << "elements_ erase" <<  std::endl;
-        //erase from balls collection
         balls_.erase(participant);
-
-        std::cout << "balls_ erase" << std::endl;
 
         //send looser end of game frame, delete him from collection
         std::string header = "endOfGame:";
@@ -475,8 +468,6 @@ namespace websocket {
         balls_container::iterator j;
 
         std::cout << "gameState map elements_.size():  " << elements_.size() << std::endl;
-        //if (!elements_.empty())
-              //  std::cout << "map elements_ size:" << std::cout; 
 
         for(j = balls_.begin(); j != balls_.end(); j++ )
         {
@@ -521,7 +512,6 @@ namespace websocket {
 
     void GameBoard::processMovement(const Dataframe& msg, player_ptr source)
      {
-        int onEatenNewItems_ = 1;
         std::vector<boost::uint8_t> temp;
         std::string rxss;
         std::string ryss;
@@ -535,8 +525,6 @@ namespace websocket {
         double rx;
         double ry;
 
-        //double offset_x;
-        //double offset_y;
         double dist;
         double nx;
         double ny;
@@ -593,26 +581,21 @@ namespace websocket {
                     return;
                 if( dist <= radius)
                 {
-                    std::cout << "Here" <<  std::endl;
                     if(dist != radius)
                     {
                         nradius = i.second->getRadius();
                         if( nradius == foodRadius_ )
                         {
                             eraseFood(i.first);
-                            addNFoodItem(onEatenNewItems_);    //change to const
-                            std::cout << "deleted" << std::endl;
+                            addNFoodItem(onEatenNewItems_);   
                             ball_source->setRadius(radius + nradius);
-                            //std::cout << ball_source->getRadius() << std::endl;
                             ball_source->incFood();
-                            std::cout << "deleted2" << std::endl;
                             break;
                         }
                         else
                         {
                             if(radius > nradius)
                             {
-                               std::cout << "deleted3" << std::endl;
                                player_ptr owner = idToPlayer_.at(i.first);
                                eraseBall(owner);
                                ball_source->setRadius(radius + nradius);
@@ -626,9 +609,6 @@ namespace websocket {
             }
 
         }
-
-       
-        //TODO przeliczanie prędkość na pozycje kulki
 
         std::string header = "ballUpdate:";
         

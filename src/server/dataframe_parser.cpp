@@ -3,9 +3,6 @@
 
 namespace websocket {
 
-    // For details on a base framing protocol check the following link
-    // http://tools.ietf.org/html/rfc6455#section-5.2
-
     DataframeParser::DataframeParser()
         : state_(FIN_OPCODE)
     {

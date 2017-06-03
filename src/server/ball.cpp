@@ -1,6 +1,6 @@
 #include "ball.hpp"
 #include "game_board.hpp"
-#include <cmath>
+
 
 namespace websocket{
 	const std::string Ball::letters_("0123456789ABCDEF");
@@ -16,6 +16,9 @@ namespace websocket{
 
             ballEaten_ = 0;
             foodEaten_ = 0;
+
+            mapX_ = GameBoard::getMapX();
+            mapY_ = GameBoard::getMapY();
 
     }
 
@@ -38,8 +41,8 @@ namespace websocket{
         x_ = x_ + (1/radius_)*maxJmp_*x_vec;
         if( x_ < 0)
             x_ = 0;
-        else if( x_ > 2999 )
-            x_ = 2999;
+        else if( x_ > mapX_ )
+            x_ = mapX_ - 1;
 
     }
 
@@ -48,9 +51,7 @@ namespace websocket{
         y_ = y_ + (1/radius_)*maxJmp_*y_vec ;
         if( y_ < 0)
             y_ = 0;
-        else if( y_ > 2999 )
-            y_ = 2999;
-
-        
+        else if( y_ > mapY_ )
+            y_ = mapY_ - 1;  
     }   
 }

@@ -1,3 +1,8 @@
+/*!
+*\file      header.hpp
+*\author    
+*			Stucture for HTTP header
+*/
 #ifndef WEBSOCKET_HTTP_HEADER_HPP
 #define WEBSOCKET_HTTP_HEADER_HPP
 

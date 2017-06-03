@@ -1,3 +1,8 @@
+/*!
+*\file      dataframe.hpp
+*\author    
+*           A structure to hold websocket frame data. 
+*/
 #ifndef WEBSOCKET_DATAFRAME_HPP
 #define WEBSOCKET_DATAFRAME_HPP
 
@@ -8,7 +13,6 @@
 
 namespace websocket {
 
-    // A structure to hold websocket frame data. 
     struct Dataframe
     {
         Dataframe();

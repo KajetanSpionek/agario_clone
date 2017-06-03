@@ -1,3 +1,8 @@
+/*!
+*\file      server.hpp
+*\author    Wojciech Przybysz, Kajetan Spionek
+*           /// The top-level class of the server.
+*/
 #ifndef WEBSOCKET_SERVER_HPP
 #define WEBSOCKET_SERVER_HPP
 
@@ -12,7 +17,6 @@
 
 namespace websocket {
 
-        /// The top-level class of the chat server.
         class Server
             : private boost::noncopyable
         {

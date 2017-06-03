@@ -1,3 +1,8 @@
+/*!
+*\file      request_handler.hpp
+*\author    Wojciech Przybysz, Kajetan Spionek
+*           The handler for incoming http requests.
+*/
 #ifndef WEBSOCKET_HTTP_REQUEST_HANDLER_HPP
 #define WEBSOCKET_HTTP_REQUEST_HANDLER_HPP
 
@@ -11,7 +16,6 @@ namespace websocket {
         struct Reply;
         struct Request;
 
-        /// The handler for incoming http requests.
         class RequestHandler
             : private boost::noncopyable
         {

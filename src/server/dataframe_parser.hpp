@@ -1,3 +1,9 @@
+/**
+*\file      dataframe_parser.hpp
+*\author    
+*           Parser for incoming dataframes.
+*   
+*/
 #ifndef WEBSOCKET_DATAFRAME_PARSER_HPP
 #define WEBSOCKET_DATAFRAME_PARSER_HPP
 
@@ -9,7 +15,6 @@ namespace websocket {
 
         struct Dataframe;
 
-        /// Parser for incoming dataframes.
         class DataframeParser
         {
         public:
@@ -19,10 +24,6 @@ namespace websocket {
             /// Reset to initial parser state.
             void reset();
 
-            /// Parse some data. The tribool return value is true when a complete Dataframe
-            /// has been parsed, false if the data is invalid, indeterminate when more
-            /// data is required. The InputIterator return value indicates how much of the
-            /// input has been consumed.
             template <typename InputIterator>
             boost::tuple<boost::tribool, InputIterator> parse(Dataframe& frame,
                 InputIterator begin, InputIterator end)

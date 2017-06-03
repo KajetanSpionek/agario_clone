@@ -1,7 +1,7 @@
 /*!
-*\file      FoodItem.hpp
-*\author    
-*\date      
+*\file      foodItem.hpp
+*\author    Wojciech Przybysz, Kajetan Spionek
+*
 */
 #ifndef FOODITEM_HPP
 #define FOODITEM_HPP
@@ -17,12 +17,10 @@ namespace websocket {
 	public:
 		
 		FoodItem(double & x, double & y, double radius);
-		~FoodItem()
-		{
-		//std::cout << "delete food\n";
-		} //= default;
+		~FoodItem() = default;
         FoodItem(const FoodItem & other) = default;
         FoodItem & operator=(const FoodItem& other) = default;
+
 	private:
 
 	};

@@ -3,9 +3,6 @@
 
 namespace websocket {
 
-    // For details on the base framing protocol check the following link
-    // http://tools.ietf.org/html/rfc6455#section-5.2
-
     Dataframe::Dataframe() : fin(true),
         opcode(TEXT_FRAME), mask(false), fin_opcode(0),
         mask_payload_len(0), payload_len(0), extended_payload_len16(0), extended_payload_len64(0) {}

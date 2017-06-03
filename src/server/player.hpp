@@ -1,3 +1,8 @@
+/*!
+*\file      player.hpp
+*\author    Wojciech Przybysz, Kajetan Spionek
+*
+*/
 #ifndef WEBSOCKET_PLAYER_HPP
 #define WEBSOCKET_PLAYER_HPP
 

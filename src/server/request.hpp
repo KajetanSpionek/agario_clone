@@ -1,3 +1,8 @@
+/*!
+*\file      request.hpp
+*\author    Wojciech Przybysz, Kajetan Spionek
+*           A http request received from a client.
+*/
 #ifndef WEBSOCKET_HTTP_REQUEST_HPP
 #define WEBSOCKET_HTTP_REQUEST_HPP
 
@@ -8,7 +13,6 @@
 namespace websocket {
     namespace http {
 
-        /// A http request received from a client.
         struct Request
         {
             std::string method;
