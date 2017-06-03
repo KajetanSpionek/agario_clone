@@ -45,7 +45,7 @@ if (window.WebSocket === undefined)
 
     document.getElementById('gameArea').style.opacity = 0;
     document.getElementById('startMenu').style.opacity = 1;
-    document.getElementById('dataWindow').style.opacity = 1;
+    //document.getElementById('scoresWindow').style.opacity = 0.3;
 
     btn.onclick = function () {
             

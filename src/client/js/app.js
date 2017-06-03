@@ -133,7 +133,7 @@ function startGame() {
     document.getElementById('startMenu').style.opacity = 0;
     document.getElementById('startMenuWrapper').style.maxHeight = '0px';
     document.getElementById('gameArea').style.opacity = 1;
-    document.getElementById('dataWindow').style.opacity = 1;
+    //document.getElementById('scoresWindow').style.opacity = 0.3;
     
     gameStart = true;
     gameDied = false;
