@@ -65,6 +65,7 @@ namespace websocket {
         
         std::cout << "New nick " << nick << std::endl;
 
+        /*
         for( const auto & i: balls_ )
         {
             if( i.second->getNick() == nick )
@@ -72,6 +73,7 @@ namespace websocket {
                 nick_occupied = true;
             }
         }
+        */
 
         std::string header = "newPlayerValidNick:";
 
