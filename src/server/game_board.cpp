@@ -73,6 +73,24 @@ namespace websocket {
             }
         }
 
+        std::string header = "newPlayerValidNick";
+
+        if(nick_occupied == true)
+        {
+            header = header + "TAKEN";
+        }
+
+        if(nick_occupied == true)
+        {
+            header = header + "OK";
+        }
+
+        Dataframe frm;
+        std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
+
+        source->deliver(frm);
+        
+
 
 
 
@@ -80,7 +98,36 @@ namespace websocket {
 
     void GameBoard::addPlayerToGame(const Dataframe& msg,player_ptr source)
     {
+        std::string nick;
+        std::string rdy_flag;
+        const char delimit_ = ':';
+        const uint8_t delim = static_cast<uint8_t>(delimit_);
+        std::vector<boost::uint8_t> temp;
+        std::string temps;
+        const char delimitArg_ = ',';
 
+        //parse incoming frame
+        auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
+        std::copy(++it_beg, msg.payload.end(), std::back_inserter(temp));
+
+        for(const auto& i : temp)
+        {
+            temps = temps +  boost::lexical_cast<std::string>(i);
+        }
+
+        int n = temps.find(delimitArg_);
+        rdy_flag = temps.substr(0,n);
+        nick = temps.substr(n+1,temps.size());
+
+        ////send current game state to new player
+        sendGameState(source);
+
+        //add new ball and participant and send to everyone
+        addNewBall(source,nick);    
+
+        //add N new food and send to everyone
+        addNFoodItem(newPlayerFood_);
+        
 
     }
 
@@ -270,7 +317,7 @@ namespace websocket {
     }
 
 
-    void GameBoard::addNewBall(player_ptr participant)
+    void GameBoard::addNewBall(player_ptr participant,std::string nick)
     {
         double initBallRadius_ = 20;
         double x_temp;
@@ -305,7 +352,9 @@ namespace websocket {
         
         auto new_ball = balls_.insert(std::make_pair(participant, getBall(x_temp,y_temp,initBallRadius_)));
 
+        ((new_ball.first)->second)->setNick(nick);
         id = ((new_ball.first)->second)->getId();
+
         elements_.insert(std::make_pair(id,(new_ball.first)->second )) ;       
 
         //IdMap_.at(x_temp).at(y_temp) = (id); 
@@ -398,6 +447,7 @@ namespace websocket {
         participants_.erase(participant);
         participant->deliver(frm);
 
+        //send delete ball frame to enemies
         Dataframe frm_balls;
         std::copy(header_balls.begin(), header_balls.end(), std::back_inserter(frm_balls.payload));
 

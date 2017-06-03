@@ -60,7 +60,7 @@ namespace websocket {
         void eraseFood(int id);
 
         //add new ball for new player and update other players
-        void addNewBall(player_ptr participant);
+        void addNewBall(player_ptr participant,std::string nick);
         
         ///create new ball for player
         ball_ptr getBall(double& x ,double& y ,double& radius);
