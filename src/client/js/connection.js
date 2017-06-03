@@ -212,7 +212,7 @@ if (window.WebSocket === undefined)
 
         // New player nick validation gram
         else if (message.startsWith("newPlayerValidNick")) {
-            message = message.splice("newPlayerServer:,".length);
+            message = message.splice("newPlayerValidNick:,".length);
 
             if (message == "OK") {
                 sendPlayerStatus(1);
