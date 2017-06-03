@@ -1,7 +1,7 @@
-/*
-File: ball.js
-Author: Kajetan Śpionek, Wojciech Przybysz
-Discription: Implementation of ball class
+/*!
+*\file      ball.js
+*\author    Wojciech Przybysz, Kajetan Spionek
+*           Implementation of ball class
 */
 
 class Ball {

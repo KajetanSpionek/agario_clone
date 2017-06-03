@@ -1,7 +1,7 @@
-/*
-File: connection.js
-Author: Kajetan Śpionek, Wojciech Przybysz
-Discription: Handles connection with server; Contains in/out frames implementations.
+/*!
+*\file      connection.js
+*\author    Wojciech Przybysz, Kajetan Spionek 
+*           Handles connection with server; Contains in/out frames implementations. 
 */
 
 //connected = document.getElementById("connected");

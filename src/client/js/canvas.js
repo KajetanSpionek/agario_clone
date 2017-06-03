@@ -1,8 +1,8 @@
- /*
-File: player.js
-Author: Kajetan Śpionek, Wojciech Przybysz
-Discription: Implementation of HTML5 canvas and draw functions
-*/   
+/*!
+*\file      player.js
+*\author    Wojciech Przybysz, Kajetan Spionek
+*           Implementation of HTML5 canvas and draw functions
+*/
 
 /* Event Listeners */
 

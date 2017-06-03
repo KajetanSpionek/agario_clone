@@ -1,7 +1,7 @@
-/*
-File: player.js
-Author: Kajetan Śpionek, Wojciech Przybysz
-Discription: Main application file
+/*!
+*\file      app.js
+*\author    Wojciech Przybysz, Kajetan Spionek 
+*           Main application file
 */
 
 // Canvas variables
