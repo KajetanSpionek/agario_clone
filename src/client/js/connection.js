@@ -143,41 +143,41 @@ if (window.WebSocket === undefined)
             player.show();
         }
 
-
+        // Frame with deleted ball details - ID)
         else if (message.startsWith("deleteBall:")) {
             message = message.slice("deleteBall:,".length);
             message = message.split(" ");
-            //log.innerHTML = '<li class="message">' + "deleteBall:" + message + "</li>" + log.innerHTML;
             var index = -1;
 
             for (i in balls) {
-              if (balls[i].id_ == message[0]) index = i;
+                if (balls[i].id_ == message[0]) index = i;
             } 
             
-        if (index != -1) balls.splice(index,1);
-        reDrawCanvas();
-
+            if (index != -1) balls.splice(index,1);
+            
+            reDrawCanvas();
         }
 
+        // Frame with deleted food details - ID)
         else if (message.startsWith("deleteFood:")) {
             message = message.slice("deleteFood:,".length);
             message = message.split(" ");
-            //log.innerHTML = '<li class="message">' + "deleteFood:" + message + "</li>" + log.innerHTML;
-        
+ 
             var index = -1;
 
             for (i in foods) {
               if (foods[i].id_ == message[0]) index = i;
-            } 
-        if (index != -1) foods.splice(index,1);
-        reDrawCanvas();
+            }
 
-        }   
+            if (index != -1) foods.splice(index,1);
 
+            reDrawCanvas();
+        } 
+
+        // Ball update frame - ID, x, y, r
         else if (message.startsWith("ballUpdate:")) {
             message = message.slice("ballUpdate:,".length);
             message = message.split(" ");
-            //log.innerHTML = '<li class="message">' + "ballUpdate: " + message + "</li>" + log.innerHTML;
             
             var id = parseInt(message[0]);
 
@@ -191,25 +191,26 @@ if (window.WebSocket === undefined)
               }
             }
             else if (id == player.id_) {
-              player.r_ = parseInt(message[3]);
-              player.x_ = parseInt(message[1]);
-              player.y_ = parseInt(message[2]);
+                player.r_ = parseInt(message[3]);
+                player.x_ = parseInt(message[1]);
+                player.y_ = parseInt(message[2]);
 
-              deltaX = player.x_ - canvas.width/2;
-              deltaY = player.y_ - canvas.height/2;
-
-              // Wyswietlanie siebie
+                deltaX = player.x_ - canvas.width/2;
+                deltaY = player.y_ - canvas.height/2;
             }
         } 
 
+        // End of game frame - Food eaten, Balls eaten, Mass
         else if (message.startsWith("endOfGame:")) {
             message = message.slice("endOfGame:,".length);
-            message = message.split(" ");
-            //log.innerHTML = '<li class="message">' + "endOfGame " + message + "</li>" + log.innerHTML;
-            
-            gameOver();
+            message = message.split(" "); 
+            var foodEaten = parseInt(message[0]);
+            var ballsEaten = parseInt(message[1]);
+            var mass = parseInt(message[2]);         
+            gameOver(foodEaten, ballsEaten, mass);
         }  
 
+        // New player nick validation gram
         else if (message.startsWith("newPlayerValidNick")) {
             message = message.splice("newPlayerServer:,".length);
 
@@ -219,47 +220,52 @@ if (window.WebSocket === undefined)
             }
         }  
 
+        // Game board size frame - x,y - not implemented yet
         else if (message.startsWith("gameBoardSize")) {
             message = message.splice("gameBoardSize:,".length);
             gameBoardX = parseInt(message[0]);
             gameBOardY = parseInt(message[1]);
-
-        }
-   
+        }  
     }
 
-    function sendPos() {
+    /* Sent messages */
+
+// Mouse position (normalised)
+function sendPos() {
  
-        var x = player.dx_;
-        var y = player.dy_;
+    var x = player.dx_;
+    var y = player.dy_;
 
-        if ( (x <= 1) && (y <= 1) && (x >= -1) && (y >= -1) ){
-            var message = "move:";
-            message += x;
-            message += ",";
-            message += y;
-            websocket.send(message);
-        }
-    }
-
-    function sendPlayerName() {
-
-        var message = "newPlayerName:";
-        message += document.getElementById('playerNameInput').value;
-        websocket.send(message);
-        consoleDisplay  (message);
-    }
-
-    function sendPlayerStatus(state) {
-
-        var message = "newPlayerStatus:";
-
-        if (state == 1) message += "rdy";
-        else            message += "nrdy";
-
+    if ( (x <= 1) && (y <= 1) && (x >= -1) && (y >= -1) ){
+        var message = "move:";
+        message += x;
         message += ",";
-        message += document.getElementById('playerNameInput').value;
-
+        message += y;
         websocket.send(message);
+    }
+}
+
+// Player name frame (handshake)
+function sendPlayerName() {
+
+    var message = "newPlayerName:";
+    message += document.getElementById('playerNameInput').value;
+    websocket.send(message);
+    //consoleDisplay  (message);
+}
+
+// Player status frame (handshake)
+ function sendPlayerStatus(state) {
+
+    var message = "newPlayerStatus:";
+
+    if (state == 1) message += "rdy";
+    else            message += "nrdy";
+
+    message += ",";
+    message += document.getElementById('playerNameInput').value;
+
+    websocket.send(message);
+    //consoleDisplay  (message);
 
     }
