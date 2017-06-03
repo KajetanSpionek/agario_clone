@@ -121,7 +121,7 @@ function calculateFixedPos() {
 }
 
 // GameOver handle - doesnt work yet
-function gameOver() {
+function gameOver(foodEaten, ballsEaten, mass) {
     gameStart = false;
     gameDied = true;
 }

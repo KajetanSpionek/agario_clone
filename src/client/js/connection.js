@@ -200,11 +200,14 @@ if (window.WebSocket === undefined)
             }
         } 
 
-        // End of game frame - some staras
+        // End of game frame - Food eaten, Balls eaten, Mass
         else if (message.startsWith("endOfGame:")) {
             message = message.slice("endOfGame:,".length);
-            message = message.split(" ");          
-            gameOver();
+            message = message.split(" "); 
+            var foodEaten = parseInt(message[0]);
+            var ballsEaten = parseInt(message[1]);
+            var mass = parseInt(message[2]);         
+            gameOver(foodEaten, ballsEaten, mass);
         }  
 
         // New player nick validation gram
