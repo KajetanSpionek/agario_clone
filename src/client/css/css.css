@@ -29,6 +29,10 @@ div {
    background:lightgrey; 
    background: rgba(230, 230, 230, 0.3);
    overflow: hidden;
+   border: solid 1px #c6c6c6;
+   border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 
 #scoresWindow h1 { 
