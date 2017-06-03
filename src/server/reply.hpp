@@ -20,7 +20,7 @@ namespace websocket {
             {
                 SWITCHING_PROTOCOLS = 101,
                 BAD_REQUEST = 400,
-                INTERNAL_SERVER_ERROR = 500,
+                INTERNAL_SERVER_ERROR = 500
             } status;
 
             /// The headers to be included in the Reply.

@@ -19,7 +19,6 @@ namespace websocket {
     GameBoard::elements_container GameBoard::elements_;
     GameBoard::balls_container GameBoard::balls_;
     GameBoard::occupied_pos GameBoard::occupiedPos_;
-    GameBoard::id_to_player GameBoard::idToPlayer_;
 
     const std::string GameBoard::messageOp_ = "message";
     const std::string GameBoard::movementOp_ = "move";
@@ -142,11 +141,19 @@ namespace websocket {
 
     void GameBoard::leave(player_ptr participant)
     {
-        eraseBall(participant);
+        //in case of shutting down browser
+        if ( participants_.count(participant) > 0)
+        {
+            eraseBall(participant);
 
-        participants_.erase(participant);
+            participants_.erase(participant);
 
-        updateParticipants();
+            updateParticipants();
+        }
+        else
+        {
+            //do nothing
+        }
     }
 
     void GameBoard::deliver(const Dataframe& msg, player_ptr source)
@@ -361,14 +368,12 @@ namespace websocket {
          std::cout << "map elements_.size():  " << balls_.size() << std::endl;
 
         ((new_ball.first)->second)->setNick(nick);
+        ((new_ball.first)->second)->setOwner(participant);
 
         id = ((new_ball.first)->second)->getId();
 
         elements_.insert(std::make_pair(id,(new_ball.first)->second )) ;       
 
-
-        
-        idToPlayer_.insert( std::make_pair( id, participant ) );
 
         std::cout << "In addNewBall(): " << std::endl;
         std::cout << id << std::endl;occupiedPos_.insert(temp_pos);
@@ -492,7 +497,7 @@ namespace websocket {
         for( i = elements_.begin(); i != elements_.end(); i++)
         {
             id = (i->second)->getId();
-            if ( !(idToPlayer_.count(id) > 0) )
+            if ( !(i->second->getOwner() ) )
             {
                 header_foods = header_foods + " " + boost::lexical_cast<std::string>(id);
                 header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getX());
@@ -596,7 +601,7 @@ namespace websocket {
                         {
                             if(radius > nradius)
                             {
-                               player_ptr owner = idToPlayer_.at(i.first);
+                               player_ptr owner = i.second->getOwner();
                                eraseBall(owner);
                                ball_source->setRadius(radius + nradius);
                                ball_source->incBall();

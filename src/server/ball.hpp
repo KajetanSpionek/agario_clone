@@ -45,6 +45,9 @@ namespace websocket{
         ///method of random picking color for ball
         std::string getColor() { return color_; }
 
+        virtual player_ptr getOwner() {return owner_;}
+        void setOwner(player_ptr owner) { owner_ = owner; }
+
     private:
 
         ///random color generator
@@ -69,6 +72,8 @@ namespace websocket{
         //game map properties
         double mapX_;
         double mapY_;
+
+        player_ptr owner_;
 
     };
 

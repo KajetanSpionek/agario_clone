@@ -10,6 +10,7 @@
 #include <memory>
 #include <iostream>
 #include <atomic>
+#include "player.hpp"
 
 namespace websocket {
 
@@ -29,6 +30,8 @@ namespace websocket {
         void setX(const double&x) { x_ = x; }
         void setY(const double&y) { y_ = y; }
         void setRadius(double && radius) { radius_ = radius; }
+
+        virtual player_ptr getOwner() = 0;
  
 	private:
 

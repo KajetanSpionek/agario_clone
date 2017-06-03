@@ -1,0 +1,10 @@
+import platform
+
+env = Environment()
+if(platform.system() == "Linux"):
+    env.Append( CPPFLAGS = '-Wall -pedantic -pthread --std=c++11' )
+
+    env.Append( LINKFLAGS = '-Wall -pthread -lm' )
+    env.Append( LIBS = ['boost_thread', 'boost_system', 'boost_log'] )
+
+env.Program( source = ['main.cpp','server.cpp','session.cpp','ball.cpp','dataframe.cpp','dataframe_parser.cpp','element.cpp','foodItem.cpp','reply.cpp','request_handler.cpp','request_parser.cpp','game_board.cpp'], target = 'program' )

@@ -124,9 +124,6 @@ namespace websocket {
         typedef std::map<int,element_ptr > elements_container;
         static elements_container elements_;
 
-        typedef std::map<int,player_ptr > id_to_player;
-        static id_to_player idToPlayer_;
-
         //dataframe headers
         static const std::string messageOp_;
         static const std::string movementOp_;
