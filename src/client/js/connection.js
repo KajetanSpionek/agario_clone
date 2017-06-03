@@ -245,8 +245,9 @@ if (window.WebSocket === undefined)
     function sendPlayerName() {
 
         var message = "newPlayerName:";
-        message += player.name_;
+        message += document.getElementById('playerNameInput').value;
         websocket.send(message);
+        consoleDisplay  (message);
     }
 
     function sendPlayerStatus(state) {
@@ -257,7 +258,7 @@ if (window.WebSocket === undefined)
         else            message += "nrdy";
 
         message += ",";
-        message += player.name_;
+        message += document.getElementById('playerNameInput').value;
 
         websocket.send(message);
 
