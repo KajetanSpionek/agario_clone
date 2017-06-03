@@ -75,15 +75,17 @@ namespace websocket {
 
         std::string header = "newPlayerValidNick";
 
-        if(nick_occupied == true)
+        if(nick_occupied)
         {
-            header = header + "TAKEN";
+            header = header + " " + boost::lexical_cast<std::string>( "TAKEN");
+            
+        }
+        else
+        {
+            header = header + " " + boost::lexical_cast<std::string>( "OK");
         }
 
-        if(nick_occupied == true)
-        {
-            header = header + "OK";
-        }
+        std::cout << header << std::endl;
 
         Dataframe frm;
         std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
@@ -91,13 +93,11 @@ namespace websocket {
         source->deliver(frm);
         
 
-
-
-
     }
 
     void GameBoard::addPlayerToGame(const Dataframe& msg,player_ptr source)
     {
+        std::cout << "add player to the game" << std::endl;
         std::string nick;
         std::string rdy_flag;
         const char delimit_ = ':';
@@ -119,15 +119,19 @@ namespace websocket {
         rdy_flag = temps.substr(0,n);
         nick = temps.substr(n+1,temps.size());
 
-        ////send current game state to new player
-        sendGameState(source);
+        if( rdy_flag == "nrdy")
+            return;
+        else if ( rdy_flag == "rdy" )
+        {
+            ////send current game state to new player
+            sendGameState(source);
 
-        //add new ball and participant and send to everyone
-        addNewBall(source,nick);    
+            //add new ball and participant and send to everyone
+            addNewBall(source,nick);    
 
-        //add N new food and send to everyone
-        addNFoodItem(newPlayerFood_);
-        
+            //add N new food and send to everyone
+            addNFoodItem(newPlayerFood_);
+        {
 
     }
 
