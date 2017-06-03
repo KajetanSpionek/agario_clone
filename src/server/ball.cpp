@@ -1,15 +1,18 @@
 #include "ball.hpp"
 #include "game_board.hpp"
+#include <cmath>
 
 namespace websocket{
 	const std::string Ball::letters_("0123456789ABCDEF");
 
-    double Ball::maxJmp_{600};
+    double Ball::maxJmp_{1000};
 
     Ball::Ball(double & x,double & y,double & radius): Element(x,y,radius)
     {
     		getRandColor();
             std::cout << "construct ball " << this->getX() << " " << this->getY() << std::endl;
+
+            nick_ = "Mike";
 
             ballEaten_ = 0;
             foodEaten_ = 0;
@@ -32,7 +35,6 @@ namespace websocket{
 
     void Ball::xPosUpdate(double x_vec)
     {
-        //x_ = x_ + (scaleFact_*(1/(mass_))*x_vec);
         x_ = x_ + (1/radius_)*maxJmp_*x_vec;
         if( x_ < 0)
             x_ = 0;
@@ -43,8 +45,7 @@ namespace websocket{
 
     void Ball::yPosUpdate(double y_vec)
     {
-        //y_ = y_ + (scaleFact_*(1/(mass_))*y_vec);
-        y_ = y_ + (1/radius_)*maxJmp_*y_vec;
+        y_ = y_ + (1/radius_)*maxJmp_*y_vec ;
         if( y_ < 0)
             y_ = 0;
         else if( y_ > 2999 )

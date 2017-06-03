@@ -108,12 +108,6 @@ namespace websocket {
 
         //static const int foodRadius_{3};
 
-        ///map containing state of gameplay with objects IDs
-        //int IdCount_;
-        //std::atomic<int> IdCount_;
-        //typedef std::vector<std::vector<int> > game_map;
-        //static game_map IdMap_;
-
         
         typedef std::map<player_ptr,ball_ptr > balls_container;
         static balls_container balls_;

@@ -23,9 +23,9 @@ namespace websocket{
     public:
         //void increaseMass(int add_mass); //increase mass = decrease velocity
         Ball(double & x,double & y,double & radius);
-        ~Ball() {//
-            std::cout << "delete ball\n";
-        } // = default;
+       // ~Ball() {//
+        //    std::cout << "delete ball\n";
+        //} // = default;
         
         Ball(const Ball &other) = default;
         Ball & operator=(const Ball& other) = default;

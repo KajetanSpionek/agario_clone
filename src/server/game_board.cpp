@@ -65,7 +65,7 @@ namespace websocket {
         
         std::cout << "New nick " << nick << std::endl;
 
-        /*
+        
         for( const auto & i: balls_ )
         {
             if( i.second->getNick() == nick )
@@ -73,8 +73,8 @@ namespace websocket {
                 nick_occupied = true;
             }
         }
-        */
-
+        
+        
         std::string header = "newPlayerValidNick:";
 
         if(nick_occupied)
@@ -359,12 +359,15 @@ namespace websocket {
         
         auto new_ball = balls_.insert(std::make_pair(participant, getBall(x_temp,y_temp,initBallRadius_)));
 
-       // ((new_ball.first)->second)->setNick(nick);
+         std::cout << "map elements_.size():  " << balls_.size() << std::endl;
+
+        ((new_ball.first)->second)->setNick(nick);
+        
         id = ((new_ball.first)->second)->getId();
 
         elements_.insert(std::make_pair(id,(new_ball.first)->second )) ;       
 
-        //IdMap_.at(x_temp).at(y_temp) = (id); 
+
         
         idToPlayer_.insert( std::make_pair( id, participant ) );
 
@@ -611,7 +614,6 @@ namespace websocket {
                             {
                                std::cout << "deleted3" << std::endl;
                                player_ptr owner = idToPlayer_.at(i.first);
-                               //player_ptr owner = balls_.at(i.first);
                                eraseBall(owner);
                                ball_source->setRadius(radius + nradius);
                                ball_source->incBall();
