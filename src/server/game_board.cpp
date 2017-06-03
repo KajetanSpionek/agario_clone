@@ -123,6 +123,7 @@ namespace websocket {
             return;
         else if ( rdy_flag == "rdy" )
         {
+            std::cout << rdy_flag << " " << nick << std::endl;
             ////send current game state to new player
             sendGameState(source);
 
@@ -131,7 +132,7 @@ namespace websocket {
 
             //add N new food and send to everyone
             addNFoodItem(newPlayerFood_);
-        {
+        }
 
     }
 
