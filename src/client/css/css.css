@@ -10,6 +10,8 @@ Discription: CSS
 div {
     display: block;
 }
+
+/* Game area with canvas */
 #gameArea { 
     position: absolute !important;
     top: 0;
@@ -17,6 +19,7 @@ div {
 	opacity: 0; 
 }
 
+/* Data window */
 #dataWindow { 
   
    width:30%; 
@@ -26,6 +29,7 @@ div {
    opacity: 0;
 }
 
+/* Start menu block */
 #startMenu {
     position: relative;
     margin: auto;
@@ -41,6 +45,7 @@ div {
     display: block;
 }
 
+/* Start menu font - p */
 #startMenu p {
     padding: 0;
     text-align: center;
@@ -48,6 +53,20 @@ div {
     font-weight: bold;
 }
 
+/* Start menu font- h3 */
+#startMenu h3 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* Start menu font - ul */
+#startMenu ul {
+    margin: 10px;
+    padding: 10px;
+    margin-top: 0;
+}
+
+/* Player name input box */
 #playerNameInput {
     width: 100%;
     text-align: center;
@@ -67,7 +86,8 @@ div {
     box-shadow: 0 0 3px 1px #DDDDDD;
 }
 
-#startButton, #spectateButton {
+/* Start button style */
+#startButton {
     position: relative;
     margin: auto;
     margin-top: 10px;
@@ -90,7 +110,7 @@ div {
     margin-bottom: 10px;
 }
 
-#spectateButton:active, #startButton:active, #startButton:hover {
+#startButton:active, #startButton:hover {
     top: 1px;
     background: #55D88B;
     outline: none;
@@ -105,17 +125,6 @@ div {
     -o-transition: max-height 1s;
     transition: max-height 1s;
     overflow: hidden;
-}
-
-#startMenu h3 {
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-#startMenu ul {
-    margin: 10px;
-    padding: 10px;
-    margin-top: 0;
 }
 
 #startMenu .input-error {

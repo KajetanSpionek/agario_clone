@@ -11,7 +11,7 @@ Discription: Main application file
     var raf;
 
     var maximalUpdateDelay = 25; // ms
-	   var updateTimeout, now;
+	  var updateTimeout, now;
 
 
     var foods = [];
@@ -28,7 +28,7 @@ Discription: Main application file
     var gameBoardX;
     var gameBoardY;
 
-    // Vector to left top corner from (0,0) pos
+    // Vector to left top corner from (0,0) gameBoard corner
     var deltaX;
     var deltaY;
 
@@ -272,10 +272,8 @@ function resizeCanvas() {
 function startGame() {
 
   document.getElementById('gameArea').style.opacity = 1;
-  //document.getElementById('startMenu').style.opacity = 0;
   document.getElementById('dataWindow').style.opacity = 1;
 
-  //document.getElementById('startMenu').style.display = none;
 
 }
 
