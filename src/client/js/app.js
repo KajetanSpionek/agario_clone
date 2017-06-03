@@ -141,8 +141,6 @@ context.lineWidth = 1;
 constY = 50*scl - ((deltaY + (canvas.height/2)) % 50*scl);
 constX = 50*scl - ((deltaX + (canvas.width/2)) % 50*scl);
 
-//log.innerHTML = '<li class="message">' + deltaX + "</li>" + log.innerHTML;
-
 
 for (i=0; i < canvas.height; i += 50*scl) {
 	context.beginPath();
@@ -305,7 +303,6 @@ function startGame() {
 
   document.getElementById('left').style.opacity = 1;
   document.getElementById('startMenu').style.opacity = 0;
-  //document.getElementById('startMenu').style.maxHeight = 0px;
   document.getElementById('right').style.opacity = 1;
 
 

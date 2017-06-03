@@ -17,10 +17,6 @@ class Player {
     this.r_ = r;
     // Player color (randomized by server)
     this.color_ = color;
-    // Player x velocity (assigned by server)
-    this.vx_ = 4;
-    // Player y velocity (assigned by server)
-    this.vy_ = 4;
     // Normalized mouse horizontal position
     this.dx_ = 0;
     // Normalized mouse vertical position
@@ -32,8 +28,3 @@ class Player {
       drawCircle(this.x_, this.y_,this.r_,this.color_);
   }
 }
-
-/*
-To do:
--> Singleton?
-*/
