@@ -121,5 +121,5 @@ function reDrawCanvas() {
         balls[i].show();
     }
     
-    player.show();
+    if (playerSet == 1) player.show();
 }

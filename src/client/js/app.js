@@ -38,6 +38,7 @@ var deltaY;
 // Game status variables
 var gameStart = false;
 var gameDied = false;
+var playerSet = false;
 
 // Resize handle
 window.addEventListener('resize', resizeCanvas, false); 

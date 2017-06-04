@@ -226,7 +226,8 @@ if (window.WebSocket === undefined)
 
         // Game board size frame - x,y - not implemented yet
         else if (message.startsWith("gameBoardSize")) {
-            message = message.splice("gameBoardSize:".length);
+            message = message.slice("mapSize:".length);
+            message = message.split(" ");
             gameBoardX = parseInt(message[0]);
             gameBOardY = parseInt(message[1]);
         }  
