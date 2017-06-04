@@ -6,7 +6,7 @@
 
 class Player {
   // Player constructor 
-  constructor(id,x,y,r,color) {
+  constructor(id,x,y,r,color,name) {
     // Player x position
     this.x_ = x;
     // Flayer y position
@@ -22,7 +22,7 @@ class Player {
     // Normalized mouse vertical position
     this.dy_ = 0;
     // Player's name
-    this.name_ = "TestName";
+    this.name_ = name;
   }
 
   // Display player on screen

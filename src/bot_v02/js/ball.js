@@ -6,7 +6,7 @@
 
 class Ball {
   // Ball constructor 
-  constructor(id,x,y,r,color) {
+  constructor(id,x,y,r,color,name) {
     // Ball x position (assigned by server)
     this.x_ = x;
     // Ball y position (assigned by server)
@@ -22,7 +22,7 @@ class Ball {
     // Y distance from player's screen middle position
     this.fy;
     // Ball's name
-    this.name_ = "TestName123";
+    this.name_ = name;
   }
 
   // Display ball on screen

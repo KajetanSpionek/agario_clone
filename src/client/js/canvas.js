@@ -86,29 +86,6 @@ function reDrawGrid() {
         context.lineTo(constX + i,canvas.height);
         context.stroke();
     }
-/*
-    context.lineWidth = 3;
-    context.strokeStyle = 'black';
-    context.beginPath();
-    context.moveTo(- deltaX,- deltaY);
-    context.lineTo(- deltaX + gameBoardX,- deltaY);
-    context.stroke();
-
-    context.beginPath();
-    context.moveTo(- deltaX,- deltaY);
-    context.lineTo(- deltaX,- deltaY + gameBoardY);
-    context.stroke();
-
-    context.beginPath();
-    context.moveTo(- deltaX + gameBoardX,- deltaY);
-    context.lineTo(- deltaX + gameBoardX,- deltaY + gameBoardY);
-    context.stroke();
-
-    context.beginPath();
-    context.moveTo(- deltaX,- deltaY + gameBoardY);
-    context.lineTo(- deltaX + gameBoardX,- deltaY + gameBoardY);
-    context.stroke();
-    */
 }
 
 // Draws objects on map (player, balls and food)
@@ -124,3 +101,4 @@ function reDrawCanvas() {
     
     if (playerSet == 1) player.show();
 }
+

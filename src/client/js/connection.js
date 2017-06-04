@@ -94,7 +94,7 @@ if (window.WebSocket === undefined)
            
             if (balls.indexOf(message[0]) == -1 && player.id_ != message[0]) { //bugged?
                 var len = balls.length;
-                balls[len] = new Ball(parseInt(message[0]),parseInt(message[1]), parseInt(message[2]), parseInt(message[3]),message[4]);
+                balls[len] = new Ball(parseInt(message[0]),parseInt(message[1]), parseInt(message[2]), parseInt(message[3]),message[4],message[5]);
                 balls[len].show();
             }
         } 
@@ -104,11 +104,11 @@ if (window.WebSocket === undefined)
             message = message.slice("gameStateBall:,".length);
             message = message.split(" ");
 
-            if (message.length > 4 ) {
-              for( i = 0; i < message.length; i+=5){
+            if (message.length > 5 ) {
+              for( i = 0; i < message.length; i+=6){
                   if (balls.indexOf(message[i]) == -1) { //bugged?
                       var len = balls.length;
-                      balls[len] = new Ball(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]),parseInt(message[i+3]),message[i+4]);
+                      balls[len] = new Ball(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]),parseInt(message[i+3]),message[i+4],message[i+5]);
                       balls[len].show(); 
                     }    
                 } 
@@ -134,7 +134,7 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("newPlayerBall:")) {
             message = message.slice("newPlayerBall:,".length);
             message = message.split(" ");
-            player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  message[4]); 
+            player = new Player( parseInt(message[0]),  parseInt(message[1]),  parseInt(message[2]),  parseInt(message[3]),  message[4], message[5]); 
 
             deltaX = player.x_ - canvas.width/2;
             deltaY = player.y_ - canvas.height/2;
