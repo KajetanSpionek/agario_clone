@@ -9,7 +9,7 @@ namespace websocket {
     const double GameBoard::ballMarigin_{10};
 
     //foodItems const params
-    const int GameBoard::initialFood_ {200}; 
+    const int GameBoard::initialFood_ {350}; 
     const int GameBoard::newPlayerFood_ {5}; 
     const int GameBoard::initialFoodParams_{1};
     const int GameBoard::foodRadius_{3};
@@ -64,9 +64,6 @@ namespace websocket {
 
         nick = temps.substr(0,temps.size());
         
-        std::cout << "New nick " << nick << std::endl;
-
-        
         for( const auto & i: balls_ )
         {
             if( i.second->getNick() == nick )
@@ -88,8 +85,6 @@ namespace websocket {
             header = header + boost::lexical_cast<std::string>(ok);
         }
 
-        std::cout << header << std::endl;
-
         Dataframe frm;
         std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
 
@@ -100,7 +95,6 @@ namespace websocket {
 
     void GameBoard::addPlayerToGame(const Dataframe& msg,player_ptr source)
     {
-        std::cout << "add player to the game" << std::endl;
         std::string nick;
 
         std::string rdy_flag;
@@ -128,8 +122,6 @@ namespace websocket {
             return;
         else if ( rdy_flag == "rdy" )
         {
-            std::cout << rdy_flag << " " << nick << std::endl;
-
             //sends map dimensions
             sendMapSize(source);
 
@@ -152,18 +144,12 @@ namespace websocket {
 
         header = header + " " + boost::lexical_cast<std::string>(getMapX());
         header = header + " " + boost::lexical_cast<std::string>(getMapY());
-    
-
-        std::cout << header << std::endl;
 
         Dataframe frm;
         std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
 
         source->deliver(frm);
-
-        std::cout << "in delivery " << header << std::endl;
         
-
     }
 
     void GameBoard::leave(player_ptr participant)
@@ -259,7 +245,7 @@ namespace websocket {
         elements_container tmp_foods;
         elements_container::iterator it;
 
-        int dummy_iter = 10;
+        int dummy_iter = 4;
         
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
 
@@ -295,8 +281,6 @@ namespace websocket {
             id = temp_food->getId();
 
             auto new_food = elements_.insert(std::make_pair(id,temp_food));
-
-            std::cout << "map elements_.size():  " << elements_.size() << std::endl;
             
             tmp_foods.insert((*new_food.first));
 
@@ -312,8 +296,6 @@ namespace websocket {
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getId());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getX());
             header_foods = header_foods + " " + boost::lexical_cast<std::string>((it->second)->getY());
-
-            std::cout << "id of new food" << ((it->second)->getId()) << std::endl;
         }
 
         
@@ -335,10 +317,8 @@ namespace websocket {
     
     void GameBoard::eraseFood(int id)
     {
-        std::cout << "eraseFood" << std::endl;
         element_ptr food;
         food = elements_.at(id);
-        std::cout << "deleting food" << std::endl;
         
         std::pair<int,int> temp_pos = std::make_pair(food->getX(),food->getY());
         occupiedPos_.erase(temp_pos);
@@ -393,8 +373,6 @@ namespace websocket {
         
         auto new_ball = balls_.insert(std::make_pair(participant, getBall(x_temp,y_temp,initBallRadius_)));
 
-         std::cout << "map elements_.size():  " << balls_.size() << std::endl;
-
         ((new_ball.first)->second)->setNick(nick);
         ((new_ball.first)->second)->setOwner(participant);
 
@@ -402,8 +380,6 @@ namespace websocket {
 
         elements_.insert(std::make_pair(id,(new_ball.first)->second )) ;       
 
-        std::cout << "In addNewBall(): " << std::endl;
-        std::cout << id << std::endl;
         occupiedPos_.insert(temp_pos);
 
         //send new ball to new player
@@ -454,7 +430,6 @@ namespace websocket {
 
     void GameBoard::eraseBall(player_ptr participant)
     {
-        std::cout << "erase Ball" <<  std::endl;
         ball_ptr ball;
         ball = balls_.at(participant);
 
@@ -463,8 +438,6 @@ namespace websocket {
         occupiedPos_.erase(temp_pos);
 
         std::string header_balls = "deleteBall:";
-
-        std::cout << "deleting ball: " << id << std::endl;
 
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(id);
         
@@ -478,8 +451,6 @@ namespace websocket {
         header = header + " " + boost::lexical_cast<std::string>(ball->getFoodNum());
         header = header + " " + boost::lexical_cast<std::string>(ball->getBallNum());
         header = header + " " + boost::lexical_cast<std::string>(ball->getRadius());
-
-        std::cout << header << std::endl;
         
         Dataframe frm;
         std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
@@ -498,14 +469,11 @@ namespace websocket {
 
     void GameBoard::sendGameState(player_ptr participant)
     {
-        std::cout << " sending game state " << std::endl;
         int id;
         //send balls
         std::string header_balls = "gameStateBall:";
 
         balls_container::iterator j;
-
-        std::cout << "gameState map elements_.size():  " << elements_.size() << std::endl;
 
         for(j = balls_.begin(); j != balls_.end(); j++ )
         {
@@ -551,6 +519,11 @@ namespace websocket {
 
     void GameBoard::processMovement(const Dataframe& msg, player_ptr source)
      {
+        if( source.get() == nullptr )
+        {
+            std::cerr  << "nullptr" << std::endl;
+            return;
+        }
         
         std::vector<boost::uint8_t> temp;
         std::string rxss;
@@ -569,14 +542,12 @@ namespace websocket {
         double nx;
         double ny;
         double nradius;
-
+     
         ball_ptr ball_source = balls_.at(source);
 
         radius = ball_source->getRadius();
         
         id_source = ball_source->getId();
-
-        std::cout << "processMovement " << id_source <<std::endl;
         
         //parse incoming frame
         auto it_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
@@ -654,9 +625,7 @@ namespace websocket {
 
         std::string header = "ballUpdate:";
         
-        header = header + " " + boost::lexical_cast<std::string>(ball_source->getId());
-        std::cout << "here" << std::endl;
-        
+        header = header + " " + boost::lexical_cast<std::string>(ball_source->getId());        
         header = header + " " + boost::lexical_cast<std::string>(ball_source->getX());
         header = header + " " + boost::lexical_cast<std::string>(ball_source->getY());
         header = header + " " + boost::lexical_cast<std::string>(ball_source->getRadius());
@@ -668,7 +637,6 @@ namespace websocket {
 
         deliver(frm);
 
-        std::cout << "processMovement end" << id_source << std::endl;
        
 
      }

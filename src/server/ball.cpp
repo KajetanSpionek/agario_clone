@@ -10,9 +10,8 @@ namespace websocket{
     Ball::Ball(double & x,double & y,double & radius): Element(x,y,radius)
     {
     		getRandColor();
-            std::cout << "construct ball " << this->getX() << " " << this->getY() << std::endl;
 
-            nick_ = "Mike";
+            nick_ = "";
 
             ballEaten_ = 0;
             foodEaten_ = 0;
