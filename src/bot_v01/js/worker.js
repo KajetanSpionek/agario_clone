@@ -6,8 +6,10 @@ function myTimer()
     message += player.dx_;
     message += ",";
     message += player.dy_;
-    if (gameStart == true) websocket.send(message);
-    if (gameStart == true) consoleDisplay("Sent");
+    if (gameStart == true && playerSet == true) {
+    	websocket.send(message);
+    	consoleDisplay(message);
+    }
 
 
 }

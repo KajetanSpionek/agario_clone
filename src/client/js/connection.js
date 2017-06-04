@@ -58,7 +58,8 @@ if (window.WebSocket === undefined)
     function onClose(evt) {
         //state.className = "fail";
         //state.innerHTML = "Not connected";
-        //connected.innerHTML = "0";        
+        //connected.innerHTML = "0"; 
+        gameStart = false;       
     }
   
 
@@ -139,7 +140,7 @@ if (window.WebSocket === undefined)
 
             gameBoardY = 2990;
             gameBoardX = 2990;
-
+            playerSet = true;
             player.show();
         }
 
@@ -225,7 +226,7 @@ if (window.WebSocket === undefined)
 
         // Game board size frame - x,y - not implemented yet
         else if (message.startsWith("mapSize")) {
-            message = message.splice("mapSize:,".length);
+            message = message.slice("mapSize:".length);
             message = message.split(" ");
             gameBoardX = parseInt(message[0]);
             gameBOardY = parseInt(message[1]);

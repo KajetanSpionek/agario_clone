@@ -38,6 +38,7 @@ var deltaY;
 // Game status variables
 var gameStart = false;
 var gameDied = false;
+var playerSet = false;
 
 // Resize handle
 window.addEventListener('resize', resizeCanvas, false); 
@@ -68,6 +69,7 @@ function isNickValid() {
 function onError(evt) { 
     state.className = "fail";
     state.innerHTML = "Communication error";
+    gameStart = false; 
 }  
 
 // Mouse handle
