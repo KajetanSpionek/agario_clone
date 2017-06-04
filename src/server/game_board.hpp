@@ -46,8 +46,8 @@ namespace websocket {
         void deliver(const Dataframe& msg, player_ptr source);
 
         ///return map dimentions
-        static double getMapX() { return mapX_;}
-        static double getMapY() { return mapY_;}
+        static int getMapX() { return mapX_;}
+        static int getMapY() { return mapY_;}
 
     private:
         /// Deliver a message to all participant in the game_board.
@@ -99,8 +99,8 @@ namespace websocket {
         message_queue recent_msgs_;
 
         //Map of the balls parameters
-        static const double mapX_;
-        static const double mapY_;
+        static const int mapX_;
+        static const int mapY_;
 
         //parameters of balls ballot
         static const double foodItemMarigin_;

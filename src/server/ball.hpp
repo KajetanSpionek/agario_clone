@@ -70,8 +70,8 @@ namespace websocket{
         std::string nick_;
 
         //game map properties
-        double mapX_;
-        double mapY_;
+        int mapX_;
+        int mapY_;
 
         player_ptr owner_;
 
