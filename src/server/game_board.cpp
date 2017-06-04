@@ -400,13 +400,7 @@ namespace websocket {
 
         id = ((new_ball.first)->second)->getId();
 
-        //try
-        //{
-            auto new_element = elements_.insert(std::make_pair(id,(new_ball.first)->second )) ;       
-
-          //  if ( new_element.second == false)
-           //     throw collectionException();
-        //}
+        elements_.insert(std::make_pair(id,(new_ball.first)->second )) ;       
 
         std::cout << "In addNewBall(): " << std::endl;
         std::cout << id << std::endl;
