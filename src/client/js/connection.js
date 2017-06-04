@@ -1,7 +1,7 @@
-/*
-File: connection.js
-Author: Kajetan Śpionek, Wojciech Przybysz
-Discription: Handles connection with server; Contains in/out frames implementations.
+/*!
+*\file      connection.js
+*\author    Wojciech Przybysz, Kajetan Spionek 
+*           Handles connection with server; Contains in/out frames implementations. 
 */
 
 //connected = document.getElementById("connected");
@@ -34,7 +34,6 @@ if (window.WebSocket === undefined)
         websocket.onerror = function(evt) { onError(evt) };
 
         var btn = document.getElementById('startButton');
-        var nickErrorText = document.querySelector('#startMenu .input-error');
 
         document.getElementById('gameArea').style.opacity = 0;
         document.getElementById('startMenu').style.opacity = 1;
@@ -42,10 +41,11 @@ if (window.WebSocket === undefined)
         // Button click detection
         btn.onclick = function () { 
             if (isNickValid()) {
-                nickErrorText.style.opacity = 0;  
+                document.getElementById('input-error').style.opacity = 0;
                 sendPlayerName();
             } else {
-                nickErrorText.style.opacity = 1;
+                document.getElementById('input-error').innerHTML = "Nick must be alphanumeric characters only!";
+                document.getElementById('input-error').style.opacity = 1;
             }
         };
     }
@@ -216,6 +216,10 @@ if (window.WebSocket === undefined)
             if (message == "OK") {
                 sendPlayerStatus(1);
                 startGame();
+            }
+            else if (message == "TAKEN") {
+                document.getElementById('input-error').innerHTML = "Nick already taken!";
+                document.getElementById('input-error').style.opacity = 1;
             }
         }  
 

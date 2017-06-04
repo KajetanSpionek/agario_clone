@@ -1,7 +1,7 @@
-/*
-File: food.js
-Author: Kajetan Śpionek, Wojciech Przybysz
-Discription: Implementation of food class
+/*!
+*\file      food.js
+*\author    Wojciech Przybysz, Kajetan Spionek
+*           Implementation of food class
 */
 
 class Food {

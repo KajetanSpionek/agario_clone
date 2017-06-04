@@ -1,7 +1,7 @@
-/*
-File: player.js
-Author: Kajetan Śpionek, Wojciech Przybysz
-Discription: Implementation of player class
+/*!
+*\file      player.js 
+*\author    Wojciech Przybysz, Kajetan Spionek
+*           Implementation of player class 
 */
 
 class Player {

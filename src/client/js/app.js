@@ -1,7 +1,7 @@
-/*
-File: player.js
-Author: Kajetan Śpionek, Wojciech Przybysz
-Discription: Main application file
+/*!
+*\file      app.js
+*\author    Wojciech Przybysz, Kajetan Spionek 
+*           Main application file
 */
 
 // Canvas variables
@@ -38,9 +38,6 @@ var deltaY;
 // Game status variables
 var gameStart = false;
 var gameDied = false;
-
-// HandShake flag
-var handShakeFlag = 0;
 
 // Resize handle
 window.addEventListener('resize', resizeCanvas, false); 
@@ -85,12 +82,15 @@ function getMousePos(canvas, evt) {
 // Display update (Animation)
 function update() {
     if (gameStart == true && gameDied == false) {
+
+        // Animation handle
+        raf = window.requestAnimationFrame(update); 
         // Scale to (-1,1) mouse positions (from center of player's screen)
         player.dx_ = (mousePos.x - canvas.width/2) / canvas.width * 2;
         player.dy_ = (mousePos.y - canvas.height/2) / canvas.height * 2;
 
         // Zooming out while getting fatter ball 
-        scl = 1 - (player.r_ / 400);
+        scl = 1 - (player.r_ / 500);
         if (scl < 0.3) scl = 0.3;
 
         // Clear canvas
@@ -100,9 +100,7 @@ function update() {
         // Draws objects on map (player, balls and food)
         reDrawCanvas();
         // Send current mouse position to server
-        sendPos();
-        // Animation handle
-        raf = window.requestAnimationFrame(update);  
+        sendPos();  
     }
 }
 
@@ -124,7 +122,8 @@ function calculateFixedPos() {
 function gameOver(foodEaten, ballsEaten, mass) {
     gameStart = false;
     gameDied = true;
-    alert("GameOver\nFood eaten:" + foodEaten + "\nBalls eaten:" + ballsEaten + "\nMass:" + mass);
+    alert("GameOver\n\nFood eaten: " + foodEaten + "\nBalls eaten: " + ballsEaten + "\nMass: " + mass);
+    //document.location.href="/";
 }
 
 // StartGame handle - doesnt work yet
@@ -152,5 +151,4 @@ var consoleDisplay = function(args) {
         console.log(args);
     }
 };
-
 
