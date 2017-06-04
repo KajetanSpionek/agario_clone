@@ -102,7 +102,7 @@ function update() {
         // Draws objects on map (player, balls and food)
         reDrawCanvas();
         // Send current mouse position to server
-        sendPos();  
+        sendPos();   
     }
 }
 
@@ -135,7 +135,6 @@ function startGame() {
     document.getElementById('startMenu').style.opacity = 0;
     document.getElementById('startMenuWrapper').style.maxHeight = '0px';
     document.getElementById('gameArea').style.opacity = 1;
-    document.getElementById('scoresWindow').style.opacity = 1;
     
     gameStart = true;
     gameDied = false;
@@ -161,4 +160,5 @@ var consoleDisplay = function(args) {
         console.log(args);
     }
 };
+
 
