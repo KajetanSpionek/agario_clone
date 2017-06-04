@@ -14,4 +14,4 @@ function myTimer()
 
 }
                
-setInterval(function(){myTimer()},200);
+setInterval(function(){myTimer()},20);
