@@ -3,8 +3,8 @@
 namespace websocket {
 
     //static members initialization
-    const int GameBoard::mapX_{3000};
-    const int GameBoard::mapY_{3000};
+    const int GameBoard::mapX_{10000};
+    const int GameBoard::mapY_{10000};
     const double GameBoard::foodItemMarigin_{5};
     const double GameBoard::ballMarigin_{10};
 
