@@ -415,6 +415,7 @@ namespace websocket {
         header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getY());
         header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getRadius());
         header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getColor());
+        header = header + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getNick());
 
         Dataframe frm;
         std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
@@ -430,6 +431,7 @@ namespace websocket {
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getY());
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getRadius());
         header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getColor());
+        header_balls = header_balls + " " + boost::lexical_cast<std::string>(((new_ball.first)->second)->getNick());
         
 
         Dataframe frm_balls;
@@ -511,7 +513,8 @@ namespace websocket {
             header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getX());
             header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getY());
             header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getRadius());
-            header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getColor());   
+            header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getColor()); 
+            header_balls = header_balls + " " + boost::lexical_cast<std::string>((j->second)->getNick());     
         }
 
         Dataframe frm_balls;
