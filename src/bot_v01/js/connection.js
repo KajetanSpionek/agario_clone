@@ -224,9 +224,8 @@ if (window.WebSocket === undefined)
         }  
 
         // Game board size frame - x,y - not implemented yet
-        else if (message.startsWith("mapSize")) {
-            message = message.splice("mapSize:,".length);
-            message = message.split(" ");
+        else if (message.startsWith("gameBoardSize")) {
+            message = message.splice("gameBoardSize:".length);
             gameBoardX = parseInt(message[0]);
             gameBOardY = parseInt(message[1]);
         }  
@@ -273,3 +272,5 @@ function sendPlayerName() {
     consoleDisplay  (message);
 
     }
+
+    

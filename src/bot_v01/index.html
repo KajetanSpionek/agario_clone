@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8>
+<title>Agar.io</title>
+<link rel="stylesheet" type="text/css" href="./css/css.css">
+</head>
+<body>
+<section id="wrapper">
+
+ <div id="gameArea">
+     <canvas tabindex="1" id="cvs"></canvas>
+ </div>
+
+ <div id="scoresWindow"> 
+  <article>
+    <h1> Highscores </h1>
+    <ul id="highscores"></ul>
+  </article>
+</div>
+
+ <div id="startMenuWrapper">
+        <div id="startMenu">
+            <p id="textHeader">Agar.io Clone</p>
+            <input type="text" tabindex="0" autofocus placeholder="Enter your name here" id="playerNameInput" maxlength="25" />
+            <b class="input-error" id="input-error">Nick must be alphanumeric characters only!</b>
+            <br />
+            <button id="startButton">Play</button>
+            <br />
+            <div id="instructions">
+                <h3>Gameplay:</h3>
+                <ul>
+                    <li>Move your mouse on the screen to move your ball.</li>
+                    <li>Eat food and other players in order to grow your ball.</li>
+                    <li>Objective: Try to get the fattest and eat everyone!</li>
+                </ul>
+            </div>
+        </div>
+</div>
+
+
+
+ <script src="js/app.js"></script> 
+ 
+ <script src="js/canvas.js"></script> 
+ <script src="js/connection.js"></script> 
+ <script src="js/ball.js"></script> 
+ <script src="js/player.js"></script> 
+ <script src="js/food.js"></script> 
+ <script src="js/worker.js"></script>
+
+
+</section>
+</body>
+</html>
