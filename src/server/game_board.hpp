@@ -26,10 +26,9 @@
 #include "player.hpp"
 #include "foodItem.hpp"
 #include "ball.hpp"
-//#include "collection_exception.hpp"
+
 
 namespace websocket {
-  
 
     typedef std::deque<Dataframe> message_queue;
 
@@ -134,8 +133,6 @@ namespace websocket {
         static const std::string movementOp_;
         static const std::string nickCheckOp_;
         static const std::string newPlayerStatusOp_;
-
-        std::mutex movMutex_;
     
     };
     
