@@ -123,7 +123,7 @@ function gameOver(foodEaten, ballsEaten, mass) {
     gameStart = false;
     gameDied = true;
     alert("GameOver\n\nFood eaten: " + foodEaten + "\nBalls eaten: " + ballsEaten + "\nMass: " + mass);
-    //document.location.href="/";
+    window.location.reload(false); 
 }
 
 // StartGame handle - doesnt work yet
