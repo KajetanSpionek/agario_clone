@@ -140,7 +140,7 @@ if (window.WebSocket === undefined)
 
             gameBoardY = 2990;
             gameBoardX = 2990;
-
+            playerSet = true;
             player.show();
         }
 
