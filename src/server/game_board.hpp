@@ -21,6 +21,7 @@
 #include <boost/bind.hpp>
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/uniform_int_distribution.hpp>
+#include <mutex>
 #include "dataframe.hpp"
 #include "player.hpp"
 #include "foodItem.hpp"
@@ -133,6 +134,8 @@ namespace websocket {
         static const std::string movementOp_;
         static const std::string nickCheckOp_;
         static const std::string newPlayerStatusOp_;
+
+        std::mutex movMutex_;
     
     };
     
