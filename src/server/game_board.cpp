@@ -232,7 +232,7 @@ namespace websocket {
         elements_container tmp_foods;
         elements_container::iterator it;
 
-        int dummy_iter = 1;
+        int dummy_iter = 10;
         
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
 
