@@ -21,6 +21,8 @@ namespace websocket {
         FoodItem(const FoodItem & other) = default;
         FoodItem & operator=(const FoodItem& other) = default;
 
+        virtual player_ptr getOwner() {return nullptr;} 
+
 	private:
 
 	};

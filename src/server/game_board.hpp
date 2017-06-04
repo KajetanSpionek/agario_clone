@@ -85,6 +85,9 @@ namespace websocket {
         ///on valid nick defines set of methods used to initiate the game
         void addPlayerToGame(const Dataframe& msg,player_ptr source);
  
+        ///sends map dimensions to the new player
+        void sendMapSize(player_ptr source);
+
         //collection of participants
         std::set<player_ptr> participants_;
         
@@ -123,9 +126,6 @@ namespace websocket {
 
         typedef std::map<int,element_ptr > elements_container;
         static elements_container elements_;
-
-        typedef std::map<int,player_ptr > id_to_player;
-        static id_to_player idToPlayer_;
 
         //dataframe headers
         static const std::string messageOp_;

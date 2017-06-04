@@ -19,7 +19,6 @@ namespace websocket {
     GameBoard::elements_container GameBoard::elements_;
     GameBoard::balls_container GameBoard::balls_;
     GameBoard::occupied_pos GameBoard::occupiedPos_;
-    GameBoard::id_to_player GameBoard::idToPlayer_;
 
     const std::string GameBoard::messageOp_ = "message";
     const std::string GameBoard::movementOp_ = "move";
@@ -128,7 +127,11 @@ namespace websocket {
         else if ( rdy_flag == "rdy" )
         {
             std::cout << rdy_flag << " " << nick << std::endl;
-            ////send current game state to new player
+
+            //sends map dimensions
+            sendMapSize(source);
+
+            //send current game state to new player
             sendGameState(source);
 
             //add new ball and participant and send to everyone
@@ -140,13 +143,42 @@ namespace websocket {
 
     }
 
+    void GameBoard::sendMapSize(player_ptr source)
+    {
+        std::string header = "mapSize:";
+
+
+        header = header + " " + boost::lexical_cast<std::string>(mapX_);
+        header = header + " " + boost::lexical_cast<std::string>(mapY_);
+    
+
+        std::cout << header << std::endl;
+
+        Dataframe frm;
+        std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
+
+        source->deliver(frm);
+
+        std::cout << "in delivery " << header << std::endl;
+        
+
+    }
+
     void GameBoard::leave(player_ptr participant)
     {
-        eraseBall(participant);
+        //in case of shutting down browser
+        if ( participants_.count(participant) > 0)
+        {
+            eraseBall(participant);
 
-        participants_.erase(participant);
+            participants_.erase(participant);
 
-        updateParticipants();
+            updateParticipants();
+        }
+        else
+        {
+            //do nothing
+        }
     }
 
     void GameBoard::deliver(const Dataframe& msg, player_ptr source)
@@ -225,7 +257,7 @@ namespace websocket {
         elements_container tmp_foods;
         elements_container::iterator it;
 
-        int dummy_iter = 1;
+        int dummy_iter = 10;
         
         boost::random::mt19937 gen(static_cast<int>(std::time(0)));
 
@@ -361,14 +393,12 @@ namespace websocket {
          std::cout << "map elements_.size():  " << balls_.size() << std::endl;
 
         ((new_ball.first)->second)->setNick(nick);
+        ((new_ball.first)->second)->setOwner(participant);
 
         id = ((new_ball.first)->second)->getId();
 
         elements_.insert(std::make_pair(id,(new_ball.first)->second )) ;       
 
-
-        
-        idToPlayer_.insert( std::make_pair( id, participant ) );
 
         std::cout << "In addNewBall(): " << std::endl;
         std::cout << id << std::endl;occupiedPos_.insert(temp_pos);
@@ -492,7 +522,7 @@ namespace websocket {
         for( i = elements_.begin(); i != elements_.end(); i++)
         {
             id = (i->second)->getId();
-            if ( !(idToPlayer_.count(id) > 0) )
+            if ( !(i->second->getOwner() ) )
             {
                 header_foods = header_foods + " " + boost::lexical_cast<std::string>(id);
                 header_foods = header_foods + " " + boost::lexical_cast<std::string>((i->second)->getX());
@@ -596,7 +626,7 @@ namespace websocket {
                         {
                             if(radius > nradius)
                             {
-                               player_ptr owner = idToPlayer_.at(i.first);
+                               player_ptr owner = i.second->getOwner();
                                eraseBall(owner);
                                ball_source->setRadius(radius + nradius);
                                ball_source->incBall();
