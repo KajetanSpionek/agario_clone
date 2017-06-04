@@ -41,12 +41,11 @@ if (window.WebSocket === undefined)
         // Button click detection
         btn.onclick = function () { 
             if (isNickValid()) {
-                document.getElementById('input-error-characters').style.opacity = 0;
-                document.getElementById('input-error-taken').style.opacity = 0;
+                document.getElementById('input-error').style.opacity = 0;
                 sendPlayerName();
             } else {
-                document.getElementById('input-error-taken').style.opacity = 0;
-                document.getElementById('input-error-characters').style.opacity = 1;
+                document.getElementById('input-error').innerHTML = "Nick must be alphanumeric characters only!";
+                document.getElementById('input-error').style.opacity = 1;
             }
         };
     }
@@ -219,8 +218,8 @@ if (window.WebSocket === undefined)
                 startGame();
             }
             else if (message == "TAKEN") {
-                document.getElementById('input-error-characters').style.opacity = 0;
-                document.getElementById('input-error-taken').style.opacity = 1;
+                document.getElementById('input-error').innerHTML = "Nick already taken!";
+                document.getElementById('input-error').style.opacity = 1;
             }
         }  
 
