@@ -58,7 +58,8 @@ if (window.WebSocket === undefined)
     function onClose(evt) {
         //state.className = "fail";
         //state.innerHTML = "Not connected";
-        //connected.innerHTML = "0";        
+        //connected.innerHTML = "0"; 
+        gameStart = false;       
     }
   
 

@@ -68,6 +68,7 @@ function isNickValid() {
 function onError(evt) { 
     state.className = "fail";
     state.innerHTML = "Communication error";
+    gameStart = false; 
 }  
 
 // Mouse handle
