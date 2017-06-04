@@ -131,7 +131,7 @@ namespace websocket {
             std::cout << rdy_flag << " " << nick << std::endl;
 
             //sends map dimensions
-            //sendMapSize(source);
+            sendMapSize(source);
 
             //send current game state to new player
             sendGameState(source);
@@ -150,8 +150,8 @@ namespace websocket {
         std::string header = "mapSize:";
 
 
-        //header = header + " " + boost::lexical_cast<std::string>(getMapX());
-        //header = header + " " + boost::lexical_cast<std::string>(getMapY());
+        header = header + " " + boost::lexical_cast<std::string>(getMapX());
+        header = header + " " + boost::lexical_cast<std::string>(getMapY());
     
 
         std::cout << header << std::endl;
@@ -335,6 +335,7 @@ namespace websocket {
     
     void GameBoard::eraseFood(int id)
     {
+        std::cout << "eraseFood" << std::endl;
         element_ptr food;
         food = elements_.at(id);
         std::cout << "deleting food" << std::endl;
