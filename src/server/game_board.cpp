@@ -127,7 +127,11 @@ namespace websocket {
         else if ( rdy_flag == "rdy" )
         {
             std::cout << rdy_flag << " " << nick << std::endl;
-            ////send current game state to new player
+
+            //sends map dimensions
+            sendMapSize(source);
+
+            //send current game state to new player
             sendGameState(source);
 
             //add new ball and participant and send to everyone
@@ -136,6 +140,27 @@ namespace websocket {
             //add N new food and send to everyone
             addNFoodItem(newPlayerFood_);
         }
+
+    }
+
+    void GameBoard::sendMapSize(player_ptr source)
+    {
+        std::string header = "mapSize:";
+
+
+        header = header + " " + boost::lexical_cast<std::string>(mapX_);
+        header = header + " " + boost::lexical_cast<std::string>(mapY_);
+    
+
+        std::cout << header << std::endl;
+
+        Dataframe frm;
+        std::copy(header.begin(), header.end(), std::back_inserter(frm.payload));
+
+        source->deliver(frm);
+
+        std::cout << "in delivery " << header << std::endl;
+        
 
     }
 
