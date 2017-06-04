@@ -102,7 +102,7 @@ function update() {
         // Draws objects on map (player, balls and food)
         reDrawCanvas();
         // Send current mouse position to server
-        sendPos();  
+        sendPos();   
     }
 }
 
@@ -124,8 +124,9 @@ function calculateFixedPos() {
 function gameOver(foodEaten, ballsEaten, mass) {
     gameStart = false;
     gameDied = true;
-    alert("GameOver\n\nFood eaten: " + foodEaten + "\nBalls eaten: " + ballsEaten + "\nMass: " + mass);
-    window.location.reload(false); 
+    //alert("GameOver\n\nFood eaten: " + foodEaten + "\nBalls eaten: " + ballsEaten + "\nMass: " + mass);
+    //window.location.reload(false); 
+    deathScreen();
 }
 
 // StartGame handle - doesnt work yet
@@ -134,7 +135,6 @@ function startGame() {
     document.getElementById('startMenu').style.opacity = 0;
     document.getElementById('startMenuWrapper').style.maxHeight = '0px';
     document.getElementById('gameArea').style.opacity = 1;
-    document.getElementById('scoresWindow').style.opacity = 1;
     
     gameStart = true;
     gameDied = false;
@@ -146,6 +146,12 @@ function resizeCanvas() {
     canvas.height = window.innerHeight;
     deltaX = player.x_ - canvas.width/2;
     deltaY = player.y_ - canvas.height/2;
+
+    if (gameDied == true) {
+        reDrawGrid();
+        reDrawCanvas();
+        deathScreen();
+    }
 }
 
 // Debug console
@@ -154,4 +160,5 @@ var consoleDisplay = function(args) {
         console.log(args);
     }
 };
+
 

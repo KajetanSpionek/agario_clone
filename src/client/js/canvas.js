@@ -102,3 +102,12 @@ function reDrawCanvas() {
     if (playerSet == 1) player.show();
 }
 
+function deathScreen() {
+
+    context.fillStyle = 'rgba(31, 31, 31, 0.8)';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.textAlign = 'center';
+    context.fillStyle = '#FFFFFF';
+    context.font = 'bold 50px sans-serif';
+    context.fillText('You got eaten', canvas.width / 2, canvas.height / 2);
+}
