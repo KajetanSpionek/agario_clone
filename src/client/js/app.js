@@ -147,6 +147,12 @@ function resizeCanvas() {
     canvas.height = window.innerHeight;
     deltaX = player.x_ - canvas.width/2;
     deltaY = player.y_ - canvas.height/2;
+
+    if (gameDied == true) {
+        reDrawGrid();
+        reDrawCanvas();
+        deathScreen();
+    }
 }
 
 // Debug console
