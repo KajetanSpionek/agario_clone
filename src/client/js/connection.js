@@ -88,6 +88,7 @@ if (window.WebSocket === undefined)
         
         // New ball frame - ID, x, y, r, color
         else if (message.startsWith("newBall:")) {
+            console.log(message);
             message = message.slice("newBall:,".length);
             message = message.split(" ");
            
