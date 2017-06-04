@@ -139,8 +139,8 @@ if (window.WebSocket === undefined)
             deltaX = player.x_ - canvas.width/2;
             deltaY = player.y_ - canvas.height/2;
 
-            gameBoardY = 2990;
-            gameBoardX = 2990;
+            gameBoardY = 10000;
+            gameBoardX = 10000;
             playerSet = true;
             player.show();
         }
@@ -229,8 +229,11 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("mapSize")) {
             message = message.slice("mapSize:".length);
             message = message.split(" ");
-            gameBoardX = parseInt(message[0]);
-            gameBOardY = parseInt(message[1]);
+            gameBoardX = parseInt(message[1]);
+            gameBoardY = parseInt(message[2]);
+            console.log(gameBoardX);
+            console.log(gameBoardY);
+            startWorker();
         }  
     }
 

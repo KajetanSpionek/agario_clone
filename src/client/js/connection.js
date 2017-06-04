@@ -229,8 +229,8 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("mapSize")) {
             message = message.slice("mapSize:".length);
             message = message.split(" ");
-            gameBoardX = parseInt(message[0]);
-            gameBOardY = parseInt(message[1]);
+            gameBoardX = parseInt(message[1]);
+            gameBoardY = parseInt(message[2]);
         }  
     }
 

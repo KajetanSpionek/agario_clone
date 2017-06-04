@@ -139,8 +139,10 @@ function startGame() {
     
     gameStart = true;
     gameDied = false;
+    console.log(gameBoardX);
+    console.log(gameBoardY);
 
-   startWorker();
+   //startWorker();
 }
 
 // Resize canvas handle
@@ -164,7 +166,7 @@ function startWorker() {
    // First check whether Web Workers are supported
    if (typeof(Worker)!=="undefined"){
       // Check whether Web Worker has been created. If not, create a new Web Worker based on the Javascript file simple-timer.js
-     
+        
          worker = new Worker("js/worker.js"); 
          worker.postMessage('startBot');
 
@@ -172,9 +174,10 @@ function startWorker() {
 
             var x = Math.random() / 2 - 0.25;
             var y = Math.random() / 2 - 0.25;
+            console.log(gameBoardX);
+            console.log(gameBoardY);
             var message = "move:";
-            //console.log(player.dx_ );
-       
+
             if (gameStart == true && gameDied == false && playerSet == true) {
                     if ( (player.dx_ + x <= 1) && (player.dy_ + y <= 1) && (player.dx_ + x >= -1) && (player.dy_ + y >= -1) ) 
 
@@ -191,7 +194,6 @@ function startWorker() {
                         }
 
                         else {
-                            //console.log(player.x_ + x);
                             player.dx_ += x;
                             player.dy_ += y;
                             message += player.dx_;

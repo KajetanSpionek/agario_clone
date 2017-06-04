@@ -104,8 +104,8 @@ if (window.WebSocket === undefined)
             message = message.slice("gameStateBall:,".length);
             message = message.split(" ");
 
-            if (message.length > 4 ) {
-              for( i = 0; i < message.length; i+=5){
+            if (message.length > 5 ) {
+              for( i = 0; i < message.length; i+=6){
                   if (balls.indexOf(message[i]) == -1) { //bugged?
                       var len = balls.length;
                       balls[len] = new Ball(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]),parseInt(message[i+3]),message[i+4],message[i+5]);
@@ -229,8 +229,8 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("mapSize")) {
             message = message.slice("mapSize:".length);
             message = message.split(" ");
-            gameBoardX = parseInt(message[0]);
-            gameBOardY = parseInt(message[1]);
+            gameBoardX = parseInt(message[1]);
+            gameBoardY = parseInt(message[2]);
         }  
     }
 
