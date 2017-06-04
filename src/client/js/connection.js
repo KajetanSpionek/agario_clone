@@ -34,7 +34,6 @@ if (window.WebSocket === undefined)
         websocket.onerror = function(evt) { onError(evt) };
 
         var btn = document.getElementById('startButton');
-        var nickErrorText = document.querySelector('#startMenu .input-error');
 
         document.getElementById('gameArea').style.opacity = 0;
         document.getElementById('startMenu').style.opacity = 1;
@@ -42,10 +41,12 @@ if (window.WebSocket === undefined)
         // Button click detection
         btn.onclick = function () { 
             if (isNickValid()) {
-                nickErrorText.style.opacity = 0;  
+                document.getElementById('input-error-characters').style.opacity = 0;
+                document.getElementById('input-error-taken').style.opacity = 0;
                 sendPlayerName();
             } else {
-                nickErrorText.style.opacity = 1;
+                document.getElementById('input-error-taken').style.opacity = 0;
+                document.getElementById('input-error-characters').style.opacity = 1;
             }
         };
     }
@@ -216,6 +217,10 @@ if (window.WebSocket === undefined)
             if (message == "OK") {
                 sendPlayerStatus(1);
                 startGame();
+            }
+            else if (message == "TAKEN") {
+                document.getElementById('input-error-characters').style.opacity = 0;
+                document.getElementById('input-error-taken').style.opacity = 1;
             }
         }  
 

@@ -122,7 +122,8 @@ function calculateFixedPos() {
 function gameOver(foodEaten, ballsEaten, mass) {
     gameStart = false;
     gameDied = true;
-    alert("GameOver\nFood eaten:" + foodEaten + "\nBalls eaten:" + ballsEaten + "\nMass:" + mass);
+    alert("GameOver\n\nFood eaten: " + foodEaten + "\nBalls eaten: " + ballsEaten + "\nMass: " + mass);
+    //document.location.href="/";
 }
 
 // StartGame handle - doesnt work yet
@@ -150,5 +151,4 @@ var consoleDisplay = function(args) {
         console.log(args);
     }
 };
-
 
