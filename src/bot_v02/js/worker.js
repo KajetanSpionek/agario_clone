@@ -2,7 +2,7 @@ self.addEventListener('message', function(evt) {
 
 if (evt.data == "startBot") {
 
-        var timer = setInterval(tick, 1000/60);
+        var timer = setInterval(tick, 50);
         evt.data = "rip";
 }
 

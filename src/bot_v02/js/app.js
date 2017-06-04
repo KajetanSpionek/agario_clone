@@ -167,21 +167,42 @@ function startWorker() {
      
          worker = new Worker("js/worker.js"); 
          worker.postMessage('startBot');
-         console.log("4");
 
          worker.addEventListener('message', function(evt) {
 
-            var x = Math.random() * 2 - 1;
-            var y = Math.random() * 2 - 1;
+            var x = Math.random() / 2 - 0.25;
+            var y = Math.random() / 2 - 0.25;
             var message = "move:";
-            message += x;
-            message += ",";
-            message += y;
-            //console.log("tick");
-            if (gameStart == true && gameDied == false) websocket.send(message);
+            //console.log(player.dx_ );
+       
+            if (gameStart == true && gameDied == false && playerSet == true) {
+                    if ( (player.dx_ + x <= 1) && (player.dy_ + y <= 1) && (player.dx_ + x >= -1) && (player.dy_ + y >= -1) ) 
+
+                        if (player.x_ > gameBoardX-10 || player.x_ < 10 || player.y_ > gameBoardY-10 || player.y_ < 10) {
+
+                            if (player.x_ > gameBoardX-10 || player.x_ < 10) player.dx_ = -player.dx_;
+                            if (player.y_ > gameBoardY-10 || player.y_ < 10) player.dy_ = -player.dy_;
+
+                            message += player.dx_;
+                            message += ",";
+                            message += player.dy_;
+                            websocket.send(message);
+
+                        }
+
+                        else {
+                            //console.log(player.x_ + x);
+                            player.dx_ += x;
+                            player.dy_ += y;
+                            message += player.dx_;
+                            message += ",";
+                            message += player.dy_;
+                            websocket.send(message);
+                        }
+                }
+
         });
       
    }
 }
-
 
