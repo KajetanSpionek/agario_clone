@@ -200,10 +200,10 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("endOfGame:")) {
             message = message.slice("endOfGame:,".length);
             message = message.split(" "); 
-            var foodEaten = parseInt(message[0]);
-            var ballsEaten = parseInt(message[1]);
-            var mass = parseInt(message[2]);         
-            gameOver(foodEaten, ballsEaten, mass);
+            deathStats[0] = parseInt(message[0]);
+            deathStats[1] = parseInt(message[1]);
+            deathStats[2] = parseInt(message[2]);         
+            gameOver();
         }  
 
         // New player nick validation gram
@@ -251,11 +251,10 @@ function sendPlayerName() {
     var message = "newPlayerName:";
     message += document.getElementById('playerNameInput').value;
     websocket.send(message);
-    consoleDisplay  (message);
 }
 
 // Player status frame (handshake)
- function sendPlayerStatus(state) {
+function sendPlayerStatus(state) {
 
     var message = "newPlayerStatus:";
 
@@ -266,6 +265,4 @@ function sendPlayerName() {
     message += document.getElementById('playerNameInput').value;
 
     websocket.send(message);
-    consoleDisplay  (message);
-
-    }
+}

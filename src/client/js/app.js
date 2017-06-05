@@ -39,6 +39,7 @@ var deltaY;
 var gameStart = false;
 var gameDied = false;
 var playerSet = false;
+var deathStats = [0, 0, 0];
 
 // Resize handle
 window.addEventListener('resize', resizeCanvas, false); 
@@ -121,7 +122,7 @@ function calculateFixedPos() {
 }
 
 // GameOver handle
-function gameOver(foodEaten, ballsEaten, mass) {
+function gameOver() {
     gameStart = false;
     gameDied = true;
     deathScreen();
@@ -133,7 +134,6 @@ function startGame() {
     document.getElementById('startMenu').style.opacity = 0;
     document.getElementById('startMenuWrapper').style.maxHeight = '0px';
     document.getElementById('gameArea').style.opacity = 1;
-    //document.getElementById('bg-image').style.display = "hidden";
     
     gameStart = true;
     gameDied = false;
@@ -153,11 +153,5 @@ function resizeCanvas() {
     }
 }
 
-// Debug console
-var consoleDisplay = function(args) {
-    if (console && console.log) {
-        console.log(args);
-    }
-};
 
 
