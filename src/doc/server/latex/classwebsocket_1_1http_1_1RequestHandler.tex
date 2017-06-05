@@ -1,0 +1,79 @@
+\hypertarget{classwebsocket_1_1http_1_1RequestHandler}{}\section{websocket\+:\+:http\+:\+:Request\+Handler Class Reference}
+\label{classwebsocket_1_1http_1_1RequestHandler}\index{websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}}
+
+
+{\ttfamily \#include $<$request\+\_\+handler.\+hpp$>$}
+
+
+
+Inheritance diagram for websocket\+:\+:http\+:\+:Request\+Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classwebsocket_1_1http_1_1RequestHandler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for websocket\+:\+:http\+:\+:Request\+Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classwebsocket_1_1http_1_1RequestHandler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classwebsocket_1_1http_1_1RequestHandler_aca773bf228502c35351326f4b0dc67a9}{handle\+Request} (const \hyperlink{structwebsocket_1_1http_1_1Request}{Request} \&req, \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply} \&rep)
+\begin{DoxyCompactList}\small\item\em Handle a request and produce a \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::vector$<$ unsigned char $>$ \hyperlink{classwebsocket_1_1http_1_1RequestHandler_ab4c224809abbc4c70a4ee72a7d94639a}{to\+Sha1} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Encode data using the S\+H\+A1 algorithm. \end{DoxyCompactList}\item 
+static std\+::string \hyperlink{classwebsocket_1_1http_1_1RequestHandler_ac685b82b354edc818177ad83574def0d}{to\+Base64} (const std\+::vector$<$ unsigned char $>$ \&data)
+\begin{DoxyCompactList}\small\item\em Encode data using the Base64 algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}!handle\+Request@{handle\+Request}}
+\index{handle\+Request@{handle\+Request}!websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}}
+\subsubsection[{\texorpdfstring{handle\+Request(const Request \&req, Reply \&rep)}{handleRequest(const Request &req, Reply &rep)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::http\+::\+Request\+Handler\+::handle\+Request (
+\begin{DoxyParamCaption}
+\item[{const {\bf Request} \&}]{req, }
+\item[{{\bf Reply} \&}]{rep}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classwebsocket_1_1http_1_1RequestHandler_aca773bf228502c35351326f4b0dc67a9}{}\label{classwebsocket_1_1http_1_1RequestHandler_aca773bf228502c35351326f4b0dc67a9}
+
+
+Handle a request and produce a \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}. 
+
+\index{websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}!to\+Base64@{to\+Base64}}
+\index{to\+Base64@{to\+Base64}!websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}}
+\subsubsection[{\texorpdfstring{to\+Base64(const std\+::vector$<$ unsigned char $>$ \&data)}{toBase64(const std::vector< unsigned char > &data)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string websocket\+::http\+::\+Request\+Handler\+::to\+Base64 (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ unsigned char $>$ \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1http_1_1RequestHandler_ac685b82b354edc818177ad83574def0d}{}\label{classwebsocket_1_1http_1_1RequestHandler_ac685b82b354edc818177ad83574def0d}
+
+
+Encode data using the Base64 algorithm. 
+
+\index{websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}!to\+Sha1@{to\+Sha1}}
+\index{to\+Sha1@{to\+Sha1}!websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}}
+\subsubsection[{\texorpdfstring{to\+Sha1(const std\+::string \&s)}{toSha1(const std::string &s)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ unsigned char $>$ websocket\+::http\+::\+Request\+Handler\+::to\+Sha1 (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1http_1_1RequestHandler_ab4c224809abbc4c70a4ee72a7d94639a}{}\label{classwebsocket_1_1http_1_1RequestHandler_ab4c224809abbc4c70a4ee72a7d94639a}
+
+
+Encode data using the S\+H\+A1 algorithm. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{request__handler_8hpp}{request\+\_\+handler.\+hpp}\item 
+\hyperlink{request__handler_8cpp}{request\+\_\+handler.\+cpp}\end{DoxyCompactItemize}

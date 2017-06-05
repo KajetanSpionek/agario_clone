@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['gameboard',['GameBoard',['../classwebsocket_1_1GameBoard.html#a8093c83a31dd38e3edf1bc07de4b060a',1,'websocket::GameBoard']]],
+  ['getball',['getBall',['../classwebsocket_1_1GameBoard.html#ac9ebf0c8fc6a76a60fcc83d60719b161',1,'websocket::GameBoard']]],
+  ['getballnum',['getBallNum',['../classwebsocket_1_1Ball.html#a411b524d3d20241529f6dcf3ccd2da43',1,'websocket::Ball']]],
+  ['getbits',['getBits',['../classwebsocket_1_1DataframeParser.html#af034682aa527e1d3d1e0b3da31b6c7d3',1,'websocket::DataframeParser']]],
+  ['getcolor',['getColor',['../classwebsocket_1_1Ball.html#a2453ccebc702add2a847e812b3a1bc42',1,'websocket::Ball']]],
+  ['getfood',['getFood',['../classwebsocket_1_1GameBoard.html#a3a0cacc2c9a90a5752a8b29ea243c9af',1,'websocket::GameBoard']]],
+  ['getfoodnum',['getFoodNum',['../classwebsocket_1_1Ball.html#a060bc9bd4aa8b138ee0d396a2c496d0c',1,'websocket::Ball']]],
+  ['getid',['getId',['../classwebsocket_1_1Element.html#adb9892f7b44913049e0c771816efd7a4',1,'websocket::Element::getId()'],['../classwebsocket_1_1Player.html#a440338aee24d324c46115bc7b4c7a463',1,'websocket::Player::getId()'],['../classwebsocket_1_1Session.html#a1da5647ac33cae9b350b586a25297323',1,'websocket::Session::getId()']]],
+  ['getmapx',['getMapX',['../classwebsocket_1_1GameBoard.html#a3e8a7dec314f570a1d8cf92d4a711bd5',1,'websocket::GameBoard']]],
+  ['getmapy',['getMapY',['../classwebsocket_1_1GameBoard.html#a4f2dd5ab46f74a995388687dd6a5f440',1,'websocket::GameBoard']]],
+  ['getnick',['getNick',['../classwebsocket_1_1Ball.html#a6dc2ee8009c03f1fa8913a316660e95f',1,'websocket::Ball']]],
+  ['getowner',['getOwner',['../classwebsocket_1_1Ball.html#a7c418a9c85d74e6644d9ffa294c8df74',1,'websocket::Ball::getOwner()'],['../classwebsocket_1_1Element.html#a28027c861e94306a7666d839db910f2a',1,'websocket::Element::getOwner()'],['../classwebsocket_1_1FoodItem.html#a4c39197cbbe8563fe94c4fd886a897e0',1,'websocket::FoodItem::getOwner()']]],
+  ['getradius',['getRadius',['../classwebsocket_1_1Element.html#a895b218f0ec4d2d4e2164c2531a8ffe3',1,'websocket::Element']]],
+  ['getrandcolor',['getRandColor',['../classwebsocket_1_1Ball.html#a5de123006e71d2f604175e20e610cc86',1,'websocket::Ball']]],
+  ['getx',['getX',['../classwebsocket_1_1Element.html#a6102d0b4ccbad0194ee393fa5341cabc',1,'websocket::Element']]],
+  ['gety',['getY',['../classwebsocket_1_1Element.html#a597f360c2c593a6610a2a9103d5e876b',1,'websocket::Element']]]
+];

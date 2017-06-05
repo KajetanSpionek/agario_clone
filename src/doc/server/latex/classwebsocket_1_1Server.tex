@@ -1,0 +1,166 @@
+\hypertarget{classwebsocket_1_1Server}{}\section{websocket\+:\+:Server Class Reference}
+\label{classwebsocket_1_1Server}\index{websocket\+::\+Server@{websocket\+::\+Server}}
+
+
+{\ttfamily \#include $<$server.\+hpp$>$}
+
+
+
+Inheritance diagram for websocket\+:\+:Server\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{classwebsocket_1_1Server__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for websocket\+:\+:Server\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classwebsocket_1_1Server__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classwebsocket_1_1Server_a5a619eb7cc286a2288794f0488441a43}{Server} (const std\+::string \&address, const std\+::string \&port)
+\item 
+void \hyperlink{classwebsocket_1_1Server_afbc99df156a68d67b6a8ecc82e0b7a57}{run} ()
+\begin{DoxyCompactList}\small\item\em Run the \hyperlink{classwebsocket_1_1Server}{Server}\textquotesingle{}s io\+\_\+service loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classwebsocket_1_1Server_a01514c0f01fc493222b2d8b877dee540}{start\+\_\+accept} ()
+\begin{DoxyCompactList}\small\item\em Initiate an asynchronous accept operation. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1Server_a3c14a674a090698e82fc59db5df4b3c4}{handle\+\_\+accept} (const boost\+::system\+::error\+\_\+code \&e)
+\begin{DoxyCompactList}\small\item\em Handle completion of an asynchronous accept operation. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1Server_a4abf8e0742d15023f0ac95ced8aee07a}{handle\+\_\+stop} ()
+\begin{DoxyCompactList}\small\item\em Handle a Request to stop the \hyperlink{classwebsocket_1_1Server}{Server}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+boost\+::asio\+::io\+\_\+service \hyperlink{classwebsocket_1_1Server_ab3dc5f36bb4b0913c803915d3191a771}{io\+\_\+service\+\_\+}
+\begin{DoxyCompactList}\small\item\em The io\+\_\+service used to perform asynchronous operations. \end{DoxyCompactList}\item 
+boost\+::asio\+::signal\+\_\+set \hyperlink{classwebsocket_1_1Server_a85a9160e9b9f070a4bf8e149623a5a6d}{signals\+\_\+}
+\begin{DoxyCompactList}\small\item\em The signal\+\_\+set is used to register for process termination notifications. \end{DoxyCompactList}\item 
+boost\+::asio\+::ip\+::tcp\+::acceptor \hyperlink{classwebsocket_1_1Server_a377152422807e2f13cc1c6bb18fb416f}{acceptor\+\_\+}
+\begin{DoxyCompactList}\small\item\em Acceptor used to listen for incoming connections. \end{DoxyCompactList}\item 
+\hyperlink{namespacewebsocket_a12d8500a66e77dc9bfbff046b86714d8}{session\+\_\+ptr} \hyperlink{classwebsocket_1_1Server_a86916b413a3577cb17aed4cda031691e}{new\+\_\+session\+\_\+}
+\begin{DoxyCompactList}\small\item\em The next connection to be accepted. \end{DoxyCompactList}\item 
+\hyperlink{classwebsocket_1_1http_1_1RequestHandler}{http\+::\+Request\+Handler} \hyperlink{classwebsocket_1_1Server_abee763cfdb56554f90a98ed4b2fc2600}{request\+\_\+handler\+\_\+}
+\begin{DoxyCompactList}\small\item\em The handler for all incoming requests. \end{DoxyCompactList}\item 
+\hyperlink{classwebsocket_1_1GameBoard}{Game\+Board} \hyperlink{classwebsocket_1_1Server_a412c87233cbe63db77ba955f413c5ef0}{game\+Board\+\_\+}
+\begin{DoxyCompactList}\small\item\em The chat game\+\_\+board. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{websocket\+::\+Server@{websocket\+::\+Server}!Server@{Server}}
+\index{Server@{Server}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{Server(const std\+::string \&address, const std\+::string \&port)}{Server(const std::string &address, const std::string &port)}}]{\setlength{\rightskip}{0pt plus 5cm}websocket\+::\+Server\+::\+Server (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{address, }
+\item[{const std\+::string \&}]{port}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classwebsocket_1_1Server_a5a619eb7cc286a2288794f0488441a43}{}\label{classwebsocket_1_1Server_a5a619eb7cc286a2288794f0488441a43}
+Construct the \hyperlink{classwebsocket_1_1Server}{Server} to listen on the specified T\+CP address and port, and serve up files from the given directory. 
+
+\subsection{Member Function Documentation}
+\index{websocket\+::\+Server@{websocket\+::\+Server}!handle\+\_\+accept@{handle\+\_\+accept}}
+\index{handle\+\_\+accept@{handle\+\_\+accept}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{handle\+\_\+accept(const boost\+::system\+::error\+\_\+code \&e)}{handle_accept(const boost::system::error_code &e)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Server\+::handle\+\_\+accept (
+\begin{DoxyParamCaption}
+\item[{const boost\+::system\+::error\+\_\+code \&}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Server_a3c14a674a090698e82fc59db5df4b3c4}{}\label{classwebsocket_1_1Server_a3c14a674a090698e82fc59db5df4b3c4}
+
+
+Handle completion of an asynchronous accept operation. 
+
+\index{websocket\+::\+Server@{websocket\+::\+Server}!handle\+\_\+stop@{handle\+\_\+stop}}
+\index{handle\+\_\+stop@{handle\+\_\+stop}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{handle\+\_\+stop()}{handle_stop()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Server\+::handle\+\_\+stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Server_a4abf8e0742d15023f0ac95ced8aee07a}{}\label{classwebsocket_1_1Server_a4abf8e0742d15023f0ac95ced8aee07a}
+
+
+Handle a Request to stop the \hyperlink{classwebsocket_1_1Server}{Server}. 
+
+\index{websocket\+::\+Server@{websocket\+::\+Server}!run@{run}}
+\index{run@{run}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{run()}{run()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Server\+::run (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwebsocket_1_1Server_afbc99df156a68d67b6a8ecc82e0b7a57}{}\label{classwebsocket_1_1Server_afbc99df156a68d67b6a8ecc82e0b7a57}
+
+
+Run the \hyperlink{classwebsocket_1_1Server}{Server}\textquotesingle{}s io\+\_\+service loop. 
+
+\index{websocket\+::\+Server@{websocket\+::\+Server}!start\+\_\+accept@{start\+\_\+accept}}
+\index{start\+\_\+accept@{start\+\_\+accept}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{start\+\_\+accept()}{start_accept()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Server\+::start\+\_\+accept (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Server_a01514c0f01fc493222b2d8b877dee540}{}\label{classwebsocket_1_1Server_a01514c0f01fc493222b2d8b877dee540}
+
+
+Initiate an asynchronous accept operation. 
+
+
+
+\subsection{Member Data Documentation}
+\index{websocket\+::\+Server@{websocket\+::\+Server}!acceptor\+\_\+@{acceptor\+\_\+}}
+\index{acceptor\+\_\+@{acceptor\+\_\+}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{acceptor\+\_\+}{acceptor_}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::asio\+::ip\+::tcp\+::acceptor websocket\+::\+Server\+::acceptor\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Server_a377152422807e2f13cc1c6bb18fb416f}{}\label{classwebsocket_1_1Server_a377152422807e2f13cc1c6bb18fb416f}
+
+
+Acceptor used to listen for incoming connections. 
+
+\index{websocket\+::\+Server@{websocket\+::\+Server}!game\+Board\+\_\+@{game\+Board\+\_\+}}
+\index{game\+Board\+\_\+@{game\+Board\+\_\+}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{game\+Board\+\_\+}{gameBoard_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\+Board} websocket\+::\+Server\+::game\+Board\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Server_a412c87233cbe63db77ba955f413c5ef0}{}\label{classwebsocket_1_1Server_a412c87233cbe63db77ba955f413c5ef0}
+
+
+The chat game\+\_\+board. 
+
+\index{websocket\+::\+Server@{websocket\+::\+Server}!io\+\_\+service\+\_\+@{io\+\_\+service\+\_\+}}
+\index{io\+\_\+service\+\_\+@{io\+\_\+service\+\_\+}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{io\+\_\+service\+\_\+}{io_service_}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::asio\+::io\+\_\+service websocket\+::\+Server\+::io\+\_\+service\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Server_ab3dc5f36bb4b0913c803915d3191a771}{}\label{classwebsocket_1_1Server_ab3dc5f36bb4b0913c803915d3191a771}
+
+
+The io\+\_\+service used to perform asynchronous operations. 
+
+\index{websocket\+::\+Server@{websocket\+::\+Server}!new\+\_\+session\+\_\+@{new\+\_\+session\+\_\+}}
+\index{new\+\_\+session\+\_\+@{new\+\_\+session\+\_\+}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{new\+\_\+session\+\_\+}{new_session_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf session\+\_\+ptr} websocket\+::\+Server\+::new\+\_\+session\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Server_a86916b413a3577cb17aed4cda031691e}{}\label{classwebsocket_1_1Server_a86916b413a3577cb17aed4cda031691e}
+
+
+The next connection to be accepted. 
+
+\index{websocket\+::\+Server@{websocket\+::\+Server}!request\+\_\+handler\+\_\+@{request\+\_\+handler\+\_\+}}
+\index{request\+\_\+handler\+\_\+@{request\+\_\+handler\+\_\+}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{request\+\_\+handler\+\_\+}{request_handler_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf http\+::\+Request\+Handler} websocket\+::\+Server\+::request\+\_\+handler\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Server_abee763cfdb56554f90a98ed4b2fc2600}{}\label{classwebsocket_1_1Server_abee763cfdb56554f90a98ed4b2fc2600}
+
+
+The handler for all incoming requests. 
+
+\index{websocket\+::\+Server@{websocket\+::\+Server}!signals\+\_\+@{signals\+\_\+}}
+\index{signals\+\_\+@{signals\+\_\+}!websocket\+::\+Server@{websocket\+::\+Server}}
+\subsubsection[{\texorpdfstring{signals\+\_\+}{signals_}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::asio\+::signal\+\_\+set websocket\+::\+Server\+::signals\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Server_a85a9160e9b9f070a4bf8e149623a5a6d}{}\label{classwebsocket_1_1Server_a85a9160e9b9f070a4bf8e149623a5a6d}
+
+
+The signal\+\_\+set is used to register for process termination notifications. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{server_8hpp}{server.\+hpp}\item 
+\hyperlink{server_8cpp}{server.\+cpp}\end{DoxyCompactItemize}

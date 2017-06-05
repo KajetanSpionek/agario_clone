@@ -1,0 +1,433 @@
+\hypertarget{classwebsocket_1_1GameBoard}{}\section{websocket\+:\+:Game\+Board Class Reference}
+\label{classwebsocket_1_1GameBoard}\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+
+
+{\ttfamily \#include $<$game\+\_\+board.\+hpp$>$}
+
+
+
+Inheritance diagram for websocket\+:\+:Game\+Board\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{classwebsocket_1_1GameBoard__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for websocket\+:\+:Game\+Board\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{classwebsocket_1_1GameBoard__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classwebsocket_1_1GameBoard_a8093c83a31dd38e3edf1bc07de4b060a}{Game\+Board} ()
+\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a3ca61a3da72869402a6e1702a99faa76}{join} (\hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} participant)
+\begin{DoxyCompactList}\small\item\em Join the game\+\_\+board. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a2f3f0eb3fb2fbe6303426c1bc8d3fff7}{leave} (\hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} participant)
+\begin{DoxyCompactList}\small\item\em Leave the game\+\_\+board. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a0ed4b13ba573956d8aebaf8f5c208fa0}{deliver} (const \hyperlink{structwebsocket_1_1Dataframe}{Dataframe} \&msg, \hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} source)
+\begin{DoxyCompactList}\small\item\em Deliver a chat message to all participant in the game\+\_\+board. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classwebsocket_1_1GameBoard_a3e8a7dec314f570a1d8cf92d4a711bd5}{get\+MapX} ()
+\begin{DoxyCompactList}\small\item\em return map dimentions \end{DoxyCompactList}\item 
+static int \hyperlink{classwebsocket_1_1GameBoard_a4f2dd5ab46f74a995388687dd6a5f440}{get\+MapY} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \hyperlink{classwebsocket_1_1GameBoard_a84b7265b5db0109546eeadc332b10254a1a669a5c5c208eebeb228bd6cbe3611b}{max\+\_\+recent\+\_\+msgs} = 1000
+ \}
+\item 
+typedef std\+::set$<$ std\+::pair$<$ int, int $>$ $>$ \hyperlink{classwebsocket_1_1GameBoard_ab68a03a083cfa75e7d5b21fe0c13eda3}{occupied\+\_\+pos}
+\item 
+typedef std\+::map$<$ \hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr}, \hyperlink{namespacewebsocket_aae1d9cf317a0fb0b83bdfc2f92df77c7}{ball\+\_\+ptr} $>$ \hyperlink{classwebsocket_1_1GameBoard_a49ec88dacda0efb3448649503967e07d}{balls\+\_\+container}
+\item 
+typedef std\+::map$<$ int, \hyperlink{namespacewebsocket_a1f36ba91b301b228fa9e9f812883050c}{element\+\_\+ptr} $>$ \hyperlink{classwebsocket_1_1GameBoard_a6340e99ab84e0fc9ee504f5874073c0c}{elements\+\_\+container}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a66d8b6bfa24c4902896acff4e49f3dc5}{deliver} (const \hyperlink{structwebsocket_1_1Dataframe}{Dataframe} \&msg)
+\begin{DoxyCompactList}\small\item\em Deliver a message to all participant in the game\+\_\+board. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a9d97f5e5069d0501ea37cb819d481dd0}{update\+Participants} ()
+\begin{DoxyCompactList}\small\item\em Update a number of connected participants. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a4bcaa4bcf0a260efa6baffec4e72990e}{add\+N\+Food\+Item} (int n)
+\begin{DoxyCompactList}\small\item\em Methods of game logic. \end{DoxyCompactList}\item 
+\hyperlink{namespacewebsocket_a198017789b8c5fa32315a12d5ce97869}{food\+\_\+ptr} \hyperlink{classwebsocket_1_1GameBoard_a3a0cacc2c9a90a5752a8b29ea243c9af}{get\+Food} (double \&x, double \&y)
+\begin{DoxyCompactList}\small\item\em create new food\+Item \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a9bf63429b6e4ef6cb652eab0224fba4f}{erase\+Food} (int id)
+\begin{DoxyCompactList}\small\item\em erase food\+Item from collection and informs other players \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a9067bf26d8aae3e4f325d866247e0951}{add\+New\+Ball} (\hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} participant, std\+::string nick)
+\begin{DoxyCompactList}\small\item\em add new ball for new player and update other players \end{DoxyCompactList}\item 
+\hyperlink{namespacewebsocket_aae1d9cf317a0fb0b83bdfc2f92df77c7}{ball\+\_\+ptr} \hyperlink{classwebsocket_1_1GameBoard_ac9ebf0c8fc6a76a60fcc83d60719b161}{get\+Ball} (double \&x, double \&y, double radius)
+\begin{DoxyCompactList}\small\item\em create new ball for player \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a581a9aeb4f1e70892a70a238bba6469a}{send\+Game\+State} (\hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} participant)
+\begin{DoxyCompactList}\small\item\em Sends balls and foods position to players. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_ac9130252983df425bcefd450f4aa8742}{erase\+Ball} (\hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} participant)
+\begin{DoxyCompactList}\small\item\em delete ball and update players \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a40aed2036d1065d0bfa24d4e84da1418}{process\+Movement} (const \hyperlink{structwebsocket_1_1Dataframe}{Dataframe} \&msg, \hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} source)
+\begin{DoxyCompactList}\small\item\em main movement processing \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a20af876986152e2c4db78174d186d2b6}{is\+Nick\+Valid} (const \hyperlink{structwebsocket_1_1Dataframe}{Dataframe} \&msg, \hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} source)
+\begin{DoxyCompactList}\small\item\em method of initial handshake -\/ checks validity of inserted user nick \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_ad6da3630e77cf3da0563072e5c1ec162}{add\+Player\+To\+Game} (const \hyperlink{structwebsocket_1_1Dataframe}{Dataframe} \&msg, \hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} source)
+\begin{DoxyCompactList}\small\item\em on valid nick defines set of methods used to initiate the game \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1GameBoard_a93379a2caec9ae069ffef81472e608f9}{send\+Map\+Size} (\hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} source)
+\begin{DoxyCompactList}\small\item\em sends map dimensions to the new player \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::set$<$ \hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\+\_\+ptr} $>$ \hyperlink{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{participants\+\_\+}
+\item 
+\hyperlink{namespacewebsocket_ae3fdf29bb367b5baf5be703253a4edfa}{message\+\_\+queue} \hyperlink{classwebsocket_1_1GameBoard_a87c11dd6d2f39fa8b0100059c27179a7}{recent\+\_\+msgs\+\_\+}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int \hyperlink{classwebsocket_1_1GameBoard_a02d0925d31cf26c6853cbb39de6f051c}{map\+X\+\_\+} \{10000\}
+\item 
+static const int \hyperlink{classwebsocket_1_1GameBoard_a60432d0d991c965b75ad2557e9610425}{map\+Y\+\_\+} \{10000\}
+\item 
+static const double \hyperlink{classwebsocket_1_1GameBoard_a1bedb4dff215404c5574f064c68789c8}{food\+Item\+Marigin\+\_\+} \{5\}
+\item 
+static const double \hyperlink{classwebsocket_1_1GameBoard_add182baa81ccbe72610eebacdb0b8dd6}{ball\+Marigin\+\_\+} \{10\}
+\item 
+static const int \hyperlink{classwebsocket_1_1GameBoard_ad2f7ea28ea20d8d16f06135cc09b92e1}{initial\+Food\+\_\+} \{350\}
+\item 
+static const int \hyperlink{classwebsocket_1_1GameBoard_aad2445e5c98fe42f37e71c15ca3c57c9}{new\+Player\+Food\+\_\+} \{5\}
+\item 
+static const int \hyperlink{classwebsocket_1_1GameBoard_a80f3a0b794866a7e3c9dac0bf15ba14a}{initial\+Food\+Params\+\_\+} \{1\}
+\item 
+static const int \hyperlink{classwebsocket_1_1GameBoard_a7277b9cbeca558d4bcfad3c24d185336}{food\+Radius\+\_\+} \{3\}
+\item 
+static const int \hyperlink{classwebsocket_1_1GameBoard_a8fe312bcfc33ae3d624a0fdb02f40622}{on\+Eaten\+New\+Items\+\_\+} \{1\}
+\item 
+static const int \hyperlink{classwebsocket_1_1GameBoard_a0644b0415ab9a8f4a260e277fca79e1a}{init\+Ball\+Radius\+\_\+} \{20\}
+\item 
+static \hyperlink{classwebsocket_1_1GameBoard_ab68a03a083cfa75e7d5b21fe0c13eda3}{occupied\+\_\+pos} \hyperlink{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{occupied\+Pos\+\_\+}
+\item 
+static \hyperlink{classwebsocket_1_1GameBoard_a49ec88dacda0efb3448649503967e07d}{balls\+\_\+container} \hyperlink{classwebsocket_1_1GameBoard_a8bdb65edb9742890aa150d5c7c5b7209}{balls\+\_\+}
+\item 
+static \hyperlink{classwebsocket_1_1GameBoard_a6340e99ab84e0fc9ee504f5874073c0c}{elements\+\_\+container} \hyperlink{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}{elements\+\_\+}
+\item 
+static const std\+::string \hyperlink{classwebsocket_1_1GameBoard_a27fc2053eae7a0bdc4ec6cb7ff92502e}{message\+Op\+\_\+} = \char`\"{}message\char`\"{}
+\item 
+static const std\+::string \hyperlink{classwebsocket_1_1GameBoard_ac5eba2bf19bde163ea767906c8e2c61c}{movement\+Op\+\_\+} = \char`\"{}move\char`\"{}
+\item 
+static const std\+::string \hyperlink{classwebsocket_1_1GameBoard_a55afbbb9d15f4815427d2f20ca6674cd}{nick\+Check\+Op\+\_\+} = \char`\"{}new\+Player\+Name\char`\"{}
+\item 
+static const std\+::string \hyperlink{classwebsocket_1_1GameBoard_af28eae4479ca907c062495b7ec2925c1}{new\+Player\+Status\+Op\+\_\+} = \char`\"{}new\+Player\+Status\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!balls\+\_\+container@{balls\+\_\+container}}
+\index{balls\+\_\+container@{balls\+\_\+container}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{balls\+\_\+container}{balls_container}}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::map$<${\bf player\+\_\+ptr},{\bf ball\+\_\+ptr} $>$ {\bf websocket\+::\+Game\+Board\+::balls\+\_\+container}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a49ec88dacda0efb3448649503967e07d}{}\label{classwebsocket_1_1GameBoard_a49ec88dacda0efb3448649503967e07d}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!elements\+\_\+container@{elements\+\_\+container}}
+\index{elements\+\_\+container@{elements\+\_\+container}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{elements\+\_\+container}{elements_container}}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::map$<$int,{\bf element\+\_\+ptr} $>$ {\bf websocket\+::\+Game\+Board\+::elements\+\_\+container}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a6340e99ab84e0fc9ee504f5874073c0c}{}\label{classwebsocket_1_1GameBoard_a6340e99ab84e0fc9ee504f5874073c0c}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!occupied\+\_\+pos@{occupied\+\_\+pos}}
+\index{occupied\+\_\+pos@{occupied\+\_\+pos}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{occupied\+\_\+pos}{occupied_pos}}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::set$<$std\+::pair$<$int,int$>$ $>$ {\bf websocket\+::\+Game\+Board\+::occupied\+\_\+pos}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_ab68a03a083cfa75e7d5b21fe0c13eda3}{}\label{classwebsocket_1_1GameBoard_ab68a03a083cfa75e7d5b21fe0c13eda3}
+
+
+\subsection{Member Enumeration Documentation}
+\subsubsection[{\texorpdfstring{anonymous enum}{anonymous enum}}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a84b7265b5db0109546eeadc332b10254}{}\label{classwebsocket_1_1GameBoard_a84b7265b5db0109546eeadc332b10254}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{max\+\_\+recent\+\_\+msgs@{max\+\_\+recent\+\_\+msgs}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!max\+\_\+recent\+\_\+msgs@{max\+\_\+recent\+\_\+msgs}}\item[{\em 
+max\+\_\+recent\+\_\+msgs\hypertarget{classwebsocket_1_1GameBoard_a84b7265b5db0109546eeadc332b10254a1a669a5c5c208eebeb228bd6cbe3611b}{}\label{classwebsocket_1_1GameBoard_a84b7265b5db0109546eeadc332b10254a1a669a5c5c208eebeb228bd6cbe3611b}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!Game\+Board@{Game\+Board}}
+\index{Game\+Board@{Game\+Board}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{Game\+Board()}{GameBoard()}}]{\setlength{\rightskip}{0pt plus 5cm}websocket\+::\+Game\+Board\+::\+Game\+Board (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwebsocket_1_1GameBoard_a8093c83a31dd38e3edf1bc07de4b060a}{}\label{classwebsocket_1_1GameBoard_a8093c83a31dd38e3edf1bc07de4b060a}
+
+
+\subsection{Member Function Documentation}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!add\+New\+Ball@{add\+New\+Ball}}
+\index{add\+New\+Ball@{add\+New\+Ball}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{add\+New\+Ball(player\+\_\+ptr participant, std\+::string nick)}{addNewBall(player_ptr participant, std::string nick)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::add\+New\+Ball (
+\begin{DoxyParamCaption}
+\item[{{\bf player\+\_\+ptr}}]{participant, }
+\item[{std\+::string}]{nick}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a9067bf26d8aae3e4f325d866247e0951}{}\label{classwebsocket_1_1GameBoard_a9067bf26d8aae3e4f325d866247e0951}
+
+
+add new ball for new player and update other players 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!add\+N\+Food\+Item@{add\+N\+Food\+Item}}
+\index{add\+N\+Food\+Item@{add\+N\+Food\+Item}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{add\+N\+Food\+Item(int n)}{addNFoodItem(int n)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::add\+N\+Food\+Item (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a4bcaa4bcf0a260efa6baffec4e72990e}{}\label{classwebsocket_1_1GameBoard_a4bcaa4bcf0a260efa6baffec4e72990e}
+
+
+Methods of game logic. 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!add\+Player\+To\+Game@{add\+Player\+To\+Game}}
+\index{add\+Player\+To\+Game@{add\+Player\+To\+Game}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{add\+Player\+To\+Game(const Dataframe \&msg, player\+\_\+ptr source)}{addPlayerToGame(const Dataframe &msg, player_ptr source)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::add\+Player\+To\+Game (
+\begin{DoxyParamCaption}
+\item[{const {\bf Dataframe} \&}]{msg, }
+\item[{{\bf player\+\_\+ptr}}]{source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_ad6da3630e77cf3da0563072e5c1ec162}{}\label{classwebsocket_1_1GameBoard_ad6da3630e77cf3da0563072e5c1ec162}
+
+
+on valid nick defines set of methods used to initiate the game 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!deliver@{deliver}}
+\index{deliver@{deliver}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{deliver(const Dataframe \&msg, player\+\_\+ptr source)}{deliver(const Dataframe &msg, player_ptr source)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::deliver (
+\begin{DoxyParamCaption}
+\item[{const {\bf Dataframe} \&}]{msg, }
+\item[{{\bf player\+\_\+ptr}}]{source}
+\end{DoxyParamCaption}
+)}\hypertarget{classwebsocket_1_1GameBoard_a0ed4b13ba573956d8aebaf8f5c208fa0}{}\label{classwebsocket_1_1GameBoard_a0ed4b13ba573956d8aebaf8f5c208fa0}
+
+
+Deliver a chat message to all participant in the game\+\_\+board. 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!deliver@{deliver}}
+\index{deliver@{deliver}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{deliver(const Dataframe \&msg)}{deliver(const Dataframe &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::deliver (
+\begin{DoxyParamCaption}
+\item[{const {\bf Dataframe} \&}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a66d8b6bfa24c4902896acff4e49f3dc5}{}\label{classwebsocket_1_1GameBoard_a66d8b6bfa24c4902896acff4e49f3dc5}
+
+
+Deliver a message to all participant in the game\+\_\+board. 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!erase\+Ball@{erase\+Ball}}
+\index{erase\+Ball@{erase\+Ball}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{erase\+Ball(player\+\_\+ptr participant)}{eraseBall(player_ptr participant)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::erase\+Ball (
+\begin{DoxyParamCaption}
+\item[{{\bf player\+\_\+ptr}}]{participant}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_ac9130252983df425bcefd450f4aa8742}{}\label{classwebsocket_1_1GameBoard_ac9130252983df425bcefd450f4aa8742}
+
+
+delete ball and update players 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!erase\+Food@{erase\+Food}}
+\index{erase\+Food@{erase\+Food}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{erase\+Food(int id)}{eraseFood(int id)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::erase\+Food (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a9bf63429b6e4ef6cb652eab0224fba4f}{}\label{classwebsocket_1_1GameBoard_a9bf63429b6e4ef6cb652eab0224fba4f}
+
+
+erase food\+Item from collection and informs other players 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!get\+Ball@{get\+Ball}}
+\index{get\+Ball@{get\+Ball}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{get\+Ball(double \&x, double \&y, double radius)}{getBall(double &x, double &y, double radius)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ball\+\_\+ptr} websocket\+::\+Game\+Board\+::get\+Ball (
+\begin{DoxyParamCaption}
+\item[{double \&}]{x, }
+\item[{double \&}]{y, }
+\item[{double}]{radius}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_ac9ebf0c8fc6a76a60fcc83d60719b161}{}\label{classwebsocket_1_1GameBoard_ac9ebf0c8fc6a76a60fcc83d60719b161}
+
+
+create new ball for player 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!get\+Food@{get\+Food}}
+\index{get\+Food@{get\+Food}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{get\+Food(double \&x, double \&y)}{getFood(double &x, double &y)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf food\+\_\+ptr} websocket\+::\+Game\+Board\+::get\+Food (
+\begin{DoxyParamCaption}
+\item[{double \&}]{x, }
+\item[{double \&}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a3a0cacc2c9a90a5752a8b29ea243c9af}{}\label{classwebsocket_1_1GameBoard_a3a0cacc2c9a90a5752a8b29ea243c9af}
+
+
+create new food\+Item 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!get\+MapX@{get\+MapX}}
+\index{get\+MapX@{get\+MapX}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{get\+Map\+X()}{getMapX()}}]{\setlength{\rightskip}{0pt plus 5cm}static int websocket\+::\+Game\+Board\+::get\+MapX (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classwebsocket_1_1GameBoard_a3e8a7dec314f570a1d8cf92d4a711bd5}{}\label{classwebsocket_1_1GameBoard_a3e8a7dec314f570a1d8cf92d4a711bd5}
+
+
+return map dimentions 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!get\+MapY@{get\+MapY}}
+\index{get\+MapY@{get\+MapY}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{get\+Map\+Y()}{getMapY()}}]{\setlength{\rightskip}{0pt plus 5cm}static int websocket\+::\+Game\+Board\+::get\+MapY (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classwebsocket_1_1GameBoard_a4f2dd5ab46f74a995388687dd6a5f440}{}\label{classwebsocket_1_1GameBoard_a4f2dd5ab46f74a995388687dd6a5f440}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!is\+Nick\+Valid@{is\+Nick\+Valid}}
+\index{is\+Nick\+Valid@{is\+Nick\+Valid}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{is\+Nick\+Valid(const Dataframe \&msg, player\+\_\+ptr source)}{isNickValid(const Dataframe &msg, player_ptr source)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::is\+Nick\+Valid (
+\begin{DoxyParamCaption}
+\item[{const {\bf Dataframe} \&}]{msg, }
+\item[{{\bf player\+\_\+ptr}}]{source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a20af876986152e2c4db78174d186d2b6}{}\label{classwebsocket_1_1GameBoard_a20af876986152e2c4db78174d186d2b6}
+
+
+method of initial handshake -\/ checks validity of inserted user nick 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!join@{join}}
+\index{join@{join}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{join(player\+\_\+ptr participant)}{join(player_ptr participant)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::join (
+\begin{DoxyParamCaption}
+\item[{{\bf player\+\_\+ptr}}]{participant}
+\end{DoxyParamCaption}
+)}\hypertarget{classwebsocket_1_1GameBoard_a3ca61a3da72869402a6e1702a99faa76}{}\label{classwebsocket_1_1GameBoard_a3ca61a3da72869402a6e1702a99faa76}
+
+
+Join the game\+\_\+board. 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!leave@{leave}}
+\index{leave@{leave}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{leave(player\+\_\+ptr participant)}{leave(player_ptr participant)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::leave (
+\begin{DoxyParamCaption}
+\item[{{\bf player\+\_\+ptr}}]{participant}
+\end{DoxyParamCaption}
+)}\hypertarget{classwebsocket_1_1GameBoard_a2f3f0eb3fb2fbe6303426c1bc8d3fff7}{}\label{classwebsocket_1_1GameBoard_a2f3f0eb3fb2fbe6303426c1bc8d3fff7}
+
+
+Leave the game\+\_\+board. 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!process\+Movement@{process\+Movement}}
+\index{process\+Movement@{process\+Movement}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{process\+Movement(const Dataframe \&msg, player\+\_\+ptr source)}{processMovement(const Dataframe &msg, player_ptr source)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::process\+Movement (
+\begin{DoxyParamCaption}
+\item[{const {\bf Dataframe} \&}]{msg, }
+\item[{{\bf player\+\_\+ptr}}]{source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a40aed2036d1065d0bfa24d4e84da1418}{}\label{classwebsocket_1_1GameBoard_a40aed2036d1065d0bfa24d4e84da1418}
+
+
+main movement processing 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!send\+Game\+State@{send\+Game\+State}}
+\index{send\+Game\+State@{send\+Game\+State}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{send\+Game\+State(player\+\_\+ptr participant)}{sendGameState(player_ptr participant)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::send\+Game\+State (
+\begin{DoxyParamCaption}
+\item[{{\bf player\+\_\+ptr}}]{participant}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a581a9aeb4f1e70892a70a238bba6469a}{}\label{classwebsocket_1_1GameBoard_a581a9aeb4f1e70892a70a238bba6469a}
+
+
+Sends balls and foods position to players. 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!send\+Map\+Size@{send\+Map\+Size}}
+\index{send\+Map\+Size@{send\+Map\+Size}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{send\+Map\+Size(player\+\_\+ptr source)}{sendMapSize(player_ptr source)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::send\+Map\+Size (
+\begin{DoxyParamCaption}
+\item[{{\bf player\+\_\+ptr}}]{source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a93379a2caec9ae069ffef81472e608f9}{}\label{classwebsocket_1_1GameBoard_a93379a2caec9ae069ffef81472e608f9}
+
+
+sends map dimensions to the new player 
+
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!update\+Participants@{update\+Participants}}
+\index{update\+Participants@{update\+Participants}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{update\+Participants()}{updateParticipants()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::update\+Participants (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a9d97f5e5069d0501ea37cb819d481dd0}{}\label{classwebsocket_1_1GameBoard_a9d97f5e5069d0501ea37cb819d481dd0}
+
+
+Update a number of connected participants. 
+
+
+
+\subsection{Member Data Documentation}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!ball\+Marigin\+\_\+@{ball\+Marigin\+\_\+}}
+\index{ball\+Marigin\+\_\+@{ball\+Marigin\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{ball\+Marigin\+\_\+}{ballMarigin_}}]{\setlength{\rightskip}{0pt plus 5cm}const double websocket\+::\+Game\+Board\+::ball\+Marigin\+\_\+ \{10\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_add182baa81ccbe72610eebacdb0b8dd6}{}\label{classwebsocket_1_1GameBoard_add182baa81ccbe72610eebacdb0b8dd6}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!balls\+\_\+@{balls\+\_\+}}
+\index{balls\+\_\+@{balls\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{balls\+\_\+}{balls_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\+Board\+::balls\+\_\+container} websocket\+::\+Game\+Board\+::balls\+\_\+\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a8bdb65edb9742890aa150d5c7c5b7209}{}\label{classwebsocket_1_1GameBoard_a8bdb65edb9742890aa150d5c7c5b7209}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!elements\+\_\+@{elements\+\_\+}}
+\index{elements\+\_\+@{elements\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{elements\+\_\+}{elements_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\+Board\+::elements\+\_\+container} websocket\+::\+Game\+Board\+::elements\+\_\+\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}{}\label{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!food\+Item\+Marigin\+\_\+@{food\+Item\+Marigin\+\_\+}}
+\index{food\+Item\+Marigin\+\_\+@{food\+Item\+Marigin\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{food\+Item\+Marigin\+\_\+}{foodItemMarigin_}}]{\setlength{\rightskip}{0pt plus 5cm}const double websocket\+::\+Game\+Board\+::food\+Item\+Marigin\+\_\+ \{5\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a1bedb4dff215404c5574f064c68789c8}{}\label{classwebsocket_1_1GameBoard_a1bedb4dff215404c5574f064c68789c8}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!food\+Radius\+\_\+@{food\+Radius\+\_\+}}
+\index{food\+Radius\+\_\+@{food\+Radius\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{food\+Radius\+\_\+}{foodRadius_}}]{\setlength{\rightskip}{0pt plus 5cm}const int websocket\+::\+Game\+Board\+::food\+Radius\+\_\+ \{3\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a7277b9cbeca558d4bcfad3c24d185336}{}\label{classwebsocket_1_1GameBoard_a7277b9cbeca558d4bcfad3c24d185336}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!init\+Ball\+Radius\+\_\+@{init\+Ball\+Radius\+\_\+}}
+\index{init\+Ball\+Radius\+\_\+@{init\+Ball\+Radius\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{init\+Ball\+Radius\+\_\+}{initBallRadius_}}]{\setlength{\rightskip}{0pt plus 5cm}const int websocket\+::\+Game\+Board\+::init\+Ball\+Radius\+\_\+ \{20\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a0644b0415ab9a8f4a260e277fca79e1a}{}\label{classwebsocket_1_1GameBoard_a0644b0415ab9a8f4a260e277fca79e1a}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!initial\+Food\+\_\+@{initial\+Food\+\_\+}}
+\index{initial\+Food\+\_\+@{initial\+Food\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{initial\+Food\+\_\+}{initialFood_}}]{\setlength{\rightskip}{0pt plus 5cm}const int websocket\+::\+Game\+Board\+::initial\+Food\+\_\+ \{350\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_ad2f7ea28ea20d8d16f06135cc09b92e1}{}\label{classwebsocket_1_1GameBoard_ad2f7ea28ea20d8d16f06135cc09b92e1}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!initial\+Food\+Params\+\_\+@{initial\+Food\+Params\+\_\+}}
+\index{initial\+Food\+Params\+\_\+@{initial\+Food\+Params\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{initial\+Food\+Params\+\_\+}{initialFoodParams_}}]{\setlength{\rightskip}{0pt plus 5cm}const int websocket\+::\+Game\+Board\+::initial\+Food\+Params\+\_\+ \{1\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a80f3a0b794866a7e3c9dac0bf15ba14a}{}\label{classwebsocket_1_1GameBoard_a80f3a0b794866a7e3c9dac0bf15ba14a}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!map\+X\+\_\+@{map\+X\+\_\+}}
+\index{map\+X\+\_\+@{map\+X\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{map\+X\+\_\+}{mapX_}}]{\setlength{\rightskip}{0pt plus 5cm}const int websocket\+::\+Game\+Board\+::map\+X\+\_\+ \{10000\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a02d0925d31cf26c6853cbb39de6f051c}{}\label{classwebsocket_1_1GameBoard_a02d0925d31cf26c6853cbb39de6f051c}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!map\+Y\+\_\+@{map\+Y\+\_\+}}
+\index{map\+Y\+\_\+@{map\+Y\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{map\+Y\+\_\+}{mapY_}}]{\setlength{\rightskip}{0pt plus 5cm}const int websocket\+::\+Game\+Board\+::map\+Y\+\_\+ \{10000\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a60432d0d991c965b75ad2557e9610425}{}\label{classwebsocket_1_1GameBoard_a60432d0d991c965b75ad2557e9610425}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!message\+Op\+\_\+@{message\+Op\+\_\+}}
+\index{message\+Op\+\_\+@{message\+Op\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{message\+Op\+\_\+}{messageOp_}}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string websocket\+::\+Game\+Board\+::message\+Op\+\_\+ = \char`\"{}message\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a27fc2053eae7a0bdc4ec6cb7ff92502e}{}\label{classwebsocket_1_1GameBoard_a27fc2053eae7a0bdc4ec6cb7ff92502e}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!movement\+Op\+\_\+@{movement\+Op\+\_\+}}
+\index{movement\+Op\+\_\+@{movement\+Op\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{movement\+Op\+\_\+}{movementOp_}}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string websocket\+::\+Game\+Board\+::movement\+Op\+\_\+ = \char`\"{}move\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_ac5eba2bf19bde163ea767906c8e2c61c}{}\label{classwebsocket_1_1GameBoard_ac5eba2bf19bde163ea767906c8e2c61c}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!new\+Player\+Food\+\_\+@{new\+Player\+Food\+\_\+}}
+\index{new\+Player\+Food\+\_\+@{new\+Player\+Food\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{new\+Player\+Food\+\_\+}{newPlayerFood_}}]{\setlength{\rightskip}{0pt plus 5cm}const int websocket\+::\+Game\+Board\+::new\+Player\+Food\+\_\+ \{5\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_aad2445e5c98fe42f37e71c15ca3c57c9}{}\label{classwebsocket_1_1GameBoard_aad2445e5c98fe42f37e71c15ca3c57c9}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!new\+Player\+Status\+Op\+\_\+@{new\+Player\+Status\+Op\+\_\+}}
+\index{new\+Player\+Status\+Op\+\_\+@{new\+Player\+Status\+Op\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{new\+Player\+Status\+Op\+\_\+}{newPlayerStatusOp_}}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string websocket\+::\+Game\+Board\+::new\+Player\+Status\+Op\+\_\+ = \char`\"{}new\+Player\+Status\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_af28eae4479ca907c062495b7ec2925c1}{}\label{classwebsocket_1_1GameBoard_af28eae4479ca907c062495b7ec2925c1}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!nick\+Check\+Op\+\_\+@{nick\+Check\+Op\+\_\+}}
+\index{nick\+Check\+Op\+\_\+@{nick\+Check\+Op\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{nick\+Check\+Op\+\_\+}{nickCheckOp_}}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string websocket\+::\+Game\+Board\+::nick\+Check\+Op\+\_\+ = \char`\"{}new\+Player\+Name\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a55afbbb9d15f4815427d2f20ca6674cd}{}\label{classwebsocket_1_1GameBoard_a55afbbb9d15f4815427d2f20ca6674cd}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!occupied\+Pos\+\_\+@{occupied\+Pos\+\_\+}}
+\index{occupied\+Pos\+\_\+@{occupied\+Pos\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{occupied\+Pos\+\_\+}{occupiedPos_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\+Board\+::occupied\+\_\+pos} websocket\+::\+Game\+Board\+::occupied\+Pos\+\_\+\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{}\label{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!on\+Eaten\+New\+Items\+\_\+@{on\+Eaten\+New\+Items\+\_\+}}
+\index{on\+Eaten\+New\+Items\+\_\+@{on\+Eaten\+New\+Items\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{on\+Eaten\+New\+Items\+\_\+}{onEatenNewItems_}}]{\setlength{\rightskip}{0pt plus 5cm}const int websocket\+::\+Game\+Board\+::on\+Eaten\+New\+Items\+\_\+ \{1\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a8fe312bcfc33ae3d624a0fdb02f40622}{}\label{classwebsocket_1_1GameBoard_a8fe312bcfc33ae3d624a0fdb02f40622}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!participants\+\_\+@{participants\+\_\+}}
+\index{participants\+\_\+@{participants\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{participants\+\_\+}{participants_}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::set$<${\bf player\+\_\+ptr}$>$ websocket\+::\+Game\+Board\+::participants\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{}\label{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}
+\index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!recent\+\_\+msgs\+\_\+@{recent\+\_\+msgs\+\_\+}}
+\index{recent\+\_\+msgs\+\_\+@{recent\+\_\+msgs\+\_\+}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
+\subsubsection[{\texorpdfstring{recent\+\_\+msgs\+\_\+}{recent_msgs_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf message\+\_\+queue} websocket\+::\+Game\+Board\+::recent\+\_\+msgs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1GameBoard_a87c11dd6d2f39fa8b0100059c27179a7}{}\label{classwebsocket_1_1GameBoard_a87c11dd6d2f39fa8b0100059c27179a7}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{game__board_8hpp}{game\+\_\+board.\+hpp}\item 
+\hyperlink{game__board_8cpp}{game\+\_\+board.\+cpp}\end{DoxyCompactItemize}

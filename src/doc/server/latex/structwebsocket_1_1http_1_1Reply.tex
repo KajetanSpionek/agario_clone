@@ -1,0 +1,96 @@
+\hypertarget{structwebsocket_1_1http_1_1Reply}{}\section{websocket\+:\+:http\+:\+:Reply Struct Reference}
+\label{structwebsocket_1_1http_1_1Reply}\index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}}
+
+
+{\ttfamily \#include $<$reply.\+hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2}{status\+\_\+type} \{ \hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2ac40eab39089a623f51ec73b0cf56debd}{S\+W\+I\+T\+C\+H\+I\+N\+G\+\_\+\+P\+R\+O\+T\+O\+C\+O\+LS} = 101, 
+\hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2abe7be227057261b88798008ac000a50c}{B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST} = 400, 
+\hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2acf5dc4f995928bbd6bd1eb5b599865a0}{I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+R\+R\+OR} = 500
+ \}\begin{DoxyCompactList}\small\item\em The status of the \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ boost\+::asio\+::const\+\_\+buffer $>$ \hyperlink{structwebsocket_1_1http_1_1Reply_a69b864b3b73877e32794cff8df944485}{to\+\_\+buffers} ()
+\begin{DoxyCompactList}\small\item\em Convert the \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply} into a vector of buffers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply} \hyperlink{structwebsocket_1_1http_1_1Reply_a96b71498c73c3925edd06359da59675b}{stock\+\_\+reply} (\hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2}{status\+\_\+type} \hyperlink{structwebsocket_1_1http_1_1Reply_afa1b8fc57be88cfc33b7788d37ae42b8}{status})
+\begin{DoxyCompactList}\small\item\em Get a stock \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2}{websocket\+::http\+::\+Reply\+::status\+\_\+type} \hyperlink{structwebsocket_1_1http_1_1Reply_afa1b8fc57be88cfc33b7788d37ae42b8}{status}
+\item 
+std\+::vector$<$ \hyperlink{structwebsocket_1_1http_1_1Header}{Header} $>$ \hyperlink{structwebsocket_1_1http_1_1Reply_aa88f08563abdf43f15d7ff694ffd06e2}{headers}
+\begin{DoxyCompactList}\small\item\em The headers to be included in the \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}!status\+\_\+type@{status\+\_\+type}}
+\index{status\+\_\+type@{status\+\_\+type}!websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}}
+\subsubsection[{\texorpdfstring{status\+\_\+type}{status_type}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf websocket\+::http\+::\+Reply\+::status\+\_\+type}}\hypertarget{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2}{}\label{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2}
+
+
+The status of the \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{S\+W\+I\+T\+C\+H\+I\+N\+G\+\_\+\+P\+R\+O\+T\+O\+C\+O\+LS@{S\+W\+I\+T\+C\+H\+I\+N\+G\+\_\+\+P\+R\+O\+T\+O\+C\+O\+LS}!websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}}\index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}!S\+W\+I\+T\+C\+H\+I\+N\+G\+\_\+\+P\+R\+O\+T\+O\+C\+O\+LS@{S\+W\+I\+T\+C\+H\+I\+N\+G\+\_\+\+P\+R\+O\+T\+O\+C\+O\+LS}}\item[{\em 
+S\+W\+I\+T\+C\+H\+I\+N\+G\+\_\+\+P\+R\+O\+T\+O\+C\+O\+LS\hypertarget{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2ac40eab39089a623f51ec73b0cf56debd}{}\label{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2ac40eab39089a623f51ec73b0cf56debd}
+}]\index{B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST@{B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST}!websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}}\index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}!B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST@{B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST}}\item[{\em 
+B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST\hypertarget{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2abe7be227057261b88798008ac000a50c}{}\label{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2abe7be227057261b88798008ac000a50c}
+}]\index{I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+R\+R\+OR@{I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+R\+R\+OR}!websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}}\index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}!I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+R\+R\+OR@{I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+R\+R\+OR}}\item[{\em 
+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+R\+R\+OR\hypertarget{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2acf5dc4f995928bbd6bd1eb5b599865a0}{}\label{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2acf5dc4f995928bbd6bd1eb5b599865a0}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}!stock\+\_\+reply@{stock\+\_\+reply}}
+\index{stock\+\_\+reply@{stock\+\_\+reply}!websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}}
+\subsubsection[{\texorpdfstring{stock\+\_\+reply(status\+\_\+type status)}{stock_reply(status_type status)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Reply} websocket\+::http\+::\+Reply\+::stock\+\_\+reply (
+\begin{DoxyParamCaption}
+\item[{{\bf Reply\+::status\+\_\+type}}]{status}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{structwebsocket_1_1http_1_1Reply_a96b71498c73c3925edd06359da59675b}{}\label{structwebsocket_1_1http_1_1Reply_a96b71498c73c3925edd06359da59675b}
+
+
+Get a stock \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}. 
+
+\index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}!to\+\_\+buffers@{to\+\_\+buffers}}
+\index{to\+\_\+buffers@{to\+\_\+buffers}!websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}}
+\subsubsection[{\texorpdfstring{to\+\_\+buffers()}{to_buffers()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ boost\+::asio\+::const\+\_\+buffer $>$ websocket\+::http\+::\+Reply\+::to\+\_\+buffers (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{structwebsocket_1_1http_1_1Reply_a69b864b3b73877e32794cff8df944485}{}\label{structwebsocket_1_1http_1_1Reply_a69b864b3b73877e32794cff8df944485}
+
+
+Convert the \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply} into a vector of buffers. 
+
+
+
+\subsection{Member Data Documentation}
+\index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}!headers@{headers}}
+\index{headers@{headers}!websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}}
+\subsubsection[{\texorpdfstring{headers}{headers}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<${\bf Header}$>$ websocket\+::http\+::\+Reply\+::headers}\hypertarget{structwebsocket_1_1http_1_1Reply_aa88f08563abdf43f15d7ff694ffd06e2}{}\label{structwebsocket_1_1http_1_1Reply_aa88f08563abdf43f15d7ff694ffd06e2}
+
+
+The headers to be included in the \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}. 
+
+\index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}!status@{status}}
+\index{status@{status}!websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}}
+\subsubsection[{\texorpdfstring{status}{status}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf websocket\+::http\+::\+Reply\+::status\+\_\+type}  websocket\+::http\+::\+Reply\+::status}\hypertarget{structwebsocket_1_1http_1_1Reply_afa1b8fc57be88cfc33b7788d37ae42b8}{}\label{structwebsocket_1_1http_1_1Reply_afa1b8fc57be88cfc33b7788d37ae42b8}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{reply_8hpp}{reply.\+hpp}\item 
+\hyperlink{reply_8cpp}{reply.\+cpp}\end{DoxyCompactItemize}
