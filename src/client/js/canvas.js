@@ -109,5 +109,5 @@ function deathScreen() {
     context.textAlign = 'center';
     context.fillStyle = '#FFFFFF';
     context.font = 'bold 50px sans-serif';
-    context.fillText('You got eaten', canvas.width / 2, canvas.height / 2);
+    context.fillText('You got eaten!', canvas.width / 2, canvas.height * 0.4);
 }
