@@ -78,12 +78,10 @@ if (window.WebSocket === undefined)
             message = message.slice("newFood:,".length);
             message = message.split(" ");
 
-            if (foods.indexOf(message[0]) == -1) { // bugged
-                var len = foods.length;
-                var color = getRandomColor();
-                foods[len] = new Food(parseInt(message[0]),parseInt(message[1]), parseInt(message[2]), color);
-                foods[len].show(); //Display ball
-            }
+            var len = foods.length;
+            var color = getRandomColor();
+            foods[len] = new Food(parseInt(message[0]),parseInt(message[1]), parseInt(message[2]), color);
+            foods[len].show(); //Display ball
         }
         
         // New ball frame - ID, x, y, r, color
@@ -92,7 +90,7 @@ if (window.WebSocket === undefined)
             message = message.slice("newBall:,".length);
             message = message.split(" ");
            
-            if (balls.indexOf(message[0]) == -1 && player.id_ != message[0]) { //bugged?
+            if (player.id_ != message[0]) {
                 var len = balls.length;
                 balls[len] = new Ball(parseInt(message[0]),parseInt(message[1]), parseInt(message[2]), parseInt(message[3]),message[4],message[5]);
                 balls[len].show();
@@ -106,11 +104,9 @@ if (window.WebSocket === undefined)
 
             if (message.length > 5 ) {
               for( i = 0; i < message.length; i+=6){
-                  if (balls.indexOf(message[i]) == -1) { //bugged?
-                      var len = balls.length;
-                      balls[len] = new Ball(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]),parseInt(message[i+3]),message[i+4],message[i+5]);
-                      balls[len].show(); 
-                    }    
+                    var len = balls.length;
+                    balls[len] = new Ball(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]),parseInt(message[i+3]),message[i+4],message[i+5]);
+                    balls[len].show();   
                 } 
             }
         }
@@ -121,12 +117,10 @@ if (window.WebSocket === undefined)
             message = message.split(" ");
             
             for( i = 0; i < message.length; i+=3) {    
-                if (foods.indexOf(message[i]) == -1) { // bugged
-                    var len = foods.length;
-                    var color = getRandomColor();
-                    foods[len] = new Food(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]), color);
-                    foods[len].show();
-                }
+                var len = foods.length;
+                var color = getRandomColor();
+                foods[len] = new Food(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]), color);
+                foods[len].show();
             }  
         }
 
@@ -225,7 +219,7 @@ if (window.WebSocket === undefined)
             }
         }  
 
-        // Game board size frame - x,y - not implemented yet
+        // Game board size frame - x,y
         else if (message.startsWith("mapSize")) {
             message = message.slice("mapSize:".length);
             message = message.split(" ");

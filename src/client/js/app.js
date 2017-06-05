@@ -120,21 +120,20 @@ function calculateFixedPos() {
     }
 }
 
-// GameOver handle - doesnt work yet
+// GameOver handle
 function gameOver(foodEaten, ballsEaten, mass) {
     gameStart = false;
     gameDied = true;
-    //alert("GameOver\n\nFood eaten: " + foodEaten + "\nBalls eaten: " + ballsEaten + "\nMass: " + mass);
-    //window.location.reload(false); 
     deathScreen();
 }
 
-// StartGame handle - doesnt work yet
+// StartGame handle
 function startGame() {
          
     document.getElementById('startMenu').style.opacity = 0;
     document.getElementById('startMenuWrapper').style.maxHeight = '0px';
     document.getElementById('gameArea').style.opacity = 1;
+    //document.getElementById('bg-image').style.display = "hidden";
     
     gameStart = true;
     gameDied = false;
