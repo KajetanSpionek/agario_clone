@@ -33,7 +33,7 @@ namespace websocket {
 
     typedef std::deque<Dataframe> message_queue;
 
-    class GameBoard : public boost::noncopyable
+    class GameBoard : private boost::noncopyable
     {
     public:
         GameBoard(); 

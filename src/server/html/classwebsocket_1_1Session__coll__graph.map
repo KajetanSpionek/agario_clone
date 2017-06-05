@@ -1,9 +1,0 @@
-<map id="websocket::Session" name="websocket::Session">
-<area shape="rect" id="node2" href="$classwebsocket_1_1Player.html" title="websocket::Player" alt="" coords="36,5,167,32"/>
-<area shape="rect" id="node5" href="$classwebsocket_1_1DataframeParser.html" title="websocket::DataframeParser" alt="" coords="5,173,197,200"/>
-<area shape="rect" id="node6" href="$structwebsocket_1_1http_1_1Request.html" title="websocket::http::Request" alt="" coords="15,224,187,251"/>
-<area shape="rect" id="node7" href="$classwebsocket_1_1http_1_1RequestParser.html" title="websocket::http::Request\lParser" alt="" coords="15,275,187,317"/>
-<area shape="rect" id="node8" href="$classwebsocket_1_1GameBoard.html" title="websocket::GameBoard" alt="" coords="20,341,183,368"/>
-<area shape="rect" id="node9" href="$structwebsocket_1_1Dataframe.html" title="websocket::Dataframe" alt="" coords="24,392,179,419"/>
-<area shape="rect" id="node10" href="$structwebsocket_1_1http_1_1Reply.html" title="websocket::http::Reply" alt="" coords="23,443,180,469"/>
-</map>

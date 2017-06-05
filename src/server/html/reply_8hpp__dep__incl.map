@@ -1,9 +1,0 @@
-<map id="reply.hpp" name="reply.hpp">
-<area shape="rect" id="node2" href="$session_8hpp.html" title="session.hpp" alt="" coords="75,80,167,107"/>
-<area shape="rect" id="node6" href="$session_8cpp.html" title="session.cpp" alt="" coords="159,155,251,181"/>
-<area shape="rect" id="node7" href="$reply_8cpp.html" title="reply.cpp" alt="" coords="243,80,317,107"/>
-<area shape="rect" id="node8" href="$request__handler_8cpp.html" title="request_handler.cpp" alt="" coords="341,80,480,107"/>
-<area shape="rect" id="node3" href="$server_8hpp.html" title="server.hpp" alt="" coords="52,155,135,181"/>
-<area shape="rect" id="node4" href="$main_8cpp.html" title="main.cpp" alt="" coords="5,229,80,256"/>
-<area shape="rect" id="node5" href="$server_8cpp.html" title="server.cpp" alt="" coords="104,229,187,256"/>
-</map>
