@@ -1,0 +1,225 @@
+\hypertarget{classwebsocket_1_1DataframeParser}{}\section{websocket\+:\+:Dataframe\+Parser Class Reference}
+\label{classwebsocket_1_1DataframeParser}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+
+
+{\ttfamily \#include $<$dataframe\+\_\+parser.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classwebsocket_1_1DataframeParser_a813241a177df63aff6cb174e1bdebaff}{Dataframe\+Parser} ()
+\begin{DoxyCompactList}\small\item\em Construct ready to parse the \hyperlink{structwebsocket_1_1Dataframe}{Dataframe}. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1DataframeParser_a247fd15250481e4c82cd9eb436ea158e}{reset} ()
+\begin{DoxyCompactList}\small\item\em Reset to initial parser state. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Iterator $>$ }\\boost\+::tuple$<$ boost\+::tribool, Input\+Iterator $>$ \hyperlink{classwebsocket_1_1DataframeParser_add0317d2a579c37ac92d5157c8a9b638}{parse} (\hyperlink{structwebsocket_1_1Dataframe}{Dataframe} \&frame, Input\+Iterator begin, Input\+Iterator end)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static boost\+::uint16\+\_\+t \hyperlink{classwebsocket_1_1DataframeParser_abfb0ab043395dd9d4ce1506a792343db}{ntoh16} (boost\+::uint16\+\_\+t net16)
+\begin{DoxyCompactList}\small\item\em Convert a uint16\+\_\+t from the network byte order to the host byte order. \end{DoxyCompactList}\item 
+static boost\+::uint16\+\_\+t \hyperlink{classwebsocket_1_1DataframeParser_a1d56019ba8f427984da01a3c206b4226}{hton16} (boost\+::uint16\+\_\+t net16)
+\begin{DoxyCompactList}\small\item\em Convert a uint16\+\_\+t from the host byte order to the network byte order. \end{DoxyCompactList}\item 
+static boost\+::uint64\+\_\+t \hyperlink{classwebsocket_1_1DataframeParser_abbc453c45e690c07a01a3d8a5c7560b8}{ntoh64} (boost\+::uint64\+\_\+t net64)
+\begin{DoxyCompactList}\small\item\em Convert a uint64\+\_\+t from the network byte order to the host byte order. \end{DoxyCompactList}\item 
+static boost\+::uint64\+\_\+t \hyperlink{classwebsocket_1_1DataframeParser_ac0ffb851ee6870bc8672ef6408fce939}{hton64} (boost\+::uint64\+\_\+t net64)
+\begin{DoxyCompactList}\small\item\em Convert a uint64\+\_\+t from the host byte order to the network byte order. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8a}{state} \{ \\*
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa29b00899c276193d6f18e8389b7592a3}{F\+I\+N\+\_\+\+O\+P\+C\+O\+DE}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaefc4557724349d199ef0b5bacaae52fb}{M\+A\+S\+K\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+EN}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa7b68eb5f5cc6e9c7d6feaf988475afdb}{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N1}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aabc3d01e63f47e768f18b8663e810eac8}{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N2}, 
+\\*
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3378e509de505a563f329a988e7b25e5}{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N3}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa79a2813ac6e13fe0c88042739cc877dd}{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N4}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aadde851b7d820e146ca0c1e00131f6efb}{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N5}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa95998dd95ec2eed1d3e9e3d43db4ae1c}{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N6}, 
+\\*
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa1cfc14be739e979f81d64b02ab16eb9f}{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N7}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad72fe80a8219f96501c6d6db3854dc0b}{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N8}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3b69744b62fa835db0824373457b6434}{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+1}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa01f875cd0a23eaa5834547b8d1faaade}{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+2}, 
+\\*
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad1ec7ea124241d5b4178144e6ed6f5d3}{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+3}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaaffec7e2ab59fae9a01ae2398a4ec25f}{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+4}, 
+\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa598aa8acb047115c40ad5a8e4dbafa84}{P\+A\+Y\+L\+O\+AD}
+ \}\begin{DoxyCompactList}\small\item\em The current state of the parser. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boost\+::tribool \hyperlink{classwebsocket_1_1DataframeParser_a2f14d531bafe3bd65977f4eaecc78765}{consume} (\hyperlink{structwebsocket_1_1Dataframe}{Dataframe} \&frame, boost\+::uint8\+\_\+t input)
+\begin{DoxyCompactList}\small\item\em Handle the next character of input. \end{DoxyCompactList}\item 
+boost\+::uint8\+\_\+t \hyperlink{classwebsocket_1_1DataframeParser_af034682aa527e1d3d1e0b3da31b6c7d3}{get\+Bits} (char b, boost\+::uint8\+\_\+t offset, boost\+::uint8\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Get a number of bits at the specified offset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8a}{websocket\+::\+Dataframe\+Parser\+::state} \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!state@{state}}
+\index{state@{state}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{state}{state}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf websocket\+::\+Dataframe\+Parser\+::state}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8a}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8a}
+
+
+The current state of the parser. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{F\+I\+N\+\_\+\+O\+P\+C\+O\+DE@{F\+I\+N\+\_\+\+O\+P\+C\+O\+DE}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!F\+I\+N\+\_\+\+O\+P\+C\+O\+DE@{F\+I\+N\+\_\+\+O\+P\+C\+O\+DE}}\item[{\em 
+F\+I\+N\+\_\+\+O\+P\+C\+O\+DE\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa29b00899c276193d6f18e8389b7592a3}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa29b00899c276193d6f18e8389b7592a3}
+}]\index{M\+A\+S\+K\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+EN@{M\+A\+S\+K\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+EN}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!M\+A\+S\+K\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+EN@{M\+A\+S\+K\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+EN}}\item[{\em 
+M\+A\+S\+K\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+EN\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaefc4557724349d199ef0b5bacaae52fb}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaefc4557724349d199ef0b5bacaae52fb}
+}]\index{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N1@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N1}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N1@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N1}}\item[{\em 
+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N1\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa7b68eb5f5cc6e9c7d6feaf988475afdb}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa7b68eb5f5cc6e9c7d6feaf988475afdb}
+}]\index{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N2@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N2}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N2@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N2}}\item[{\em 
+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N2\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aabc3d01e63f47e768f18b8663e810eac8}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aabc3d01e63f47e768f18b8663e810eac8}
+}]\index{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N3@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N3}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N3@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N3}}\item[{\em 
+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N3\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3378e509de505a563f329a988e7b25e5}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3378e509de505a563f329a988e7b25e5}
+}]\index{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N4@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N4}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N4@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N4}}\item[{\em 
+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N4\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa79a2813ac6e13fe0c88042739cc877dd}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa79a2813ac6e13fe0c88042739cc877dd}
+}]\index{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N5@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N5}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N5@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N5}}\item[{\em 
+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N5\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aadde851b7d820e146ca0c1e00131f6efb}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aadde851b7d820e146ca0c1e00131f6efb}
+}]\index{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N6@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N6}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N6@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N6}}\item[{\em 
+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N6\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa95998dd95ec2eed1d3e9e3d43db4ae1c}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa95998dd95ec2eed1d3e9e3d43db4ae1c}
+}]\index{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N7@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N7}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N7@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N7}}\item[{\em 
+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N7\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa1cfc14be739e979f81d64b02ab16eb9f}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa1cfc14be739e979f81d64b02ab16eb9f}
+}]\index{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N8@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N8}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N8@{E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N8}}\item[{\em 
+E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+Y\+L\+O\+A\+D\+\_\+\+L\+E\+N8\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad72fe80a8219f96501c6d6db3854dc0b}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad72fe80a8219f96501c6d6db3854dc0b}
+}]\index{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+1@{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+1}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+1@{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+1}}\item[{\em 
+M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+1\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3b69744b62fa835db0824373457b6434}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3b69744b62fa835db0824373457b6434}
+}]\index{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+2@{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+2}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+2@{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+2}}\item[{\em 
+M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+2\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa01f875cd0a23eaa5834547b8d1faaade}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa01f875cd0a23eaa5834547b8d1faaade}
+}]\index{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+3@{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+3}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+3@{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+3}}\item[{\em 
+M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+3\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad1ec7ea124241d5b4178144e6ed6f5d3}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad1ec7ea124241d5b4178144e6ed6f5d3}
+}]\index{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+4@{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+4}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+4@{M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+4}}\item[{\em 
+M\+A\+S\+K\+I\+N\+G\+\_\+\+K\+E\+Y\+\_\+4\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaaffec7e2ab59fae9a01ae2398a4ec25f}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaaffec7e2ab59fae9a01ae2398a4ec25f}
+}]\index{P\+A\+Y\+L\+O\+AD@{P\+A\+Y\+L\+O\+AD}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!P\+A\+Y\+L\+O\+AD@{P\+A\+Y\+L\+O\+AD}}\item[{\em 
+P\+A\+Y\+L\+O\+AD\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa598aa8acb047115c40ad5a8e4dbafa84}{}\label{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa598aa8acb047115c40ad5a8e4dbafa84}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!Dataframe\+Parser@{Dataframe\+Parser}}
+\index{Dataframe\+Parser@{Dataframe\+Parser}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{Dataframe\+Parser()}{DataframeParser()}}]{\setlength{\rightskip}{0pt plus 5cm}websocket\+::\+Dataframe\+Parser\+::\+Dataframe\+Parser (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwebsocket_1_1DataframeParser_a813241a177df63aff6cb174e1bdebaff}{}\label{classwebsocket_1_1DataframeParser_a813241a177df63aff6cb174e1bdebaff}
+
+
+Construct ready to parse the \hyperlink{structwebsocket_1_1Dataframe}{Dataframe}. 
+
+
+
+\subsection{Member Function Documentation}
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!consume@{consume}}
+\index{consume@{consume}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{consume(\+Dataframe \&frame, boost\+::uint8\+\_\+t input)}{consume(Dataframe &frame, boost::uint8_t input)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::tribool websocket\+::\+Dataframe\+Parser\+::consume (
+\begin{DoxyParamCaption}
+\item[{{\bf Dataframe} \&}]{frame, }
+\item[{boost\+::uint8\+\_\+t}]{input}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1DataframeParser_a2f14d531bafe3bd65977f4eaecc78765}{}\label{classwebsocket_1_1DataframeParser_a2f14d531bafe3bd65977f4eaecc78765}
+
+
+Handle the next character of input. 
+
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!get\+Bits@{get\+Bits}}
+\index{get\+Bits@{get\+Bits}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{get\+Bits(char b, boost\+::uint8\+\_\+t offset, boost\+::uint8\+\_\+t count)}{getBits(char b, boost::uint8_t offset, boost::uint8_t count)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint8\+\_\+t websocket\+::\+Dataframe\+Parser\+::get\+Bits (
+\begin{DoxyParamCaption}
+\item[{char}]{b, }
+\item[{boost\+::uint8\+\_\+t}]{offset, }
+\item[{boost\+::uint8\+\_\+t}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1DataframeParser_af034682aa527e1d3d1e0b3da31b6c7d3}{}\label{classwebsocket_1_1DataframeParser_af034682aa527e1d3d1e0b3da31b6c7d3}
+
+
+Get a number of bits at the specified offset. 
+
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!hton16@{hton16}}
+\index{hton16@{hton16}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{hton16(boost\+::uint16\+\_\+t net16)}{hton16(boost::uint16_t net16)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint16\+\_\+t websocket\+::\+Dataframe\+Parser\+::hton16 (
+\begin{DoxyParamCaption}
+\item[{boost\+::uint16\+\_\+t}]{net16}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classwebsocket_1_1DataframeParser_a1d56019ba8f427984da01a3c206b4226}{}\label{classwebsocket_1_1DataframeParser_a1d56019ba8f427984da01a3c206b4226}
+
+
+Convert a uint16\+\_\+t from the host byte order to the network byte order. 
+
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!hton64@{hton64}}
+\index{hton64@{hton64}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{hton64(boost\+::uint64\+\_\+t net64)}{hton64(boost::uint64_t net64)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint64\+\_\+t websocket\+::\+Dataframe\+Parser\+::hton64 (
+\begin{DoxyParamCaption}
+\item[{boost\+::uint64\+\_\+t}]{net64}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classwebsocket_1_1DataframeParser_ac0ffb851ee6870bc8672ef6408fce939}{}\label{classwebsocket_1_1DataframeParser_ac0ffb851ee6870bc8672ef6408fce939}
+
+
+Convert a uint64\+\_\+t from the host byte order to the network byte order. 
+
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!ntoh16@{ntoh16}}
+\index{ntoh16@{ntoh16}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{ntoh16(boost\+::uint16\+\_\+t net16)}{ntoh16(boost::uint16_t net16)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint16\+\_\+t websocket\+::\+Dataframe\+Parser\+::ntoh16 (
+\begin{DoxyParamCaption}
+\item[{boost\+::uint16\+\_\+t}]{net16}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classwebsocket_1_1DataframeParser_abfb0ab043395dd9d4ce1506a792343db}{}\label{classwebsocket_1_1DataframeParser_abfb0ab043395dd9d4ce1506a792343db}
+
+
+Convert a uint16\+\_\+t from the network byte order to the host byte order. 
+
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!ntoh64@{ntoh64}}
+\index{ntoh64@{ntoh64}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{ntoh64(boost\+::uint64\+\_\+t net64)}{ntoh64(boost::uint64_t net64)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint64\+\_\+t websocket\+::\+Dataframe\+Parser\+::ntoh64 (
+\begin{DoxyParamCaption}
+\item[{boost\+::uint64\+\_\+t}]{net64}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classwebsocket_1_1DataframeParser_abbc453c45e690c07a01a3d8a5c7560b8}{}\label{classwebsocket_1_1DataframeParser_abbc453c45e690c07a01a3d8a5c7560b8}
+
+
+Convert a uint64\+\_\+t from the network byte order to the host byte order. 
+
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!parse@{parse}}
+\index{parse@{parse}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{parse(\+Dataframe \&frame, Input\+Iterator begin, Input\+Iterator end)}{parse(Dataframe &frame, InputIterator begin, InputIterator end)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Input\+Iterator $>$ boost\+::tuple$<$boost\+::tribool, Input\+Iterator$>$ websocket\+::\+Dataframe\+Parser\+::parse (
+\begin{DoxyParamCaption}
+\item[{{\bf Dataframe} \&}]{frame, }
+\item[{Input\+Iterator}]{begin, }
+\item[{Input\+Iterator}]{end}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classwebsocket_1_1DataframeParser_add0317d2a579c37ac92d5157c8a9b638}{}\label{classwebsocket_1_1DataframeParser_add0317d2a579c37ac92d5157c8a9b638}
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!reset@{reset}}
+\index{reset@{reset}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{reset()}{reset()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Dataframe\+Parser\+::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwebsocket_1_1DataframeParser_a247fd15250481e4c82cd9eb436ea158e}{}\label{classwebsocket_1_1DataframeParser_a247fd15250481e4c82cd9eb436ea158e}
+
+
+Reset to initial parser state. 
+
+
+
+\subsection{Member Data Documentation}
+\index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!state\+\_\+@{state\+\_\+}}
+\index{state\+\_\+@{state\+\_\+}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
+\subsubsection[{\texorpdfstring{state\+\_\+}{state_}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf websocket\+::\+Dataframe\+Parser\+::state}  websocket\+::\+Dataframe\+Parser\+::state\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{}\label{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{dataframe__parser_8hpp}{dataframe\+\_\+parser.\+hpp}\item 
+\hyperlink{dataframe__parser_8cpp}{dataframe\+\_\+parser.\+cpp}\end{DoxyCompactItemize}

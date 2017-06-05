@@ -26,13 +26,14 @@
 #include "player.hpp"
 #include "foodItem.hpp"
 #include "ball.hpp"
+#include <boost/noncopyable.hpp>
 
 
 namespace websocket {
 
     typedef std::deque<Dataframe> message_queue;
 
-    class GameBoard
+    class GameBoard : public boost::noncopyable
     {
     public:
         GameBoard(); 
@@ -65,7 +66,7 @@ namespace websocket {
         ///erase foodItem from collection and informs other players
         void eraseFood(int id);
 
-        //add new ball for new player and update other players
+        ///add new ball for new player and update other players
         void addNewBall(player_ptr participant,std::string nick);
         
         ///create new ball for player
@@ -74,10 +75,10 @@ namespace websocket {
         ///Sends balls and foods position to players
         void sendGameState(player_ptr participant);
        
-        //delete ball and update players
+        ///delete ball and update players
         void eraseBall(player_ptr participant);
 
-        //main movement processing
+        ///main movement processing
         void processMovement(const Dataframe& msg, player_ptr source);
 
         ///method of initial handshake - checks validity of inserted user nick

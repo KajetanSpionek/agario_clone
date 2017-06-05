@@ -1,0 +1,138 @@
+\hypertarget{structwebsocket_1_1Dataframe}{}\section{websocket\+:\+:Dataframe Struct Reference}
+\label{structwebsocket_1_1Dataframe}\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+
+
+{\ttfamily \#include $<$dataframe.\+hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84}{operation\+\_\+code} \{ \\*
+\hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a9bf39e33295885bbf8be0b3335d0d4d6}{C\+O\+N\+T\+I\+N\+U\+A\+T\+I\+O\+N\+\_\+\+F\+R\+A\+ME}, 
+\hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84adea20051b65663cc4eea0162e2f2dad1}{T\+E\+X\+T\+\_\+\+F\+R\+A\+ME}, 
+\hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a1f22c794d0daa62a1f60d777425ce646}{B\+I\+N\+A\+R\+Y\+\_\+\+F\+R\+A\+ME}, 
+\hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ac28582920eaf67c2f7d355e67209c0ae}{C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+C\+L\+O\+SE}, 
+\\*
+\hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84afe00cd2796e340b9762add122db96bae}{P\+I\+NG}, 
+\hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ae5bed00b4b0ad675819b436b28fd6ea8}{P\+O\+NG}, 
+\hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84aeffe25f15a0bae70219c3cbdb08dee02}{R\+E\+S\+E\+R\+V\+ED}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structwebsocket_1_1Dataframe_a69124a202dd00df1ffa221ff7394985f}{Dataframe} ()
+\item 
+std\+::vector$<$ boost\+::asio\+::const\+\_\+buffer $>$ \hyperlink{structwebsocket_1_1Dataframe_ab89bdc83b95811bd20f26ae040b4f0f8}{to\+\_\+buffers} ()
+\begin{DoxyCompactList}\small\item\em Convert the \hyperlink{structwebsocket_1_1Dataframe}{Dataframe} into a vector of buffers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{structwebsocket_1_1Dataframe_a76141c0d08271396a2497d5167b5c127}{fin}
+\item 
+enum \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84}{websocket\+::\+Dataframe\+::operation\+\_\+code} \hyperlink{structwebsocket_1_1Dataframe_a5e3edcbe1a37e58024ec58f9f06dad38}{opcode}
+\item 
+bool \hyperlink{structwebsocket_1_1Dataframe_a49bc9113bc12db7e842ee0459f947aad}{mask}
+\item 
+boost\+::int8\+\_\+t \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\+\_\+opcode}
+\item 
+boost\+::int8\+\_\+t \hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\+\_\+payload\+\_\+len}
+\item 
+boost\+::int8\+\_\+t \hyperlink{structwebsocket_1_1Dataframe_ae8d89a8c10d3b372c09d65364613c716}{payload\+\_\+len}
+\item 
+boost\+::uint16\+\_\+t \hyperlink{structwebsocket_1_1Dataframe_a7dc588e87e310b596c4bcdc15d94c87d}{extended\+\_\+payload\+\_\+len16}
+\item 
+boost\+::uint64\+\_\+t \hyperlink{structwebsocket_1_1Dataframe_a2c3c0a890d9e982cf004eec1e85d47af}{extended\+\_\+payload\+\_\+len64}
+\item 
+boost\+::array$<$ boost\+::uint8\+\_\+t, 4 $>$ \hyperlink{structwebsocket_1_1Dataframe_ac57a24516f43eacf07e4a2273c5d014b}{masking\+\_\+key}
+\item 
+std\+::vector$<$ boost\+::uint8\+\_\+t $>$ \hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!operation\+\_\+code@{operation\+\_\+code}}
+\index{operation\+\_\+code@{operation\+\_\+code}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{operation\+\_\+code}{operation_code}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf websocket\+::\+Dataframe\+::operation\+\_\+code}}\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84}{}\label{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{C\+O\+N\+T\+I\+N\+U\+A\+T\+I\+O\+N\+\_\+\+F\+R\+A\+ME@{C\+O\+N\+T\+I\+N\+U\+A\+T\+I\+O\+N\+\_\+\+F\+R\+A\+ME}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!C\+O\+N\+T\+I\+N\+U\+A\+T\+I\+O\+N\+\_\+\+F\+R\+A\+ME@{C\+O\+N\+T\+I\+N\+U\+A\+T\+I\+O\+N\+\_\+\+F\+R\+A\+ME}}\item[{\em 
+C\+O\+N\+T\+I\+N\+U\+A\+T\+I\+O\+N\+\_\+\+F\+R\+A\+ME\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a9bf39e33295885bbf8be0b3335d0d4d6}{}\label{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a9bf39e33295885bbf8be0b3335d0d4d6}
+}]\index{T\+E\+X\+T\+\_\+\+F\+R\+A\+ME@{T\+E\+X\+T\+\_\+\+F\+R\+A\+ME}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!T\+E\+X\+T\+\_\+\+F\+R\+A\+ME@{T\+E\+X\+T\+\_\+\+F\+R\+A\+ME}}\item[{\em 
+T\+E\+X\+T\+\_\+\+F\+R\+A\+ME\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84adea20051b65663cc4eea0162e2f2dad1}{}\label{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84adea20051b65663cc4eea0162e2f2dad1}
+}]\index{B\+I\+N\+A\+R\+Y\+\_\+\+F\+R\+A\+ME@{B\+I\+N\+A\+R\+Y\+\_\+\+F\+R\+A\+ME}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!B\+I\+N\+A\+R\+Y\+\_\+\+F\+R\+A\+ME@{B\+I\+N\+A\+R\+Y\+\_\+\+F\+R\+A\+ME}}\item[{\em 
+B\+I\+N\+A\+R\+Y\+\_\+\+F\+R\+A\+ME\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a1f22c794d0daa62a1f60d777425ce646}{}\label{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a1f22c794d0daa62a1f60d777425ce646}
+}]\index{C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+C\+L\+O\+SE@{C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+C\+L\+O\+SE}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+C\+L\+O\+SE@{C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+C\+L\+O\+SE}}\item[{\em 
+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+C\+L\+O\+SE\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ac28582920eaf67c2f7d355e67209c0ae}{}\label{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ac28582920eaf67c2f7d355e67209c0ae}
+}]\index{P\+I\+NG@{P\+I\+NG}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!P\+I\+NG@{P\+I\+NG}}\item[{\em 
+P\+I\+NG\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84afe00cd2796e340b9762add122db96bae}{}\label{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84afe00cd2796e340b9762add122db96bae}
+}]\index{P\+O\+NG@{P\+O\+NG}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!P\+O\+NG@{P\+O\+NG}}\item[{\em 
+P\+O\+NG\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ae5bed00b4b0ad675819b436b28fd6ea8}{}\label{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ae5bed00b4b0ad675819b436b28fd6ea8}
+}]\index{R\+E\+S\+E\+R\+V\+ED@{R\+E\+S\+E\+R\+V\+ED}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!R\+E\+S\+E\+R\+V\+ED@{R\+E\+S\+E\+R\+V\+ED}}\item[{\em 
+R\+E\+S\+E\+R\+V\+ED\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84aeffe25f15a0bae70219c3cbdb08dee02}{}\label{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84aeffe25f15a0bae70219c3cbdb08dee02}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!Dataframe@{Dataframe}}
+\index{Dataframe@{Dataframe}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{Dataframe()}{Dataframe()}}]{\setlength{\rightskip}{0pt plus 5cm}websocket\+::\+Dataframe\+::\+Dataframe (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{structwebsocket_1_1Dataframe_a69124a202dd00df1ffa221ff7394985f}{}\label{structwebsocket_1_1Dataframe_a69124a202dd00df1ffa221ff7394985f}
+
+
+\subsection{Member Function Documentation}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!to\+\_\+buffers@{to\+\_\+buffers}}
+\index{to\+\_\+buffers@{to\+\_\+buffers}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{to\+\_\+buffers()}{to_buffers()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ boost\+::asio\+::const\+\_\+buffer $>$ websocket\+::\+Dataframe\+::to\+\_\+buffers (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{structwebsocket_1_1Dataframe_ab89bdc83b95811bd20f26ae040b4f0f8}{}\label{structwebsocket_1_1Dataframe_ab89bdc83b95811bd20f26ae040b4f0f8}
+
+
+Convert the \hyperlink{structwebsocket_1_1Dataframe}{Dataframe} into a vector of buffers. 
+
+
+
+\subsection{Member Data Documentation}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!extended\+\_\+payload\+\_\+len16@{extended\+\_\+payload\+\_\+len16}}
+\index{extended\+\_\+payload\+\_\+len16@{extended\+\_\+payload\+\_\+len16}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{extended\+\_\+payload\+\_\+len16}{extended_payload_len16}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint16\+\_\+t websocket\+::\+Dataframe\+::extended\+\_\+payload\+\_\+len16}\hypertarget{structwebsocket_1_1Dataframe_a7dc588e87e310b596c4bcdc15d94c87d}{}\label{structwebsocket_1_1Dataframe_a7dc588e87e310b596c4bcdc15d94c87d}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!extended\+\_\+payload\+\_\+len64@{extended\+\_\+payload\+\_\+len64}}
+\index{extended\+\_\+payload\+\_\+len64@{extended\+\_\+payload\+\_\+len64}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{extended\+\_\+payload\+\_\+len64}{extended_payload_len64}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint64\+\_\+t websocket\+::\+Dataframe\+::extended\+\_\+payload\+\_\+len64}\hypertarget{structwebsocket_1_1Dataframe_a2c3c0a890d9e982cf004eec1e85d47af}{}\label{structwebsocket_1_1Dataframe_a2c3c0a890d9e982cf004eec1e85d47af}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!fin@{fin}}
+\index{fin@{fin}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{fin}{fin}}]{\setlength{\rightskip}{0pt plus 5cm}bool websocket\+::\+Dataframe\+::fin}\hypertarget{structwebsocket_1_1Dataframe_a76141c0d08271396a2497d5167b5c127}{}\label{structwebsocket_1_1Dataframe_a76141c0d08271396a2497d5167b5c127}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!fin\+\_\+opcode@{fin\+\_\+opcode}}
+\index{fin\+\_\+opcode@{fin\+\_\+opcode}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{fin\+\_\+opcode}{fin_opcode}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::int8\+\_\+t websocket\+::\+Dataframe\+::fin\+\_\+opcode}\hypertarget{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{}\label{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!mask@{mask}}
+\index{mask@{mask}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{mask}{mask}}]{\setlength{\rightskip}{0pt plus 5cm}bool websocket\+::\+Dataframe\+::mask}\hypertarget{structwebsocket_1_1Dataframe_a49bc9113bc12db7e842ee0459f947aad}{}\label{structwebsocket_1_1Dataframe_a49bc9113bc12db7e842ee0459f947aad}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!mask\+\_\+payload\+\_\+len@{mask\+\_\+payload\+\_\+len}}
+\index{mask\+\_\+payload\+\_\+len@{mask\+\_\+payload\+\_\+len}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{mask\+\_\+payload\+\_\+len}{mask_payload_len}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::int8\+\_\+t websocket\+::\+Dataframe\+::mask\+\_\+payload\+\_\+len}\hypertarget{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{}\label{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!masking\+\_\+key@{masking\+\_\+key}}
+\index{masking\+\_\+key@{masking\+\_\+key}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{masking\+\_\+key}{masking_key}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::array$<$boost\+::uint8\+\_\+t, 4$>$ websocket\+::\+Dataframe\+::masking\+\_\+key}\hypertarget{structwebsocket_1_1Dataframe_ac57a24516f43eacf07e4a2273c5d014b}{}\label{structwebsocket_1_1Dataframe_ac57a24516f43eacf07e4a2273c5d014b}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!opcode@{opcode}}
+\index{opcode@{opcode}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{opcode}{opcode}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf websocket\+::\+Dataframe\+::operation\+\_\+code}  websocket\+::\+Dataframe\+::opcode}\hypertarget{structwebsocket_1_1Dataframe_a5e3edcbe1a37e58024ec58f9f06dad38}{}\label{structwebsocket_1_1Dataframe_a5e3edcbe1a37e58024ec58f9f06dad38}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!payload@{payload}}
+\index{payload@{payload}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{payload}{payload}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$boost\+::uint8\+\_\+t$>$ websocket\+::\+Dataframe\+::payload}\hypertarget{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{}\label{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}
+\index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!payload\+\_\+len@{payload\+\_\+len}}
+\index{payload\+\_\+len@{payload\+\_\+len}!websocket\+::\+Dataframe@{websocket\+::\+Dataframe}}
+\subsubsection[{\texorpdfstring{payload\+\_\+len}{payload_len}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::int8\+\_\+t websocket\+::\+Dataframe\+::payload\+\_\+len}\hypertarget{structwebsocket_1_1Dataframe_ae8d89a8c10d3b372c09d65364613c716}{}\label{structwebsocket_1_1Dataframe_ae8d89a8c10d3b372c09d65364613c716}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{dataframe_8hpp}{dataframe.\+hpp}\item 
+\hyperlink{dataframe_8cpp}{dataframe.\+cpp}\end{DoxyCompactItemize}

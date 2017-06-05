@@ -1,0 +1,286 @@
+\hypertarget{classwebsocket_1_1Session}{}\section{websocket\+:\+:Session Class Reference}
+\label{classwebsocket_1_1Session}\index{websocket\+::\+Session@{websocket\+::\+Session}}
+
+
+{\ttfamily \#include $<$session.\+hpp$>$}
+
+
+
+Inheritance diagram for websocket\+:\+:Session\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classwebsocket_1_1Session__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for websocket\+:\+:Session\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classwebsocket_1_1Session__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1b}{state} \{ \\*
+\hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baea725805737e434c2b1d0b061df4ddde}{U\+N\+D\+E\+F\+I\+N\+E\+D\+\_\+\+S\+T\+A\+TE}, 
+\hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba3b14b5a3d2ab8b61422448f7464a5d4a}{R\+E\+A\+D\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE}, 
+\hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba057f3e49a1f4623a6011d712c1cbc7ba}{B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST}, 
+\hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba272f56d02b3f719d25d23ebe3f68f44a}{W\+R\+I\+T\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE}, 
+\\*
+\hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baba12c4de6ae83a4f63b1c700d4ecfe8e}{P\+U\+M\+P\+I\+N\+G\+\_\+\+M\+E\+S\+S\+A\+G\+ES}
+ \}\begin{DoxyCompactList}\small\item\em The \hyperlink{classwebsocket_1_1Session}{Session} states. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classwebsocket_1_1Session_ac24bab7092bff9d7a6deaa6b94e73a87}{Session} (boost\+::asio\+::io\+\_\+service \&io\+\_\+service, \hyperlink{classwebsocket_1_1GameBoard}{Game\+Board} \&game\+\_\+board)
+\begin{DoxyCompactList}\small\item\em Construct a connection with the given io\+\_\+service. \end{DoxyCompactList}\item 
+boost\+::asio\+::ip\+::tcp\+::socket \& \hyperlink{classwebsocket_1_1Session_a0c5a4e7b9ca4c0e01a55c4c528470a76}{socket} ()
+\begin{DoxyCompactList}\small\item\em Get the socket associated with the connection. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1Session_a0d9852b26f06d0860e9535b2e36b7d88}{start} ()
+\begin{DoxyCompactList}\small\item\em Start the first asynchronous operation for the connection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1b}{websocket\+::\+Session\+::state} \hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\+\_\+}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classwebsocket_1_1Session_ad23257dd2bffa48e90ed9941d39ca56b}{handle\+\_\+read} (const boost\+::system\+::error\+\_\+code \&e, std\+::size\+\_\+t bytes\+\_\+transferred)
+\begin{DoxyCompactList}\small\item\em Handle completion of a read operation. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1Session_aa3912eefe7b2d125d0f3739c96f98a83}{handle\+\_\+write} (const boost\+::system\+::error\+\_\+code \&e)
+\begin{DoxyCompactList}\small\item\em Handle completion of a write operation. \end{DoxyCompactList}\item 
+void \hyperlink{classwebsocket_1_1Session_a6af4fbb5ea959b9e079e779a887c4f27}{deliver} (\hyperlink{structwebsocket_1_1Dataframe}{Dataframe} msg)
+\begin{DoxyCompactList}\small\item\em Deliver a message to the client. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classwebsocket_1_1Session_a1da5647ac33cae9b350b586a25297323}{get\+Id} ()
+\begin{DoxyCompactList}\small\item\em Get the client id. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+boost\+::asio\+::io\+\_\+service\+::strand \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\+\_\+}
+\begin{DoxyCompactList}\small\item\em Strand to ensure the connection\textquotesingle{}s handlers are not called concurrently. \end{DoxyCompactList}\item 
+boost\+::asio\+::ip\+::tcp\+::socket \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\+\_\+}
+\begin{DoxyCompactList}\small\item\em Socket for the connection. \end{DoxyCompactList}\item 
+\hyperlink{classwebsocket_1_1GameBoard}{Game\+Board} \& \hyperlink{classwebsocket_1_1Session_add75c0a25f69839df5441997846b3f3e}{game\+Board\+\_\+}
+\begin{DoxyCompactList}\small\item\em The chat game\+\_\+board where the messages will be posted. \end{DoxyCompactList}\item 
+boost\+::array$<$ boost\+::uint8\+\_\+t, 8192 $>$ \hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\+\_\+}
+\begin{DoxyCompactList}\small\item\em The buffer for incoming data. \end{DoxyCompactList}\item 
+\hyperlink{structwebsocket_1_1http_1_1Request}{http\+::\+Request} \hyperlink{classwebsocket_1_1Session_a80b1e6b3657a3c3528acd3c9b4e453a5}{req\+\_\+}
+\begin{DoxyCompactList}\small\item\em The incoming http request. \end{DoxyCompactList}\item 
+\hyperlink{classwebsocket_1_1http_1_1RequestParser}{http\+::\+Request\+Parser} \hyperlink{classwebsocket_1_1Session_a0336ca414e7c038331b39a01cdb23da8}{req\+Parser\+\_\+}
+\begin{DoxyCompactList}\small\item\em The parser for the incoming http request. \end{DoxyCompactList}\item 
+\hyperlink{structwebsocket_1_1http_1_1Reply}{http\+::\+Reply} \hyperlink{classwebsocket_1_1Session_a938563bfc401a7446f87a60acc642800}{reply\+\_\+}
+\begin{DoxyCompactList}\small\item\em The http Reply to be sent back to the client. \end{DoxyCompactList}\item 
+\hyperlink{classwebsocket_1_1DataframeParser}{Dataframe\+Parser} \hyperlink{classwebsocket_1_1Session_add7f041fe3badd9bea5158a412d4c33b}{frame\+Parser\+\_\+}
+\begin{DoxyCompactList}\small\item\em The parser for the incoming messages. \end{DoxyCompactList}\item 
+\hyperlink{structwebsocket_1_1Dataframe}{Dataframe} \hyperlink{classwebsocket_1_1Session_a2ea49f75569589cc80cb9dbcfa7707ee}{read\+Frame\+\_\+}
+\begin{DoxyCompactList}\small\item\em The incoming message. \end{DoxyCompactList}\item 
+\hyperlink{namespacewebsocket_ae3fdf29bb367b5baf5be703253a4edfa}{message\+\_\+queue} \hyperlink{classwebsocket_1_1Session_ace231022157030f4d56de9bfeff43ac7}{write\+Msgs\+\_\+}
+\begin{DoxyCompactList}\small\item\em The messages to be sent to the client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\index{websocket\+::\+Session@{websocket\+::\+Session}!state@{state}}
+\index{state@{state}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{state}{state}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf websocket\+::\+Session\+::state}}\hypertarget{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1b}{}\label{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1b}
+
+
+The \hyperlink{classwebsocket_1_1Session}{Session} states. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{U\+N\+D\+E\+F\+I\+N\+E\+D\+\_\+\+S\+T\+A\+TE@{U\+N\+D\+E\+F\+I\+N\+E\+D\+\_\+\+S\+T\+A\+TE}!websocket\+::\+Session@{websocket\+::\+Session}}\index{websocket\+::\+Session@{websocket\+::\+Session}!U\+N\+D\+E\+F\+I\+N\+E\+D\+\_\+\+S\+T\+A\+TE@{U\+N\+D\+E\+F\+I\+N\+E\+D\+\_\+\+S\+T\+A\+TE}}\item[{\em 
+U\+N\+D\+E\+F\+I\+N\+E\+D\+\_\+\+S\+T\+A\+TE\hypertarget{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baea725805737e434c2b1d0b061df4ddde}{}\label{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baea725805737e434c2b1d0b061df4ddde}
+}]\index{R\+E\+A\+D\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE@{R\+E\+A\+D\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE}!websocket\+::\+Session@{websocket\+::\+Session}}\index{websocket\+::\+Session@{websocket\+::\+Session}!R\+E\+A\+D\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE@{R\+E\+A\+D\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE}}\item[{\em 
+R\+E\+A\+D\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE\hypertarget{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba3b14b5a3d2ab8b61422448f7464a5d4a}{}\label{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba3b14b5a3d2ab8b61422448f7464a5d4a}
+}]\index{B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST@{B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST}!websocket\+::\+Session@{websocket\+::\+Session}}\index{websocket\+::\+Session@{websocket\+::\+Session}!B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST@{B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST}}\item[{\em 
+B\+A\+D\+\_\+\+R\+E\+Q\+U\+E\+ST\hypertarget{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba057f3e49a1f4623a6011d712c1cbc7ba}{}\label{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba057f3e49a1f4623a6011d712c1cbc7ba}
+}]\index{W\+R\+I\+T\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE@{W\+R\+I\+T\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE}!websocket\+::\+Session@{websocket\+::\+Session}}\index{websocket\+::\+Session@{websocket\+::\+Session}!W\+R\+I\+T\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE@{W\+R\+I\+T\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE}}\item[{\em 
+W\+R\+I\+T\+I\+N\+G\+\_\+\+H\+A\+N\+D\+S\+H\+A\+KE\hypertarget{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba272f56d02b3f719d25d23ebe3f68f44a}{}\label{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba272f56d02b3f719d25d23ebe3f68f44a}
+}]\index{P\+U\+M\+P\+I\+N\+G\+\_\+\+M\+E\+S\+S\+A\+G\+ES@{P\+U\+M\+P\+I\+N\+G\+\_\+\+M\+E\+S\+S\+A\+G\+ES}!websocket\+::\+Session@{websocket\+::\+Session}}\index{websocket\+::\+Session@{websocket\+::\+Session}!P\+U\+M\+P\+I\+N\+G\+\_\+\+M\+E\+S\+S\+A\+G\+ES@{P\+U\+M\+P\+I\+N\+G\+\_\+\+M\+E\+S\+S\+A\+G\+ES}}\item[{\em 
+P\+U\+M\+P\+I\+N\+G\+\_\+\+M\+E\+S\+S\+A\+G\+ES\hypertarget{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baba12c4de6ae83a4f63b1c700d4ecfe8e}{}\label{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baba12c4de6ae83a4f63b1c700d4ecfe8e}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{websocket\+::\+Session@{websocket\+::\+Session}!Session@{Session}}
+\index{Session@{Session}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{Session(boost\+::asio\+::io\+\_\+service \&io\+\_\+service, Game\+Board \&game\+\_\+board)}{Session(boost::asio::io_service &io_service, GameBoard &game_board)}}]{\setlength{\rightskip}{0pt plus 5cm}websocket\+::\+Session\+::\+Session (
+\begin{DoxyParamCaption}
+\item[{boost\+::asio\+::io\+\_\+service \&}]{io\+\_\+service, }
+\item[{{\bf Game\+Board} \&}]{game\+\_\+board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classwebsocket_1_1Session_ac24bab7092bff9d7a6deaa6b94e73a87}{}\label{classwebsocket_1_1Session_ac24bab7092bff9d7a6deaa6b94e73a87}
+
+
+Construct a connection with the given io\+\_\+service. 
+
+
+
+\subsection{Member Function Documentation}
+\index{websocket\+::\+Session@{websocket\+::\+Session}!deliver@{deliver}}
+\index{deliver@{deliver}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{deliver(\+Dataframe msg)}{deliver(Dataframe msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Session\+::deliver (
+\begin{DoxyParamCaption}
+\item[{{\bf Dataframe}}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}\hypertarget{classwebsocket_1_1Session_a6af4fbb5ea959b9e079e779a887c4f27}{}\label{classwebsocket_1_1Session_a6af4fbb5ea959b9e079e779a887c4f27}
+
+
+Deliver a message to the client. 
+
+
+
+Implements \hyperlink{classwebsocket_1_1Player_adf19a07c6497129268b3719783e7180d}{websocket\+::\+Player}.
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{get\+Id()}{getId()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string websocket\+::\+Session\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}\hypertarget{classwebsocket_1_1Session_a1da5647ac33cae9b350b586a25297323}{}\label{classwebsocket_1_1Session_a1da5647ac33cae9b350b586a25297323}
+
+
+Get the client id. 
+
+
+
+Implements \hyperlink{classwebsocket_1_1Player_a440338aee24d324c46115bc7b4c7a463}{websocket\+::\+Player}.
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!handle\+\_\+read@{handle\+\_\+read}}
+\index{handle\+\_\+read@{handle\+\_\+read}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{handle\+\_\+read(const boost\+::system\+::error\+\_\+code \&e, std\+::size\+\_\+t bytes\+\_\+transferred)}{handle_read(const boost::system::error_code &e, std::size_t bytes_transferred)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Session\+::handle\+\_\+read (
+\begin{DoxyParamCaption}
+\item[{const boost\+::system\+::error\+\_\+code \&}]{e, }
+\item[{std\+::size\+\_\+t}]{bytes\+\_\+transferred}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_ad23257dd2bffa48e90ed9941d39ca56b}{}\label{classwebsocket_1_1Session_ad23257dd2bffa48e90ed9941d39ca56b}
+
+
+Handle completion of a read operation. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!handle\+\_\+write@{handle\+\_\+write}}
+\index{handle\+\_\+write@{handle\+\_\+write}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{handle\+\_\+write(const boost\+::system\+::error\+\_\+code \&e)}{handle_write(const boost::system::error_code &e)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Session\+::handle\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{const boost\+::system\+::error\+\_\+code \&}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_aa3912eefe7b2d125d0f3739c96f98a83}{}\label{classwebsocket_1_1Session_aa3912eefe7b2d125d0f3739c96f98a83}
+
+
+Handle completion of a write operation. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!socket@{socket}}
+\index{socket@{socket}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{socket()}{socket()}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::asio\+::ip\+::tcp\+::socket \& websocket\+::\+Session\+::socket (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwebsocket_1_1Session_a0c5a4e7b9ca4c0e01a55c4c528470a76}{}\label{classwebsocket_1_1Session_a0c5a4e7b9ca4c0e01a55c4c528470a76}
+
+
+Get the socket associated with the connection. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!start@{start}}
+\index{start@{start}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{start()}{start()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Session\+::start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwebsocket_1_1Session_a0d9852b26f06d0860e9535b2e36b7d88}{}\label{classwebsocket_1_1Session_a0d9852b26f06d0860e9535b2e36b7d88}
+
+
+Start the first asynchronous operation for the connection. 
+
+
+
+\subsection{Member Data Documentation}
+\index{websocket\+::\+Session@{websocket\+::\+Session}!buff\+\_\+@{buff\+\_\+}}
+\index{buff\+\_\+@{buff\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{buff\+\_\+}{buff_}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::array$<$boost\+::uint8\+\_\+t, 8192$>$ websocket\+::\+Session\+::buff\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{}\label{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}
+
+
+The buffer for incoming data. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!frame\+Parser\+\_\+@{frame\+Parser\+\_\+}}
+\index{frame\+Parser\+\_\+@{frame\+Parser\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{frame\+Parser\+\_\+}{frameParser_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dataframe\+Parser} websocket\+::\+Session\+::frame\+Parser\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_add7f041fe3badd9bea5158a412d4c33b}{}\label{classwebsocket_1_1Session_add7f041fe3badd9bea5158a412d4c33b}
+
+
+The parser for the incoming messages. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!game\+Board\+\_\+@{game\+Board\+\_\+}}
+\index{game\+Board\+\_\+@{game\+Board\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{game\+Board\+\_\+}{gameBoard_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\+Board}\& websocket\+::\+Session\+::game\+Board\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_add75c0a25f69839df5441997846b3f3e}{}\label{classwebsocket_1_1Session_add75c0a25f69839df5441997846b3f3e}
+
+
+The chat game\+\_\+board where the messages will be posted. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!read\+Frame\+\_\+@{read\+Frame\+\_\+}}
+\index{read\+Frame\+\_\+@{read\+Frame\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{read\+Frame\+\_\+}{readFrame_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dataframe} websocket\+::\+Session\+::read\+Frame\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_a2ea49f75569589cc80cb9dbcfa7707ee}{}\label{classwebsocket_1_1Session_a2ea49f75569589cc80cb9dbcfa7707ee}
+
+
+The incoming message. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!reply\+\_\+@{reply\+\_\+}}
+\index{reply\+\_\+@{reply\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{reply\+\_\+}{reply_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf http\+::\+Reply} websocket\+::\+Session\+::reply\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_a938563bfc401a7446f87a60acc642800}{}\label{classwebsocket_1_1Session_a938563bfc401a7446f87a60acc642800}
+
+
+The http Reply to be sent back to the client. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!req\+\_\+@{req\+\_\+}}
+\index{req\+\_\+@{req\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{req\+\_\+}{req_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf http\+::\+Request} websocket\+::\+Session\+::req\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_a80b1e6b3657a3c3528acd3c9b4e453a5}{}\label{classwebsocket_1_1Session_a80b1e6b3657a3c3528acd3c9b4e453a5}
+
+
+The incoming http request. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!req\+Parser\+\_\+@{req\+Parser\+\_\+}}
+\index{req\+Parser\+\_\+@{req\+Parser\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{req\+Parser\+\_\+}{reqParser_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf http\+::\+Request\+Parser} websocket\+::\+Session\+::req\+Parser\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_a0336ca414e7c038331b39a01cdb23da8}{}\label{classwebsocket_1_1Session_a0336ca414e7c038331b39a01cdb23da8}
+
+
+The parser for the incoming http request. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!socket\+\_\+@{socket\+\_\+}}
+\index{socket\+\_\+@{socket\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{socket\+\_\+}{socket_}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::asio\+::ip\+::tcp\+::socket websocket\+::\+Session\+::socket\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{}\label{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}
+
+
+Socket for the connection. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!state\+\_\+@{state\+\_\+}}
+\index{state\+\_\+@{state\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{state\+\_\+}{state_}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf websocket\+::\+Session\+::state}  websocket\+::\+Session\+::state\+\_\+}\hypertarget{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{}\label{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}
+\index{websocket\+::\+Session@{websocket\+::\+Session}!strand\+\_\+@{strand\+\_\+}}
+\index{strand\+\_\+@{strand\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{strand\+\_\+}{strand_}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::asio\+::io\+\_\+service\+::strand websocket\+::\+Session\+::strand\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{}\label{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}
+
+
+Strand to ensure the connection\textquotesingle{}s handlers are not called concurrently. 
+
+\index{websocket\+::\+Session@{websocket\+::\+Session}!write\+Msgs\+\_\+@{write\+Msgs\+\_\+}}
+\index{write\+Msgs\+\_\+@{write\+Msgs\+\_\+}!websocket\+::\+Session@{websocket\+::\+Session}}
+\subsubsection[{\texorpdfstring{write\+Msgs\+\_\+}{writeMsgs_}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf message\+\_\+queue} websocket\+::\+Session\+::write\+Msgs\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classwebsocket_1_1Session_ace231022157030f4d56de9bfeff43ac7}{}\label{classwebsocket_1_1Session_ace231022157030f4d56de9bfeff43ac7}
+
+
+The messages to be sent to the client. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{session_8hpp}{session.\+hpp}\item 
+\hyperlink{session_8cpp}{session.\+cpp}\end{DoxyCompactItemize}
