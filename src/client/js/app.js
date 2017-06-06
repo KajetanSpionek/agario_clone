@@ -4,15 +4,17 @@
 *           Main application file
 */
 
-// Canvas variables
+// Canvas variable
 var canvas = document.getElementById('cvs');
+// Canvas context variable
 var context = canvas.getContext('2d');
     
 // Animation handle
 var raf;
 
-// Array's with data
+// Array with recieved data - array with other players
 var balls = [];
+// Array with recieved data - array with food
 var foods = [];
 
 // Mouse handle
@@ -21,24 +23,29 @@ var mousePos;
 // Declaration of player's variable
 var player = 0;
 
-// Map scale variable
+// Map scale variable (handles zooming out when getting bigger)
 var scl = 1;
 
 // Board margin
 var boardMargin = 0;
 
-// Whole map size
+// Whole map size - X
 var gameBoardX;
+// Whole map size - Y
 var gameBoardY;
 
-// Vector to left top corner from (0,0) gameBoard corner
+// Vector to left top corner from (0,0) gameBoard corner - X
 var deltaX;
+// Vector to left top corner from (0,0) gameBoard corner - X
 var deltaY;
 
-// Game status variables
+// Game status variables - true if game started 
 var gameStart = false;
+// Game status variables - true if player died
 var gameDied = false;
+// Game status variables - true if frame with player's info recieved
 var playerSet = false;
+// Game status variables - game statistics (food eaten, balls eaten and mass)
 var deathStats = [0, 0, 0];
 
 // Resize handle
@@ -47,7 +54,7 @@ window.addEventListener('resize', resizeCanvas, false);
 // Adjust canvas to player's screen size
 resizeCanvas();     
 
-// Returns random color
+/// Returns random color
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -57,7 +64,7 @@ function getRandomColor() {
         return color;
 }
 
-// Valid nick chcek
+/// Validates nickname
 function isNickValid() {
     var regex = /^\w*$/;
     if (regex.exec(playerNameInput.value) !== null) {
@@ -66,14 +73,14 @@ function isNickValid() {
     else return 0;
 }
     
-// Error handle - doesn't work   
+/// Error handle 
 function onError(evt) { 
-    state.className = "fail";
-    state.innerHTML = "Communication error";
+    document.getElementById('input-error').innerHTML = "Connection error";
+    document.getElementById('input-error').style.opacity = 1;
     gameStart = false;
 }  
 
-// Mouse handle
+/// Mouse handle
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -82,7 +89,7 @@ function getMousePos(canvas, evt) {
     };
 }
 
-// Display update (Animation)
+/// Display update (Animation)
 function update() {
     if (gameStart == true && gameDied == false) {
 
@@ -107,7 +114,7 @@ function update() {
     }
 }
 
-// Calculate object's fx,fy distance from player's center of screen
+/// Calculate object's fx,fy distance from player's center of screen
 function calculateFixedPos() {
     //  Food fixed position
     for (var i in foods) {
@@ -121,14 +128,14 @@ function calculateFixedPos() {
     }
 }
 
-// GameOver handle
+/// GameOver handle
 function gameOver() {
     gameStart = false;
     gameDied = true;
     deathScreen();
 }
 
-// StartGame handle
+/// StartGame handle
 function startGame() {
          
     document.getElementById('startMenu').style.opacity = 0;
@@ -139,7 +146,7 @@ function startGame() {
     gameDied = false;
 }
 
-// Resize canvas handle
+/// Resize canvas handle
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
