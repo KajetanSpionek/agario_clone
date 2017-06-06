@@ -74,6 +74,11 @@ R\+E\+S\+E\+R\+V\+ED\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036
 }]\end{description}
 \end{Desc}
 
+\begin{DoxyCode}
+21 \{ \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a9bf39e33295885bbf8be0b3335d0d4d6}{CONTINUATION\_FRAME}, \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84adea20051b65663cc4eea0162e2f2dad1}{TEXT\_FRAME}, \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a1f22c794d0daa62a1f60d777425ce646}{BINARY\_FRAME}, 
+      \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ac28582920eaf67c2f7d355e67209c0ae}{CONNECTION\_CLOSE}, \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84afe00cd2796e340b9762add122db96bae}{PING}, \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ae5bed00b4b0ad675819b436b28fd6ea8}{PONG}, \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84aeffe25f15a0bae70219c3cbdb08dee02}{RESERVED} \} \hyperlink{structwebsocket_1_1Dataframe_a5e3edcbe1a37e58024ec58f9f06dad38}{opcode};
+\end{DoxyCode}
+
 
 \subsection{Constructor \& Destructor Documentation}
 \index{websocket\+::\+Dataframe@{websocket\+::\+Dataframe}!Dataframe@{Dataframe}}
@@ -83,6 +88,13 @@ R\+E\+S\+E\+R\+V\+ED\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{structwebsocket_1_1Dataframe_a69124a202dd00df1ffa221ff7394985f}{}\label{structwebsocket_1_1Dataframe_a69124a202dd00df1ffa221ff7394985f}
+
+\begin{DoxyCode}
+6                          : \hyperlink{structwebsocket_1_1Dataframe_a76141c0d08271396a2497d5167b5c127}{fin}(\textcolor{keyword}{true}),
+7         \hyperlink{structwebsocket_1_1Dataframe_a5e3edcbe1a37e58024ec58f9f06dad38}{opcode}(\hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84adea20051b65663cc4eea0162e2f2dad1}{TEXT\_FRAME}), \hyperlink{structwebsocket_1_1Dataframe_a49bc9113bc12db7e842ee0459f947aad}{mask}(\textcolor{keyword}{false}), \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode}(0),
+8         \hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\_payload\_len}(0), \hyperlink{structwebsocket_1_1Dataframe_ae8d89a8c10d3b372c09d65364613c716}{payload\_len}(0), 
+      \hyperlink{structwebsocket_1_1Dataframe_a7dc588e87e310b596c4bcdc15d94c87d}{extended\_payload\_len16}(0), \hyperlink{structwebsocket_1_1Dataframe_a2c3c0a890d9e982cf004eec1e85d47af}{extended\_payload\_len64}(0) \{\}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
@@ -97,6 +109,69 @@ R\+E\+S\+E\+R\+V\+ED\hypertarget{structwebsocket_1_1Dataframe_ab6f63b062b0aff036
 
 Convert the \hyperlink{structwebsocket_1_1Dataframe}{Dataframe} into a vector of buffers. 
 
+
+\begin{DoxyCode}
+11     \{
+12         std::vector<boost::asio::const\_buffer> buffers;
+13 
+14         \textcolor{keywordflow}{if} (\hyperlink{structwebsocket_1_1Dataframe_a76141c0d08271396a2497d5167b5c127}{fin})
+15         \{
+16             \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode} |= 0x80;
+17         \}
+18 
+19         \textcolor{keywordflow}{switch} (\hyperlink{structwebsocket_1_1Dataframe_a5e3edcbe1a37e58024ec58f9f06dad38}{opcode})
+20         \{
+21         \textcolor{keywordflow}{case} \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a9bf39e33295885bbf8be0b3335d0d4d6}{CONTINUATION\_FRAME}:    \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode} |= 0x0; \textcolor{keywordflow}{break};
+22         \textcolor{keywordflow}{case} \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84adea20051b65663cc4eea0162e2f2dad1}{TEXT\_FRAME}:            \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode} |= 0x1; \textcolor{keywordflow}{break};
+23         \textcolor{keywordflow}{case} \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a1f22c794d0daa62a1f60d777425ce646}{BINARY\_FRAME}:          \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode} |= 0x2; \textcolor{keywordflow}{break};
+24         \textcolor{keywordflow}{case} \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ac28582920eaf67c2f7d355e67209c0ae}{CONNECTION\_CLOSE}:      \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode} |= 0x8; \textcolor{keywordflow}{break};
+25         \textcolor{keywordflow}{case} \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84afe00cd2796e340b9762add122db96bae}{PING}:                  \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode} |= 0x9; \textcolor{keywordflow}{break};
+26         \textcolor{keywordflow}{case} \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ae5bed00b4b0ad675819b436b28fd6ea8}{PONG}:                  \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode} |= 0xA; \textcolor{keywordflow}{break};
+27         \textcolor{keywordflow}{default}:                    \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode} |= 0xF; \textcolor{keywordflow}{break};
+28         \}
+29 
+30         buffers.push\_back(boost::asio::buffer(static\_cast<const void*>(&
+      \hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode}), \textcolor{keyword}{sizeof}(\hyperlink{structwebsocket_1_1Dataframe_aae943445525774887619b133b4baed2d}{fin\_opcode})));
+31 
+32         \textcolor{keywordflow}{if} (\hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}.size() < 126)
+33         \{
+34             \hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\_payload\_len} = \textcolor{keyword}{static\_cast<}boost::uint8\_t\textcolor{keyword}{>}(
+      \hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}.size());
+35             buffers.push\_back(boost::asio::buffer(static\_cast<const void*>(&
+      \hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\_payload\_len}), \textcolor{keyword}{sizeof}(\hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\_payload\_len})));
+36             buffers.push\_back(boost::asio::buffer(\hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}));
+37         \}
+38         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}.size() < 65536)
+39         \{
+40             \hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\_payload\_len} = 126;
+41             \hyperlink{structwebsocket_1_1Dataframe_a7dc588e87e310b596c4bcdc15d94c87d}{extended\_payload\_len16} = \textcolor{keyword}{static\_cast<}boost::uint16\_t\textcolor{keyword}{>}(
+      \hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}.size());
+42             \hyperlink{structwebsocket_1_1Dataframe_a7dc588e87e310b596c4bcdc15d94c87d}{extended\_payload\_len16} = 
+      \hyperlink{classwebsocket_1_1DataframeParser_a1d56019ba8f427984da01a3c206b4226}{DataframeParser::hton16}(\hyperlink{structwebsocket_1_1Dataframe_a7dc588e87e310b596c4bcdc15d94c87d}{extended\_payload\_len16});
+43 
+44             buffers.push\_back(boost::asio::buffer(static\_cast<const void*>(&
+      \hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\_payload\_len}), \textcolor{keyword}{sizeof}(\hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\_payload\_len})));
+45             buffers.push\_back(boost::asio::buffer(static\_cast<const void*>(&
+      \hyperlink{structwebsocket_1_1Dataframe_a7dc588e87e310b596c4bcdc15d94c87d}{extended\_payload\_len16}), \textcolor{keyword}{sizeof}(\hyperlink{structwebsocket_1_1Dataframe_a7dc588e87e310b596c4bcdc15d94c87d}{extended\_payload\_len16})));
+46             buffers.push\_back(boost::asio::buffer(\hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}));
+47         \}
+48         \textcolor{keywordflow}{else}
+49         \{
+50             \hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\_payload\_len} = 127;
+51             \hyperlink{structwebsocket_1_1Dataframe_a2c3c0a890d9e982cf004eec1e85d47af}{extended\_payload\_len64} = \hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}.size();
+52             \hyperlink{structwebsocket_1_1Dataframe_a2c3c0a890d9e982cf004eec1e85d47af}{extended\_payload\_len64} = 
+      \hyperlink{classwebsocket_1_1DataframeParser_ac0ffb851ee6870bc8672ef6408fce939}{DataframeParser::hton64}(\hyperlink{structwebsocket_1_1Dataframe_a2c3c0a890d9e982cf004eec1e85d47af}{extended\_payload\_len64});
+53 
+54             buffers.push\_back(boost::asio::buffer(static\_cast<const void*>(&
+      \hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\_payload\_len}), \textcolor{keyword}{sizeof}(\hyperlink{structwebsocket_1_1Dataframe_aef0527ee72ea7de1fe50914200bd3fcf}{mask\_payload\_len})));
+55             buffers.push\_back(boost::asio::buffer(static\_cast<const void*>(&
+      \hyperlink{structwebsocket_1_1Dataframe_a2c3c0a890d9e982cf004eec1e85d47af}{extended\_payload\_len64}), \textcolor{keyword}{sizeof}(\hyperlink{structwebsocket_1_1Dataframe_a2c3c0a890d9e982cf004eec1e85d47af}{extended\_payload\_len64})));
+56             buffers.push\_back(boost::asio::buffer(\hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}));
+57         \}
+58 
+59         \textcolor{keywordflow}{return} buffers;
+60     \}
+\end{DoxyCode}
 
 
 \subsection{Member Data Documentation}

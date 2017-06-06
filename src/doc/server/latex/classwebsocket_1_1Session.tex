@@ -6,7 +6,8 @@
 
 
 
-Inheritance diagram for websocket\+:\+:Session\+:\nopagebreak
+Inheritance diagram for websocket\+:\+:Session\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -109,6 +110,12 @@ P\+U\+M\+P\+I\+N\+G\+\_\+\+M\+E\+S\+S\+A\+G\+ES\hypertarget{classwebsocket_1_1Se
 }]\end{description}
 \end{Desc}
 
+\begin{DoxyCode}
+34 \{ \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baea725805737e434c2b1d0b061df4ddde}{UNDEFINED\_STATE}, \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba3b14b5a3d2ab8b61422448f7464a5d4a}{READING\_HANDSHAKE}, 
+      \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba057f3e49a1f4623a6011d712c1cbc7ba}{BAD\_REQUEST}, \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba272f56d02b3f719d25d23ebe3f68f44a}{WRITING\_HANDSHAKE}, \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baba12c4de6ae83a4f63b1c700d4ecfe8e}{PUMPING\_MESSAGES} \} 
+      \hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\_};
+\end{DoxyCode}
+
 
 \subsection{Constructor \& Destructor Documentation}
 \index{websocket\+::\+Session@{websocket\+::\+Session}!Session@{Session}}
@@ -123,6 +130,13 @@ P\+U\+M\+P\+I\+N\+G\+\_\+\+M\+E\+S\+S\+A\+G\+ES\hypertarget{classwebsocket_1_1Se
 
 Construct a connection with the given io\+\_\+service. 
 
+
+\begin{DoxyCode}
+19                 : \hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\_}(\hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baea725805737e434c2b1d0b061df4ddde}{UNDEFINED\_STATE}), \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}(io\_service),
+20                 \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}(io\_service), \hyperlink{classwebsocket_1_1Session_add75c0a25f69839df5441997846b3f3e}{gameBoard\_}(game\_board)
+21             \{
+22             \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
@@ -141,6 +155,21 @@ Deliver a message to the client.
 
 Implements \hyperlink{classwebsocket_1_1Player_adf19a07c6497129268b3719783e7180d}{websocket\+::\+Player}.
 
+
+\begin{DoxyCode}
+185             \{
+186                 \textcolor{keywordtype}{bool} write\_in\_progress = !\hyperlink{classwebsocket_1_1Session_ace231022157030f4d56de9bfeff43ac7}{writeMsgs\_}.empty();
+187                 \hyperlink{classwebsocket_1_1Session_ace231022157030f4d56de9bfeff43ac7}{writeMsgs\_}.push\_back(msg);
+188                 \textcolor{keywordflow}{if} (!write\_in\_progress)
+189                 \{
+190                     boost::asio::async\_write(\hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_},
+191                         \hyperlink{classwebsocket_1_1Session_ace231022157030f4d56de9bfeff43ac7}{writeMsgs\_}.front().to\_buffers(),
+192                         \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}.wrap(boost::bind(&\hyperlink{classwebsocket_1_1Session_aa3912eefe7b2d125d0f3739c96f98a83}{Session::handle\_write}, 
+      shared\_from\_this(),
+193                         boost::asio::placeholders::error)));
+194                 \}
+195             \}
+\end{DoxyCode}
 \index{websocket\+::\+Session@{websocket\+::\+Session}!get\+Id@{get\+Id}}
 \index{get\+Id@{get\+Id}!websocket\+::\+Session@{websocket\+::\+Session}}
 \subsubsection[{\texorpdfstring{get\+Id()}{getId()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string websocket\+::\+Session\+::get\+Id (
@@ -156,6 +185,13 @@ Get the client id.
 
 Implements \hyperlink{classwebsocket_1_1Player_a440338aee24d324c46115bc7b4c7a463}{websocket\+::\+Player}.
 
+
+\begin{DoxyCode}
+198             \{
+199                 \textcolor{keywordflow}{return} \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}.is\_open() ? \textcolor{stringliteral}{"user"} + boost::lexical\_cast<std::string>(
+      \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}.remote\_endpoint().port()) : \textcolor{stringliteral}{"user0"};
+200             \}
+\end{DoxyCode}
 \index{websocket\+::\+Session@{websocket\+::\+Session}!handle\+\_\+read@{handle\+\_\+read}}
 \index{handle\+\_\+read@{handle\+\_\+read}!websocket\+::\+Session@{websocket\+::\+Session}}
 \subsubsection[{\texorpdfstring{handle\+\_\+read(const boost\+::system\+::error\+\_\+code \&e, std\+::size\+\_\+t bytes\+\_\+transferred)}{handle_read(const boost::system::error_code &e, std::size_t bytes_transferred)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Session\+::handle\+\_\+read (
@@ -168,6 +204,130 @@ Implements \hyperlink{classwebsocket_1_1Player_a440338aee24d324c46115bc7b4c7a463
 
 Handle completion of a read operation. 
 
+
+\begin{DoxyCode}
+41             \{
+42                 \textcolor{keywordflow}{if} (!error)
+43                 \{
+44                     \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\_} == \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba3b14b5a3d2ab8b61422448f7464a5d4a}{READING\_HANDSHAKE})
+45                     \{
+46                         boost::tribool result;
+47                         boost::tie(result, boost::tuples::ignore) = \hyperlink{classwebsocket_1_1Session_a0336ca414e7c038331b39a01cdb23da8}{reqParser\_}.
+      \hyperlink{classwebsocket_1_1http_1_1RequestParser_ae5dcbd6fc63f20cd9665163c6449f5a9}{parse}(
+48                             \hyperlink{classwebsocket_1_1Session_a80b1e6b3657a3c3528acd3c9b4e453a5}{req\_}, \hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\_}.data(), \hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\_}.data() + bytes\_transferred);
+49 
+50                         \textcolor{keywordflow}{if} (result)
+51                         \{
+52                             \hyperlink{classwebsocket_1_1http_1_1RequestHandler_aca773bf228502c35351326f4b0dc67a9}{http::RequestHandler::handleRequest}(
+      \hyperlink{classwebsocket_1_1Session_a80b1e6b3657a3c3528acd3c9b4e453a5}{req\_}, \hyperlink{classwebsocket_1_1Session_a938563bfc401a7446f87a60acc642800}{reply\_});
+53 
+54                             \hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\_} = \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba272f56d02b3f719d25d23ebe3f68f44a}{WRITING\_HANDSHAKE};
+55                             boost::asio::async\_write(\hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}, \hyperlink{classwebsocket_1_1Session_a938563bfc401a7446f87a60acc642800}{reply\_}.
+      \hyperlink{structwebsocket_1_1http_1_1Reply_a69b864b3b73877e32794cff8df944485}{to\_buffers}(),
+56                                 \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}.wrap(
+57                                 boost::bind(&\hyperlink{classwebsocket_1_1Session_aa3912eefe7b2d125d0f3739c96f98a83}{Session::handle\_write}, shared\_from\_this()
+      ,
+58                                 boost::asio::placeholders::error)));
+59                         \}
+60                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!result)
+61                         \{
+62                             \hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\_} = \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba057f3e49a1f4623a6011d712c1cbc7ba}{BAD\_REQUEST};                        
+63                             \hyperlink{classwebsocket_1_1Session_a938563bfc401a7446f87a60acc642800}{reply\_} = \hyperlink{structwebsocket_1_1http_1_1Reply_a96b71498c73c3925edd06359da59675b}{http::Reply::stock\_reply}(
+      \hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2abe7be227057261b88798008ac000a50c}{http::Reply::BAD\_REQUEST});
+64                             boost::asio::async\_write(\hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}, \hyperlink{classwebsocket_1_1Session_a938563bfc401a7446f87a60acc642800}{reply\_}.
+      \hyperlink{structwebsocket_1_1http_1_1Reply_a69b864b3b73877e32794cff8df944485}{to\_buffers}(),
+65                                 \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}.wrap(
+66                                 boost::bind(&\hyperlink{classwebsocket_1_1Session_aa3912eefe7b2d125d0f3739c96f98a83}{Session::handle\_write}, shared\_from\_this()
+      ,
+67                                 boost::asio::placeholders::error)));
+68                         \}
+69                         \textcolor{keywordflow}{else}
+70                         \{
+71                             \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}.async\_read\_some(boost::asio::buffer(
+      \hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\_}),
+72                                 \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}.wrap(
+73                                 boost::bind(&\hyperlink{classwebsocket_1_1Session_ad23257dd2bffa48e90ed9941d39ca56b}{Session::handle\_read}, shared\_from\_this(),
+74                                 boost::asio::placeholders::error,
+75                                 boost::asio::placeholders::bytes\_transferred)));
+76                         \}
+77                     \}
+78                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\_} == \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baba12c4de6ae83a4f63b1c700d4ecfe8e}{PUMPING\_MESSAGES})
+79                     \{
+80                         boost::tribool result;
+81                         boost::tie(result, boost::tuples::ignore) = \hyperlink{classwebsocket_1_1Session_add7f041fe3badd9bea5158a412d4c33b}{frameParser\_}.
+      \hyperlink{classwebsocket_1_1DataframeParser_add0317d2a579c37ac92d5157c8a9b638}{parse}(
+82                             \hyperlink{classwebsocket_1_1Session_a2ea49f75569589cc80cb9dbcfa7707ee}{readFrame\_}, \hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\_}.data(), \hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\_}.data() + bytes\_transferred)
+      ;
+83 
+84                         \textcolor{keywordflow}{if} (result)
+85                         \{
+86                             \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1Session_a2ea49f75569589cc80cb9dbcfa7707ee}{readFrame\_}.\hyperlink{structwebsocket_1_1Dataframe_a5e3edcbe1a37e58024ec58f9f06dad38}{opcode} == 
+      \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84adea20051b65663cc4eea0162e2f2dad1}{Dataframe::TEXT\_FRAME})
+87                             \{
+88                                 \hyperlink{classwebsocket_1_1Session_add75c0a25f69839df5441997846b3f3e}{gameBoard\_}.\hyperlink{classwebsocket_1_1GameBoard_a0ed4b13ba573956d8aebaf8f5c208fa0}{deliver}(\hyperlink{classwebsocket_1_1Session_a2ea49f75569589cc80cb9dbcfa7707ee}{readFrame\_}, shared\_from\_this(
+      ));
+89 
+90                                 \hyperlink{classwebsocket_1_1Session_a2ea49f75569589cc80cb9dbcfa7707ee}{readFrame\_}.\hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}.clear();
+91                                 \hyperlink{classwebsocket_1_1Session_add7f041fe3badd9bea5158a412d4c33b}{frameParser\_}.\hyperlink{classwebsocket_1_1DataframeParser_a247fd15250481e4c82cd9eb436ea158e}{reset}();
+92 
+93                                 \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}.async\_read\_some(boost::asio::buffer(
+      \hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\_}),
+94                                     \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}.wrap(
+95                                     boost::bind(&\hyperlink{classwebsocket_1_1Session_ad23257dd2bffa48e90ed9941d39ca56b}{Session::handle\_read}, shared\_from\_this
+      (),
+96                                     boost::asio::placeholders::error,
+97                                     boost::asio::placeholders::bytes\_transferred)));
+98                             \}
+99                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1Session_a2ea49f75569589cc80cb9dbcfa7707ee}{readFrame\_}.\hyperlink{structwebsocket_1_1Dataframe_a5e3edcbe1a37e58024ec58f9f06dad38}{opcode} == 
+      \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ae5bed00b4b0ad675819b436b28fd6ea8}{Dataframe::PONG} ||
+100                                 \hyperlink{classwebsocket_1_1Session_a2ea49f75569589cc80cb9dbcfa7707ee}{readFrame\_}.\hyperlink{structwebsocket_1_1Dataframe_a5e3edcbe1a37e58024ec58f9f06dad38}{opcode} == 
+      \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84afe00cd2796e340b9762add122db96bae}{Dataframe::PING})
+101                             \{
+102                                 \hyperlink{classwebsocket_1_1Session_a2ea49f75569589cc80cb9dbcfa7707ee}{readFrame\_}.\hyperlink{structwebsocket_1_1Dataframe_a809c2f387810fa2accd6602a290a6876}{payload}.clear();
+103                                 \hyperlink{classwebsocket_1_1Session_add7f041fe3badd9bea5158a412d4c33b}{frameParser\_}.\hyperlink{classwebsocket_1_1DataframeParser_a247fd15250481e4c82cd9eb436ea158e}{reset}();
+104 
+105                                 \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}.async\_read\_some(boost::asio::buffer(
+      \hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\_}),
+106                                     \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}.wrap(
+107                                     boost::bind(&\hyperlink{classwebsocket_1_1Session_ad23257dd2bffa48e90ed9941d39ca56b}{Session::handle\_read}, shared\_from\_this
+      (),
+108                                     boost::asio::placeholders::error,
+109                                     boost::asio::placeholders::bytes\_transferred)));
+110                             \}
+111                             \textcolor{keywordflow}{else}
+112                             \{
+113                                 \hyperlink{classwebsocket_1_1Session_add75c0a25f69839df5441997846b3f3e}{gameBoard\_}.\hyperlink{classwebsocket_1_1GameBoard_a2f3f0eb3fb2fbe6303426c1bc8d3fff7}{leave}(shared\_from\_this());
+114                             \}
+115                         \}
+116                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!result)
+117                         \{
+118                             \hyperlink{classwebsocket_1_1Session_add75c0a25f69839df5441997846b3f3e}{gameBoard\_}.\hyperlink{classwebsocket_1_1GameBoard_a2f3f0eb3fb2fbe6303426c1bc8d3fff7}{leave}(shared\_from\_this());
+119                         \}
+120                         \textcolor{keywordflow}{else}
+121                         \{
+122                             \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}.async\_read\_some(boost::asio::buffer(
+      \hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\_}),
+123                                 \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}.wrap(
+124                                 boost::bind(&\hyperlink{classwebsocket_1_1Session_ad23257dd2bffa48e90ed9941d39ca56b}{Session::handle\_read}, shared\_from\_this(),
+125                                 boost::asio::placeholders::error,
+126                                 boost::asio::placeholders::bytes\_transferred)));
+127                         \}
+128                     \}
+129                 \}
+130                 \textcolor{keywordflow}{else}
+131                 \{
+132                     \textcolor{keywordflow}{if} (error != boost::asio::error::eof)
+133                         std::cerr << error.message() << std::endl;
+134 
+135                     \hyperlink{classwebsocket_1_1Session_add75c0a25f69839df5441997846b3f3e}{gameBoard\_}.\hyperlink{classwebsocket_1_1GameBoard_a2f3f0eb3fb2fbe6303426c1bc8d3fff7}{leave}(shared\_from\_this());
+136                 \}
+137 
+138                 \textcolor{comment}{// If an error occurs then no new asynchronous operations are started. This}
+139                 \textcolor{comment}{// means that all shared\_ptr references to the connection object will}
+140                 \textcolor{comment}{// disappear and the object will be destroyed automatically after this}
+141                 \textcolor{comment}{// handler returns. The connection class's destructor closes the socket.}
+142             \}
+\end{DoxyCode}
 \index{websocket\+::\+Session@{websocket\+::\+Session}!handle\+\_\+write@{handle\+\_\+write}}
 \index{handle\+\_\+write@{handle\+\_\+write}!websocket\+::\+Session@{websocket\+::\+Session}}
 \subsubsection[{\texorpdfstring{handle\+\_\+write(const boost\+::system\+::error\+\_\+code \&e)}{handle_write(const boost::system::error_code &e)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Session\+::handle\+\_\+write (
@@ -179,6 +339,49 @@ Handle completion of a read operation.
 
 Handle completion of a write operation. 
 
+
+\begin{DoxyCode}
+145             \{
+146                 \textcolor{keywordflow}{if} (!error)
+147                 \{
+148                     \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\_} == \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba272f56d02b3f719d25d23ebe3f68f44a}{WRITING\_HANDSHAKE})
+149                     \{
+150                         \hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\_} = \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baba12c4de6ae83a4f63b1c700d4ecfe8e}{PUMPING\_MESSAGES};
+151 
+152                         \hyperlink{classwebsocket_1_1Session_add75c0a25f69839df5441997846b3f3e}{gameBoard\_}.\hyperlink{classwebsocket_1_1GameBoard_a3ca61a3da72869402a6e1702a99faa76}{join}(shared\_from\_this());
+153 
+154                         \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}.async\_read\_some(boost::asio::buffer(\hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\_}),
+155                                     \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}.wrap(
+156                                     boost::bind(&\hyperlink{classwebsocket_1_1Session_ad23257dd2bffa48e90ed9941d39ca56b}{Session::handle\_read}, shared\_from\_this
+      (),
+157                                     boost::asio::placeholders::error,
+158                                     boost::asio::placeholders::bytes\_transferred)));
+159                     \}
+160                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\_} == \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1baba12c4de6ae83a4f63b1c700d4ecfe8e}{PUMPING\_MESSAGES})
+161                     \{
+162                         \textcolor{keywordflow}{if} (!\hyperlink{classwebsocket_1_1Session_ace231022157030f4d56de9bfeff43ac7}{writeMsgs\_}.empty())
+163                         \{
+164                             \hyperlink{classwebsocket_1_1Session_ace231022157030f4d56de9bfeff43ac7}{writeMsgs\_}.pop\_front();
+165                             \textcolor{keywordflow}{if} (!\hyperlink{classwebsocket_1_1Session_ace231022157030f4d56de9bfeff43ac7}{writeMsgs\_}.empty())
+166                             \{
+167                                 boost::asio::async\_write(\hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_},
+168                                     \hyperlink{classwebsocket_1_1Session_ace231022157030f4d56de9bfeff43ac7}{writeMsgs\_}.front().to\_buffers(),
+169                                     \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}.wrap(boost::bind(&
+      \hyperlink{classwebsocket_1_1Session_aa3912eefe7b2d125d0f3739c96f98a83}{Session::handle\_write}, shared\_from\_this(),
+170                                     boost::asio::placeholders::error)));
+171                             \}
+172                         \}
+173                     \}
+174                 \}
+175                 \textcolor{keywordflow}{else}
+176                 \{
+177                     \textcolor{keywordflow}{if} (error != boost::asio::error::eof)
+178                         std::cerr << error.message() << std::endl;
+179 
+180                     \hyperlink{classwebsocket_1_1Session_add75c0a25f69839df5441997846b3f3e}{gameBoard\_}.\hyperlink{classwebsocket_1_1GameBoard_a2f3f0eb3fb2fbe6303426c1bc8d3fff7}{leave}(shared\_from\_this());
+181                 \}
+182             \}
+\end{DoxyCode}
 \index{websocket\+::\+Session@{websocket\+::\+Session}!socket@{socket}}
 \index{socket@{socket}!websocket\+::\+Session@{websocket\+::\+Session}}
 \subsubsection[{\texorpdfstring{socket()}{socket()}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::asio\+::ip\+::tcp\+::socket \& websocket\+::\+Session\+::socket (
@@ -190,6 +393,12 @@ Handle completion of a write operation.
 
 Get the socket associated with the connection. 
 
+
+\begin{DoxyCode}
+25             \{
+26                 \textcolor{keywordflow}{return} \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_};
+27             \}
+\end{DoxyCode}
 \index{websocket\+::\+Session@{websocket\+::\+Session}!start@{start}}
 \index{start@{start}!websocket\+::\+Session@{websocket\+::\+Session}}
 \subsubsection[{\texorpdfstring{start()}{start()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Session\+::start (
@@ -201,6 +410,17 @@ Get the socket associated with the connection.
 
 Start the first asynchronous operation for the connection. 
 
+
+\begin{DoxyCode}
+30             \{
+31                 \hyperlink{classwebsocket_1_1Session_a8f9e0d65f4de675dd7b8242e17ee29b7}{state\_} = \hyperlink{classwebsocket_1_1Session_a643e11bb9d05b580f20ff232f3582c1ba3b14b5a3d2ab8b61422448f7464a5d4a}{READING\_HANDSHAKE};          
+32                 \hyperlink{classwebsocket_1_1Session_a7e7771fef3f105f4019ef9a1c2f04eb5}{socket\_}.async\_read\_some(boost::asio::buffer(\hyperlink{classwebsocket_1_1Session_a4a7ca92db9c843899fbf3673fe5b9f52}{buff\_}),
+33                     \hyperlink{classwebsocket_1_1Session_a394bb9b578c166e22b2a630b8ea013fb}{strand\_}.wrap(
+34                     boost::bind(&\hyperlink{classwebsocket_1_1Session_ad23257dd2bffa48e90ed9941d39ca56b}{Session::handle\_read}, shared\_from\_this(),
+35                     boost::asio::placeholders::error,
+36                     boost::asio::placeholders::bytes\_transferred)));
+37             \}
+\end{DoxyCode}
 
 
 \subsection{Member Data Documentation}

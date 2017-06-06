@@ -114,8 +114,8 @@ Inheritance diagram for websocket::Element:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6d6b671ae2f922c12c0a64a94bd669fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebsocket_1_1Element.html#a6d6b671ae2f922c12c0a64a94bd669fb">Element</a> (double &amp;x, double &amp;y, double &amp;radius)</td></tr>
 <tr class="separator:a6d6b671ae2f922c12c0a64a94bd669fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a249effc753deac10eb2eb7fc80c759"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebsocket_1_1Element.html#a4a249effc753deac10eb2eb7fc80c759">~Element</a> ()=default</td></tr>
-<tr class="separator:a4a249effc753deac10eb2eb7fc80c759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d08a32162fcbc445a491259598f465f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebsocket_1_1Element.html#a6d08a32162fcbc445a491259598f465f">~Element</a> ()</td></tr>
+<tr class="separator:a6d08a32162fcbc445a491259598f465f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b16c1d2898cb3d1db6b5305045838bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebsocket_1_1Element.html#a7b16c1d2898cb3d1db6b5305045838bf">Element</a> (const <a class="el" href="classwebsocket_1_1Element.html">Element</a> &amp;other)=default</td></tr>
 <tr class="separator:a7b16c1d2898cb3d1db6b5305045838bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c188d2039c89735c2d5e09123266397"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classwebsocket_1_1Element.html">Element</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwebsocket_1_1Element.html#a3c188d2039c89735c2d5e09123266397">operator=</a> (const <a class="el" href="classwebsocket_1_1Element.html">Element</a> &amp;other)=default</td></tr>
@@ -186,10 +186,15 @@ Static Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;                                                         : <a class="code" href="classwebsocket_1_1Element.html#a0cb8ab190a65134d23ff3bf4054865eb">id_</a>(++<a class="code" href="classwebsocket_1_1Element.html#af6fa7171fdd68176492397d9706947b3">idCount_</a>), <a class="code" href="classwebsocket_1_1Element.html#adb51cfefd07378c784d30340c449a224">x_</a>(x), <a class="code" href="classwebsocket_1_1Element.html#a61ea05afb0180339005d1c96786a60ce">y_</a>(y),<a class="code" href="classwebsocket_1_1Element.html#aec20349985f8c1bc19d6f686658e6c62">radius_</a>(radius)</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    {</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        </div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    }</div><div class="ttc" id="classwebsocket_1_1Element_html_af6fa7171fdd68176492397d9706947b3"><div class="ttname"><a href="classwebsocket_1_1Element.html#af6fa7171fdd68176492397d9706947b3">websocket::Element::idCount_</a></div><div class="ttdeci">static int idCount_</div><div class="ttdef"><b>Definition:</b> element.hpp:39</div></div>
+<div class="ttc" id="classwebsocket_1_1Element_html_a0cb8ab190a65134d23ff3bf4054865eb"><div class="ttname"><a href="classwebsocket_1_1Element.html#a0cb8ab190a65134d23ff3bf4054865eb">websocket::Element::id_</a></div><div class="ttdeci">const int id_</div><div class="ttdef"><b>Definition:</b> element.hpp:38</div></div>
+<div class="ttc" id="classwebsocket_1_1Element_html_aec20349985f8c1bc19d6f686658e6c62"><div class="ttname"><a href="classwebsocket_1_1Element.html#aec20349985f8c1bc19d6f686658e6c62">websocket::Element::radius_</a></div><div class="ttdeci">double radius_</div><div class="ttdef"><b>Definition:</b> element.hpp:45</div></div>
+<div class="ttc" id="classwebsocket_1_1Element_html_a61ea05afb0180339005d1c96786a60ce"><div class="ttname"><a href="classwebsocket_1_1Element.html#a61ea05afb0180339005d1c96786a60ce">websocket::Element::y_</a></div><div class="ttdeci">double y_</div><div class="ttdef"><b>Definition:</b> element.hpp:44</div></div>
+<div class="ttc" id="classwebsocket_1_1Element_html_adb51cfefd07378c784d30340c449a224"><div class="ttname"><a href="classwebsocket_1_1Element.html#adb51cfefd07378c784d30340c449a224">websocket::Element::x_</a></div><div class="ttdeci">double x_</div><div class="ttdef"><b>Definition:</b> element.hpp:43</div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a4a249effc753deac10eb2eb7fc80c759"></a>
+<a class="anchor" id="a6d08a32162fcbc445a491259598f465f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -197,7 +202,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">websocket::Element::~Element </td>
+          <td class="memname">virtual websocket::Element::~Element </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -205,11 +210,11 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{}</div></div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a7b16c1d2898cb3d1db6b5305045838bf"></a>
@@ -257,7 +262,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classwebsocket_1_1Element.html#a0cb8ab190a65134d23ff3bf4054865eb">id_</a>;}</div><div class="ttc" id="classwebsocket_1_1Element_html_a0cb8ab190a65134d23ff3bf4054865eb"><div class="ttname"><a href="classwebsocket_1_1Element.html#a0cb8ab190a65134d23ff3bf4054865eb">websocket::Element::id_</a></div><div class="ttdeci">const int id_</div><div class="ttdef"><b>Definition:</b> element.hpp:38</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a28027c861e94306a7666d839db910f2a"></a>
@@ -305,7 +311,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classwebsocket_1_1Element.html#aec20349985f8c1bc19d6f686658e6c62">radius_</a>; }</div><div class="ttc" id="classwebsocket_1_1Element_html_aec20349985f8c1bc19d6f686658e6c62"><div class="ttname"><a href="classwebsocket_1_1Element.html#aec20349985f8c1bc19d6f686658e6c62">websocket::Element::radius_</a></div><div class="ttdeci">double radius_</div><div class="ttdef"><b>Definition:</b> element.hpp:45</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a6102d0b4ccbad0194ee393fa5341cabc"></a>
@@ -328,7 +335,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classwebsocket_1_1Element.html#adb51cfefd07378c784d30340c449a224">x_</a>;}</div><div class="ttc" id="classwebsocket_1_1Element_html_adb51cfefd07378c784d30340c449a224"><div class="ttname"><a href="classwebsocket_1_1Element.html#adb51cfefd07378c784d30340c449a224">websocket::Element::x_</a></div><div class="ttdeci">double x_</div><div class="ttdef"><b>Definition:</b> element.hpp:43</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a597f360c2c593a6610a2a9103d5e876b"></a>
@@ -351,7 +359,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classwebsocket_1_1Element.html#a61ea05afb0180339005d1c96786a60ce">y_</a>;}</div><div class="ttc" id="classwebsocket_1_1Element_html_a61ea05afb0180339005d1c96786a60ce"><div class="ttname"><a href="classwebsocket_1_1Element.html#a61ea05afb0180339005d1c96786a60ce">websocket::Element::y_</a></div><div class="ttdeci">double y_</div><div class="ttdef"><b>Definition:</b> element.hpp:44</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a3c188d2039c89735c2d5e09123266397"></a>
@@ -399,7 +408,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{ <a class="code" href="classwebsocket_1_1Element.html#aec20349985f8c1bc19d6f686658e6c62">radius_</a> = radius; }</div><div class="ttc" id="classwebsocket_1_1Element_html_aec20349985f8c1bc19d6f686658e6c62"><div class="ttname"><a href="classwebsocket_1_1Element.html#aec20349985f8c1bc19d6f686658e6c62">websocket::Element::radius_</a></div><div class="ttdeci">double radius_</div><div class="ttdef"><b>Definition:</b> element.hpp:45</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aba38ddf15ce77e2e79bce80cf38947db"></a>
@@ -423,7 +433,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{ <a class="code" href="classwebsocket_1_1Element.html#adb51cfefd07378c784d30340c449a224">x_</a> = x; }</div><div class="ttc" id="classwebsocket_1_1Element_html_adb51cfefd07378c784d30340c449a224"><div class="ttname"><a href="classwebsocket_1_1Element.html#adb51cfefd07378c784d30340c449a224">websocket::Element::x_</a></div><div class="ttdeci">double x_</div><div class="ttdef"><b>Definition:</b> element.hpp:43</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ab05d0ca40f4d1a79d52cb31c5b4f789b"></a>
@@ -447,7 +458,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{ <a class="code" href="classwebsocket_1_1Element.html#a61ea05afb0180339005d1c96786a60ce">y_</a> = y; }</div><div class="ttc" id="classwebsocket_1_1Element_html_a61ea05afb0180339005d1c96786a60ce"><div class="ttname"><a href="classwebsocket_1_1Element.html#a61ea05afb0180339005d1c96786a60ce">websocket::Element::y_</a></div><div class="ttdeci">double y_</div><div class="ttdef"><b>Definition:</b> element.hpp:44</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

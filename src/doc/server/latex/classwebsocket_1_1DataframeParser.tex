@@ -106,6 +106,26 @@ P\+A\+Y\+L\+O\+AD\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6d
 }]\end{description}
 \end{Desc}
 
+\begin{DoxyCode}
+62             \{
+63                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa29b00899c276193d6f18e8389b7592a3}{FIN\_OPCODE},
+64                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaefc4557724349d199ef0b5bacaae52fb}{MASK\_PAYLOAD\_LEN},
+65                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa7b68eb5f5cc6e9c7d6feaf988475afdb}{EXTENDED\_PAYLOAD\_LEN1},
+66                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aabc3d01e63f47e768f18b8663e810eac8}{EXTENDED\_PAYLOAD\_LEN2},
+67                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3378e509de505a563f329a988e7b25e5}{EXTENDED\_PAYLOAD\_LEN3},
+68                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa79a2813ac6e13fe0c88042739cc877dd}{EXTENDED\_PAYLOAD\_LEN4},
+69                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aadde851b7d820e146ca0c1e00131f6efb}{EXTENDED\_PAYLOAD\_LEN5},
+70                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa95998dd95ec2eed1d3e9e3d43db4ae1c}{EXTENDED\_PAYLOAD\_LEN6},
+71                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa1cfc14be739e979f81d64b02ab16eb9f}{EXTENDED\_PAYLOAD\_LEN7},
+72                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad72fe80a8219f96501c6d6db3854dc0b}{EXTENDED\_PAYLOAD\_LEN8},
+73                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3b69744b62fa835db0824373457b6434}{MASKING\_KEY\_1},
+74                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa01f875cd0a23eaa5834547b8d1faaade}{MASKING\_KEY\_2},
+75                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad1ec7ea124241d5b4178144e6ed6f5d3}{MASKING\_KEY\_3},
+76                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaaffec7e2ab59fae9a01ae2398a4ec25f}{MASKING\_KEY\_4},
+77                 \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa598aa8acb047115c40ad5a8e4dbafa84}{PAYLOAD}
+78             \} \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_};
+\end{DoxyCode}
+
 
 \subsection{Constructor \& Destructor Documentation}
 \index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!Dataframe\+Parser@{Dataframe\+Parser}}
@@ -119,6 +139,12 @@ P\+A\+Y\+L\+O\+AD\hypertarget{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6d
 
 Construct ready to parse the \hyperlink{structwebsocket_1_1Dataframe}{Dataframe}. 
 
+
+\begin{DoxyCode}
+7         : \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_}(\hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa29b00899c276193d6f18e8389b7592a3}{FIN\_OPCODE})
+8     \{
+9     \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
@@ -134,6 +160,246 @@ Construct ready to parse the \hyperlink{structwebsocket_1_1Dataframe}{Dataframe}
 
 Handle the next character of input. 
 
+
+\begin{DoxyCode}
+104     \{
+105         \textcolor{keywordflow}{switch} (\hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_})
+106         \{
+107         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa29b00899c276193d6f18e8389b7592a3}{FIN\_OPCODE}:
+108             \{
+109                 frame.fin = \hyperlink{classwebsocket_1_1DataframeParser_af034682aa527e1d3d1e0b3da31b6c7d3}{getBits}(input, 7, 1) == 1;
+110 
+111                 \textcolor{keywordflow}{switch} (\hyperlink{classwebsocket_1_1DataframeParser_af034682aa527e1d3d1e0b3da31b6c7d3}{getBits}(input, 0, 4))
+112                 \{
+113                 \textcolor{keywordflow}{case} 0:
+114                     frame.opcode = \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a9bf39e33295885bbf8be0b3335d0d4d6}{Dataframe::CONTINUATION\_FRAME};
+115                     \textcolor{keywordflow}{break};
+116                 \textcolor{keywordflow}{case} 0x1:
+117                     frame.opcode = \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84adea20051b65663cc4eea0162e2f2dad1}{Dataframe::TEXT\_FRAME};
+118                     \textcolor{keywordflow}{break};
+119                 \textcolor{keywordflow}{case} 0x2:
+120                     frame.opcode = \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84a1f22c794d0daa62a1f60d777425ce646}{Dataframe::BINARY\_FRAME};
+121                     \textcolor{keywordflow}{break};
+122                 \textcolor{keywordflow}{case} 0x8:
+123                     frame.opcode = \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ac28582920eaf67c2f7d355e67209c0ae}{Dataframe::CONNECTION\_CLOSE};
+124                     \textcolor{keywordflow}{break};
+125                 \textcolor{keywordflow}{case} 0x9:
+126                     frame.opcode = \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84afe00cd2796e340b9762add122db96bae}{Dataframe::PING};
+127                     \textcolor{keywordflow}{break};
+128                 \textcolor{keywordflow}{case} 0xA:
+129                     frame.opcode = \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84ae5bed00b4b0ad675819b436b28fd6ea8}{Dataframe::PONG};
+130                     \textcolor{keywordflow}{break};
+131                 \textcolor{keywordflow}{default}:
+132                     frame.opcode = \hyperlink{structwebsocket_1_1Dataframe_ab6f63b062b0aff036c2cbdecf160bd84aeffe25f15a0bae70219c3cbdb08dee02}{Dataframe::RESERVED};
+133                 \}
+134 
+135                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaefc4557724349d199ef0b5bacaae52fb}{MASK\_PAYLOAD\_LEN};
+136 
+137                 \textcolor{keywordflow}{return} boost::indeterminate;
+138             \}
+139         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaefc4557724349d199ef0b5bacaae52fb}{MASK\_PAYLOAD\_LEN}:
+140             \{
+141                 frame.mask = \hyperlink{classwebsocket_1_1DataframeParser_af034682aa527e1d3d1e0b3da31b6c7d3}{getBits}(input, 7, 1) == 1;                    
+142                 frame.payload\_len = \hyperlink{classwebsocket_1_1DataframeParser_af034682aa527e1d3d1e0b3da31b6c7d3}{getBits}(input, 0, 7);
+143 
+144                 \textcolor{keywordflow}{if} (frame.payload\_len == 0)
+145                 \{
+146                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+147                 \}
+148                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (frame.payload\_len == 126 || frame.payload\_len == 127)
+149                 \{
+150                     \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa7b68eb5f5cc6e9c7d6feaf988475afdb}{EXTENDED\_PAYLOAD\_LEN1};
+151                 \}
+152                 \textcolor{keywordflow}{else}
+153                 \{
+154                     \textcolor{keywordflow}{if} (frame.mask)
+155                     \{
+156                         \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3b69744b62fa835db0824373457b6434}{MASKING\_KEY\_1};
+157                     \}
+158                     \textcolor{keywordflow}{else}
+159                     \{
+160                         \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa598aa8acb047115c40ad5a8e4dbafa84}{PAYLOAD};
+161                     \}                     
+162                 \}
+163 
+164                 \textcolor{keywordflow}{return} boost::indeterminate;
+165             \}
+166         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa7b68eb5f5cc6e9c7d6feaf988475afdb}{EXTENDED\_PAYLOAD\_LEN1}:
+167             \{
+168                 \textcolor{keywordflow}{if} (frame.payload\_len == 126)
+169                 \{
+170                     frame.extended\_payload\_len16 = input;
+171                 \}
+172                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (frame.payload\_len == 127)
+173                 \{
+174                     frame.extended\_payload\_len64 = input;
+175                 \}
+176 
+177                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aabc3d01e63f47e768f18b8663e810eac8}{EXTENDED\_PAYLOAD\_LEN2};
+178 
+179                 \textcolor{keywordflow}{return} boost::indeterminate;
+180             \}
+181         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aabc3d01e63f47e768f18b8663e810eac8}{EXTENDED\_PAYLOAD\_LEN2}:
+182             \{
+183                 \textcolor{keywordflow}{if} (frame.payload\_len == 126)
+184                 \{
+185                     boost::uint16\_t temp = input;
+186                     temp = temp << 8;
+187                     frame.extended\_payload\_len16 |= temp;
+188                     frame.extended\_payload\_len16 = \hyperlink{classwebsocket_1_1DataframeParser_abfb0ab043395dd9d4ce1506a792343db}{ntoh16}(frame.extended\_payload\_len16);
+189 
+190                     \textcolor{keywordflow}{if} (frame.mask)
+191                     \{
+192                         \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3b69744b62fa835db0824373457b6434}{MASKING\_KEY\_1};
+193                     \}
+194                     \textcolor{keywordflow}{else}
+195                     \{
+196                         \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa598aa8acb047115c40ad5a8e4dbafa84}{PAYLOAD};
+197                     \}
+198                 \}
+199                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (frame.payload\_len == 127)
+200                 \{
+201                     boost::uint64\_t temp = input;
+202                     temp = temp << 8;
+203                     frame.extended\_payload\_len64 |= temp;
+204 
+205                     \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3378e509de505a563f329a988e7b25e5}{EXTENDED\_PAYLOAD\_LEN3};
+206                 \}
+207 
+208                 \textcolor{keywordflow}{return} boost::indeterminate;
+209             \}
+210 
+211         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3378e509de505a563f329a988e7b25e5}{EXTENDED\_PAYLOAD\_LEN3}:
+212             \{
+213                 boost::uint64\_t temp = input;
+214                 temp = temp << 16;
+215                 frame.extended\_payload\_len64 |= temp;
+216 
+217                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa79a2813ac6e13fe0c88042739cc877dd}{EXTENDED\_PAYLOAD\_LEN4};
+218 
+219                 \textcolor{keywordflow}{return} boost::indeterminate;
+220             \}
+221 
+222         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa79a2813ac6e13fe0c88042739cc877dd}{EXTENDED\_PAYLOAD\_LEN4}:
+223             \{
+224                 boost::uint64\_t temp = input;
+225                 temp = temp << 24;
+226                 frame.extended\_payload\_len64 |= temp;
+227 
+228                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aadde851b7d820e146ca0c1e00131f6efb}{EXTENDED\_PAYLOAD\_LEN5};
+229 
+230                 \textcolor{keywordflow}{return} boost::indeterminate;
+231             \}
+232         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aadde851b7d820e146ca0c1e00131f6efb}{EXTENDED\_PAYLOAD\_LEN5}:
+233             \{
+234                 boost::uint64\_t temp = input;
+235                 temp = temp << 32;
+236                 frame.extended\_payload\_len64 |= temp;
+237 
+238                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa95998dd95ec2eed1d3e9e3d43db4ae1c}{EXTENDED\_PAYLOAD\_LEN6};
+239 
+240                 \textcolor{keywordflow}{return} boost::indeterminate;
+241             \}
+242         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa95998dd95ec2eed1d3e9e3d43db4ae1c}{EXTENDED\_PAYLOAD\_LEN6}:
+243             \{
+244                 boost::uint64\_t temp = input;
+245                 temp = temp << 40;
+246                 frame.extended\_payload\_len64 |= temp;
+247 
+248                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa1cfc14be739e979f81d64b02ab16eb9f}{EXTENDED\_PAYLOAD\_LEN7};
+249 
+250                 \textcolor{keywordflow}{return} boost::indeterminate;
+251             \}
+252         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa1cfc14be739e979f81d64b02ab16eb9f}{EXTENDED\_PAYLOAD\_LEN7}:
+253             \{
+254                 boost::uint64\_t temp = input;
+255                 temp = temp << 48;
+256                 frame.extended\_payload\_len64 |= temp;
+257 
+258                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad72fe80a8219f96501c6d6db3854dc0b}{EXTENDED\_PAYLOAD\_LEN8};
+259 
+260                 \textcolor{keywordflow}{return} boost::indeterminate;
+261             \}
+262         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad72fe80a8219f96501c6d6db3854dc0b}{EXTENDED\_PAYLOAD\_LEN8}:
+263             \{
+264                 boost::uint64\_t temp = input;
+265                 temp = temp << 56;
+266                 frame.extended\_payload\_len64 |= temp;
+267                 frame.extended\_payload\_len64 = \hyperlink{classwebsocket_1_1DataframeParser_abbc453c45e690c07a01a3d8a5c7560b8}{ntoh64}(frame.extended\_payload\_len64);
+268 
+269                 \textcolor{keywordflow}{if} (frame.mask)
+270                 \{
+271                     \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3b69744b62fa835db0824373457b6434}{MASKING\_KEY\_1};
+272                 \}
+273                 \textcolor{keywordflow}{else}
+274                 \{
+275                     \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa598aa8acb047115c40ad5a8e4dbafa84}{PAYLOAD};
+276                 \}
+277 
+278                 \textcolor{keywordflow}{return} boost::indeterminate;
+279             \}
+280         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa3b69744b62fa835db0824373457b6434}{MASKING\_KEY\_1}:
+281             \{
+282                 frame.masking\_key[0] = input;
+283                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa01f875cd0a23eaa5834547b8d1faaade}{MASKING\_KEY\_2};
+284 
+285                 \textcolor{keywordflow}{return} boost::indeterminate;
+286             \}
+287         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa01f875cd0a23eaa5834547b8d1faaade}{MASKING\_KEY\_2}:
+288             \{
+289                 frame.masking\_key[1] = input;
+290                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad1ec7ea124241d5b4178144e6ed6f5d3}{MASKING\_KEY\_3};
+291 
+292                 \textcolor{keywordflow}{return} boost::indeterminate;
+293             \}
+294         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aad1ec7ea124241d5b4178144e6ed6f5d3}{MASKING\_KEY\_3}:
+295             \{
+296                 frame.masking\_key[2] = input;
+297                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaaffec7e2ab59fae9a01ae2398a4ec25f}{MASKING\_KEY\_4};
+298 
+299                 \textcolor{keywordflow}{return} boost::indeterminate;
+300             \}
+301         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aaaffec7e2ab59fae9a01ae2398a4ec25f}{MASKING\_KEY\_4}:
+302             \{
+303                 frame.masking\_key[3] = input;
+304                 \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa598aa8acb047115c40ad5a8e4dbafa84}{PAYLOAD};
+305 
+306                 \textcolor{keywordflow}{return} boost::indeterminate;
+307             \}
+308         \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa598aa8acb047115c40ad5a8e4dbafa84}{PAYLOAD}:
+309             \{
+310                 boost::uint8\_t mask = frame.masking\_key[frame.payload.size() % 4];
+311                 frame.payload.push\_back(input ^ mask);
+312 
+313                 \textcolor{keywordflow}{if} (frame.payload\_len == 127)
+314                 \{
+315                     \textcolor{keywordflow}{if} (frame.payload.size() == frame.extended\_payload\_len64)
+316                         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+317                     \textcolor{keywordflow}{else}
+318                         \textcolor{keywordflow}{return} boost::indeterminate;
+319                 \}
+320                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (frame.payload\_len == 126)
+321                 \{
+322                     \textcolor{keywordflow}{if} (frame.payload.size() == frame.extended\_payload\_len16)
+323                         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+324                     \textcolor{keywordflow}{else}
+325                         \textcolor{keywordflow}{return} boost::indeterminate;
+326                 \}
+327                 \textcolor{keywordflow}{else}
+328                 \{
+329                     \textcolor{keywordflow}{if} (frame.payload.size() == \textcolor{keyword}{static\_cast<}std::vector<char>::size\_type\textcolor{keyword}{>}(frame.payload\_len
+      ))
+330                         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+331                     \textcolor{keywordflow}{else}
+332                         \textcolor{keywordflow}{return} boost::indeterminate;
+333                 \}
+334             \}
+335 
+336         \textcolor{keywordflow}{default}:
+337             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+338         \}
+339     \}
+\end{DoxyCode}
 \index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!get\+Bits@{get\+Bits}}
 \index{get\+Bits@{get\+Bits}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
 \subsubsection[{\texorpdfstring{get\+Bits(char b, boost\+::uint8\+\_\+t offset, boost\+::uint8\+\_\+t count)}{getBits(char b, boost::uint8_t offset, boost::uint8_t count)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint8\+\_\+t websocket\+::\+Dataframe\+Parser\+::get\+Bits (
@@ -147,6 +413,12 @@ Handle the next character of input.
 
 Get a number of bits at the specified offset. 
 
+
+\begin{DoxyCode}
+17     \{
+18         \textcolor{keywordflow}{return} (b >> offset) & ((1 << count) - 1);
+19     \}
+\end{DoxyCode}
 \index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!hton16@{hton16}}
 \index{hton16@{hton16}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
 \subsubsection[{\texorpdfstring{hton16(boost\+::uint16\+\_\+t net16)}{hton16(boost::uint16_t net16)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint16\+\_\+t websocket\+::\+Dataframe\+Parser\+::hton16 (
@@ -158,6 +430,23 @@ Get a number of bits at the specified offset.
 
 Convert a uint16\+\_\+t from the host byte order to the network byte order. 
 
+
+\begin{DoxyCode}
+38     \{
+39         \textcolor{keyword}{using namespace }boost;
+40         \textcolor{keyword}{static} \textcolor{keyword}{const} int32\_t num = 42;
+41 
+42         \textcolor{comment}{// Check the endianness.}
+43         \textcolor{keywordflow}{if} (*reinterpret\_cast<const char*>(&num) == num)
+44         \{
+45             \textcolor{comment}{// Convert to the big-endian.}
+46             uint16\_t net16 = ((host16 & 0x00FFULL) << 8) | ((host16 & 0xFF00ULL) >> 8);
+47             \textcolor{keywordflow}{return} net16;
+48         \}
+49 
+50         \textcolor{keywordflow}{return} host16;
+51     \}
+\end{DoxyCode}
 \index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!hton64@{hton64}}
 \index{hton64@{hton64}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
 \subsubsection[{\texorpdfstring{hton64(boost\+::uint64\+\_\+t net64)}{hton64(boost::uint64_t net64)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint64\+\_\+t websocket\+::\+Dataframe\+Parser\+::hton64 (
@@ -169,6 +458,32 @@ Convert a uint16\+\_\+t from the host byte order to the network byte order.
 
 Convert a uint64\+\_\+t from the host byte order to the network byte order. 
 
+
+\begin{DoxyCode}
+79     \{
+80         \textcolor{keyword}{using namespace }boost;
+81         \textcolor{keyword}{static} \textcolor{keyword}{const} int32\_t num = 42;
+82 
+83         \textcolor{comment}{// Check the endianness.}
+84         \textcolor{keywordflow}{if} (*reinterpret\_cast<const char*>(&num) == num)
+85         \{
+86             \textcolor{comment}{// Convert to the big-endian.}
+87             uint64\_t net64 =
+88                 ((host64 & 0x00000000000000FFULL) << 56) | 
+89                 ((host64 & 0x000000000000FF00ULL) << 40) | 
+90                 ((host64 & 0x0000000000FF0000ULL) << 24) | 
+91                 ((host64 & 0x00000000FF000000ULL) <<  8) | 
+92                 ((host64 & 0x000000FF00000000ULL) >>  8) | 
+93                 ((host64 & 0x0000FF0000000000ULL) >> 24) | 
+94                 ((host64 & 0x00FF000000000000ULL) >> 40) | 
+95                 ((host64 & 0xFF00000000000000ULL) >> 56);
+96 
+97             \textcolor{keywordflow}{return} net64;
+98         \}
+99 
+100         \textcolor{keywordflow}{return} host64;
+101     \}
+\end{DoxyCode}
 \index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!ntoh16@{ntoh16}}
 \index{ntoh16@{ntoh16}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
 \subsubsection[{\texorpdfstring{ntoh16(boost\+::uint16\+\_\+t net16)}{ntoh16(boost::uint16_t net16)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint16\+\_\+t websocket\+::\+Dataframe\+Parser\+::ntoh16 (
@@ -180,6 +495,23 @@ Convert a uint64\+\_\+t from the host byte order to the network byte order.
 
 Convert a uint16\+\_\+t from the network byte order to the host byte order. 
 
+
+\begin{DoxyCode}
+22     \{
+23         \textcolor{keyword}{using namespace }boost;
+24         \textcolor{keyword}{static} \textcolor{keyword}{const} int32\_t num = 42;
+25 
+26         \textcolor{comment}{// Check the endianness.}
+27         \textcolor{keywordflow}{if} (*reinterpret\_cast<const char*>(&num) == num)
+28         \{
+29             \textcolor{comment}{// Convert to the little-endian.}
+30             uint16\_t host16 = ((net16 & 0x00FFULL) <<  8) | ((net16 & 0xFF00ULL) >>  8);
+31             \textcolor{keywordflow}{return} host16;
+32         \}
+33 
+34         \textcolor{keywordflow}{return} net16;
+35     \}
+\end{DoxyCode}
 \index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!ntoh64@{ntoh64}}
 \index{ntoh64@{ntoh64}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
 \subsubsection[{\texorpdfstring{ntoh64(boost\+::uint64\+\_\+t net64)}{ntoh64(boost::uint64_t net64)}}]{\setlength{\rightskip}{0pt plus 5cm}boost\+::uint64\+\_\+t websocket\+::\+Dataframe\+Parser\+::ntoh64 (
@@ -191,6 +523,32 @@ Convert a uint16\+\_\+t from the network byte order to the host byte order.
 
 Convert a uint64\+\_\+t from the network byte order to the host byte order. 
 
+
+\begin{DoxyCode}
+54     \{
+55         \textcolor{keyword}{using namespace }boost;
+56         \textcolor{keyword}{static} \textcolor{keyword}{const} int32\_t num = 42;
+57 
+58         \textcolor{comment}{// Check the endianness.}
+59         \textcolor{keywordflow}{if} (*reinterpret\_cast<const char*>(&num) == num)
+60         \{
+61             \textcolor{comment}{// Convert to the little-endian.}
+62             uint64\_t host64 =
+63                 ((net64 & 0x00000000000000FFULL) << 56) | 
+64                 ((net64 & 0x000000000000FF00ULL) << 40) | 
+65                 ((net64 & 0x0000000000FF0000ULL) << 24) | 
+66                 ((net64 & 0x00000000FF000000ULL) <<  8) | 
+67                 ((net64 & 0x000000FF00000000ULL) >>  8) | 
+68                 ((net64 & 0x0000FF0000000000ULL) >> 24) | 
+69                 ((net64 & 0x00FF000000000000ULL) >> 40) | 
+70                 ((net64 & 0xFF00000000000000ULL) >> 56);
+71 
+72             \textcolor{keywordflow}{return} host64;
+73         \}
+74 
+75         \textcolor{keywordflow}{return} net64;
+76     \}
+\end{DoxyCode}
 \index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!parse@{parse}}
 \index{parse@{parse}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
 \subsubsection[{\texorpdfstring{parse(\+Dataframe \&frame, Input\+Iterator begin, Input\+Iterator end)}{parse(Dataframe &frame, InputIterator begin, InputIterator end)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Input\+Iterator $>$ boost\+::tuple$<$boost\+::tribool, Input\+Iterator$>$ websocket\+::\+Dataframe\+Parser\+::parse (
@@ -200,6 +558,19 @@ Convert a uint64\+\_\+t from the network byte order to the host byte order.
 \item[{Input\+Iterator}]{end}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classwebsocket_1_1DataframeParser_add0317d2a579c37ac92d5157c8a9b638}{}\label{classwebsocket_1_1DataframeParser_add0317d2a579c37ac92d5157c8a9b638}
+
+\begin{DoxyCode}
+30             \{
+31                 \textcolor{keywordflow}{while} (begin != end)
+32                 \{
+33                     boost::tribool result = \hyperlink{classwebsocket_1_1DataframeParser_a2f14d531bafe3bd65977f4eaecc78765}{consume}(frame, *begin++);
+34                     \textcolor{keywordflow}{if} (result || !result)
+35                         \textcolor{keywordflow}{return} boost::make\_tuple(result, begin);
+36                 \}
+37                 boost::tribool result = boost::indeterminate;
+38                 \textcolor{keywordflow}{return} boost::make\_tuple(result, begin);
+39             \}
+\end{DoxyCode}
 \index{websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}!reset@{reset}}
 \index{reset@{reset}!websocket\+::\+Dataframe\+Parser@{websocket\+::\+Dataframe\+Parser}}
 \subsubsection[{\texorpdfstring{reset()}{reset()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Dataframe\+Parser\+::reset (
@@ -211,6 +582,12 @@ Convert a uint64\+\_\+t from the network byte order to the host byte order.
 
 Reset to initial parser state. 
 
+
+\begin{DoxyCode}
+12     \{
+13         \hyperlink{classwebsocket_1_1DataframeParser_a46525ab8a38ba649b49faa6bf3b0c959}{state\_} = \hyperlink{classwebsocket_1_1DataframeParser_a2285d0f76dcfd6dadbe70a78c5e3de8aa29b00899c276193d6f18e8389b7592a3}{FIN\_OPCODE};
+14     \}
+\end{DoxyCode}
 
 
 \subsection{Member Data Documentation}

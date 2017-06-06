@@ -120,6 +120,31 @@ E\+X\+P\+E\+C\+T\+I\+N\+G\+\_\+\+N\+E\+W\+L\+I\+N\+E\+\_\+3\hypertarget{classweb
 }]\end{description}
 \end{Desc}
 
+\begin{DoxyCode}
+59             \{
+60                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a40f2ae25565541dc821c917c7b4e92f5}{METHOD\_START},
+61                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a9c12697b1ce12c5888b5a1d83ab3e928}{METHOD},
+62                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aa55c503336f57df5a858ceb7b2296ebf}{URI},
+63                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a665fd5e1f56202d269014a9f81b2af2d}{HTTP\_VERSION\_H},
+64                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a5dc44c05aed3d7e01d348130c1e05cc0}{HTTP\_VERSION\_T\_1},
+65                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a566c8cf2b02bebd48ab4774611f6475b}{HTTP\_VERSION\_T\_2},
+66                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aaf7b394b825c928646ad9467f9099d32}{HTTP\_VERSION\_P},
+67                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aacaa61c45cef7a30dc6e78bd596d0ca8}{HTTP\_VERSION\_SLASH},
+68                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ade6a7fb0e6a807ae7d12884b42b54dd0}{HTTP\_VERSION\_MAJOR\_START},
+69                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2abf76daa842c3a7b2e15a7795ae80f3ea}{HTTP\_VERSION\_MAJOR},
+70                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a514b190a9eb5c1c125b21b15ac7cb889}{HTTP\_VERSION\_MINOR\_START},
+71                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ad10be8cf254e2b7f9cc5122a491526b7}{HTTP\_VERSION\_MINOR},
+72                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a0ecb8fa46bfea7771c71c58f41268bf0}{EXPECTING\_NEWLINE\_1},
+73                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aaea516ce1ac4d13a17fd513eef0ce3e1}{HEADER\_LINE\_START},
+74                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2afc5f5b7a38b8f357143b95e9dff55981}{HEADER\_LWS},
+75                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ab658ce46b6c2c18e7f22cbdc288124a4}{HEADER\_NAME},
+76                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a7d96b53f34b2f5734fc4219312e08303}{SPACE\_BEFORE\_HEADER\_VALUE},
+77                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a834d3f769b7d8f936e1db3ff09311580}{HEADER\_VALUE},
+78                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a382a9876ff19c807c19ca3d81d379f74}{EXPECTING\_NEWLINE\_2},
+79                 \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ab3f9a5a7482ec9b941a93ad9490b1b24}{EXPECTING\_NEWLINE\_3}
+80             \} \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_};
+\end{DoxyCode}
+
 
 \subsection{Constructor \& Destructor Documentation}
 \index{websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}!Request\+Parser@{Request\+Parser}}
@@ -133,6 +158,12 @@ E\+X\+P\+E\+C\+T\+I\+N\+G\+\_\+\+N\+E\+W\+L\+I\+N\+E\+\_\+3\hypertarget{classweb
 
 Construct ready to parse the \hyperlink{structwebsocket_1_1http_1_1Request}{Request} method. 
 
+
+\begin{DoxyCode}
+8             : \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_}(\hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a40f2ae25565541dc821c917c7b4e92f5}{METHOD\_START})
+9         \{
+10         \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
@@ -148,6 +179,268 @@ Construct ready to parse the \hyperlink{structwebsocket_1_1http_1_1Request}{Requ
 
 Handle the next character of input. 
 
+
+\begin{DoxyCode}
+18         \{
+19             \textcolor{keywordflow}{switch} (\hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_})
+20             \{
+21             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a40f2ae25565541dc821c917c7b4e92f5}{METHOD\_START}:
+22                 \textcolor{keywordflow}{if} (!\hyperlink{classwebsocket_1_1http_1_1RequestParser_a3b64b2e4a7993ed710006539db861db9}{is\_char}(input) || \hyperlink{classwebsocket_1_1http_1_1RequestParser_a7a75bf40bc4b9de6298e3e0e1d2860c2}{is\_ctl}(input) || \hyperlink{classwebsocket_1_1http_1_1RequestParser_aab25fc5fbe25d6eed0cc55e00ccb2fc3}{is\_tspecial}(input))
+23                 \{
+24                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+25                 \}
+26                 \textcolor{keywordflow}{else}
+27                 \{
+28                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a9c12697b1ce12c5888b5a1d83ab3e928}{METHOD};
+29                     req.method.push\_back(input);
+30                     \textcolor{keywordflow}{return} boost::indeterminate;
+31                 \}
+32             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a9c12697b1ce12c5888b5a1d83ab3e928}{METHOD}:
+33                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{' '})
+34                 \{
+35                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aa55c503336f57df5a858ceb7b2296ebf}{URI};
+36                     \textcolor{keywordflow}{return} boost::indeterminate;
+37                 \}
+38                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!\hyperlink{classwebsocket_1_1http_1_1RequestParser_a3b64b2e4a7993ed710006539db861db9}{is\_char}(input) || \hyperlink{classwebsocket_1_1http_1_1RequestParser_a7a75bf40bc4b9de6298e3e0e1d2860c2}{is\_ctl}(input) || 
+      \hyperlink{classwebsocket_1_1http_1_1RequestParser_aab25fc5fbe25d6eed0cc55e00ccb2fc3}{is\_tspecial}(input))
+39                 \{
+40                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+41                 \}
+42                 \textcolor{keywordflow}{else}
+43                 \{
+44                     req.method.push\_back(input);
+45                     \textcolor{keywordflow}{return} boost::indeterminate;
+46                 \}
+47             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aa55c503336f57df5a858ceb7b2296ebf}{URI}:
+48                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{' '})
+49                 \{
+50                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a665fd5e1f56202d269014a9f81b2af2d}{HTTP\_VERSION\_H};
+51                     \textcolor{keywordflow}{return} boost::indeterminate;
+52                 \}
+53                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1http_1_1RequestParser_a7a75bf40bc4b9de6298e3e0e1d2860c2}{is\_ctl}(input))
+54                 \{
+55                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+56                 \}
+57                 \textcolor{keywordflow}{else}
+58                 \{
+59                     req.uri.push\_back(input);
+60                     \textcolor{keywordflow}{return} boost::indeterminate;
+61                 \}
+62             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a665fd5e1f56202d269014a9f81b2af2d}{HTTP\_VERSION\_H}:
+63                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'H'})
+64                 \{
+65                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a5dc44c05aed3d7e01d348130c1e05cc0}{HTTP\_VERSION\_T\_1};
+66                     \textcolor{keywordflow}{return} boost::indeterminate;
+67                 \}
+68                 \textcolor{keywordflow}{else}
+69                 \{
+70                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+71                 \}
+72             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a5dc44c05aed3d7e01d348130c1e05cc0}{HTTP\_VERSION\_T\_1}:
+73                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'T'})
+74                 \{
+75                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a566c8cf2b02bebd48ab4774611f6475b}{HTTP\_VERSION\_T\_2};
+76                     \textcolor{keywordflow}{return} boost::indeterminate;
+77                 \}
+78                 \textcolor{keywordflow}{else}
+79                 \{
+80                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+81                 \}
+82             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a566c8cf2b02bebd48ab4774611f6475b}{HTTP\_VERSION\_T\_2}:
+83                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'T'})
+84                 \{
+85                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aaf7b394b825c928646ad9467f9099d32}{HTTP\_VERSION\_P};
+86                     \textcolor{keywordflow}{return} boost::indeterminate;
+87                 \}
+88                 \textcolor{keywordflow}{else}
+89                 \{
+90                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+91                 \}
+92             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aaf7b394b825c928646ad9467f9099d32}{HTTP\_VERSION\_P}:
+93                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'P'})
+94                 \{
+95                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aacaa61c45cef7a30dc6e78bd596d0ca8}{HTTP\_VERSION\_SLASH};
+96                     \textcolor{keywordflow}{return} boost::indeterminate;
+97                 \}
+98                 \textcolor{keywordflow}{else}
+99                 \{
+100                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+101                 \}
+102             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aacaa61c45cef7a30dc6e78bd596d0ca8}{HTTP\_VERSION\_SLASH}:
+103                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'/'})
+104                 \{
+105                     req.http\_version\_major = 0;
+106                     req.http\_version\_minor = 0;
+107                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ade6a7fb0e6a807ae7d12884b42b54dd0}{HTTP\_VERSION\_MAJOR\_START};
+108                     \textcolor{keywordflow}{return} boost::indeterminate;
+109                 \}
+110                 \textcolor{keywordflow}{else}
+111                 \{
+112                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+113                 \}
+114             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ade6a7fb0e6a807ae7d12884b42b54dd0}{HTTP\_VERSION\_MAJOR\_START}:
+115                 \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1http_1_1RequestParser_a8650b0f4d250cc7eba88666aa919b1f7}{is\_digit}(input))
+116                 \{
+117                     req.http\_version\_major = req.http\_version\_major * 10 + input - \textcolor{charliteral}{'0'};
+118                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2abf76daa842c3a7b2e15a7795ae80f3ea}{HTTP\_VERSION\_MAJOR};
+119                     \textcolor{keywordflow}{return} boost::indeterminate;
+120                 \}
+121                 \textcolor{keywordflow}{else}
+122                 \{
+123                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+124                 \}
+125             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2abf76daa842c3a7b2e15a7795ae80f3ea}{HTTP\_VERSION\_MAJOR}:
+126                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'.'})
+127                 \{
+128                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a514b190a9eb5c1c125b21b15ac7cb889}{HTTP\_VERSION\_MINOR\_START};
+129                     \textcolor{keywordflow}{return} boost::indeterminate;
+130                 \}
+131                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1http_1_1RequestParser_a8650b0f4d250cc7eba88666aa919b1f7}{is\_digit}(input))
+132                 \{
+133                     req.http\_version\_major = req.http\_version\_major * 10 + input - \textcolor{charliteral}{'0'};
+134                     \textcolor{keywordflow}{return} boost::indeterminate;
+135                 \}
+136                 \textcolor{keywordflow}{else}
+137                 \{
+138                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+139                 \}
+140             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a514b190a9eb5c1c125b21b15ac7cb889}{HTTP\_VERSION\_MINOR\_START}:
+141                 \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1http_1_1RequestParser_a8650b0f4d250cc7eba88666aa919b1f7}{is\_digit}(input))
+142                 \{
+143                     req.http\_version\_minor = req.http\_version\_minor * 10 + input - \textcolor{charliteral}{'0'};
+144                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ad10be8cf254e2b7f9cc5122a491526b7}{HTTP\_VERSION\_MINOR};
+145                     \textcolor{keywordflow}{return} boost::indeterminate;
+146                 \}
+147                 \textcolor{keywordflow}{else}
+148                 \{
+149                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+150                 \}
+151             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ad10be8cf254e2b7f9cc5122a491526b7}{HTTP\_VERSION\_MINOR}:
+152                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'\(\backslash\)r'})
+153                 \{
+154                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a0ecb8fa46bfea7771c71c58f41268bf0}{EXPECTING\_NEWLINE\_1};
+155                     \textcolor{keywordflow}{return} boost::indeterminate;
+156                 \}
+157                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1http_1_1RequestParser_a8650b0f4d250cc7eba88666aa919b1f7}{is\_digit}(input))
+158                 \{
+159                     req.http\_version\_minor = req.http\_version\_minor * 10 + input - \textcolor{charliteral}{'0'};
+160                     \textcolor{keywordflow}{return} boost::indeterminate;
+161                 \}
+162                 \textcolor{keywordflow}{else}
+163                 \{
+164                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+165                 \}
+166             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a0ecb8fa46bfea7771c71c58f41268bf0}{EXPECTING\_NEWLINE\_1}:
+167                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'\(\backslash\)n'})
+168                 \{
+169                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aaea516ce1ac4d13a17fd513eef0ce3e1}{HEADER\_LINE\_START};
+170                     \textcolor{keywordflow}{return} boost::indeterminate;
+171                 \}
+172                 \textcolor{keywordflow}{else}
+173                 \{
+174                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+175                 \}
+176             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aaea516ce1ac4d13a17fd513eef0ce3e1}{HEADER\_LINE\_START}:
+177                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'\(\backslash\)r'})
+178                 \{
+179                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ab3f9a5a7482ec9b941a93ad9490b1b24}{EXPECTING\_NEWLINE\_3};
+180                     \textcolor{keywordflow}{return} boost::indeterminate;
+181                 \}
+182                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!req.headers.empty() && (input == \textcolor{charliteral}{' '} || input == \textcolor{charliteral}{'\(\backslash\)t'}))
+183                 \{
+184                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2afc5f5b7a38b8f357143b95e9dff55981}{HEADER\_LWS};
+185                     \textcolor{keywordflow}{return} boost::indeterminate;
+186                 \}
+187                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!\hyperlink{classwebsocket_1_1http_1_1RequestParser_a3b64b2e4a7993ed710006539db861db9}{is\_char}(input) || \hyperlink{classwebsocket_1_1http_1_1RequestParser_a7a75bf40bc4b9de6298e3e0e1d2860c2}{is\_ctl}(input) || 
+      \hyperlink{classwebsocket_1_1http_1_1RequestParser_aab25fc5fbe25d6eed0cc55e00ccb2fc3}{is\_tspecial}(input))
+188                 \{
+189                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+190                 \}
+191                 \textcolor{keywordflow}{else}
+192                 \{
+193                     req.headers.push\_back(Header());
+194                     req.headers.back().name.push\_back(input);
+195                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ab658ce46b6c2c18e7f22cbdc288124a4}{HEADER\_NAME};
+196                     \textcolor{keywordflow}{return} boost::indeterminate;
+197                 \}
+198             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2afc5f5b7a38b8f357143b95e9dff55981}{HEADER\_LWS}:
+199                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'\(\backslash\)r'})
+200                 \{
+201                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a382a9876ff19c807c19ca3d81d379f74}{EXPECTING\_NEWLINE\_2};
+202                     \textcolor{keywordflow}{return} boost::indeterminate;
+203                 \}
+204                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{' '} || input == \textcolor{charliteral}{'\(\backslash\)t'})
+205                 \{
+206                     \textcolor{keywordflow}{return} boost::indeterminate;
+207                 \}
+208                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1http_1_1RequestParser_a7a75bf40bc4b9de6298e3e0e1d2860c2}{is\_ctl}(input))
+209                 \{
+210                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+211                 \}
+212                 \textcolor{keywordflow}{else}
+213                 \{
+214                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a834d3f769b7d8f936e1db3ff09311580}{HEADER\_VALUE};
+215                     req.headers.back().value.push\_back(input);
+216                     \textcolor{keywordflow}{return} boost::indeterminate;
+217                 \}
+218             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ab658ce46b6c2c18e7f22cbdc288124a4}{HEADER\_NAME}:
+219                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{':'})
+220                 \{
+221                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a7d96b53f34b2f5734fc4219312e08303}{SPACE\_BEFORE\_HEADER\_VALUE};
+222                     \textcolor{keywordflow}{return} boost::indeterminate;
+223                 \}
+224                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!\hyperlink{classwebsocket_1_1http_1_1RequestParser_a3b64b2e4a7993ed710006539db861db9}{is\_char}(input) || \hyperlink{classwebsocket_1_1http_1_1RequestParser_a7a75bf40bc4b9de6298e3e0e1d2860c2}{is\_ctl}(input) || 
+      \hyperlink{classwebsocket_1_1http_1_1RequestParser_aab25fc5fbe25d6eed0cc55e00ccb2fc3}{is\_tspecial}(input))
+225                 \{
+226                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+227                 \}
+228                 \textcolor{keywordflow}{else}
+229                 \{
+230                     req.headers.back().name.push\_back(input);
+231                     \textcolor{keywordflow}{return} boost::indeterminate;
+232                 \}
+233             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a7d96b53f34b2f5734fc4219312e08303}{SPACE\_BEFORE\_HEADER\_VALUE}:
+234                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{' '})
+235                 \{
+236                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a834d3f769b7d8f936e1db3ff09311580}{HEADER\_VALUE};
+237                     \textcolor{keywordflow}{return} boost::indeterminate;
+238                 \}
+239                 \textcolor{keywordflow}{else}
+240                 \{
+241                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+242                 \}
+243             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a834d3f769b7d8f936e1db3ff09311580}{HEADER\_VALUE}:
+244                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'\(\backslash\)r'})
+245                 \{
+246                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a382a9876ff19c807c19ca3d81d379f74}{EXPECTING\_NEWLINE\_2};
+247                     \textcolor{keywordflow}{return} boost::indeterminate;
+248                 \}
+249                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{classwebsocket_1_1http_1_1RequestParser_a7a75bf40bc4b9de6298e3e0e1d2860c2}{is\_ctl}(input))
+250                 \{
+251                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+252                 \}
+253                 \textcolor{keywordflow}{else}
+254                 \{
+255                     req.headers.back().value.push\_back(input);
+256                     \textcolor{keywordflow}{return} boost::indeterminate;
+257                 \}
+258             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a382a9876ff19c807c19ca3d81d379f74}{EXPECTING\_NEWLINE\_2}:
+259                 \textcolor{keywordflow}{if} (input == \textcolor{charliteral}{'\(\backslash\)n'})
+260                 \{
+261                     \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2aaea516ce1ac4d13a17fd513eef0ce3e1}{HEADER\_LINE\_START};
+262                     \textcolor{keywordflow}{return} boost::indeterminate;
+263                 \}
+264                 \textcolor{keywordflow}{else}
+265                 \{
+266                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+267                 \}
+268             \textcolor{keywordflow}{case} \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2ab3f9a5a7482ec9b941a93ad9490b1b24}{EXPECTING\_NEWLINE\_3}:
+269                 \textcolor{keywordflow}{return} (input == \textcolor{charliteral}{'\(\backslash\)n'});
+270             \textcolor{keywordflow}{default}:
+271                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+272             \}
+273         \}
+\end{DoxyCode}
 \index{websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}!is\+\_\+char@{is\+\_\+char}}
 \index{is\+\_\+char@{is\+\_\+char}!websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}}
 \subsubsection[{\texorpdfstring{is\+\_\+char(int c)}{is_char(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}bool websocket\+::http\+::\+Request\+Parser\+::is\+\_\+char (
@@ -159,6 +452,12 @@ Handle the next character of input.
 
 Check if a byte is an H\+T\+TP character. 
 
+
+\begin{DoxyCode}
+276         \{
+277             \textcolor{keywordflow}{return} c >= 0 && c <= 127;
+278         \}
+\end{DoxyCode}
 \index{websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}!is\+\_\+ctl@{is\+\_\+ctl}}
 \index{is\+\_\+ctl@{is\+\_\+ctl}!websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}}
 \subsubsection[{\texorpdfstring{is\+\_\+ctl(int c)}{is_ctl(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}bool websocket\+::http\+::\+Request\+Parser\+::is\+\_\+ctl (
@@ -170,6 +469,12 @@ Check if a byte is an H\+T\+TP character.
 
 Check if a byte is an H\+T\+TP control character. 
 
+
+\begin{DoxyCode}
+281         \{
+282             \textcolor{keywordflow}{return} (c >= 0 && c <= 31) || (c == 127);
+283         \}
+\end{DoxyCode}
 \index{websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}!is\+\_\+digit@{is\+\_\+digit}}
 \index{is\+\_\+digit@{is\+\_\+digit}!websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}}
 \subsubsection[{\texorpdfstring{is\+\_\+digit(int c)}{is_digit(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}bool websocket\+::http\+::\+Request\+Parser\+::is\+\_\+digit (
@@ -181,6 +486,12 @@ Check if a byte is an H\+T\+TP control character.
 
 Check if a byte is a digit. 
 
+
+\begin{DoxyCode}
+300         \{
+301             \textcolor{keywordflow}{return} c >= \textcolor{charliteral}{'0'} && c <= \textcolor{charliteral}{'9'};
+302         \}
+\end{DoxyCode}
 \index{websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}!is\+\_\+tspecial@{is\+\_\+tspecial}}
 \index{is\+\_\+tspecial@{is\+\_\+tspecial}!websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}}
 \subsubsection[{\texorpdfstring{is\+\_\+tspecial(int c)}{is_tspecial(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}bool websocket\+::http\+::\+Request\+Parser\+::is\+\_\+tspecial (
@@ -192,6 +503,21 @@ Check if a byte is a digit.
 
 Check if a byte is defined as an H\+T\+TP tspecial character. 
 
+
+\begin{DoxyCode}
+286         \{
+287             \textcolor{keywordflow}{switch} (c)
+288             \{
+289             \textcolor{keywordflow}{case} \textcolor{charliteral}{'('}: \textcolor{keywordflow}{case} \textcolor{charliteral}{')'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'<'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'>'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'@'}:
+290             \textcolor{keywordflow}{case} \textcolor{charliteral}{','}: \textcolor{keywordflow}{case} \textcolor{charliteral}{';'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{':'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'"'}:
+291             \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'['}: \textcolor{keywordflow}{case} \textcolor{charliteral}{']'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'?'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'='}:
+292             \textcolor{keywordflow}{case} \textcolor{charliteral}{'\{'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'\}'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{' '}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)t'}:
+293                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+294             \textcolor{keywordflow}{default}:
+295                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+296             \}
+297         \}
+\end{DoxyCode}
 \index{websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}!parse@{parse}}
 \index{parse@{parse}!websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}}
 \subsubsection[{\texorpdfstring{parse(\+Request \&req, Input\+Iterator begin, Input\+Iterator end)}{parse(Request &req, InputIterator begin, InputIterator end)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Input\+Iterator $>$ boost\+::tuple$<$boost\+::tribool, Input\+Iterator$>$ websocket\+::http\+::\+Request\+Parser\+::parse (
@@ -205,6 +531,19 @@ Check if a byte is defined as an H\+T\+TP tspecial character.
 
 Parse some data. 
 
+
+\begin{DoxyCode}
+30             \{
+31                 \textcolor{keywordflow}{while} (begin != end)
+32                 \{
+33                     boost::tribool result = \hyperlink{classwebsocket_1_1http_1_1RequestParser_acb68b2ddadf42677684af022d2eab05a}{consume}(req, *begin++);
+34                     \textcolor{keywordflow}{if} (result || !result)
+35                         \textcolor{keywordflow}{return} boost::make\_tuple(result, begin);
+36                 \}
+37                 boost::tribool result = boost::indeterminate;
+38                 \textcolor{keywordflow}{return} boost::make\_tuple(result, begin);
+39             \}
+\end{DoxyCode}
 \index{websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}!reset@{reset}}
 \index{reset@{reset}!websocket\+::http\+::\+Request\+Parser@{websocket\+::http\+::\+Request\+Parser}}
 \subsubsection[{\texorpdfstring{reset()}{reset()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::http\+::\+Request\+Parser\+::reset (
@@ -216,6 +555,12 @@ Parse some data.
 
 Reset to initial parser state. 
 
+
+\begin{DoxyCode}
+13         \{
+14             \hyperlink{classwebsocket_1_1http_1_1RequestParser_aed48589d041848aabcd27672a0a4ad73}{state\_} = \hyperlink{classwebsocket_1_1http_1_1RequestParser_af1ad2d57d234f4ac8fb9d9656bd9c8b2a40f2ae25565541dc821c917c7b4e92f5}{METHOD\_START};
+15         \}
+\end{DoxyCode}
 
 
 \subsection{Member Data Documentation}

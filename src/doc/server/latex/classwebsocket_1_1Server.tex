@@ -67,6 +67,34 @@ boost\+::asio\+::ip\+::tcp\+::acceptor \hyperlink{classwebsocket_1_1Server_a3771
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classwebsocket_1_1Server_a5a619eb7cc286a2288794f0488441a43}{}\label{classwebsocket_1_1Server_a5a619eb7cc286a2288794f0488441a43}
 Construct the \hyperlink{classwebsocket_1_1Server}{Server} to listen on the specified T\+CP address and port, and serve up files from the given directory. 
+\begin{DoxyCode}
+10             : \hyperlink{classwebsocket_1_1Server_ab3dc5f36bb4b0913c803915d3191a771}{io\_service\_}(),
+11             \hyperlink{classwebsocket_1_1Server_a85a9160e9b9f070a4bf8e149623a5a6d}{signals\_}(\hyperlink{classwebsocket_1_1Server_ab3dc5f36bb4b0913c803915d3191a771}{io\_service\_}),
+12             \hyperlink{classwebsocket_1_1Server_a377152422807e2f13cc1c6bb18fb416f}{acceptor\_}(\hyperlink{classwebsocket_1_1Server_ab3dc5f36bb4b0913c803915d3191a771}{io\_service\_})
+13         \{
+14             \textcolor{comment}{// Register to handle the signals that indicate when the Server should exit.}
+15             \textcolor{comment}{// It is safe to register for the same signal multiple times in a program,}
+16             \textcolor{comment}{// provided all registration for the specified signal is made through Asio.}
+17             \hyperlink{classwebsocket_1_1Server_a85a9160e9b9f070a4bf8e149623a5a6d}{signals\_}.add(SIGINT);
+18             \hyperlink{classwebsocket_1_1Server_a85a9160e9b9f070a4bf8e149623a5a6d}{signals\_}.add(SIGTERM);
+19 \textcolor{preprocessor}{#if defined(SIGQUIT)}
+20             \hyperlink{classwebsocket_1_1Server_a85a9160e9b9f070a4bf8e149623a5a6d}{signals\_}.add(SIGQUIT);
+21 \textcolor{preprocessor}{#endif // defined(SIGQUIT)}
+22             \hyperlink{classwebsocket_1_1Server_a85a9160e9b9f070a4bf8e149623a5a6d}{signals\_}.async\_wait(boost::bind(&\hyperlink{classwebsocket_1_1Server_a4abf8e0742d15023f0ac95ced8aee07a}{Server::handle\_stop}, \textcolor{keyword}{this}));
+23 
+24             \textcolor{comment}{// Open the acceptor with the option to reuse the address (i.e. SO\_REUSEADDR).}
+25             boost::asio::ip::tcp::resolver resolver(\hyperlink{classwebsocket_1_1Server_ab3dc5f36bb4b0913c803915d3191a771}{io\_service\_});
+26             boost::asio::ip::tcp::resolver::query query(address, port);
+27             boost::asio::ip::tcp::endpoint endpoint = *resolver.resolve(query);
+28             \hyperlink{classwebsocket_1_1Server_a377152422807e2f13cc1c6bb18fb416f}{acceptor\_}.open(endpoint.protocol());
+29             \hyperlink{classwebsocket_1_1Server_a377152422807e2f13cc1c6bb18fb416f}{acceptor\_}.set\_option(boost::asio::ip::tcp::acceptor::reuse\_address(\textcolor{keyword}{true}));
+30             \hyperlink{classwebsocket_1_1Server_a377152422807e2f13cc1c6bb18fb416f}{acceptor\_}.bind(endpoint);
+31             \hyperlink{classwebsocket_1_1Server_a377152422807e2f13cc1c6bb18fb416f}{acceptor\_}.listen();
+32 
+33             \hyperlink{classwebsocket_1_1Server_a01514c0f01fc493222b2d8b877dee540}{start\_accept}();
+34         \}
+\end{DoxyCode}
+
 
 \subsection{Member Function Documentation}
 \index{websocket\+::\+Server@{websocket\+::\+Server}!handle\+\_\+accept@{handle\+\_\+accept}}
@@ -80,6 +108,21 @@ Construct the \hyperlink{classwebsocket_1_1Server}{Server} to listen on the spec
 
 Handle completion of an asynchronous accept operation. 
 
+
+\begin{DoxyCode}
+50         \{
+51             \textcolor{keywordflow}{if} (!error)
+52             \{
+53                 \hyperlink{classwebsocket_1_1Server_a86916b413a3577cb17aed4cda031691e}{new\_session\_}->start();
+54             \}
+55             \textcolor{keywordflow}{else}
+56             \{
+57                 std::cerr << error.message() << std::endl;
+58             \}
+59 
+60             \hyperlink{classwebsocket_1_1Server_a01514c0f01fc493222b2d8b877dee540}{start\_accept}();
+61         \}
+\end{DoxyCode}
 \index{websocket\+::\+Server@{websocket\+::\+Server}!handle\+\_\+stop@{handle\+\_\+stop}}
 \index{handle\+\_\+stop@{handle\+\_\+stop}!websocket\+::\+Server@{websocket\+::\+Server}}
 \subsubsection[{\texorpdfstring{handle\+\_\+stop()}{handle_stop()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Server\+::handle\+\_\+stop (
@@ -91,6 +134,12 @@ Handle completion of an asynchronous accept operation.
 
 Handle a Request to stop the \hyperlink{classwebsocket_1_1Server}{Server}. 
 
+
+\begin{DoxyCode}
+64         \{
+65             \hyperlink{classwebsocket_1_1Server_ab3dc5f36bb4b0913c803915d3191a771}{io\_service\_}.stop();
+66         \}
+\end{DoxyCode}
 \index{websocket\+::\+Server@{websocket\+::\+Server}!run@{run}}
 \index{run@{run}!websocket\+::\+Server@{websocket\+::\+Server}}
 \subsubsection[{\texorpdfstring{run()}{run()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Server\+::run (
@@ -102,6 +151,12 @@ Handle a Request to stop the \hyperlink{classwebsocket_1_1Server}{Server}.
 
 Run the \hyperlink{classwebsocket_1_1Server}{Server}\textquotesingle{}s io\+\_\+service loop. 
 
+
+\begin{DoxyCode}
+37         \{
+38             \hyperlink{classwebsocket_1_1Server_ab3dc5f36bb4b0913c803915d3191a771}{io\_service\_}.run();
+39         \}
+\end{DoxyCode}
 \index{websocket\+::\+Server@{websocket\+::\+Server}!start\+\_\+accept@{start\+\_\+accept}}
 \index{start\+\_\+accept@{start\+\_\+accept}!websocket\+::\+Server@{websocket\+::\+Server}}
 \subsubsection[{\texorpdfstring{start\+\_\+accept()}{start_accept()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Server\+::start\+\_\+accept (
@@ -113,6 +168,16 @@ Run the \hyperlink{classwebsocket_1_1Server}{Server}\textquotesingle{}s io\+\_\+
 
 Initiate an asynchronous accept operation. 
 
+
+\begin{DoxyCode}
+42         \{
+43             \hyperlink{classwebsocket_1_1Server_a86916b413a3577cb17aed4cda031691e}{new\_session\_}.reset(\textcolor{keyword}{new} Session(\hyperlink{classwebsocket_1_1Server_ab3dc5f36bb4b0913c803915d3191a771}{io\_service\_}, 
+      \hyperlink{classwebsocket_1_1Server_a412c87233cbe63db77ba955f413c5ef0}{gameBoard\_}));
+44             \hyperlink{classwebsocket_1_1Server_a377152422807e2f13cc1c6bb18fb416f}{acceptor\_}.async\_accept(\hyperlink{classwebsocket_1_1Server_a86916b413a3577cb17aed4cda031691e}{new\_session\_}->socket(),
+45                 boost::bind(&\hyperlink{classwebsocket_1_1Server_a3c14a674a090698e82fc59db5df4b3c4}{Server::handle\_accept}, \textcolor{keyword}{this},
+46                 boost::asio::placeholders::error));
+47         \}
+\end{DoxyCode}
 
 
 \subsection{Member Data Documentation}

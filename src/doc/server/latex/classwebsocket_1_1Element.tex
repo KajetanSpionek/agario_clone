@@ -6,7 +6,8 @@
 
 
 
-Inheritance diagram for websocket\+:\+:Element\+:\nopagebreak
+Inheritance diagram for websocket\+:\+:Element\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -18,7 +19,7 @@ Inheritance diagram for websocket\+:\+:Element\+:\nopagebreak
 \item 
 \hyperlink{classwebsocket_1_1Element_a6d6b671ae2f922c12c0a64a94bd669fb}{Element} (double \&x, double \&y, double \&radius)
 \item 
-\hyperlink{classwebsocket_1_1Element_a4a249effc753deac10eb2eb7fc80c759}{$\sim$\+Element} ()=default
+virtual \hyperlink{classwebsocket_1_1Element_a6d08a32162fcbc445a491259598f465f}{$\sim$\+Element} ()
 \item 
 \hyperlink{classwebsocket_1_1Element_a7b16c1d2898cb3d1db6b5305045838bf}{Element} (const \hyperlink{classwebsocket_1_1Element}{Element} \&other)=default
 \item 
@@ -71,13 +72,25 @@ static int \hyperlink{classwebsocket_1_1Element_af6fa7171fdd68176492397d9706947b
 \item[{double \&}]{radius}
 \end{DoxyParamCaption}
 )}\hypertarget{classwebsocket_1_1Element_a6d6b671ae2f922c12c0a64a94bd669fb}{}\label{classwebsocket_1_1Element_a6d6b671ae2f922c12c0a64a94bd669fb}
+
+\begin{DoxyCode}
+7                                                          : \hyperlink{classwebsocket_1_1Element_a0cb8ab190a65134d23ff3bf4054865eb}{id\_}(++\hyperlink{classwebsocket_1_1Element_af6fa7171fdd68176492397d9706947b3}{idCount\_}), 
+      \hyperlink{classwebsocket_1_1Element_adb51cfefd07378c784d30340c449a224}{x\_}(x), \hyperlink{classwebsocket_1_1Element_a61ea05afb0180339005d1c96786a60ce}{y\_}(y),\hyperlink{classwebsocket_1_1Element_aec20349985f8c1bc19d6f686658e6c62}{radius\_}(radius)
+8     \{
+9         
+10     \}
+\end{DoxyCode}
 \index{websocket\+::\+Element@{websocket\+::\+Element}!````~Element@{$\sim$\+Element}}
 \index{````~Element@{$\sim$\+Element}!websocket\+::\+Element@{websocket\+::\+Element}}
-\subsubsection[{\texorpdfstring{$\sim$\+Element()=default}{~Element()=default}}]{\setlength{\rightskip}{0pt plus 5cm}websocket\+::\+Element\+::$\sim$\+Element (
+\subsubsection[{\texorpdfstring{$\sim$\+Element()}{~Element()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual websocket\+::\+Element\+::$\sim$\+Element (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [default]}}\hypertarget{classwebsocket_1_1Element_a4a249effc753deac10eb2eb7fc80c759}{}\label{classwebsocket_1_1Element_a4a249effc753deac10eb2eb7fc80c759}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classwebsocket_1_1Element_a6d08a32162fcbc445a491259598f465f}{}\label{classwebsocket_1_1Element_a6d08a32162fcbc445a491259598f465f}
+
+\begin{DoxyCode}
+21 \{\}
+\end{DoxyCode}
 \index{websocket\+::\+Element@{websocket\+::\+Element}!Element@{Element}}
 \index{Element@{Element}!websocket\+::\+Element@{websocket\+::\+Element}}
 \subsubsection[{\texorpdfstring{Element(const Element \&other)=default}{Element(const Element &other)=default}}]{\setlength{\rightskip}{0pt plus 5cm}websocket\+::\+Element\+::\+Element (
@@ -95,6 +108,10 @@ static int \hyperlink{classwebsocket_1_1Element_af6fa7171fdd68176492397d9706947b
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classwebsocket_1_1Element_adb9892f7b44913049e0c771816efd7a4}{}\label{classwebsocket_1_1Element_adb9892f7b44913049e0c771816efd7a4}
+
+\begin{DoxyCode}
+25 \{ \textcolor{keywordflow}{return} \hyperlink{classwebsocket_1_1Element_a0cb8ab190a65134d23ff3bf4054865eb}{id\_};\}
+\end{DoxyCode}
 \index{websocket\+::\+Element@{websocket\+::\+Element}!get\+Owner@{get\+Owner}}
 \index{get\+Owner@{get\+Owner}!websocket\+::\+Element@{websocket\+::\+Element}}
 \subsubsection[{\texorpdfstring{get\+Owner()=0}{getOwner()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf player\+\_\+ptr} websocket\+::\+Element\+::get\+Owner (
@@ -113,6 +130,10 @@ Implemented in \hyperlink{classwebsocket_1_1Ball_a7c418a9c85d74e6644d9ffa294c8df
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classwebsocket_1_1Element_a895b218f0ec4d2d4e2164c2531a8ffe3}{}\label{classwebsocket_1_1Element_a895b218f0ec4d2d4e2164c2531a8ffe3}
+
+\begin{DoxyCode}
+28 \{ \textcolor{keywordflow}{return} \hyperlink{classwebsocket_1_1Element_aec20349985f8c1bc19d6f686658e6c62}{radius\_}; \}
+\end{DoxyCode}
 \index{websocket\+::\+Element@{websocket\+::\+Element}!getX@{getX}}
 \index{getX@{getX}!websocket\+::\+Element@{websocket\+::\+Element}}
 \subsubsection[{\texorpdfstring{get\+X()}{getX()}}]{\setlength{\rightskip}{0pt plus 5cm}double websocket\+::\+Element\+::getX (
@@ -120,6 +141,10 @@ Implemented in \hyperlink{classwebsocket_1_1Ball_a7c418a9c85d74e6644d9ffa294c8df
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classwebsocket_1_1Element_a6102d0b4ccbad0194ee393fa5341cabc}{}\label{classwebsocket_1_1Element_a6102d0b4ccbad0194ee393fa5341cabc}
+
+\begin{DoxyCode}
+26 \{ \textcolor{keywordflow}{return} \hyperlink{classwebsocket_1_1Element_adb51cfefd07378c784d30340c449a224}{x\_};\}
+\end{DoxyCode}
 \index{websocket\+::\+Element@{websocket\+::\+Element}!getY@{getY}}
 \index{getY@{getY}!websocket\+::\+Element@{websocket\+::\+Element}}
 \subsubsection[{\texorpdfstring{get\+Y()}{getY()}}]{\setlength{\rightskip}{0pt plus 5cm}double websocket\+::\+Element\+::getY (
@@ -127,6 +152,10 @@ Implemented in \hyperlink{classwebsocket_1_1Ball_a7c418a9c85d74e6644d9ffa294c8df
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classwebsocket_1_1Element_a597f360c2c593a6610a2a9103d5e876b}{}\label{classwebsocket_1_1Element_a597f360c2c593a6610a2a9103d5e876b}
+
+\begin{DoxyCode}
+27 \{ \textcolor{keywordflow}{return} \hyperlink{classwebsocket_1_1Element_a61ea05afb0180339005d1c96786a60ce}{y\_};\}
+\end{DoxyCode}
 \index{websocket\+::\+Element@{websocket\+::\+Element}!operator=@{operator=}}
 \index{operator=@{operator=}!websocket\+::\+Element@{websocket\+::\+Element}}
 \subsubsection[{\texorpdfstring{operator=(const Element \&other)=default}{operator=(const Element &other)=default}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Element}\& websocket\+::\+Element\+::operator= (
@@ -141,6 +170,10 @@ Implemented in \hyperlink{classwebsocket_1_1Ball_a7c418a9c85d74e6644d9ffa294c8df
 \item[{double \&\&}]{radius}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classwebsocket_1_1Element_a4ad55c97fa8f5684af5bc25780450db1}{}\label{classwebsocket_1_1Element_a4ad55c97fa8f5684af5bc25780450db1}
+
+\begin{DoxyCode}
+32 \{ \hyperlink{classwebsocket_1_1Element_aec20349985f8c1bc19d6f686658e6c62}{radius\_} = radius; \}
+\end{DoxyCode}
 \index{websocket\+::\+Element@{websocket\+::\+Element}!setX@{setX}}
 \index{setX@{setX}!websocket\+::\+Element@{websocket\+::\+Element}}
 \subsubsection[{\texorpdfstring{set\+X(const double \&x)}{setX(const double &x)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Element\+::setX (
@@ -148,6 +181,10 @@ Implemented in \hyperlink{classwebsocket_1_1Ball_a7c418a9c85d74e6644d9ffa294c8df
 \item[{const double \&}]{x}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classwebsocket_1_1Element_aba38ddf15ce77e2e79bce80cf38947db}{}\label{classwebsocket_1_1Element_aba38ddf15ce77e2e79bce80cf38947db}
+
+\begin{DoxyCode}
+30 \{ \hyperlink{classwebsocket_1_1Element_adb51cfefd07378c784d30340c449a224}{x\_} = x; \}
+\end{DoxyCode}
 \index{websocket\+::\+Element@{websocket\+::\+Element}!setY@{setY}}
 \index{setY@{setY}!websocket\+::\+Element@{websocket\+::\+Element}}
 \subsubsection[{\texorpdfstring{set\+Y(const double \&y)}{setY(const double &y)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Element\+::setY (
@@ -155,6 +192,10 @@ Implemented in \hyperlink{classwebsocket_1_1Ball_a7c418a9c85d74e6644d9ffa294c8df
 \item[{const double \&}]{y}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classwebsocket_1_1Element_ab05d0ca40f4d1a79d52cb31c5b4f789b}{}\label{classwebsocket_1_1Element_ab05d0ca40f4d1a79d52cb31c5b4f789b}
+
+\begin{DoxyCode}
+31 \{ \hyperlink{classwebsocket_1_1Element_a61ea05afb0180339005d1c96786a60ce}{y\_} = y; \}
+\end{DoxyCode}
 
 
 \subsection{Member Data Documentation}

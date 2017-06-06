@@ -6,7 +6,8 @@
 
 
 
-Inheritance diagram for websocket\+:\+:http\+:\+:Request\+Handler\+:\nopagebreak
+Inheritance diagram for websocket\+:\+:http\+:\+:Request\+Handler\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +16,8 @@ Inheritance diagram for websocket\+:\+:http\+:\+:Request\+Handler\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for websocket\+:\+:http\+:\+:Request\+Handler\+:\nopagebreak
+Collaboration diagram for websocket\+:\+:http\+:\+:Request\+Handler\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -49,6 +51,40 @@ static std\+::string \hyperlink{classwebsocket_1_1http_1_1RequestHandler_ac685b8
 
 Handle a request and produce a \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}. 
 
+
+\begin{DoxyCode}
+17         \{
+18             std::string key;
+19             \textcolor{keywordflow}{for} (std::vector<Header>::const\_iterator i = req.headers.cbegin();
+20                 i != req.headers.cend(); ++i)
+21             \{
+22                 \textcolor{keywordflow}{if} (i->name == \textcolor{stringliteral}{"Sec-WebSocket-Key"})
+23                 \{
+24                     key = i->value;
+25                     \textcolor{keywordflow}{break};
+26                 \}
+27             \}
+28 
+29             \textcolor{keywordflow}{if} (key.empty())
+30             \{
+31                 rep = \hyperlink{structwebsocket_1_1http_1_1Reply_a96b71498c73c3925edd06359da59675b}{Reply::stock\_reply}(\hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2abe7be227057261b88798008ac000a50c}{Reply::BAD\_REQUEST});
+32                 \textcolor{keywordflow}{return};
+33             \}
+34 
+35             \textcolor{keyword}{const} std::string magic\_guid(\textcolor{stringliteral}{"258EAFA5-E914-47DA-95CA-C5AB0DC85B11"});
+36             std::string buffer(key + magic\_guid);
+37             std::string accept(\hyperlink{classwebsocket_1_1http_1_1RequestHandler_ac685b82b354edc818177ad83574def0d}{toBase64}(\hyperlink{classwebsocket_1_1http_1_1RequestHandler_ab4c224809abbc4c70a4ee72a7d94639a}{toSha1}(buffer)));
+38 
+39             rep.status = \hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2ac40eab39089a623f51ec73b0cf56debd}{Reply::SWITCHING\_PROTOCOLS};
+40             rep.headers.resize(3);
+41             rep.headers[0].name = \textcolor{stringliteral}{"Upgrade"};
+42             rep.headers[0].value = \textcolor{stringliteral}{"websocket"};
+43             rep.headers[1].name = \textcolor{stringliteral}{"Connection"};
+44             rep.headers[1].value = \textcolor{stringliteral}{"Upgrade"};
+45             rep.headers[2].name = \textcolor{stringliteral}{"Sec-WebSocket-Accept"};
+46             rep.headers[2].value = accept;
+47         \}
+\end{DoxyCode}
 \index{websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}!to\+Base64@{to\+Base64}}
 \index{to\+Base64@{to\+Base64}!websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}}
 \subsubsection[{\texorpdfstring{to\+Base64(const std\+::vector$<$ unsigned char $>$ \&data)}{toBase64(const std::vector< unsigned char > &data)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string websocket\+::http\+::\+Request\+Handler\+::to\+Base64 (
@@ -60,6 +96,35 @@ Handle a request and produce a \hyperlink{structwebsocket_1_1http_1_1Reply}{Repl
 
 Encode data using the Base64 algorithm. 
 
+
+\begin{DoxyCode}
+66         \{
+67             \textcolor{keyword}{using namespace }boost::archive::iterators;
+68 
+69             \textcolor{keyword}{typedef} 
+70                 insert\_linebreaks<         \textcolor{comment}{// insert line breaks every 72 characters}
+71                     base64\_from\_binary<    \textcolor{comment}{// convert binary values ot base64 characters}
+72                         transform\_width<   \textcolor{comment}{// retrieve 6 bit integers from a sequence of 8 bit bytes}
+73                             \textcolor{keyword}{const} \textcolor{keywordtype}{char} *,
+74                             6,
+75                             8
+76                         >
+77                     > 
+78                     ,72
+79                 >        
+80                 base64\_iterator;
+81 
+82             std::vector<unsigned char> buff(data);
+83             \textcolor{keywordtype}{size\_t} number\_of\_padd\_chars = (buff.size() % 3 != 0) ? 3 - (buff.size() % 3) : 0;            
+84             buff.insert(buff.end(), number\_of\_padd\_chars, \textcolor{charliteral}{'\(\backslash\)0'});
+85 
+86             base64\_iterator begin(&buff[0]), end(&buff[0] + data.size()); 
+87             std::string result(begin, end);
+88             result.insert(result.end(), number\_of\_padd\_chars, \textcolor{charliteral}{'='});
+89 
+90             \textcolor{keywordflow}{return} result;
+91         \}
+\end{DoxyCode}
 \index{websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}!to\+Sha1@{to\+Sha1}}
 \index{to\+Sha1@{to\+Sha1}!websocket\+::http\+::\+Request\+Handler@{websocket\+::http\+::\+Request\+Handler}}
 \subsubsection[{\texorpdfstring{to\+Sha1(const std\+::string \&s)}{toSha1(const std::string &s)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ unsigned char $>$ websocket\+::http\+::\+Request\+Handler\+::to\+Sha1 (
@@ -71,6 +136,23 @@ Encode data using the Base64 algorithm.
 
 Encode data using the S\+H\+A1 algorithm. 
 
+
+\begin{DoxyCode}
+50         \{
+51             boost::uuids::detail::sha1 cipher;
+52             cipher.process\_bytes(s.c\_str(), s.length());
+53             boost::uint32\_t digest[5];
+54             cipher.get\_digest(digest);
+55 
+56             std::vector<unsigned char> hash(20, 0);
+57             \textcolor{keywordflow}{for} (std::size\_t i = 0; i < hash.size(); ++i)
+58             \{
+59                 hash[i] = (\textcolor{keywordtype}{unsigned} char)(digest[i >> 2] >> 8 * (3 - (i & 0x03)));
+60             \}
+61 
+62             \textcolor{keywordflow}{return} hash;
+63         \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

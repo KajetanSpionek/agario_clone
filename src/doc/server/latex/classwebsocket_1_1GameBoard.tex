@@ -151,6 +151,10 @@ max\+\_\+recent\+\_\+msgs\hypertarget{classwebsocket_1_1GameBoard_a84b7265b5db01
 }]\end{description}
 \end{Desc}
 
+\begin{DoxyCode}
+97 \{ \hyperlink{classwebsocket_1_1GameBoard_a84b7265b5db0109546eeadc332b10254a1a669a5c5c208eebeb228bd6cbe3611b}{max\_recent\_msgs} = 1000 \};
+\end{DoxyCode}
+
 
 \subsection{Constructor \& Destructor Documentation}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!Game\+Board@{Game\+Board}}
@@ -160,6 +164,13 @@ max\+\_\+recent\+\_\+msgs\hypertarget{classwebsocket_1_1GameBoard_a84b7265b5db01
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classwebsocket_1_1GameBoard_a8093c83a31dd38e3edf1bc07de4b060a}{}\label{classwebsocket_1_1GameBoard_a8093c83a31dd38e3edf1bc07de4b060a}
+
+\begin{DoxyCode}
+29     \{
+30         \textcolor{comment}{//set initial food to game board}
+31         \hyperlink{classwebsocket_1_1GameBoard_a4bcaa4bcf0a260efa6baffec4e72990e}{addNFoodItem}(\hyperlink{classwebsocket_1_1GameBoard_ad2f7ea28ea20d8d16f06135cc09b92e1}{initialFood\_});
+32     \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
@@ -175,6 +186,102 @@ max\+\_\+recent\+\_\+msgs\hypertarget{classwebsocket_1_1GameBoard_a84b7265b5db01
 
 add new ball for new player and update other players 
 
+
+\begin{DoxyCode}
+342     \{
+343         \textcolor{keywordtype}{double} x\_temp;
+344         \textcolor{keywordtype}{double} y\_temp;
+345         \textcolor{keywordtype}{int} id;
+346         
+347         \textcolor{keywordtype}{int} dummy\_iter = 1;
+348         
+349         boost::random::mt19937 gen(static\_cast<int>(std::time(0)));
+350 
+351         \textcolor{comment}{//generator loop to loose its entropy}
+352         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} k = 0; k < dummy\_iter; ++k)
+353         \{
+354             boost::random::uniform\_int\_distribution<> dummy(\hyperlink{classwebsocket_1_1GameBoard_add182baa81ccbe72610eebacdb0b8dd6}{ballMarigin\_}, 
+      \hyperlink{classwebsocket_1_1GameBoard_a02d0925d31cf26c6853cbb39de6f051c}{mapX\_} - \hyperlink{classwebsocket_1_1GameBoard_add182baa81ccbe72610eebacdb0b8dd6}{ballMarigin\_});
+355             dummy(gen);
+356         \}
+357 
+358         std::pair<int,int> temp\_pos;
+359 
+360         \textcolor{keywordflow}{do}
+361         \{
+362                 boost::random::uniform\_int\_distribution<> distX(\hyperlink{classwebsocket_1_1GameBoard_add182baa81ccbe72610eebacdb0b8dd6}{ballMarigin\_}, 
+      \hyperlink{classwebsocket_1_1GameBoard_a02d0925d31cf26c6853cbb39de6f051c}{mapX\_} - \hyperlink{classwebsocket_1_1GameBoard_add182baa81ccbe72610eebacdb0b8dd6}{ballMarigin\_});
+363                 x\_temp = distX(gen);
+364                 
+365                 boost::random::uniform\_int\_distribution<> distY(\hyperlink{classwebsocket_1_1GameBoard_add182baa81ccbe72610eebacdb0b8dd6}{ballMarigin\_}, 
+      \hyperlink{classwebsocket_1_1GameBoard_a60432d0d991c965b75ad2557e9610425}{mapY\_} - \hyperlink{classwebsocket_1_1GameBoard_add182baa81ccbe72610eebacdb0b8dd6}{ballMarigin\_});
+366                 y\_temp = distY(gen);
+367 
+368                 temp\_pos = std::make\_pair(x\_temp,y\_temp);
+369         \} 
+370         \textcolor{keywordflow}{while}( \hyperlink{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{occupiedPos\_}.count(temp\_pos) != 0 ) ; \textcolor{comment}{// while position is not empty}
+371 
+372         \hyperlink{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{occupiedPos\_}.insert(temp\_pos);
+373         
+374         \textcolor{keyword}{auto} new\_ball = \hyperlink{classwebsocket_1_1GameBoard_a8bdb65edb9742890aa150d5c7c5b7209}{balls\_}.insert(std::make\_pair(participant, \hyperlink{classwebsocket_1_1GameBoard_ac9ebf0c8fc6a76a60fcc83d60719b161}{getBall}(x\_temp,y\_temp,
+      \hyperlink{classwebsocket_1_1GameBoard_a0644b0415ab9a8f4a260e277fca79e1a}{initBallRadius\_})));
+375 
+376         ((new\_ball.first)->second)->setNick(nick);
+377         ((new\_ball.first)->second)->setOwner(participant);
+378 
+379         \textcolor{keywordtype}{id} = ((new\_ball.first)->second)->getId();
+380 
+381         \hyperlink{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}{elements\_}.insert(std::make\_pair(\textcolor{keywordtype}{id},(new\_ball.first)->second )) ;       
+382 
+383         \hyperlink{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{occupiedPos\_}.insert(temp\_pos);
+384 
+385         \textcolor{comment}{//send new ball to new player}
+386 
+387         std::string header = \textcolor{stringliteral}{"newPlayerBall:"};
+388 
+389         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->getId());
+390         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->getX());
+391         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->getY());
+392         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->getRadius());
+393         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->getColor());
+394         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->getNick());
+395 
+396         Dataframe frm;
+397         std::copy(header.begin(), header.end(), std::back\_inserter(frm.payload));
+398 
+399         participant->deliver(frm);
+400 
+401         \textcolor{comment}{//send new ball to enemies}
+402 
+403         std::string header\_balls = \textcolor{stringliteral}{"newBall:"};
+404 
+405         header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->
+      getId());
+406         header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->
+      getX());
+407         header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->
+      getY());
+408         header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->
+      getRadius());
+409         header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->
+      getColor());
+410         header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(((new\_ball.first)->second)->
+      getNick());
+411         
+412 
+413         Dataframe frm\_balls;
+414         std::copy(header\_balls.begin(), header\_balls.end(), std::back\_inserter(frm\_balls.payload));
+415 
+416         \hyperlink{classwebsocket_1_1GameBoard_a0ed4b13ba573956d8aebaf8f5c208fa0}{deliver}(frm\_balls);
+417         \textcolor{comment}{//send to enemies}
+418 
+419         \textcolor{comment}{//insert new participant }
+420         \hyperlink{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{participants\_}.insert(participant);
+421 
+422         \hyperlink{classwebsocket_1_1GameBoard_a9d97f5e5069d0501ea37cb819d481dd0}{updateParticipants}();
+423              
+424     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!add\+N\+Food\+Item@{add\+N\+Food\+Item}}
 \index{add\+N\+Food\+Item@{add\+N\+Food\+Item}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{add\+N\+Food\+Item(int n)}{addNFoodItem(int n)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::add\+N\+Food\+Item (
@@ -186,6 +293,82 @@ add new ball for new player and update other players
 
 Methods of game logic. 
 
+
+\begin{DoxyCode}
+241     \{
+242         \textcolor{keywordtype}{double} x\_temp;
+243         \textcolor{keywordtype}{double} y\_temp;
+244         \textcolor{keywordtype}{int} id;
+245         \hyperlink{classwebsocket_1_1GameBoard_a6340e99ab84e0fc9ee504f5874073c0c}{elements\_container} tmp\_foods;
+246         elements\_container::iterator it;
+247 
+248         \textcolor{keywordtype}{int} dummy\_iter = 4;
+249         
+250         boost::random::mt19937 gen(static\_cast<int>(std::time(0)));
+251 
+252         \textcolor{comment}{//generator loop to loose its entropy}
+253         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} k = 0; k < dummy\_iter; ++k)
+254         \{
+255             boost::random::uniform\_int\_distribution<> dummy(\hyperlink{classwebsocket_1_1GameBoard_a1bedb4dff215404c5574f064c68789c8}{foodItemMarigin\_}, 
+      \hyperlink{classwebsocket_1_1GameBoard_a02d0925d31cf26c6853cbb39de6f051c}{mapX\_} - \hyperlink{classwebsocket_1_1GameBoard_a1bedb4dff215404c5574f064c68789c8}{foodItemMarigin\_});
+256             dummy(gen);
+257         \}
+258 
+259 
+260         \textcolor{comment}{//food creation loop}
+261         std::pair<int,int> temp\_pos;
+262 
+263         \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < \hyperlink{classwebsocket_1_1GameBoard_a80f3a0b794866a7e3c9dac0bf15ba14a}{initialFoodParams\_}*n ; i++)
+264         \{
+265             \textcolor{keywordflow}{do}
+266             \{
+267                     boost::random::uniform\_int\_distribution<> distX(
+      \hyperlink{classwebsocket_1_1GameBoard_a1bedb4dff215404c5574f064c68789c8}{foodItemMarigin\_}, \hyperlink{classwebsocket_1_1GameBoard_a02d0925d31cf26c6853cbb39de6f051c}{mapX\_} - \hyperlink{classwebsocket_1_1GameBoard_a1bedb4dff215404c5574f064c68789c8}{foodItemMarigin\_});
+268                     x\_temp = distX(gen);
+269                     
+270                     boost::random::uniform\_int\_distribution<> distY(
+      \hyperlink{classwebsocket_1_1GameBoard_a1bedb4dff215404c5574f064c68789c8}{foodItemMarigin\_}, \hyperlink{classwebsocket_1_1GameBoard_a60432d0d991c965b75ad2557e9610425}{mapY\_} - \hyperlink{classwebsocket_1_1GameBoard_a1bedb4dff215404c5574f064c68789c8}{foodItemMarigin\_});
+271                     y\_temp = distY(gen);
+272 
+273                     temp\_pos = std::make\_pair(x\_temp,y\_temp);
+274             \} 
+275             \textcolor{keywordflow}{while}( \hyperlink{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{occupiedPos\_}.count(temp\_pos) != 0 ) ; \textcolor{comment}{// while position is not empty}
+276             
+277             \hyperlink{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{occupiedPos\_}.insert(temp\_pos);
+278  
+279             \textcolor{keyword}{auto} temp\_food = \hyperlink{classwebsocket_1_1GameBoard_a3a0cacc2c9a90a5752a8b29ea243c9af}{getFood}(x\_temp,y\_temp);
+280 
+281             \textcolor{keywordtype}{id} = temp\_food->getId();
+282 
+283             \textcolor{keyword}{auto} new\_food = \hyperlink{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}{elements\_}.insert(std::make\_pair(\textcolor{keywordtype}{id},temp\_food));
+284             
+285             tmp\_foods.insert((*new\_food.first));
+286 
+287         \}
+288 
+289         \textcolor{comment}{//food update message loop}
+290 
+291         std::string header\_foods = \textcolor{stringliteral}{"newFood:"};
+292 
+293         \textcolor{keywordflow}{for}( it = tmp\_foods.begin(); it != tmp\_foods.end(); it++)
+294         \{
+295             
+296             header\_foods = header\_foods + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((it->second)->getId());
+297             header\_foods = header\_foods + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((it->second)->getX());
+298             header\_foods = header\_foods + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((it->second)->getY());
+299         \}
+300 
+301         
+302         Dataframe frm\_foods;
+303         std::copy(header\_foods.begin(), header\_foods.end(), std::back\_inserter(frm\_foods.payload));
+304 
+305         \textcolor{comment}{//send to all participants}
+306 
+307         \hyperlink{classwebsocket_1_1GameBoard_a0ed4b13ba573956d8aebaf8f5c208fa0}{deliver}(frm\_foods);
+308 
+309 
+310     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!add\+Player\+To\+Game@{add\+Player\+To\+Game}}
 \index{add\+Player\+To\+Game@{add\+Player\+To\+Game}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{add\+Player\+To\+Game(const Dataframe \&msg, player\+\_\+ptr source)}{addPlayerToGame(const Dataframe &msg, player_ptr source)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::add\+Player\+To\+Game (
@@ -198,6 +381,51 @@ Methods of game logic.
 
 on valid nick defines set of methods used to initiate the game 
 
+
+\begin{DoxyCode}
+97     \{
+98         std::string nick;
+99 
+100         std::string rdy\_flag;
+101         \textcolor{keyword}{const} \textcolor{keywordtype}{char} delimit\_ = \textcolor{charliteral}{':'};
+102         \textcolor{keyword}{const} uint8\_t delim = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(delimit\_);
+103 
+104         std::vector<boost::uint8\_t> temp;
+105         std::string temps;
+106         \textcolor{keyword}{const} \textcolor{keywordtype}{char} delimit\_arg = \textcolor{charliteral}{','};
+107 
+108         \textcolor{comment}{//parse incoming frame}
+109         \textcolor{keyword}{auto} it\_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
+110         std::copy(++it\_beg, msg.payload.end(), std::back\_inserter(temp));
+111 
+112         \textcolor{keywordflow}{for}(\textcolor{keyword}{const} \textcolor{keyword}{auto}& i : temp)
+113         \{
+114             temps = temps +  boost::lexical\_cast<std::string>(i);
+115         \}
+116 
+117         \textcolor{keywordtype}{int} n = temps.find(delimit\_arg);
+118         rdy\_flag = temps.substr(0,n);
+119         nick = temps.substr(n+1,temps.size());
+120 
+121         \textcolor{keywordflow}{if}( rdy\_flag == \textcolor{stringliteral}{"nrdy"})
+122             \textcolor{keywordflow}{return};
+123         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ( rdy\_flag == \textcolor{stringliteral}{"rdy"} )
+124         \{
+125             \textcolor{comment}{//sends map dimensions}
+126             \hyperlink{classwebsocket_1_1GameBoard_a93379a2caec9ae069ffef81472e608f9}{sendMapSize}(source);
+127 
+128             \textcolor{comment}{//send current game state to new player}
+129             \hyperlink{classwebsocket_1_1GameBoard_a581a9aeb4f1e70892a70a238bba6469a}{sendGameState}(source);
+130 
+131             \textcolor{comment}{//add new ball and participant and send to everyone}
+132             \hyperlink{classwebsocket_1_1GameBoard_a9067bf26d8aae3e4f325d866247e0951}{addNewBall}(source,nick);    
+133 
+134             \textcolor{comment}{//add N new food and send to everyone}
+135             \hyperlink{classwebsocket_1_1GameBoard_a4bcaa4bcf0a260efa6baffec4e72990e}{addNFoodItem}(\hyperlink{classwebsocket_1_1GameBoard_aad2445e5c98fe42f37e71c15ca3c57c9}{newPlayerFood\_});
+136         \}
+137 
+138     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!deliver@{deliver}}
 \index{deliver@{deliver}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{deliver(const Dataframe \&msg, player\+\_\+ptr source)}{deliver(const Dataframe &msg, player_ptr source)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::deliver (
@@ -210,6 +438,49 @@ on valid nick defines set of methods used to initiate the game
 
 Deliver a chat message to all participant in the game\+\_\+board. 
 
+
+\begin{DoxyCode}
+173     \{
+174         \textcolor{keyword}{const} \textcolor{keywordtype}{char} delimit = \textcolor{charliteral}{':'};
+175 
+176         std::string header = \textcolor{stringliteral}{"log:"} + source->getId() + \textcolor{stringliteral}{": "};
+177 
+178         std::vector<boost::uint8\_t> temp;
+179         std::string temp\_string;
+180 
+181         \textcolor{keyword}{const} uint8\_t delim = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(delimit);
+182 
+183         \textcolor{keyword}{auto} it\_end = std::find(msg.payload.begin(), msg.payload.end(),delim);
+184         std::copy(msg.payload.begin(), it\_end, std::back\_inserter(temp));
+185         
+186         \textcolor{keywordflow}{for}( \textcolor{keyword}{const} \textcolor{keyword}{auto}& i : temp )
+187         \{
+188             temp\_string = temp\_string + boost::lexical\_cast<std::string>(i);
+189         \}
+190 
+191         \textcolor{keywordflow}{if}( temp\_string == \hyperlink{classwebsocket_1_1GameBoard_a27fc2053eae7a0bdc4ec6cb7ff92502e}{messageOp\_} )
+192         \{
+193             Dataframe frm;
+194             std::copy(header.begin(), header.end(), std::back\_inserter(frm.payload));
+195             std::copy(msg.payload.begin(), msg.payload.end(), std::back\_inserter(frm.payload));
+196 
+197             \hyperlink{classwebsocket_1_1GameBoard_a0ed4b13ba573956d8aebaf8f5c208fa0}{deliver}(frm);
+198         \}
+199         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( temp\_string == \hyperlink{classwebsocket_1_1GameBoard_a55afbbb9d15f4815427d2f20ca6674cd}{nickCheckOp\_})
+200         \{
+201             \hyperlink{classwebsocket_1_1GameBoard_a20af876986152e2c4db78174d186d2b6}{isNickValid}(msg,source);
+202         \}
+203         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( temp\_string == \hyperlink{classwebsocket_1_1GameBoard_af28eae4479ca907c062495b7ec2925c1}{newPlayerStatusOp\_})
+204         \{
+205             \hyperlink{classwebsocket_1_1GameBoard_ad6da3630e77cf3da0563072e5c1ec162}{addPlayerToGame}(msg,source);
+206 
+207         \}
+208         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( temp\_string == \hyperlink{classwebsocket_1_1GameBoard_ac5eba2bf19bde163ea767906c8e2c61c}{movementOp\_})
+209         \{
+210             \hyperlink{classwebsocket_1_1GameBoard_a40aed2036d1065d0bfa24d4e84da1418}{processMovement}(msg, source);
+211         \}
+212     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!deliver@{deliver}}
 \index{deliver@{deliver}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{deliver(const Dataframe \&msg)}{deliver(const Dataframe &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::deliver (
@@ -221,6 +492,19 @@ Deliver a chat message to all participant in the game\+\_\+board.
 
 Deliver a message to all participant in the game\+\_\+board. 
 
+
+\begin{DoxyCode}
+215     \{
+216         
+217         \hyperlink{classwebsocket_1_1GameBoard_a87c11dd6d2f39fa8b0100059c27179a7}{recent\_msgs\_}.push\_back(msg);
+218         \textcolor{keywordflow}{while} (\hyperlink{classwebsocket_1_1GameBoard_a87c11dd6d2f39fa8b0100059c27179a7}{recent\_msgs\_}.size() > \hyperlink{classwebsocket_1_1GameBoard_a84b7265b5db0109546eeadc332b10254a1a669a5c5c208eebeb228bd6cbe3611b}{max\_recent\_msgs})
+219             \hyperlink{classwebsocket_1_1GameBoard_a87c11dd6d2f39fa8b0100059c27179a7}{recent\_msgs\_}.pop\_front();
+220 
+221         std::for\_each(\hyperlink{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{participants\_}.begin(), \hyperlink{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{participants\_}.end(),
+222             boost::bind(&\hyperlink{classwebsocket_1_1Player_adf19a07c6497129268b3719783e7180d}{Player::deliver}, \_1, boost::ref(msg)));
+223 
+224     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!erase\+Ball@{erase\+Ball}}
 \index{erase\+Ball@{erase\+Ball}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{erase\+Ball(player\+\_\+ptr participant)}{eraseBall(player_ptr participant)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::erase\+Ball (
@@ -232,6 +516,46 @@ Deliver a message to all participant in the game\+\_\+board.
 
 delete ball and update players 
 
+
+\begin{DoxyCode}
+432     \{
+433         \hyperlink{namespacewebsocket_aae1d9cf317a0fb0b83bdfc2f92df77c7}{ball\_ptr} ball;
+434         ball = \hyperlink{classwebsocket_1_1GameBoard_a8bdb65edb9742890aa150d5c7c5b7209}{balls\_}.at(participant);
+435 
+436         \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = ball->getId();
+437         std::pair<int,int> temp\_pos = std::make\_pair(ball->getX(),ball->getY());
+438         \hyperlink{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{occupiedPos\_}.erase(temp\_pos);
+439 
+440         std::string header\_balls = \textcolor{stringliteral}{"deleteBall:"};
+441 
+442         header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(id);
+443         
+444         \hyperlink{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}{elements\_}.erase(\textcolor{keywordtype}{id});
+445        
+446         \hyperlink{classwebsocket_1_1GameBoard_a8bdb65edb9742890aa150d5c7c5b7209}{balls\_}.erase(participant);
+447 
+448         \textcolor{comment}{//send looser end of game frame, delete him from collection}
+449         std::string header = \textcolor{stringliteral}{"endOfGame:"};
+450 
+451         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(ball->getFoodNum());
+452         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(ball->getBallNum());
+453         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(ball->getRadius());
+454         
+455         Dataframe frm;
+456         std::copy(header.begin(), header.end(), std::back\_inserter(frm.payload));
+457 
+458         \hyperlink{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{participants\_}.erase(participant);
+459         participant->deliver(frm);
+460 
+461         \textcolor{comment}{//send delete ball frame to enemies}
+462         Dataframe frm\_balls;
+463         std::copy(header\_balls.begin(), header\_balls.end(), std::back\_inserter(frm\_balls.payload));
+464 
+465         \hyperlink{classwebsocket_1_1GameBoard_a0ed4b13ba573956d8aebaf8f5c208fa0}{deliver}(frm\_balls);
+466         
+467 
+468     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!erase\+Food@{erase\+Food}}
 \index{erase\+Food@{erase\+Food}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{erase\+Food(int id)}{eraseFood(int id)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::erase\+Food (
@@ -243,6 +567,29 @@ delete ball and update players
 
 erase food\+Item from collection and informs other players 
 
+
+\begin{DoxyCode}
+319     \{
+320         \hyperlink{namespacewebsocket_a1f36ba91b301b228fa9e9f812883050c}{element\_ptr} food;
+321         food = \hyperlink{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}{elements\_}.at(\textcolor{keywordtype}{id});
+322         
+323         std::pair<int,int> temp\_pos = std::make\_pair(food->getX(),food->getY());
+324         \hyperlink{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{occupiedPos\_}.erase(temp\_pos);
+325 
+326         std::string header\_foods = \textcolor{stringliteral}{"deleteFood:"};
+327 
+328         header\_foods = header\_foods + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(id);
+329  
+330         \textcolor{comment}{//erase from collection}
+331         \hyperlink{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}{elements\_}.erase(\textcolor{keywordtype}{id});
+332 
+333         Dataframe frm\_foods;
+334         std::copy(header\_foods.begin(), header\_foods.end(), std::back\_inserter(frm\_foods.payload));
+335 
+336         \hyperlink{classwebsocket_1_1GameBoard_a0ed4b13ba573956d8aebaf8f5c208fa0}{deliver}(frm\_foods);
+337 
+338     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!get\+Ball@{get\+Ball}}
 \index{get\+Ball@{get\+Ball}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{get\+Ball(double \&x, double \&y, double radius)}{getBall(double &x, double &y, double radius)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ball\+\_\+ptr} websocket\+::\+Game\+Board\+::get\+Ball (
@@ -256,6 +603,12 @@ erase food\+Item from collection and informs other players
 
 create new ball for player 
 
+
+\begin{DoxyCode}
+427     \{
+428         \textcolor{keywordflow}{return} std::make\_shared<Ball>(x,y,radius);
+429     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!get\+Food@{get\+Food}}
 \index{get\+Food@{get\+Food}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{get\+Food(double \&x, double \&y)}{getFood(double &x, double &y)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf food\+\_\+ptr} websocket\+::\+Game\+Board\+::get\+Food (
@@ -268,6 +621,12 @@ create new ball for player
 
 create new food\+Item 
 
+
+\begin{DoxyCode}
+313     \{
+314         \textcolor{keywordflow}{return} std::make\_shared<FoodItem>(x,y, \hyperlink{classwebsocket_1_1GameBoard_a7277b9cbeca558d4bcfad3c24d185336}{foodRadius\_} );
+315     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!get\+MapX@{get\+MapX}}
 \index{get\+MapX@{get\+MapX}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{get\+Map\+X()}{getMapX()}}]{\setlength{\rightskip}{0pt plus 5cm}static int websocket\+::\+Game\+Board\+::get\+MapX (
@@ -279,6 +638,10 @@ create new food\+Item
 
 return map dimentions 
 
+
+\begin{DoxyCode}
+50 \{ \textcolor{keywordflow}{return} \hyperlink{classwebsocket_1_1GameBoard_a02d0925d31cf26c6853cbb39de6f051c}{mapX\_};\}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!get\+MapY@{get\+MapY}}
 \index{get\+MapY@{get\+MapY}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{get\+Map\+Y()}{getMapY()}}]{\setlength{\rightskip}{0pt plus 5cm}static int websocket\+::\+Game\+Board\+::get\+MapY (
@@ -286,6 +649,10 @@ return map dimentions
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classwebsocket_1_1GameBoard_a4f2dd5ab46f74a995388687dd6a5f440}{}\label{classwebsocket_1_1GameBoard_a4f2dd5ab46f74a995388687dd6a5f440}
+
+\begin{DoxyCode}
+51 \{ \textcolor{keywordflow}{return} \hyperlink{classwebsocket_1_1GameBoard_a60432d0d991c965b75ad2557e9610425}{mapY\_};\}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!is\+Nick\+Valid@{is\+Nick\+Valid}}
 \index{is\+Nick\+Valid@{is\+Nick\+Valid}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{is\+Nick\+Valid(const Dataframe \&msg, player\+\_\+ptr source)}{isNickValid(const Dataframe &msg, player_ptr source)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::is\+Nick\+Valid (
@@ -298,6 +665,61 @@ return map dimentions
 
 method of initial handshake -\/ checks validity of inserted user nick 
 
+
+\begin{DoxyCode}
+43     \{
+44         std::string nick;
+45         \textcolor{keywordtype}{bool} nick\_occupied = \textcolor{keyword}{false};
+46 
+47 
+48         \textcolor{keyword}{const} \textcolor{keywordtype}{char} delimit\_ = \textcolor{charliteral}{':'};
+49         \textcolor{keyword}{const} uint8\_t delim = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(delimit\_);
+50         \textcolor{keyword}{const} std::string ok = \textcolor{stringliteral}{"OK"};
+51         \textcolor{keyword}{const} std::string taken = \textcolor{stringliteral}{"TAKEN"};
+52 
+53         std::vector<boost::uint8\_t> temp;
+54         std::string temps;
+55 
+56         \textcolor{comment}{//parse incoming frame}
+57         \textcolor{keyword}{auto} it\_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
+58         std::copy(++it\_beg, msg.payload.end(), std::back\_inserter(temp));
+59 
+60         \textcolor{keywordflow}{for}(\textcolor{keyword}{const} \textcolor{keyword}{auto}& i : temp)
+61         \{
+62             temps = temps +  boost::lexical\_cast<std::string>(i);
+63         \}
+64 
+65         nick = temps.substr(0,temps.size());
+66         
+67         \textcolor{keywordflow}{for}( \textcolor{keyword}{const} \textcolor{keyword}{auto} & i: \hyperlink{classwebsocket_1_1GameBoard_a8bdb65edb9742890aa150d5c7c5b7209}{balls\_} )
+68         \{
+69             \textcolor{keywordflow}{if}( i.second->getNick() == nick )
+70             \{
+71                 nick\_occupied = \textcolor{keyword}{true};
+72             \}
+73         \}
+74         
+75         
+76         std::string header = \textcolor{stringliteral}{"newPlayerValidNick:"};
+77 
+78         \textcolor{keywordflow}{if}(nick\_occupied)
+79         \{
+80             header = header + boost::lexical\_cast<std::string>(taken);
+81             
+82         \}
+83         \textcolor{keywordflow}{else}
+84         \{
+85             header = header + boost::lexical\_cast<std::string>(ok);
+86         \}
+87 
+88         Dataframe frm;
+89         std::copy(header.begin(), header.end(), std::back\_inserter(frm.payload));
+90 
+91         source->deliver(frm);
+92         
+93 
+94     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!join@{join}}
 \index{join@{join}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{join(player\+\_\+ptr participant)}{join(player_ptr participant)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::join (
@@ -309,6 +731,15 @@ method of initial handshake -\/ checks validity of inserted user nick
 
 Join the game\+\_\+board. 
 
+
+\begin{DoxyCode}
+35     \{
+36 
+37         \textcolor{comment}{/*}
+38 \textcolor{comment}{        New player joins the game}
+39 \textcolor{comment}{        */}
+40     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!leave@{leave}}
 \index{leave@{leave}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{leave(player\+\_\+ptr participant)}{leave(player_ptr participant)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::leave (
@@ -320,6 +751,24 @@ Join the game\+\_\+board.
 
 Leave the game\+\_\+board. 
 
+
+\begin{DoxyCode}
+156     \{
+157         \textcolor{comment}{//in case of shutting down browser}
+158         \textcolor{keywordflow}{if} ( \hyperlink{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{participants\_}.count(participant) > 0)
+159         \{
+160             \hyperlink{classwebsocket_1_1GameBoard_ac9130252983df425bcefd450f4aa8742}{eraseBall}(participant);
+161 
+162             \hyperlink{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{participants\_}.erase(participant);
+163 
+164             \hyperlink{classwebsocket_1_1GameBoard_a9d97f5e5069d0501ea37cb819d481dd0}{updateParticipants}();
+165         \}
+166         \textcolor{keywordflow}{else}
+167         \{
+168             \textcolor{comment}{//do nothing}
+169         \}
+170     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!process\+Movement@{process\+Movement}}
 \index{process\+Movement@{process\+Movement}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{process\+Movement(const Dataframe \&msg, player\+\_\+ptr source)}{processMovement(const Dataframe &msg, player_ptr source)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::process\+Movement (
@@ -332,6 +781,131 @@ Leave the game\+\_\+board.
 
 main movement processing 
 
+
+\begin{DoxyCode}
+521      \{
+522         \textcolor{keywordflow}{if}( source.get() == nullptr )
+523         \{
+524             std::cerr  << \textcolor{stringliteral}{"nullptr"} << std::endl;
+525             \textcolor{keywordflow}{return};
+526         \}
+527         
+528         std::vector<boost::uint8\_t> temp;
+529         std::string rxss;
+530         std::string ryss;
+531         std::string temps;
+532         \textcolor{keyword}{const} \textcolor{keywordtype}{char} delimit\_ = \textcolor{charliteral}{':'};
+533         \textcolor{keyword}{const} uint8\_t delim = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(delimit\_);
+534         \textcolor{keyword}{const} \textcolor{keywordtype}{char} delimitArg\_ = \textcolor{charliteral}{','};
+535         
+536         \textcolor{keywordtype}{double} radius;
+537         \textcolor{keywordtype}{int} id\_source;
+538         \textcolor{keywordtype}{double} rx;
+539         \textcolor{keywordtype}{double} ry;
+540 
+541         \textcolor{keywordtype}{double} dist;
+542         \textcolor{keywordtype}{double} nx;
+543         \textcolor{keywordtype}{double} ny;
+544         \textcolor{keywordtype}{double} nradius;
+545      
+546         \hyperlink{namespacewebsocket_aae1d9cf317a0fb0b83bdfc2f92df77c7}{ball\_ptr} ball\_source = \hyperlink{classwebsocket_1_1GameBoard_a8bdb65edb9742890aa150d5c7c5b7209}{balls\_}.at(source);
+547 
+548         radius = ball\_source->getRadius();
+549         
+550         id\_source = ball\_source->getId();
+551         
+552         \textcolor{comment}{//parse incoming frame}
+553         \textcolor{keyword}{auto} it\_beg = std::find(msg.payload.begin(), msg.payload.end(),delim);
+554         std::copy(++it\_beg, msg.payload.end(), std::back\_inserter(temp));
+555 
+556         \textcolor{keywordflow}{for}(\textcolor{keyword}{const} \textcolor{keyword}{auto}& i : temp)
+557         \{
+558             temps = temps +  boost::lexical\_cast<std::string>(i);
+559         \}
+560 
+561         \textcolor{keywordtype}{int} n = temps.find(delimitArg\_);
+562         rxss = temps.substr(0,n);
+563         ryss = temps.substr(n+1,temps.size());
+564 
+565         rx = boost::lexical\_cast<\textcolor{keywordtype}{double}>(rxss);
+566         ry = boost::lexical\_cast<\textcolor{keywordtype}{double}>(ryss);
+567         
+568         \textcolor{comment}{//position update due to recent mass}
+569         std::pair<int,int> temp\_pos = std::make\_pair(ball\_source->getX(),ball\_source->getY());
+570         \hyperlink{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{occupiedPos\_}.erase(temp\_pos);
+571 
+572         ball\_source->xPosUpdate(rx);
+573         ball\_source->yPosUpdate(ry);
+574 
+575         rx = ball\_source->getX();
+576         ry = ball\_source->getY();
+577 
+578         \hyperlink{classwebsocket_1_1GameBoard_aca1010defacfdd0ea5f032035ce7105e}{occupiedPos\_}.insert(std::make\_pair(rx,ry));
+579 
+580 
+581         std::vector<int> neighbourId;
+582 
+583         \textcolor{comment}{//find neighbours within radius}
+584         \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} & i: \hyperlink{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}{elements\_} )
+585         \{
+586             \textcolor{keywordflow}{if}( i.first != id\_source )
+587             \{
+588                 nx = i.second->getX();
+589                 ny = i.second->getY();
+590                 dist = (rx-nx)*(rx-nx) + (ry-ny)*(ry-ny);
+591                 \textcolor{keywordflow}{if}(dist > 0)
+592                     dist = std::sqrt(dist);
+593                 \textcolor{keywordflow}{else}
+594                     \textcolor{keywordflow}{return};
+595                 \textcolor{keywordflow}{if}( dist <= radius)
+596                 \{
+597                     \textcolor{keywordflow}{if}(dist != radius)
+598                     \{
+599                         nradius = i.second->getRadius();
+600                         \textcolor{keywordflow}{if}( nradius == \hyperlink{classwebsocket_1_1GameBoard_a7277b9cbeca558d4bcfad3c24d185336}{foodRadius\_} )
+601                         \{
+602                             \hyperlink{classwebsocket_1_1GameBoard_a9bf63429b6e4ef6cb652eab0224fba4f}{eraseFood}(i.first);
+603                             \hyperlink{classwebsocket_1_1GameBoard_a4bcaa4bcf0a260efa6baffec4e72990e}{addNFoodItem}(\hyperlink{classwebsocket_1_1GameBoard_a8fe312bcfc33ae3d624a0fdb02f40622}{onEatenNewItems\_});   
+604                             ball\_source->setRadius(radius + nradius);
+605                             ball\_source->incFood();
+606                             \textcolor{keywordflow}{break};
+607                         \}
+608                         \textcolor{keywordflow}{else}
+609                         \{
+610                             \textcolor{keywordflow}{if}(radius > nradius)
+611                             \{
+612                                \hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\_ptr} owner = i.second->getOwner();
+613                                \hyperlink{classwebsocket_1_1GameBoard_ac9130252983df425bcefd450f4aa8742}{eraseBall}(owner);
+614                                ball\_source->setRadius(radius + nradius);
+615                                ball\_source->incBall();
+616                                \textcolor{keywordflow}{break};
+617                             \}
+618 
+619                         \}
+620                     \}
+621                 \}
+622             \}
+623 
+624         \}
+625 
+626         std::string header = \textcolor{stringliteral}{"ballUpdate:"};
+627         
+628         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(ball\_source->getId());        
+629         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(ball\_source->getX());
+630         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(ball\_source->getY());
+631         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(ball\_source->getRadius());
+632 
+633         
+634         Dataframe frm;
+635         
+636         std::copy(header.begin(), header.end(), std::back\_inserter(frm.payload));
+637 
+638         \hyperlink{classwebsocket_1_1GameBoard_a0ed4b13ba573956d8aebaf8f5c208fa0}{deliver}(frm);
+639 
+640        
+641 
+642      \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!send\+Game\+State@{send\+Game\+State}}
 \index{send\+Game\+State@{send\+Game\+State}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{send\+Game\+State(player\+\_\+ptr participant)}{sendGameState(player_ptr participant)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::send\+Game\+State (
@@ -343,6 +917,55 @@ main movement processing
 
 Sends balls and foods position to players. 
 
+
+\begin{DoxyCode}
+471     \{
+472         \textcolor{keywordtype}{int} id;
+473         \textcolor{comment}{//send balls}
+474         std::string header\_balls = \textcolor{stringliteral}{"gameStateBall:"};
+475 
+476         balls\_container::iterator j;
+477 
+478         \textcolor{keywordflow}{for}(j = \hyperlink{classwebsocket_1_1GameBoard_a8bdb65edb9742890aa150d5c7c5b7209}{balls\_}.begin(); j != \hyperlink{classwebsocket_1_1GameBoard_a8bdb65edb9742890aa150d5c7c5b7209}{balls\_}.end(); j++ )
+479         \{
+480             header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((j->second)->getId());
+481             header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((j->second)->getX());
+482             header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((j->second)->getY());
+483             header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((j->second)->getRadius());
+484             header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((j->second)->getColor()); 
+485             header\_balls = header\_balls + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((j->second)->getNick());  
+         
+486         \}
+487 
+488         Dataframe frm\_balls;
+489         std::copy(header\_balls.begin(), header\_balls.end(), std::back\_inserter(frm\_balls.payload));
+490 
+491         participant->deliver(frm\_balls);
+492         
+493         \textcolor{comment}{//send foods}
+494         
+495         elements\_container::iterator i;
+496         
+497         std::string header\_foods = \textcolor{stringliteral}{"gameStateFood:"};
+498 
+499         \textcolor{keywordflow}{for}( i = \hyperlink{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}{elements\_}.begin(); i != \hyperlink{classwebsocket_1_1GameBoard_a56fd12d10af951e1f6a42a18f4ccfe35}{elements\_}.end(); i++)
+500         \{
+501             \textcolor{keywordtype}{id} = (i->second)->getId();
+502             \textcolor{keywordflow}{if} ( !(i->second->getOwner() ) )
+503             \{
+504                 header\_foods = header\_foods + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(id);
+505                 header\_foods = header\_foods + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((i->second)->getX());
+506                 header\_foods = header\_foods + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>((i->second)->getY());
+507             \}
+508         \}
+509 
+510         Dataframe frm\_foods;
+511         std::copy(header\_foods.begin(), header\_foods.end(), std::back\_inserter(frm\_foods.payload));
+512 
+513         participant->deliver(frm\_foods);
+514         
+515     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!send\+Map\+Size@{send\+Map\+Size}}
 \index{send\+Map\+Size@{send\+Map\+Size}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{send\+Map\+Size(player\+\_\+ptr source)}{sendMapSize(player_ptr source)}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::send\+Map\+Size (
@@ -354,6 +977,22 @@ Sends balls and foods position to players.
 
 sends map dimensions to the new player 
 
+
+\begin{DoxyCode}
+141     \{
+142         std::string header = \textcolor{stringliteral}{"mapSize:"};
+143 
+144 
+145         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(\hyperlink{classwebsocket_1_1GameBoard_a3e8a7dec314f570a1d8cf92d4a711bd5}{getMapX}());
+146         header = header + \textcolor{stringliteral}{" "} + boost::lexical\_cast<std::string>(\hyperlink{classwebsocket_1_1GameBoard_a4f2dd5ab46f74a995388687dd6a5f440}{getMapY}());
+147 
+148         Dataframe frm;
+149         std::copy(header.begin(), header.end(), std::back\_inserter(frm.payload));
+150 
+151         source->deliver(frm);
+152         
+153     \}
+\end{DoxyCode}
 \index{websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}!update\+Participants@{update\+Participants}}
 \index{update\+Participants@{update\+Participants}!websocket\+::\+Game\+Board@{websocket\+::\+Game\+Board}}
 \subsubsection[{\texorpdfstring{update\+Participants()}{updateParticipants()}}]{\setlength{\rightskip}{0pt plus 5cm}void websocket\+::\+Game\+Board\+::update\+Participants (
@@ -365,6 +1004,19 @@ sends map dimensions to the new player
 
 Update a number of connected participants. 
 
+
+\begin{DoxyCode}
+230     \{
+231         std::string header = \textcolor{stringliteral}{"connected:"} + boost::lexical\_cast<std::string>(
+      \hyperlink{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{participants\_}.size());
+232 
+233         Dataframe frm;
+234         std::copy(header.begin(), header.end(), std::back\_inserter(frm.payload));
+235 
+236         std::for\_each(\hyperlink{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{participants\_}.begin(), \hyperlink{classwebsocket_1_1GameBoard_a49ad7c4c31e144021a4c7e12c73d0433}{participants\_}.end(),
+237             boost::bind(&\hyperlink{classwebsocket_1_1Player_adf19a07c6497129268b3719783e7180d}{Player::deliver}, \_1, boost::ref(frm)));
+238     \}
+\end{DoxyCode}
 
 
 \subsection{Member Data Documentation}

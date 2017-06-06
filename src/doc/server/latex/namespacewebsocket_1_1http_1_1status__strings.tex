@@ -25,6 +25,20 @@ const std\+::string \hyperlink{namespacewebsocket_1_1http_1_1status__strings_a36
 \end{DoxyParamCaption}
 )}\hypertarget{namespacewebsocket_1_1http_1_1status__strings_a71a3c805bd5bbbf577264ca762da4299}{}\label{namespacewebsocket_1_1http_1_1status__strings_a71a3c805bd5bbbf577264ca762da4299}
 
+\begin{DoxyCode}
+17             \{
+18                 \textcolor{keywordflow}{switch} (status)
+19                 \{
+20                 \textcolor{keywordflow}{case} Reply::SWITCHING\_PROTOCOLS:
+21                     \textcolor{keywordflow}{return} boost::asio::buffer(\hyperlink{namespacewebsocket_1_1http_1_1status__strings_a9b60f1719697fb464b7063cb436e1d75}{switching\_protocols});
+22                 \textcolor{keywordflow}{case} Reply::BAD\_REQUEST:
+23                     \textcolor{keywordflow}{return} boost::asio::buffer(\hyperlink{namespacewebsocket_1_1http_1_1status__strings_a29073784a5e6444e93b0925153605222}{bad\_request});
+24                 \textcolor{keywordflow}{default}:
+25                     \textcolor{keywordflow}{return} boost::asio::buffer(\hyperlink{namespacewebsocket_1_1http_1_1status__strings_a364b430d5e52bc7600da0bcc5dc0d5fc}{internal\_server\_error});
+26                 \}
+27             \}
+\end{DoxyCode}
+
 
 \subsection{Variable Documentation}
 \index{websocket\+::http\+::status\+\_\+strings@{websocket\+::http\+::status\+\_\+strings}!bad\+\_\+request@{bad\+\_\+request}}

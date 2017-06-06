@@ -6,7 +6,8 @@
 
 
 
-Inheritance diagram for websocket\+:\+:Food\+Item\+:\nopagebreak
+Inheritance diagram for websocket\+:\+:Food\+Item\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +16,8 @@ Inheritance diagram for websocket\+:\+:Food\+Item\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for websocket\+:\+:Food\+Item\+:\nopagebreak
+Collaboration diagram for websocket\+:\+:Food\+Item\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -27,7 +29,7 @@ Collaboration diagram for websocket\+:\+:Food\+Item\+:\nopagebreak
 \item 
 \hyperlink{classwebsocket_1_1FoodItem_a2e34bb4440281bf3f8c01c1952c58d39}{Food\+Item} (double \&x, double \&y, double radius)
 \item 
-\hyperlink{classwebsocket_1_1FoodItem_a870abf88e3f80d5218fa017e52601d60}{$\sim$\+Food\+Item} ()=default
+virtual \hyperlink{classwebsocket_1_1FoodItem_a1d35296b7eca7b0ed40f0ab1dc3248d8}{$\sim$\+Food\+Item} ()
 \item 
 \hyperlink{classwebsocket_1_1FoodItem_ac69bbf80ef72ce4bdb8dd73be2066d10}{Food\+Item} (const \hyperlink{classwebsocket_1_1FoodItem}{Food\+Item} \&other)=default
 \item 
@@ -48,13 +50,24 @@ virtual \hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\
 \item[{double}]{radius}
 \end{DoxyParamCaption}
 )}\hypertarget{classwebsocket_1_1FoodItem_a2e34bb4440281bf3f8c01c1952c58d39}{}\label{classwebsocket_1_1FoodItem_a2e34bb4440281bf3f8c01c1952c58d39}
+
+\begin{DoxyCode}
+4                                                           : \hyperlink{classwebsocket_1_1Element_a6d6b671ae2f922c12c0a64a94bd669fb}{Element}(x,y,radius)
+5     \{
+6         
+7     \}
+\end{DoxyCode}
 \index{websocket\+::\+Food\+Item@{websocket\+::\+Food\+Item}!````~Food\+Item@{$\sim$\+Food\+Item}}
 \index{````~Food\+Item@{$\sim$\+Food\+Item}!websocket\+::\+Food\+Item@{websocket\+::\+Food\+Item}}
-\subsubsection[{\texorpdfstring{$\sim$\+Food\+Item()=default}{~FoodItem()=default}}]{\setlength{\rightskip}{0pt plus 5cm}websocket\+::\+Food\+Item\+::$\sim$\+Food\+Item (
+\subsubsection[{\texorpdfstring{$\sim$\+Food\+Item()}{~FoodItem()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual websocket\+::\+Food\+Item\+::$\sim$\+Food\+Item (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [default]}}\hypertarget{classwebsocket_1_1FoodItem_a870abf88e3f80d5218fa017e52601d60}{}\label{classwebsocket_1_1FoodItem_a870abf88e3f80d5218fa017e52601d60}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classwebsocket_1_1FoodItem_a1d35296b7eca7b0ed40f0ab1dc3248d8}{}\label{classwebsocket_1_1FoodItem_a1d35296b7eca7b0ed40f0ab1dc3248d8}
+
+\begin{DoxyCode}
+20 \{\}
+\end{DoxyCode}
 \index{websocket\+::\+Food\+Item@{websocket\+::\+Food\+Item}!Food\+Item@{Food\+Item}}
 \index{Food\+Item@{Food\+Item}!websocket\+::\+Food\+Item@{websocket\+::\+Food\+Item}}
 \subsubsection[{\texorpdfstring{Food\+Item(const Food\+Item \&other)=default}{FoodItem(const FoodItem &other)=default}}]{\setlength{\rightskip}{0pt plus 5cm}websocket\+::\+Food\+Item\+::\+Food\+Item (
@@ -76,6 +89,10 @@ virtual \hyperlink{namespacewebsocket_aec8d52893bdf524a1412533a63b006a3}{player\
 
 Implements \hyperlink{classwebsocket_1_1Element_a28027c861e94306a7666d839db910f2a}{websocket\+::\+Element}.
 
+
+\begin{DoxyCode}
+24 \{\textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};\} 
+\end{DoxyCode}
 \index{websocket\+::\+Food\+Item@{websocket\+::\+Food\+Item}!operator=@{operator=}}
 \index{operator=@{operator=}!websocket\+::\+Food\+Item@{websocket\+::\+Food\+Item}}
 \subsubsection[{\texorpdfstring{operator=(const Food\+Item \&other)=default}{operator=(const FoodItem &other)=default}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Food\+Item}\& websocket\+::\+Food\+Item\+::operator= (

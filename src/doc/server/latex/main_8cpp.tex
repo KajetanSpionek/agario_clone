@@ -28,3 +28,44 @@ int \hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, cha
 \item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
 \end{DoxyParamCaption}
 )}\hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}
+
+\begin{DoxyCode}
+7 \{
+8   \textcolor{keywordflow}{try}
+9   \{
+10     \textcolor{comment}{// Check command line arguments.}
+11     \textcolor{keywordflow}{if} (argc != 3)
+12     \{
+13       std::cerr << \textcolor{stringliteral}{"Usage: server <address> <port>\(\backslash\)n"};
+14       std::cerr << \textcolor{stringliteral}{"  For IPv4, try:\(\backslash\)n"};
+15       std::cerr << \textcolor{stringliteral}{"    server 0.0.0.0 7777\(\backslash\)n"};
+16       std::cerr << \textcolor{stringliteral}{"  For IPv6, try:\(\backslash\)n"};
+17       std::cerr << \textcolor{stringliteral}{"    server 0::0 7777\(\backslash\)n"};
+18 
+19       \textcolor{keywordflow}{return} 1;
+20     \}
+21 
+22     std::cout << \textcolor{stringliteral}{"Server address: "} << argv[1] << std::endl;
+23     std::cout << \textcolor{stringliteral}{"Server port: "} << argv[2] << std::endl;
+24     std::cout << \textcolor{stringliteral}{"Server is starting..."} << std::endl;
+25 
+26     \textcolor{comment}{// Initialise the server.}
+27     \hyperlink{classwebsocket_1_1Server}{websocket::Server} s(argv[1], argv[2]);
+28     
+29     std::cout << \textcolor{stringliteral}{"Server has started."} << std::endl;
+30     std::cout << \textcolor{stringliteral}{"Press Ctrl+C (Ctrl+Break) to exit."} << std::endl << std::endl;
+31     \textcolor{comment}{// Run the server until stopped.}
+32     s.run();
+33   \}
+34 
+35   \textcolor{keywordflow}{catch} (std::exception& e)
+36   \{
+37     std::cerr << \textcolor{stringliteral}{"exception: "} << e.what() << \textcolor{stringliteral}{"\(\backslash\)n"};
+38   \}
+39   \textcolor{keywordflow}{catch}(...)
+40   \{
+41     
+42   \}
+43 
+44   \textcolor{keywordflow}{return} 0;
+45 \}\end{DoxyCode}

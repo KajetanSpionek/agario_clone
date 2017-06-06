@@ -51,6 +51,14 @@ I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+R\+R\+OR\hypertarget{st
 }]\end{description}
 \end{Desc}
 
+\begin{DoxyCode}
+20             \{
+21                 \hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2ac40eab39089a623f51ec73b0cf56debd}{SWITCHING\_PROTOCOLS} = 101,
+22                 \hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2abe7be227057261b88798008ac000a50c}{BAD\_REQUEST} = 400,
+23                 \hyperlink{structwebsocket_1_1http_1_1Reply_ab5757d7340f55ea26952d8a4b26ecff2acf5dc4f995928bbd6bd1eb5b599865a0}{INTERNAL\_SERVER\_ERROR} = 500
+24             \} \hyperlink{structwebsocket_1_1http_1_1Reply_afa1b8fc57be88cfc33b7788d37ae42b8}{status};
+\end{DoxyCode}
+
 
 \subsection{Member Function Documentation}
 \index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}!stock\+\_\+reply@{stock\+\_\+reply}}
@@ -64,6 +72,15 @@ I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+R\+R\+OR\hypertarget{st
 
 Get a stock \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}. 
 
+
+\begin{DoxyCode}
+58         \{
+59             Reply rep;
+60             rep.status = \hyperlink{structwebsocket_1_1http_1_1Reply_afa1b8fc57be88cfc33b7788d37ae42b8}{status};
+61 
+62             \textcolor{keywordflow}{return} rep;
+63         \}
+\end{DoxyCode}
 \index{websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}!to\+\_\+buffers@{to\+\_\+buffers}}
 \index{to\+\_\+buffers@{to\+\_\+buffers}!websocket\+::http\+::\+Reply@{websocket\+::http\+::\+Reply}}
 \subsubsection[{\texorpdfstring{to\+\_\+buffers()}{to_buffers()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ boost\+::asio\+::const\+\_\+buffer $>$ websocket\+::http\+::\+Reply\+::to\+\_\+buffers (
@@ -75,6 +92,28 @@ Get a stock \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply}.
 
 Convert the \hyperlink{structwebsocket_1_1http_1_1Reply}{Reply} into a vector of buffers. 
 
+
+\begin{DoxyCode}
+39         \{
+40             std::vector<boost::asio::const\_buffer> buffers;
+41             buffers.push\_back(\hyperlink{namespacewebsocket_1_1http_1_1status__strings_a71a3c805bd5bbbf577264ca762da4299}{status\_strings::to\_buffer}(
+      \hyperlink{structwebsocket_1_1http_1_1Reply_afa1b8fc57be88cfc33b7788d37ae42b8}{status}));
+42 
+43             \textcolor{keywordflow}{for} (std::size\_t i = 0; i < \hyperlink{structwebsocket_1_1http_1_1Reply_aa88f08563abdf43f15d7ff694ffd06e2}{headers}.size(); ++i)
+44             \{
+45                 Header& h = \hyperlink{structwebsocket_1_1http_1_1Reply_aa88f08563abdf43f15d7ff694ffd06e2}{headers}[i];
+46                 buffers.push\_back(boost::asio::buffer(h.name));
+47                 buffers.push\_back(boost::asio::buffer(
+      \hyperlink{namespacewebsocket_1_1http_1_1misc__strings_a8fede78f1be63335d445aabd0277727e}{misc\_strings::name\_value\_separator}));
+48                 buffers.push\_back(boost::asio::buffer(h.value));
+49                 buffers.push\_back(boost::asio::buffer(\hyperlink{namespacewebsocket_1_1http_1_1misc__strings_a570bafe7096a0c7904f41f8d6ada54af}{misc\_strings::crlf}));
+50             \}
+51 
+52             buffers.push\_back(boost::asio::buffer(\hyperlink{namespacewebsocket_1_1http_1_1misc__strings_a570bafe7096a0c7904f41f8d6ada54af}{misc\_strings::crlf}));
+53 
+54             \textcolor{keywordflow}{return} buffers;
+55         \}
+\end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
