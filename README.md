@@ -11,4 +11,5 @@ Authors: Kajetan Śpionek, Wojciech Przybysz
 2)Install cppunit:
  sudo apt-get install libcppunit-dev
 
-3)Run web browser: google-chrome --allow-file-access-from-files
+3)To run bot, open web browser with allow-file-access-from-files flag:
+ google-chrome --allow-file-access-from-files
