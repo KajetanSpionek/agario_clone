@@ -4,15 +4,17 @@
 *           Main application file
 */
 
-// Canvas variables
+// Canvas variable
 var canvas = document.getElementById('cvs');
+// Canvas context variable
 var context = canvas.getContext('2d');
     
 // Animation handle
 var raf;
 
-// Array's with data
+// Array with recieved data - array with other players
 var balls = [];
+// Array with recieved data - array with food
 var foods = [];
 
 // Mouse handle
@@ -21,24 +23,30 @@ var mousePos;
 // Declaration of player's variable
 var player = 0;
 
-// Map scale variable
+// Map scale variable (handles zooming out when getting bigger)
 var scl = 1;
 
 // Board margin
 var boardMargin = 0;
 
-// Whole map size
+// Whole map size - X
 var gameBoardX;
+// Whole map size - Y
 var gameBoardY;
 
-// Vector to left top corner from (0,0) gameBoard corner
+// Vector to left top corner from (0,0) gameBoard corner - X
 var deltaX;
+// Vector to left top corner from (0,0) gameBoard corner - X
 var deltaY;
 
-// Game status variables
+// Game status variables - true if game started 
 var gameStart = false;
+// Game status variables - true if player died
 var gameDied = false;
+// Game status variables - true if frame with player's info recieved
 var playerSet = false;
+// Game status variables - game statistics (food eaten, balls eaten and mass)
+var deathStats = [0, 0, 0];
 
 // Resize handle
 window.addEventListener('resize', resizeCanvas, false); 
@@ -46,7 +54,7 @@ window.addEventListener('resize', resizeCanvas, false);
 // Adjust canvas to player's screen size
 resizeCanvas();     
 
-// Returns random color
+/// Returns random color
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -56,7 +64,7 @@ function getRandomColor() {
         return color;
 }
 
-// Valid nick chcek
+/// Validates nickname
 function isNickValid() {
     var regex = /^\w*$/;
     if (regex.exec(playerNameInput.value) !== null) {
@@ -65,14 +73,14 @@ function isNickValid() {
     else return 0;
 }
     
-// Error handle - doesn't work   
+/// Error handle 
 function onError(evt) { 
-    state.className = "fail";
-    state.innerHTML = "Communication error";
-    gameStart = false; 
+    document.getElementById('input-error').innerHTML = "Connection error";
+    document.getElementById('input-error').style.opacity = 1;
+    gameStart = false;
 }  
 
-// Mouse handle
+/// Mouse handle
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -81,7 +89,7 @@ function getMousePos(canvas, evt) {
     };
 }
 
-// Display update (Animation)
+/// Display update (Animation)
 function update() {
     if (gameStart == true && gameDied == false) {
 
@@ -90,8 +98,6 @@ function update() {
         // Scale to (-1,1) mouse positions (from center of player's screen)
         //player.dx_ = (mousePos.x - canvas.width/2) / canvas.width * 2;
         //player.dy_ = (mousePos.y - canvas.height/2) / canvas.height * 2;
-        //randomMouse();
-        //startWorker();
 
         // Zooming out while getting fatter ball 
         scl = 1 - (player.r_ / 500);
@@ -104,11 +110,11 @@ function update() {
         // Draws objects on map (player, balls and food)
         reDrawCanvas();
         // Send current mouse position to server
-        //sendPos();  
+        //sendPos();   
     }
 }
 
-// Calculate object's fx,fy distance from player's center of screen
+/// Calculate object's fx,fy distance from player's center of screen
 function calculateFixedPos() {
     //  Food fixed position
     for (var i in foods) {
@@ -122,15 +128,14 @@ function calculateFixedPos() {
     }
 }
 
-// GameOver handle - doesnt work yet
-function gameOver(foodEaten, ballsEaten, mass) {
+/// GameOver handle
+function gameOver() {
     gameStart = false;
     gameDied = true;
-    alert("GameOver\n\nFood eaten: " + foodEaten + "\nBalls eaten: " + ballsEaten + "\nMass: " + mass);
-    //document.location.href="/";
+    deathScreen();
 }
 
-// StartGame handle - doesnt work yet
+/// StartGame handle
 function startGame() {
          
     document.getElementById('startMenu').style.opacity = 0;
@@ -139,24 +144,21 @@ function startGame() {
     
     gameStart = true;
     gameDied = false;
-
-    startWorker();
 }
 
-// Resize canvas handle
+/// Resize canvas handle
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     deltaX = player.x_ - canvas.width/2;
     deltaY = player.y_ - canvas.height/2;
-}
 
-// Debug console
-var consoleDisplay = function(args) {
-    if (console && console.log) {
-        console.log(args);
+    if (gameDied == true) {
+        reDrawGrid();
+        reDrawCanvas();
+        deathScreen();
     }
-};
+}
 
 
 
@@ -164,14 +166,42 @@ function startWorker() {
    // First check whether Web Workers are supported
    if (typeof(Worker)!=="undefined"){
       // Check whether Web Worker has been created. If not, create a new Web Worker based on the Javascript file simple-timer.js
-      if (w==null) {
-         w = new Worker("worker.js");
-      }
-     
-      else {
-        consoleDisplay("No workin my friend");
-      }
+        
+         worker = new Worker("js/worker.js"); 
+         worker.postMessage('startBot');
+
+         worker.addEventListener('message', function(evt) {
+
+            var x = Math.random() / 4 - 0.125;
+            var y = Math.random() / 4 - 0.125;
+            var message = "move:";
+
+            if (gameStart == true && gameDied == false && playerSet == true) {
+                    if ( (player.dx_ + x <= 1) && (player.dy_ + y <= 1) && (player.dx_ + x >= -1) && (player.dy_ + y >= -1) ) 
+
+                        if (player.x_ > gameBoardX-10 || player.x_ < 10 || player.y_ > gameBoardY-10 || player.y_ < 10) {
+
+                            if (player.x_ > gameBoardX-10 || player.x_ < 10) player.dx_ = -player.dx_;
+                            if (player.y_ > gameBoardY-10 || player.y_ < 10) player.dy_ = -player.dy_;
+
+                            message += player.dx_;
+                            message += ",";
+                            message += player.dy_;
+                            websocket.send(message);
+
+                        }
+
+                        else {
+                            player.dx_ += x;
+                            player.dy_ += y;
+                            message += player.dx_;
+                            message += ",";
+                            message += player.dy_;
+                            websocket.send(message);
+                        }
+                }
+
+        });
+      
    }
 }
-
-

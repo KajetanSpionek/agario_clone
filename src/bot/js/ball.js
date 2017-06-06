@@ -5,7 +5,7 @@
 */
 
 class Ball {
-  // Ball constructor 
+  /// Ball constructor 
   constructor(id,x,y,r,color,name) {
     // Ball x position (assigned by server)
     this.x_ = x;
@@ -25,7 +25,7 @@ class Ball {
     this.name_ = name;
   }
 
-  // Display ball on screen
+  /// Display ball on screen
   show() {
       drawCircleFx(this.fx_, this.fy_,this.r_,this.color_);
   }

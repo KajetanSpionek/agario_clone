@@ -5,7 +5,7 @@
 */
 
 class Player {
-  // Player constructor 
+  /// Player constructor 
   constructor(id,x,y,r,color,name) {
     // Player x position
     this.x_ = x;
@@ -25,7 +25,7 @@ class Player {
     this.name_ = name;
   }
 
-  // Display player on screen
+  /// Display player on screen
   show() {
       drawCircle(this.x_, this.y_,this.r_,this.color_);
   }

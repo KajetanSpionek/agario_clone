@@ -25,6 +25,7 @@ if (window.WebSocket === undefined)
         window.addEventListener("load", onLoad, false);
     }
 
+    /// Exectuded when page loaded (connection config)
     function onLoad() {
         var wsUri = "ws://127.0.0.1:7777";  
         websocket = new WebSocket(wsUri);
@@ -33,6 +34,12 @@ if (window.WebSocket === undefined)
         websocket.onmessage = function(evt) { onMessage(evt) };
         websocket.onerror = function(evt) { onError(evt) };
 
+        
+    }
+    
+    /// Exectuted when successfully connected
+    function onOpen(evt) {
+        
         var btn = document.getElementById('startButton');
 
         document.getElementById('gameArea').style.opacity = 0;
@@ -47,24 +54,18 @@ if (window.WebSocket === undefined)
                 document.getElementById('input-error').innerHTML = "Nick must be alphanumeric characters only!";
                 document.getElementById('input-error').style.opacity = 1;
             }
-        };
+        };    
     }
-  
-    function onOpen(evt) {
-        //state.className = "success";
-        // state.innerHTML = "Connected to server";    
-    }
-  
+
+    /// Executed when failed to establish connection
     function onClose(evt) {
-        //state.className = "fail";
-        //state.innerHTML = "Not connected";
-        //connected.innerHTML = "0"; 
+        document.getElementById('input-error').innerHTML = "Unable to connect to server";
+        document.getElementById('input-error').style.opacity = 1; 
         gameStart = false;       
     }
   
 
-    /* Recieved messages */
-
+    /// Recieved messages handler
     function onMessage(evt) {
         var message = evt.data;
     
@@ -228,9 +229,7 @@ if (window.WebSocket === undefined)
         }  
     }
 
-    /* Sent messages */
-
-// Mouse position (normalised)
+/// Sends normalized mouse position (normalised)
 function sendPos() {
  
     var x = player.dx_;
@@ -245,7 +244,7 @@ function sendPos() {
     }
 }
 
-// Player name frame (handshake)
+/// Sending player name frame (handshake)
 function sendPlayerName() {
 
     var message = "newPlayerName:";
@@ -253,7 +252,7 @@ function sendPlayerName() {
     websocket.send(message);
 }
 
-// Player status frame (handshake)
+/// Sending player status frame (handshake)
 function sendPlayerStatus(state) {
 
     var message = "newPlayerStatus:";

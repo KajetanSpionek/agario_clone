@@ -5,7 +5,7 @@
 */
 
 class Food {
-  // Food constructor 
+  /// Food constructor 
   constructor(id,x,y,color) {
     // Food x position (assigned by server)
     this.x_ = x;
@@ -23,7 +23,7 @@ class Food {
     this.fy_;
   }
 
-  // Display food on screen
+  /// Display food on screen
   show() {
       drawCircleFx(this.fx_, this.fy_,this.r_,this.color_);
   }

@@ -21,3 +21,5 @@ gameStateBall: id x y radius
 tutaj ustal co ma być 
 message: (tu wiadomość tekstowa chatu)
 move: (co wysyłasz z ruchem, przesunięciem myszki)
+
+### google-chrome --allow-file-access-from-files
