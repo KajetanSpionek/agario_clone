@@ -6,12 +6,6 @@
 
 /* Event Listeners */
 
-/*
-canvas.addEventListener('mousemove', function(evt) {
-    mousePos = getMousePos(canvas, evt);
-});
-*/
-
 canvas.addEventListener('mouseover', function(evt) {
     raf = window.requestAnimationFrame(update);
 });
@@ -35,7 +29,7 @@ window.cancelAnimFrame = (function(handle) {
 
 /* Draw Functions */
 
-// Draws circle on x,y position
+/// Draws circle on x,y position
 function drawCircle(x_center,y_center,radius,color) {
     context.strokeStyle = 'black';
     var start_angle = 0;
@@ -48,7 +42,7 @@ function drawCircle(x_center,y_center,radius,color) {
     context.stroke();
 }
 
-// Draws circle within fx,fy distance from center of player's screen
+/// Draws circle within fx,fy distance from center of player's screen
 function drawCircleFx(fx_center,fy_center,radius,color) {
 	context.strokeStyle = 'black';
     var start_angle = 0;
@@ -61,7 +55,7 @@ function drawCircleFx(fx_center,fy_center,radius,color) {
     context.stroke();
 }
 
-// Redraws grid and mape border's
+/// Redraws grid
 function reDrawGrid() {
     context.fillStyle = '#F0FBFF';
     context.strokeStyle = '#BFBFBF';
@@ -84,31 +78,9 @@ function reDrawGrid() {
         context.lineTo(constX + i,canvas.height);
         context.stroke();
     }
-
-    context.lineWidth = 3;
-    context.strokeStyle = 'black';
-    context.beginPath();
-    context.moveTo(- deltaX,- deltaY);
-    context.lineTo(- deltaX + gameBoardX,- deltaY);
-    context.stroke();
-
-    context.beginPath();
-    context.moveTo(- deltaX,- deltaY);
-    context.lineTo(- deltaX,- deltaY + gameBoardY);
-    context.stroke();
-
-    context.beginPath();
-    context.moveTo(- deltaX + gameBoardX,- deltaY);
-    context.lineTo(- deltaX + gameBoardX,- deltaY + gameBoardY);
-    context.stroke();
-
-    context.beginPath();
-    context.moveTo(- deltaX,- deltaY + gameBoardY);
-    context.lineTo(- deltaX + gameBoardX,- deltaY + gameBoardY);
-    context.stroke();
 }
 
-// Draws objects on map (player, balls and food)
+/// Draws objects on map (player, balls and food)
 function reDrawCanvas() {    
     for (var i in foods) {
         calculateFixedPos();
@@ -122,3 +94,20 @@ function reDrawCanvas() {
     if (playerSet == 1) player.show();
 }
 
+/// Displays death screen on canvas
+function deathScreen() {
+
+    context.fillStyle = 'rgba(31, 31, 31, 0.8)';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.textAlign = 'center';
+    context.fillStyle = '#FFFFFF';
+    context.font = 'bold 50px sans-serif';
+    context.fillText('You got eaten!', canvas.width / 2, canvas.height * 0.4);
+    context.font = 'bold 30px sans-serif';
+    
+    if (canvas.width > 300 && canvas.height > 500) {
+        context.fillText('Food eaten: ' + deathStats[0], canvas.width / 2, canvas.height * 0.55);
+        context.fillText('Balls eaten: ' +  deathStats[1], canvas.width / 2, canvas.height * 0.60);
+        context.fillText('Final mass: ' +  deathStats[2], canvas.width / 2, canvas.height * 0.65);
+    }
+}

@@ -6,6 +6,7 @@
 
 //connected = document.getElementById("connected");
 //state = document.getElementById("status");
+// google-chrome --allow-file-access-from-files
 
 if (window.WebSocket === undefined)
     {
@@ -25,6 +26,7 @@ if (window.WebSocket === undefined)
         window.addEventListener("load", onLoad, false);
     }
 
+    /// Exectuded when page loaded (connection config)
     function onLoad() {
         var wsUri = "ws://127.0.0.1:7777";  
         websocket = new WebSocket(wsUri);
@@ -33,6 +35,12 @@ if (window.WebSocket === undefined)
         websocket.onmessage = function(evt) { onMessage(evt) };
         websocket.onerror = function(evt) { onError(evt) };
 
+        
+    }
+    
+    /// Exectuted when successfully connected
+    function onOpen(evt) {
+        
         var btn = document.getElementById('startButton');
 
         document.getElementById('gameArea').style.opacity = 0;
@@ -47,24 +55,18 @@ if (window.WebSocket === undefined)
                 document.getElementById('input-error').innerHTML = "Nick must be alphanumeric characters only!";
                 document.getElementById('input-error').style.opacity = 1;
             }
-        };
+        };    
     }
-  
-    function onOpen(evt) {
-        //state.className = "success";
-        // state.innerHTML = "Connected to server";    
-    }
-  
+
+    /// Executed when failed to establish connection
     function onClose(evt) {
-        //state.className = "fail";
-        //state.innerHTML = "Not connected";
-        //connected.innerHTML = "0"; 
+        document.getElementById('input-error').innerHTML = "Unable to connect to server";
+        document.getElementById('input-error').style.opacity = 1; 
         gameStart = false;       
     }
   
 
-    /* Recieved messages */
-
+    /// Recieved messages handler
     function onMessage(evt) {
         var message = evt.data;
     
@@ -78,21 +80,18 @@ if (window.WebSocket === undefined)
             message = message.slice("newFood:,".length);
             message = message.split(" ");
 
-            if (foods.indexOf(message[0]) == -1) { // bugged
-                var len = foods.length;
-                var color = getRandomColor();
-                foods[len] = new Food(parseInt(message[0]),parseInt(message[1]), parseInt(message[2]), color);
-                foods[len].show(); //Display ball
-            }
+            var len = foods.length;
+            var color = getRandomColor();
+            foods[len] = new Food(parseInt(message[0]),parseInt(message[1]), parseInt(message[2]), color);
+            foods[len].show(); //Display ball
         }
         
         // New ball frame - ID, x, y, r, color
         else if (message.startsWith("newBall:")) {
-            console.log(message);
             message = message.slice("newBall:,".length);
             message = message.split(" ");
            
-            if (balls.indexOf(message[0]) == -1 && player.id_ != message[0]) { //bugged?
+            if (player.id_ != message[0]) {
                 var len = balls.length;
                 balls[len] = new Ball(parseInt(message[0]),parseInt(message[1]), parseInt(message[2]), parseInt(message[3]),message[4],message[5]);
                 balls[len].show();
@@ -106,11 +105,9 @@ if (window.WebSocket === undefined)
 
             if (message.length > 5 ) {
               for( i = 0; i < message.length; i+=6){
-                  if (balls.indexOf(message[i]) == -1) { //bugged?
-                      var len = balls.length;
-                      balls[len] = new Ball(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]),parseInt(message[i+3]),message[i+4],message[i+5]);
-                      balls[len].show(); 
-                    }    
+                    var len = balls.length;
+                    balls[len] = new Ball(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]),parseInt(message[i+3]),message[i+4],message[i+5]);
+                    balls[len].show();   
                 } 
             }
         }
@@ -121,12 +118,10 @@ if (window.WebSocket === undefined)
             message = message.split(" ");
             
             for( i = 0; i < message.length; i+=3) {    
-                if (foods.indexOf(message[i]) == -1) { // bugged
-                    var len = foods.length;
-                    var color = getRandomColor();
-                    foods[len] = new Food(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]), color);
-                    foods[len].show();
-                }
+                var len = foods.length;
+                var color = getRandomColor();
+                foods[len] = new Food(parseInt(message[i]),parseInt(message[i+1]), parseInt(message[i+2]), color);
+                foods[len].show();
             }  
         }
 
@@ -206,10 +201,10 @@ if (window.WebSocket === undefined)
         else if (message.startsWith("endOfGame:")) {
             message = message.slice("endOfGame:,".length);
             message = message.split(" "); 
-            var foodEaten = parseInt(message[0]);
-            var ballsEaten = parseInt(message[1]);
-            var mass = parseInt(message[2]);         
-            gameOver(foodEaten, ballsEaten, mass);
+            deathStats[0] = parseInt(message[0]);
+            deathStats[1] = parseInt(message[1]);
+            deathStats[2] = parseInt(message[2]);         
+            gameOver();
         }  
 
         // New player nick validation gram
@@ -225,21 +220,17 @@ if (window.WebSocket === undefined)
             }
         }  
 
-        // Game board size frame - x,y - not implemented yet
+        // Game board size frame - x,y
         else if (message.startsWith("mapSize")) {
             message = message.slice("mapSize:".length);
             message = message.split(" ");
             gameBoardX = parseInt(message[1]);
             gameBoardY = parseInt(message[2]);
-            console.log(gameBoardX);
-            console.log(gameBoardY);
             startWorker();
         }  
     }
 
-    /* Sent messages */
-
-// Mouse position (normalised)
+/// Sends normalized mouse position (normalised)
 function sendPos() {
  
     var x = player.dx_;
@@ -254,17 +245,16 @@ function sendPos() {
     }
 }
 
-// Player name frame (handshake)
+/// Sending player name frame (handshake)
 function sendPlayerName() {
 
     var message = "newPlayerName:";
     message += document.getElementById('playerNameInput').value;
     websocket.send(message);
-    consoleDisplay  (message);
 }
 
-// Player status frame (handshake)
- function sendPlayerStatus(state) {
+/// Sending player status frame (handshake)
+function sendPlayerStatus(state) {
 
     var message = "newPlayerStatus:";
 
@@ -275,6 +265,4 @@ function sendPlayerName() {
     message += document.getElementById('playerNameInput').value;
 
     websocket.send(message);
-    consoleDisplay  (message);
-
-    }
+}
