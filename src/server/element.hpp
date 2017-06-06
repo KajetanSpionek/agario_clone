@@ -18,7 +18,7 @@ namespace websocket {
 	public:
 		
 		Element(double & x,double & y,double & radius);
-		~Element() = default;
+		virtual ~Element() {}
 		Element(const Element &other) = default;
         Element & operator=(const Element& other) = default; 
        

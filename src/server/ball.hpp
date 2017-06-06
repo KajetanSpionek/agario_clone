@@ -23,7 +23,7 @@ namespace websocket{
     public:
         Ball(double & x,double & y,double & radius);
 
-        ~Ball() = default;
+        virtual ~Ball() {}
         Ball(const Ball &other) = default;
         Ball & operator=(const Ball& other) = default;
 

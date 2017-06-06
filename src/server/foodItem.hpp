@@ -17,7 +17,7 @@ namespace websocket {
 	public:
 		
 		FoodItem(double & x, double & y, double radius);
-		~FoodItem() = default;
+		virtual ~FoodItem() {}
         FoodItem(const FoodItem & other) = default;
         FoodItem & operator=(const FoodItem& other) = default;
 
