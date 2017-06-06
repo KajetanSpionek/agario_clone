@@ -5,21 +5,10 @@ Authors: Kajetan Śpionek, Wojciech Przybysz
 
 ### Set up environment ###
 
-*Install Boost Library
+1)Install boost library: 
+ Ubuntu/Debian: sudo apt-get install libboost-all-dev
 
-1) download and unzip www.boost.org, then 'bootstrap.sh', then './b2'
-2) copy the subdirectory 'boost' to '/usr/local/include', copy all the files from the 'stage/lib' to '/usr/local/lib' and put the line 'export LD_LIBRARY_PATH=/usr/local/lib' into /etc/bash.profile or ~/.bashrc
+2)Install cppunit:
+ sudo apt-get install libcppunit-dev
 
-### Frame structure ###
-newFood: id x y 
-newBall: id x y radius
-deleteFood: id
-deleteBall: id
-gameStateFood: id x y 
-gameStateBall: id x y radius
-### Send by client ###
-tutaj ustal co ma być 
-message: (tu wiadomość tekstowa chatu)
-move: (co wysyłasz z ruchem, przesunięciem myszki)
-
-### google-chrome --allow-file-access-from-files
+3)Run web browser: google-chrome --allow-file-access-from-files
