@@ -172,8 +172,8 @@ function startWorker() {
 
          worker.addEventListener('message', function(evt) {
 
-            var x = Math.random() / 2 - 0.25;
-            var y = Math.random() / 2 - 0.25;
+            var x = Math.random() / 4 - 0.125;
+            var y = Math.random() / 4 - 0.125;
             var message = "move:";
 
             if (gameStart == true && gameDied == false && playerSet == true) {
