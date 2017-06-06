@@ -1,0 +1,10 @@
+
+Title:
+Zjadające się kulki - gra na przeglądarkę
+
+Lecturer:
+Rafał Biedrzycki, email: R.Biedrzycki@elka.pw.edu.pl
+
+Description:
+
+Gra inspirowana na Agario ("http://agar.io"). Kod serwera w C++, klient na przeglądarkę. Przydatne strony: źródła prostego klona Agario ("https://github.com/huytd/agar.io-clone"), bot grający w Agario: ("https://github.com/Apostolique/Agar.io-bot"), gry czasu rzeczywistego na przeglądarkę ("http://buildnewgames.com/real-time-multiplayer/"), protokół, którego użycie można rozważyć ("http://www.webrtc.org/").
