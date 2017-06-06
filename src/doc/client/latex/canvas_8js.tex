@@ -1,0 +1,124 @@
+\hypertarget{canvas_8js}{}\section{canvas.\+js File Reference}
+\label{canvas_8js}\index{canvas.\+js@{canvas.\+js}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{app_8js_a1c82fafbefefac03f47e6f1a3cad5b73}{canvas} \hyperlink{canvas_8js_aaf6560b22d7358542ce9da3e6c487cf6}{add\+Event\+Listener} (\textquotesingle{}mousemove\textquotesingle{}, function(evt)\{\hyperlink{app_8js_ac1e8507dd4816b1d5fd78a420119975e}{mouse\+Pos}=\hyperlink{app_8js_aceb05684e085976addee08f3ef78165c}{get\+Mouse\+Pos}(\hyperlink{app_8js_a1c82fafbefefac03f47e6f1a3cad5b73}{canvas}, evt);\})
+\item 
+function \hyperlink{canvas_8js_adb3fc5e797db510a62c23541162f302a}{draw\+Circle} (x\+\_\+center, y\+\_\+center, radius, color)
+\begin{DoxyCompactList}\small\item\em Draws circle on x,y position. \end{DoxyCompactList}\item 
+function \hyperlink{canvas_8js_a71c2eb1c63790a302cd3cc6dd3880bd1}{draw\+Circle\+Fx} (fx\+\_\+center, fy\+\_\+center, radius, color)
+\begin{DoxyCompactList}\small\item\em Draws circle within fx,fy distance from center of player\textquotesingle{}s screen. \end{DoxyCompactList}\item 
+function \hyperlink{canvas_8js_a8ec1f5e4b3953abf0dc7243ae720d4b2}{re\+Draw\+Grid} ()
+\begin{DoxyCompactList}\small\item\em Redraws grid. \end{DoxyCompactList}\item 
+function \hyperlink{canvas_8js_afa70c0c095a4753036e0456c463818e6}{re\+Draw\+Canvas} ()
+\begin{DoxyCompactList}\small\item\em Draws objects on map (player, balls and food) \end{DoxyCompactList}\item 
+function \hyperlink{canvas_8js_adba1fd186c14805ce7552d539d51eac3}{death\+Screen} ()
+\begin{DoxyCompactList}\small\item\em Displays death screen on canvas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+window \hyperlink{canvas_8js_abca23acbc1d398418271025c99640f01}{request\+Anim\+Frame}
+\item 
+window \hyperlink{canvas_8js_a4b4effc24650c2ef5245e327686ca601}{cancel\+Anim\+Frame}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{canvas.\+js@{canvas.\+js}!add\+Event\+Listener@{add\+Event\+Listener}}
+\index{add\+Event\+Listener@{add\+Event\+Listener}!canvas.\+js@{canvas.\+js}}
+\subsubsection[{\texorpdfstring{add\+Event\+Listener(\textquotesingle{}mousemove\textquotesingle{}, function(evt)\lcurly{}mouse\+Pos=get\+Mouse\+Pos(canvas, evt);\rcurly{})}{addEventListener('mousemove', function(evt)\{mousePos=getMousePos(canvas, evt);\})}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf canvas} add\+Event\+Listener (
+\begin{DoxyParamCaption}
+\item[{\textquotesingle{}mousemove\textquotesingle{}}]{, }
+\item[{function(evt)\{{\bf mouse\+Pos}={\bf get\+Mouse\+Pos}({\bf canvas}, evt);\}}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{canvas_8js_aaf6560b22d7358542ce9da3e6c487cf6}{}\label{canvas_8js_aaf6560b22d7358542ce9da3e6c487cf6}
+\index{canvas.\+js@{canvas.\+js}!death\+Screen@{death\+Screen}}
+\index{death\+Screen@{death\+Screen}!canvas.\+js@{canvas.\+js}}
+\subsubsection[{\texorpdfstring{death\+Screen()}{deathScreen()}}]{\setlength{\rightskip}{0pt plus 5cm}function death\+Screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{canvas_8js_adba1fd186c14805ce7552d539d51eac3}{}\label{canvas_8js_adba1fd186c14805ce7552d539d51eac3}
+
+
+Displays death screen on canvas. 
+
+\index{canvas.\+js@{canvas.\+js}!draw\+Circle@{draw\+Circle}}
+\index{draw\+Circle@{draw\+Circle}!canvas.\+js@{canvas.\+js}}
+\subsubsection[{\texorpdfstring{draw\+Circle(x\+\_\+center, y\+\_\+center, radius, color)}{drawCircle(x_center, y_center, radius, color)}}]{\setlength{\rightskip}{0pt plus 5cm}function draw\+Circle (
+\begin{DoxyParamCaption}
+\item[{}]{x\+\_\+center, }
+\item[{}]{y\+\_\+center, }
+\item[{}]{radius, }
+\item[{}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{canvas_8js_adb3fc5e797db510a62c23541162f302a}{}\label{canvas_8js_adb3fc5e797db510a62c23541162f302a}
+
+
+Draws circle on x,y position. 
+
+\index{canvas.\+js@{canvas.\+js}!draw\+Circle\+Fx@{draw\+Circle\+Fx}}
+\index{draw\+Circle\+Fx@{draw\+Circle\+Fx}!canvas.\+js@{canvas.\+js}}
+\subsubsection[{\texorpdfstring{draw\+Circle\+Fx(fx\+\_\+center, fy\+\_\+center, radius, color)}{drawCircleFx(fx_center, fy_center, radius, color)}}]{\setlength{\rightskip}{0pt plus 5cm}function draw\+Circle\+Fx (
+\begin{DoxyParamCaption}
+\item[{}]{fx\+\_\+center, }
+\item[{}]{fy\+\_\+center, }
+\item[{}]{radius, }
+\item[{}]{color}
+\end{DoxyParamCaption}
+)}\hypertarget{canvas_8js_a71c2eb1c63790a302cd3cc6dd3880bd1}{}\label{canvas_8js_a71c2eb1c63790a302cd3cc6dd3880bd1}
+
+
+Draws circle within fx,fy distance from center of player\textquotesingle{}s screen. 
+
+\index{canvas.\+js@{canvas.\+js}!re\+Draw\+Canvas@{re\+Draw\+Canvas}}
+\index{re\+Draw\+Canvas@{re\+Draw\+Canvas}!canvas.\+js@{canvas.\+js}}
+\subsubsection[{\texorpdfstring{re\+Draw\+Canvas()}{reDrawCanvas()}}]{\setlength{\rightskip}{0pt plus 5cm}function re\+Draw\+Canvas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{canvas_8js_afa70c0c095a4753036e0456c463818e6}{}\label{canvas_8js_afa70c0c095a4753036e0456c463818e6}
+
+
+Draws objects on map (player, balls and food) 
+
+\index{canvas.\+js@{canvas.\+js}!re\+Draw\+Grid@{re\+Draw\+Grid}}
+\index{re\+Draw\+Grid@{re\+Draw\+Grid}!canvas.\+js@{canvas.\+js}}
+\subsubsection[{\texorpdfstring{re\+Draw\+Grid()}{reDrawGrid()}}]{\setlength{\rightskip}{0pt plus 5cm}function re\+Draw\+Grid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{canvas_8js_a8ec1f5e4b3953abf0dc7243ae720d4b2}{}\label{canvas_8js_a8ec1f5e4b3953abf0dc7243ae720d4b2}
+
+
+Redraws grid. 
+
+
+
+\subsection{Variable Documentation}
+\index{canvas.\+js@{canvas.\+js}!cancel\+Anim\+Frame@{cancel\+Anim\+Frame}}
+\index{cancel\+Anim\+Frame@{cancel\+Anim\+Frame}!canvas.\+js@{canvas.\+js}}
+\subsubsection[{\texorpdfstring{cancel\+Anim\+Frame}{cancelAnimFrame}}]{\setlength{\rightskip}{0pt plus 5cm}window cancel\+Anim\+Frame}\hypertarget{canvas_8js_a4b4effc24650c2ef5245e327686ca601}{}\label{canvas_8js_a4b4effc24650c2ef5245e327686ca601}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= (\textcolor{keyword}{function}(handle) \{
+    \textcolor{keywordflow}{return}  window.cancelAnimationFrame     ||
+            window.mozCancelAnimationFrame;
+\})()
+\end{DoxyCode}
+\index{canvas.\+js@{canvas.\+js}!request\+Anim\+Frame@{request\+Anim\+Frame}}
+\index{request\+Anim\+Frame@{request\+Anim\+Frame}!canvas.\+js@{canvas.\+js}}
+\subsubsection[{\texorpdfstring{request\+Anim\+Frame}{requestAnimFrame}}]{\setlength{\rightskip}{0pt plus 5cm}window request\+Anim\+Frame}\hypertarget{canvas_8js_abca23acbc1d398418271025c99640f01}{}\label{canvas_8js_abca23acbc1d398418271025c99640f01}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= (\textcolor{keyword}{function}() \{
+    \textcolor{keywordflow}{return}  window.requestAnimationFrame       ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            window.msRequestAnimationFrame     ||
+            \textcolor{keyword}{function}( callback ) \{
+            window.setTimeout(callback, 1000 / 60);
+            \};
+\})()
+\end{DoxyCode}

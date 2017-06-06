@@ -1,0 +1,138 @@
+\hypertarget{connection_8js}{}\section{connection.\+js File Reference}
+\label{connection_8js}\index{connection.\+js@{connection.\+js}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{connection_8js_ac94e89dac0cc7ba0ce0ddeda1de6d1cb}{if} (window.\+Web\+Socket===undefined)
+\item 
+function \hyperlink{connection_8js_a53cd19a61faa67f7bc2bf4e26f772743}{on\+Load} ()
+\begin{DoxyCompactList}\small\item\em Exectuded when page loaded (connection config) \end{DoxyCompactList}\item 
+function \hyperlink{connection_8js_aa21307bbca3981fec07941e31212a79d}{on\+Open} (evt)
+\begin{DoxyCompactList}\small\item\em Exectuted when successfully connected. \end{DoxyCompactList}\item 
+function \hyperlink{connection_8js_ad9d928e0906710db68a7bb7a3cbf0b1d}{on\+Close} (evt)
+\begin{DoxyCompactList}\small\item\em Executed when failed to establish connection. \end{DoxyCompactList}\item 
+function \hyperlink{connection_8js_a2d5e2cb6b9b54ede3cb6723d6f786758}{on\+Message} (evt)
+\begin{DoxyCompactList}\small\item\em Recieved messages handler. \end{DoxyCompactList}\item 
+function \hyperlink{connection_8js_a86d456b2da2cc9cc827f1ffc8de3c6ce}{send\+Pos} ()
+\begin{DoxyCompactList}\small\item\em Sends normalized mouse position (normalised) \end{DoxyCompactList}\item 
+function \hyperlink{connection_8js_ad9652d6e74c4b61ae2f5b663e3cd8f26}{send\+Player\+Name} ()
+\begin{DoxyCompactList}\small\item\em Sending player name frame (handshake) \end{DoxyCompactList}\item 
+function \hyperlink{connection_8js_ae8982b0872aeca791d545280a8ca8f96}{send\+Player\+Status} (state)
+\begin{DoxyCompactList}\small\item\em Sending player status frame (handshake) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{connection_8js_a0544c3fe466e421738dae463968b70ba}{else}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Wojciech Przybysz, Kajetan Spionek Handles connection with server; Contains in/out frames implementations. 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{connection.\+js@{connection.\+js}!if@{if}}
+\index{if@{if}!connection.\+js@{connection.\+js}}
+\subsubsection[{\texorpdfstring{if(window.\+Web\+Socket===undefined)}{if(window.WebSocket===undefined)}}]{\setlength{\rightskip}{0pt plus 5cm}if (
+\begin{DoxyParamCaption}
+\item[{window.}]{Web\+Socket = {\ttfamily ==~undefined}}
+\end{DoxyParamCaption}
+)}\hypertarget{connection_8js_ac94e89dac0cc7ba0ce0ddeda1de6d1cb}{}\label{connection_8js_ac94e89dac0cc7ba0ce0ddeda1de6d1cb}
+\index{connection.\+js@{connection.\+js}!on\+Close@{on\+Close}}
+\index{on\+Close@{on\+Close}!connection.\+js@{connection.\+js}}
+\subsubsection[{\texorpdfstring{on\+Close(evt)}{onClose(evt)}}]{\setlength{\rightskip}{0pt plus 5cm}function on\+Close (
+\begin{DoxyParamCaption}
+\item[{}]{evt}
+\end{DoxyParamCaption}
+)}\hypertarget{connection_8js_ad9d928e0906710db68a7bb7a3cbf0b1d}{}\label{connection_8js_ad9d928e0906710db68a7bb7a3cbf0b1d}
+
+
+Executed when failed to establish connection. 
+
+\index{connection.\+js@{connection.\+js}!on\+Load@{on\+Load}}
+\index{on\+Load@{on\+Load}!connection.\+js@{connection.\+js}}
+\subsubsection[{\texorpdfstring{on\+Load()}{onLoad()}}]{\setlength{\rightskip}{0pt plus 5cm}function on\+Load (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{connection_8js_a53cd19a61faa67f7bc2bf4e26f772743}{}\label{connection_8js_a53cd19a61faa67f7bc2bf4e26f772743}
+
+
+Exectuded when page loaded (connection config) 
+
+\index{connection.\+js@{connection.\+js}!on\+Message@{on\+Message}}
+\index{on\+Message@{on\+Message}!connection.\+js@{connection.\+js}}
+\subsubsection[{\texorpdfstring{on\+Message(evt)}{onMessage(evt)}}]{\setlength{\rightskip}{0pt plus 5cm}function on\+Message (
+\begin{DoxyParamCaption}
+\item[{}]{evt}
+\end{DoxyParamCaption}
+)}\hypertarget{connection_8js_a2d5e2cb6b9b54ede3cb6723d6f786758}{}\label{connection_8js_a2d5e2cb6b9b54ede3cb6723d6f786758}
+
+
+Recieved messages handler. 
+
+\index{connection.\+js@{connection.\+js}!on\+Open@{on\+Open}}
+\index{on\+Open@{on\+Open}!connection.\+js@{connection.\+js}}
+\subsubsection[{\texorpdfstring{on\+Open(evt)}{onOpen(evt)}}]{\setlength{\rightskip}{0pt plus 5cm}function on\+Open (
+\begin{DoxyParamCaption}
+\item[{}]{evt}
+\end{DoxyParamCaption}
+)}\hypertarget{connection_8js_aa21307bbca3981fec07941e31212a79d}{}\label{connection_8js_aa21307bbca3981fec07941e31212a79d}
+
+
+Exectuted when successfully connected. 
+
+\index{connection.\+js@{connection.\+js}!send\+Player\+Name@{send\+Player\+Name}}
+\index{send\+Player\+Name@{send\+Player\+Name}!connection.\+js@{connection.\+js}}
+\subsubsection[{\texorpdfstring{send\+Player\+Name()}{sendPlayerName()}}]{\setlength{\rightskip}{0pt plus 5cm}function send\+Player\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{connection_8js_ad9652d6e74c4b61ae2f5b663e3cd8f26}{}\label{connection_8js_ad9652d6e74c4b61ae2f5b663e3cd8f26}
+
+
+Sending player name frame (handshake) 
+
+\index{connection.\+js@{connection.\+js}!send\+Player\+Status@{send\+Player\+Status}}
+\index{send\+Player\+Status@{send\+Player\+Status}!connection.\+js@{connection.\+js}}
+\subsubsection[{\texorpdfstring{send\+Player\+Status(state)}{sendPlayerStatus(state)}}]{\setlength{\rightskip}{0pt plus 5cm}function send\+Player\+Status (
+\begin{DoxyParamCaption}
+\item[{}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{connection_8js_ae8982b0872aeca791d545280a8ca8f96}{}\label{connection_8js_ae8982b0872aeca791d545280a8ca8f96}
+
+
+Sending player status frame (handshake) 
+
+\index{connection.\+js@{connection.\+js}!send\+Pos@{send\+Pos}}
+\index{send\+Pos@{send\+Pos}!connection.\+js@{connection.\+js}}
+\subsubsection[{\texorpdfstring{send\+Pos()}{sendPos()}}]{\setlength{\rightskip}{0pt plus 5cm}function send\+Pos (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{connection_8js_a86d456b2da2cc9cc827f1ffc8de3c6ce}{}\label{connection_8js_a86d456b2da2cc9cc827f1ffc8de3c6ce}
+
+
+Sends normalized mouse position (normalised) 
+
+
+
+\subsection{Variable Documentation}
+\index{connection.\+js@{connection.\+js}!else@{else}}
+\index{else@{else}!connection.\+js@{connection.\+js}}
+\subsubsection[{\texorpdfstring{else}{else}}]{\setlength{\rightskip}{0pt plus 5cm}else}\hypertarget{connection_8js_a0544c3fe466e421738dae463968b70ba}{}\label{connection_8js_a0544c3fe466e421738dae463968b70ba}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+\{
+        \textcolor{keywordflow}{if} (typeof String.prototype.startsWith != \textcolor{stringliteral}{"function"})
+        \{
+            String.prototype.startsWith = \textcolor{keyword}{function} (str)
+            \{
+                \textcolor{keywordflow}{return} this.indexOf(str) == 0;
+            \};
+        \}
+    
+        window.addEventListener(\textcolor{stringliteral}{"load"}, \hyperlink{connection_8js_a53cd19a61faa67f7bc2bf4e26f772743}{onLoad}, \textcolor{keyword}{false})
+\end{DoxyCode}

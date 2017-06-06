@@ -1,0 +1,234 @@
+\hypertarget{app_8js}{}\section{app.\+js File Reference}
+\label{app_8js}\index{app.\+js@{app.\+js}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+window \hyperlink{app_8js_a6c854fdf43b195a051418c43e4d6440b}{add\+Event\+Listener} (\textquotesingle{}resize\textquotesingle{}, \hyperlink{app_8js_a9f60d5caf0aa8d90f9b74c79623657a1}{resize\+Canvas}, false)
+\item 
+\hyperlink{app_8js_a9f60d5caf0aa8d90f9b74c79623657a1}{resize\+Canvas} ()
+\begin{DoxyCompactList}\small\item\em Resize canvas handle. \end{DoxyCompactList}\item 
+function \hyperlink{app_8js_a95be355e63bd2ce5d1d244b331782be8}{get\+Random\+Color} ()
+\begin{DoxyCompactList}\small\item\em Returns random color. \end{DoxyCompactList}\item 
+function \hyperlink{app_8js_a7f7e0f25b5ea7ad26a201878d16df270}{is\+Nick\+Valid} ()
+\begin{DoxyCompactList}\small\item\em Validates nickname. \end{DoxyCompactList}\item 
+function \hyperlink{app_8js_a43d52d4fb2afd79df202b46772f2ad13}{on\+Error} (evt)
+\begin{DoxyCompactList}\small\item\em Error handle. \end{DoxyCompactList}\item 
+function \hyperlink{app_8js_aceb05684e085976addee08f3ef78165c}{get\+Mouse\+Pos} (\hyperlink{app_8js_a1c82fafbefefac03f47e6f1a3cad5b73}{canvas}, evt)
+\begin{DoxyCompactList}\small\item\em Mouse handle. \end{DoxyCompactList}\item 
+function \hyperlink{app_8js_ab297afd9d563d4114a23680863e53d80}{update} ()
+\begin{DoxyCompactList}\small\item\em Display update (Animation) \end{DoxyCompactList}\item 
+function \hyperlink{app_8js_a3de7939030ae291bccf65f65cb133670}{calculate\+Fixed\+Pos} ()
+\begin{DoxyCompactList}\small\item\em Calculate object\textquotesingle{}s fx,fy distance from player\textquotesingle{}s center of screen. \end{DoxyCompactList}\item 
+function \hyperlink{app_8js_a32c8954b3abac7767adc4cbbb6b267d2}{game\+Over} ()
+\begin{DoxyCompactList}\small\item\em Game\+Over handle. \end{DoxyCompactList}\item 
+function \hyperlink{app_8js_ab310d9a3a26705f282a24c69326ec4a1}{start\+Game} ()
+\begin{DoxyCompactList}\small\item\em Start\+Game handle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+var \hyperlink{app_8js_a1c82fafbefefac03f47e6f1a3cad5b73}{canvas} = document.\+get\+Element\+By\+Id(\textquotesingle{}cvs\textquotesingle{})
+\item 
+var \hyperlink{app_8js_a052064742b5acc950df6b3c78d4ecd65}{context} = canvas.\+get\+Context(\textquotesingle{}2d\textquotesingle{})
+\item 
+var \hyperlink{app_8js_aaf620ad7a23011f857f80e457b23d609}{raf}
+\item 
+var \hyperlink{app_8js_a5512c9740e5f6440179f46ce633b28f0}{balls} = \mbox{[}$\,$\mbox{]}
+\item 
+var \hyperlink{app_8js_adae9690bde328f9ed2e75254eec08cb3}{foods} = \mbox{[}$\,$\mbox{]}
+\item 
+var \hyperlink{app_8js_ac1e8507dd4816b1d5fd78a420119975e}{mouse\+Pos}
+\item 
+var \hyperlink{app_8js_af4a3cb26e92251a48cee128ae9778a75}{player} = 0
+\item 
+var \hyperlink{app_8js_aa267fb6b258db6dbd04a6b878c9e6898}{scl} = 1
+\item 
+var \hyperlink{app_8js_a893d4967ef1870c2617590d4509659f6}{board\+Margin} = 0
+\item 
+var \hyperlink{app_8js_ae50d618b57a465c2838ed97c28ad4127}{game\+BoardX}
+\item 
+var \hyperlink{app_8js_a7d046795e7d6fae389363f32afaa22bf}{game\+BoardY}
+\item 
+var \hyperlink{app_8js_a8f2b7ad1a2948d6017f40e5e1e992ab5}{deltaX}
+\item 
+var \hyperlink{app_8js_aa8908a60e69cb0bab3e527a130edde55}{deltaY}
+\item 
+var \hyperlink{app_8js_a2fb56143c564f962700db007b34eeab6}{game\+Start} = false
+\item 
+var \hyperlink{app_8js_a421b77753876b4010bdb1d276e068867}{game\+Died} = false
+\item 
+var \hyperlink{app_8js_a570cad7abdfa4176776d7e9bff76ed63}{player\+Set} = false
+\item 
+var \hyperlink{app_8js_abe333e9c5c7687e5729ae6fae360c032}{death\+Stats} = \mbox{[}0, 0, 0\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Wojciech Przybysz, Kajetan Spionek Main application file 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{app.\+js@{app.\+js}!add\+Event\+Listener@{add\+Event\+Listener}}
+\index{add\+Event\+Listener@{add\+Event\+Listener}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{add\+Event\+Listener(\textquotesingle{}resize\textquotesingle{}, resize\+Canvas, false)}{addEventListener('resize', resizeCanvas, false)}}]{\setlength{\rightskip}{0pt plus 5cm}window add\+Event\+Listener (
+\begin{DoxyParamCaption}
+\item[{\textquotesingle{}resize\textquotesingle{}}]{, }
+\item[{{\bf resize\+Canvas}}]{, }
+\item[{false}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{app_8js_a6c854fdf43b195a051418c43e4d6440b}{}\label{app_8js_a6c854fdf43b195a051418c43e4d6440b}
+\index{app.\+js@{app.\+js}!calculate\+Fixed\+Pos@{calculate\+Fixed\+Pos}}
+\index{calculate\+Fixed\+Pos@{calculate\+Fixed\+Pos}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{calculate\+Fixed\+Pos()}{calculateFixedPos()}}]{\setlength{\rightskip}{0pt plus 5cm}function calculate\+Fixed\+Pos (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{app_8js_a3de7939030ae291bccf65f65cb133670}{}\label{app_8js_a3de7939030ae291bccf65f65cb133670}
+
+
+Calculate object\textquotesingle{}s fx,fy distance from player\textquotesingle{}s center of screen. 
+
+\index{app.\+js@{app.\+js}!game\+Over@{game\+Over}}
+\index{game\+Over@{game\+Over}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{game\+Over()}{gameOver()}}]{\setlength{\rightskip}{0pt plus 5cm}function game\+Over (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{app_8js_a32c8954b3abac7767adc4cbbb6b267d2}{}\label{app_8js_a32c8954b3abac7767adc4cbbb6b267d2}
+
+
+Game\+Over handle. 
+
+\index{app.\+js@{app.\+js}!get\+Mouse\+Pos@{get\+Mouse\+Pos}}
+\index{get\+Mouse\+Pos@{get\+Mouse\+Pos}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{get\+Mouse\+Pos(canvas, evt)}{getMousePos(canvas, evt)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Mouse\+Pos (
+\begin{DoxyParamCaption}
+\item[{}]{canvas, }
+\item[{}]{evt}
+\end{DoxyParamCaption}
+)}\hypertarget{app_8js_aceb05684e085976addee08f3ef78165c}{}\label{app_8js_aceb05684e085976addee08f3ef78165c}
+
+
+Mouse handle. 
+
+\index{app.\+js@{app.\+js}!get\+Random\+Color@{get\+Random\+Color}}
+\index{get\+Random\+Color@{get\+Random\+Color}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{get\+Random\+Color()}{getRandomColor()}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Random\+Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{app_8js_a95be355e63bd2ce5d1d244b331782be8}{}\label{app_8js_a95be355e63bd2ce5d1d244b331782be8}
+
+
+Returns random color. 
+
+\index{app.\+js@{app.\+js}!is\+Nick\+Valid@{is\+Nick\+Valid}}
+\index{is\+Nick\+Valid@{is\+Nick\+Valid}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{is\+Nick\+Valid()}{isNickValid()}}]{\setlength{\rightskip}{0pt plus 5cm}function is\+Nick\+Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{app_8js_a7f7e0f25b5ea7ad26a201878d16df270}{}\label{app_8js_a7f7e0f25b5ea7ad26a201878d16df270}
+
+
+Validates nickname. 
+
+\index{app.\+js@{app.\+js}!on\+Error@{on\+Error}}
+\index{on\+Error@{on\+Error}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{on\+Error(evt)}{onError(evt)}}]{\setlength{\rightskip}{0pt plus 5cm}function on\+Error (
+\begin{DoxyParamCaption}
+\item[{}]{evt}
+\end{DoxyParamCaption}
+)}\hypertarget{app_8js_a43d52d4fb2afd79df202b46772f2ad13}{}\label{app_8js_a43d52d4fb2afd79df202b46772f2ad13}
+
+
+Error handle. 
+
+\index{app.\+js@{app.\+js}!resize\+Canvas@{resize\+Canvas}}
+\index{resize\+Canvas@{resize\+Canvas}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{resize\+Canvas()}{resizeCanvas()}}]{\setlength{\rightskip}{0pt plus 5cm}function resize\+Canvas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{app_8js_a9f60d5caf0aa8d90f9b74c79623657a1}{}\label{app_8js_a9f60d5caf0aa8d90f9b74c79623657a1}
+
+
+Resize canvas handle. 
+
+\index{app.\+js@{app.\+js}!start\+Game@{start\+Game}}
+\index{start\+Game@{start\+Game}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{start\+Game()}{startGame()}}]{\setlength{\rightskip}{0pt plus 5cm}function start\+Game (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{app_8js_ab310d9a3a26705f282a24c69326ec4a1}{}\label{app_8js_ab310d9a3a26705f282a24c69326ec4a1}
+
+
+Start\+Game handle. 
+
+\index{app.\+js@{app.\+js}!update@{update}}
+\index{update@{update}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{update()}{update()}}]{\setlength{\rightskip}{0pt plus 5cm}function update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{app_8js_ab297afd9d563d4114a23680863e53d80}{}\label{app_8js_ab297afd9d563d4114a23680863e53d80}
+
+
+Display update (Animation) 
+
+
+
+\subsection{Variable Documentation}
+\index{app.\+js@{app.\+js}!balls@{balls}}
+\index{balls@{balls}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{balls}{balls}}]{\setlength{\rightskip}{0pt plus 5cm}var balls = \mbox{[}$\,$\mbox{]}}\hypertarget{app_8js_a5512c9740e5f6440179f46ce633b28f0}{}\label{app_8js_a5512c9740e5f6440179f46ce633b28f0}
+\index{app.\+js@{app.\+js}!board\+Margin@{board\+Margin}}
+\index{board\+Margin@{board\+Margin}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{board\+Margin}{boardMargin}}]{\setlength{\rightskip}{0pt plus 5cm}var board\+Margin = 0}\hypertarget{app_8js_a893d4967ef1870c2617590d4509659f6}{}\label{app_8js_a893d4967ef1870c2617590d4509659f6}
+\index{app.\+js@{app.\+js}!canvas@{canvas}}
+\index{canvas@{canvas}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{canvas}{canvas}}]{\setlength{\rightskip}{0pt plus 5cm}var canvas = document.\+get\+Element\+By\+Id(\textquotesingle{}cvs\textquotesingle{})}\hypertarget{app_8js_a1c82fafbefefac03f47e6f1a3cad5b73}{}\label{app_8js_a1c82fafbefefac03f47e6f1a3cad5b73}
+\index{app.\+js@{app.\+js}!context@{context}}
+\index{context@{context}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{context}{context}}]{\setlength{\rightskip}{0pt plus 5cm}var context = canvas.\+get\+Context(\textquotesingle{}2d\textquotesingle{})}\hypertarget{app_8js_a052064742b5acc950df6b3c78d4ecd65}{}\label{app_8js_a052064742b5acc950df6b3c78d4ecd65}
+\index{app.\+js@{app.\+js}!death\+Stats@{death\+Stats}}
+\index{death\+Stats@{death\+Stats}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{death\+Stats}{deathStats}}]{\setlength{\rightskip}{0pt plus 5cm}var death\+Stats = \mbox{[}0, 0, 0\mbox{]}}\hypertarget{app_8js_abe333e9c5c7687e5729ae6fae360c032}{}\label{app_8js_abe333e9c5c7687e5729ae6fae360c032}
+\index{app.\+js@{app.\+js}!deltaX@{deltaX}}
+\index{deltaX@{deltaX}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{deltaX}{deltaX}}]{\setlength{\rightskip}{0pt plus 5cm}var deltaX}\hypertarget{app_8js_a8f2b7ad1a2948d6017f40e5e1e992ab5}{}\label{app_8js_a8f2b7ad1a2948d6017f40e5e1e992ab5}
+\index{app.\+js@{app.\+js}!deltaY@{deltaY}}
+\index{deltaY@{deltaY}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{deltaY}{deltaY}}]{\setlength{\rightskip}{0pt plus 5cm}var deltaY}\hypertarget{app_8js_aa8908a60e69cb0bab3e527a130edde55}{}\label{app_8js_aa8908a60e69cb0bab3e527a130edde55}
+\index{app.\+js@{app.\+js}!foods@{foods}}
+\index{foods@{foods}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{foods}{foods}}]{\setlength{\rightskip}{0pt plus 5cm}var foods = \mbox{[}$\,$\mbox{]}}\hypertarget{app_8js_adae9690bde328f9ed2e75254eec08cb3}{}\label{app_8js_adae9690bde328f9ed2e75254eec08cb3}
+\index{app.\+js@{app.\+js}!game\+BoardX@{game\+BoardX}}
+\index{game\+BoardX@{game\+BoardX}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{game\+BoardX}{gameBoardX}}]{\setlength{\rightskip}{0pt plus 5cm}var game\+BoardX}\hypertarget{app_8js_ae50d618b57a465c2838ed97c28ad4127}{}\label{app_8js_ae50d618b57a465c2838ed97c28ad4127}
+\index{app.\+js@{app.\+js}!game\+BoardY@{game\+BoardY}}
+\index{game\+BoardY@{game\+BoardY}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{game\+BoardY}{gameBoardY}}]{\setlength{\rightskip}{0pt plus 5cm}var game\+BoardY}\hypertarget{app_8js_a7d046795e7d6fae389363f32afaa22bf}{}\label{app_8js_a7d046795e7d6fae389363f32afaa22bf}
+\index{app.\+js@{app.\+js}!game\+Died@{game\+Died}}
+\index{game\+Died@{game\+Died}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{game\+Died}{gameDied}}]{\setlength{\rightskip}{0pt plus 5cm}var game\+Died = false}\hypertarget{app_8js_a421b77753876b4010bdb1d276e068867}{}\label{app_8js_a421b77753876b4010bdb1d276e068867}
+\index{app.\+js@{app.\+js}!game\+Start@{game\+Start}}
+\index{game\+Start@{game\+Start}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{game\+Start}{gameStart}}]{\setlength{\rightskip}{0pt plus 5cm}var game\+Start = false}\hypertarget{app_8js_a2fb56143c564f962700db007b34eeab6}{}\label{app_8js_a2fb56143c564f962700db007b34eeab6}
+\index{app.\+js@{app.\+js}!mouse\+Pos@{mouse\+Pos}}
+\index{mouse\+Pos@{mouse\+Pos}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{mouse\+Pos}{mousePos}}]{\setlength{\rightskip}{0pt plus 5cm}var mouse\+Pos}\hypertarget{app_8js_ac1e8507dd4816b1d5fd78a420119975e}{}\label{app_8js_ac1e8507dd4816b1d5fd78a420119975e}
+\index{app.\+js@{app.\+js}!player@{player}}
+\index{player@{player}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{player}{player}}]{\setlength{\rightskip}{0pt plus 5cm}var player = 0}\hypertarget{app_8js_af4a3cb26e92251a48cee128ae9778a75}{}\label{app_8js_af4a3cb26e92251a48cee128ae9778a75}
+\index{app.\+js@{app.\+js}!player\+Set@{player\+Set}}
+\index{player\+Set@{player\+Set}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{player\+Set}{playerSet}}]{\setlength{\rightskip}{0pt plus 5cm}var player\+Set = false}\hypertarget{app_8js_a570cad7abdfa4176776d7e9bff76ed63}{}\label{app_8js_a570cad7abdfa4176776d7e9bff76ed63}
+\index{app.\+js@{app.\+js}!raf@{raf}}
+\index{raf@{raf}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{raf}{raf}}]{\setlength{\rightskip}{0pt plus 5cm}var raf}\hypertarget{app_8js_aaf620ad7a23011f857f80e457b23d609}{}\label{app_8js_aaf620ad7a23011f857f80e457b23d609}
+\index{app.\+js@{app.\+js}!scl@{scl}}
+\index{scl@{scl}!app.\+js@{app.\+js}}
+\subsubsection[{\texorpdfstring{scl}{scl}}]{\setlength{\rightskip}{0pt plus 5cm}var scl = 1}\hypertarget{app_8js_aa267fb6b258db6dbd04a6b878c9e6898}{}\label{app_8js_aa267fb6b258db6dbd04a6b878c9e6898}
